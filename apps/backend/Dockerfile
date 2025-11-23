@@ -42,9 +42,6 @@ COPY --from=builder /app/scripts ./scripts
 COPY --from=builder /app/src/data-source.ts ./src/data-source.ts
 COPY --from=builder /app/src/migrations ./src/migrations
 
-# Copy SQL data file for initial import
-COPY ../artefatos/der/Script_Dados_Postgresql.sql ./scripts/Script_Dados_Postgresql.sql
-
 # Expose port
 EXPOSE 3000
 
