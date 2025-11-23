@@ -22,7 +22,7 @@ services:
       restart_policy:
         condition: on-failure
     networks:
-      - sollus-network
+      - sollus-prod-net
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:
@@ -40,13 +40,13 @@ services:
       restart_policy:
         condition: on-failure
     networks:
-      - sollus-network
+      - sollus-prod-net
 
 volumes:
   sollus_pg_data:
 
 
 networks:
-  sollus-network:
+  sollus-prod-net:
     driver: overlay
     attachable: true # Permite que containers standalone também se conectem, se necessário
