@@ -1,0 +1,958 @@
+🔄 Verificando migrations pendentes...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+query: SELECT version()
+query: SELECT * FROM current_schema()
+query: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = 'public' AND "table_name" = 'migrations'
+query: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+No migrations are pending
+✅ Migrations concluídas
+📦 Verificando se o banco precisa de dados iniciais...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+⏭️  Dados já existem, pulando importação
+🚀 Iniciando aplicação...
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+[Nest] 63  - 11/23/2025, 7:02:31 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +93ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CadastrosModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinanceiroModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] EstoqueModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributacaoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendasModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ComprasModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NfeModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] AdministrativoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ComissoesModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] OsModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] AfvModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] SpedModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] GedModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] InventarioModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewsDBModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TenantModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] SpedFiscalModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] SpedContabilModule dependencies initialized +0ms
+query: SELECT version()
+query: SELECT * FROM current_schema()
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmCoreModule dependencies initialized +484ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ControleEstoqueModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] AppModule dependencies initialized +6ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] LoginModule dependencies initialized +5ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] BancoModule dependencies initialized +3ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] BancoAgenciaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] BancoContaCaixaModule dependencies initialized +4ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] PessoaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ProdutoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ProdutoGrupoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ProdutoSubgrupoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ProdutoUnidadeModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ProdutoMarcaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] EstadoCivilModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NivelFormacaoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CargoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CepModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CfopModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CnaeModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] SetorModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] PapelModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CsosnModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CstCofinsModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CstIcmsModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CstIpiModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CstPisModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] MunicipioModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NcmModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] UfModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendedorModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinChequeEmitidoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinChequeRecebidoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinConfiguracaoBoletoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinDocumentoOrigemModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinExtratoContaBancoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinFechamentoCaixaBancoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinLancamentoPagarModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinLancamentoReceberModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinParcelaPagarModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinParcelaReceberModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinNaturezaFinanceiraModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinStatusParcelaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinTipoPagamentoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] FinTipoRecebimentoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TalonarioChequeModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] EstoqueReajusteCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] RequisicaoInternaCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributConfiguraOfGtModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributGrupoTributarioModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributIcmsCustomCabModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributIssModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TributOperacaoFiscalModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NotaFiscalModeloModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NotaFiscalTipoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendaCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendaCondicoesPagamentoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendaFreteModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendaOrcamentoCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CompraCotacaoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CompraPedidoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CompraRequisicaoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CompraTipoPedidoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] CompraTipoRequisicaoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NfeCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NfeNumeroModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] NfeNumeroInutilizadoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] EmpresaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ComissaoObjetivoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ComissaoPerfilModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] OsAberturaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] OsEquipamentoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] OsStatusModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendedorMetaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] VendedorRotaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] TabelaPrecoModule dependencies initialized +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] GedTipoDocumentoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] InventarioContagemCabModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewPessoaColaboradorModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewPessoaClienteModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewPessoaFornecedorModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewPessoaVendedorModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewPessoaTransportadoraModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewFinLancamentoPagarModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewFinLancamentoReceberModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewFinChequeNaoCompensadoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewFinFluxoCaixaModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] ViewFinMovimentoCaixaBancoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [InstanceLoader] GedDocumentoCabecalhoModule dependencies initialized +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] AppController {/CS Solutions}: +13ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/CS Solutions/consulta, GET} route +2ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/CS Solutions/teste, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] BancoController {/banco}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] BancoAgenciaController {/banco-agencia}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia/:id, PUT} route +3ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-agencia/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] BancoContaCaixaController {/banco-conta-caixa}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/banco-conta-caixa/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] PessoaController {/pessoa}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/pessoa/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ProdutoController {/produto}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ProdutoGrupoController {/produto-grupo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-grupo/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ProdutoSubgrupoController {/produto-subgrupo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-subgrupo/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ProdutoUnidadeController {/produto-unidade}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-unidade/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ProdutoMarcaController {/produto-marca}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/produto-marca/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] EstadoCivilController {/estado-civil}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estado-civil/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NivelFormacaoController {/nivel-formacao}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nivel-formacao/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CargoController {/cargo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cargo/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CepController {/cep}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cep/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CfopController {/cfop}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cfop/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CnaeController {/cnae}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cnae/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] SetorController {/setor}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/setor/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] PapelController {/papel}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/papel/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CsosnController {/csosn}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/csosn/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CstCofinsController {/cst-cofins}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-cofins/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CstIcmsController {/cst-icms}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-icms/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CstIpiController {/cst-ipi}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-ipi/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CstPisController {/cst-pis}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/cst-pis/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] MunicipioController {/municipio}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/municipio/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NcmController {/ncm}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ncm/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] UfController {/uf}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/uf/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendedorController {/vendedor}: +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinChequeEmitidoController {/fin-cheque-emitido}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-emitido/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinChequeRecebidoController {/fin-cheque-recebido}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-cheque-recebido/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinConfiguracaoBoletoController {/fin-configuracao-boleto}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-configuracao-boleto/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinDocumentoOrigemController {/fin-documento-origem}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-documento-origem/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinExtratoContaBancoController {/fin-extrato-conta-banco}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-extrato-conta-banco/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinFechamentoCaixaBancoController {/fin-fechamento-caixa-banco}: +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-fechamento-caixa-banco/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinLancamentoPagarController {/fin-lancamento-pagar}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-pagar/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinLancamentoReceberController {/fin-lancamento-receber}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/gera-boleto, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-lancamento-receber/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinParcelaPagarController {/fin-parcela-pagar}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-pagar/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinParcelaReceberController {/fin-parcela-receber}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-parcela-receber/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinNaturezaFinanceiraController {/fin-natureza-financeira}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-natureza-financeira/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinStatusParcelaController {/fin-status-parcela}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-status-parcela/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinTipoPagamentoController {/fin-tipo-pagamento}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-pagamento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] FinTipoRecebimentoController {/fin-tipo-recebimento}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/fin-tipo-recebimento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TalonarioChequeController {/talonario-cheque}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/talonario-cheque/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] EstoqueReajusteCabecalhoController {/estoque-reajuste-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/forma-preco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/estoque-reajuste-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] RequisicaoInternaCabecalhoController {/requisicao-interna-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/requisicao-interna-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TributConfiguraOfGtController {/tribut-configura-of-gt}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/consulta-tributacao, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-configura-of-gt/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TributGrupoTributarioController {/tribut-grupo-tributario}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-grupo-tributario/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TributIcmsCustomCabController {/tribut-icms-custom-cab}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-icms-custom-cab/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TributIssController {/tribut-iss}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-iss/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TributOperacaoFiscalController {/tribut-operacao-fiscal}: +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tribut-operacao-fiscal/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NotaFiscalModeloController {/nota-fiscal-modelo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-modelo/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NotaFiscalTipoController {/nota-fiscal-tipo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nota-fiscal-tipo/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendaCabecalhoController {/venda-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendaCondicoesPagamentoController {/venda-condicoes-pagamento}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-condicoes-pagamento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendaFreteController {/venda-frete}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-frete/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendaOrcamentoCabecalhoController {/venda-orcamento-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/venda-orcamento-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CompraCotacaoController {/compra-cotacao}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-cotacao/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CompraPedidoController {/compra-pedido}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-pedido/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CompraRequisicaoController {/compra-requisicao}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-requisicao/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CompraTipoPedidoController {/compra-tipo-pedido}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-pedido/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] CompraTipoRequisicaoController {/compra-tipo-requisicao}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/compra-tipo-requisicao/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NfeCabecalhoController {/nfe-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/calcula-totais, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/transmite-nfe, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/gera-pdf-nfe, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NfeNumeroController {/nfe-numero}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] NfeNumeroInutilizadoController {/nfe-numero-inutilizado}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/nfe-numero-inutilizado/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] EmpresaController {/empresa}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/empresa/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ComissaoObjetivoController {/comissao-objetivo}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-objetivo/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ComissaoPerfilController {/comissao-perfil}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/comissao-perfil/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] OsAberturaController {/os-abertura}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-abertura/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] OsEquipamentoController {/os-equipamento}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-equipamento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] OsStatusController {/os-status}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/os-status/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendedorMetaController {/vendedor-meta}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-meta/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] VendedorRotaController {/vendedor-rota}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/vendedor-rota/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] TabelaPrecoController {/tabela-preco}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/tabela-preco/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] SpedFiscalController {/sped-fiscal}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/sped-fiscal/:filter, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] SpedContabilController {/sped-contabil}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/sped-contabil/:filter, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] GedDocumentoCabecalhoController {/ged-documento-cabecalho}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, PUT} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/atualiza-detalhe, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-documento-cabecalho/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] GedTipoDocumentoController {/ged-tipo-documento}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/ged-tipo-documento/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] InventarioContagemCabController {/inventario-contagem-cab}: +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/inventario-contagem-cab/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewPessoaColaboradorController {/view-pessoa-colaborador}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-colaborador/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewPessoaClienteController {/view-pessoa-cliente}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-cliente/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewPessoaFornecedorController {/view-pessoa-fornecedor}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-fornecedor/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewPessoaVendedorController {/view-pessoa-vendedor}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-vendedor/:id, DELETE} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewPessoaTransportadoraController {/view-pessoa-transportadora}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-pessoa-transportadora/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewFinLancamentoPagarController {/view-fin-lancamento-pagar}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-pagar/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewFinLancamentoReceberController {/view-fin-lancamento-receber}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber/:id, PATCH} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-lancamento-receber/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewFinChequeNaoCompensadoController {/view-fin-cheque-nao-compensado}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-cheque-nao-compensado/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewFinFluxoCaixaController {/view-fin-fluxo-caixa}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa/:id, GET} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa/bulk, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-fluxo-caixa/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] ViewFinMovimentoCaixaBancoController {/view-fin-movimento-caixa-banco}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco/:id, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco, GET} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco/bulk, POST} route +1ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco/:id, PATCH} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco/:id, PUT} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/view-fin-movimento-caixa-banco/:id, DELETE} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RoutesResolver] LoginController {/login}: +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [RouterExplorer] Mapped {/login, POST} route +0ms
+[Nest] 63  - 11/23/2025, 7:02:32 PM     LOG [NestApplication] Nest application successfully started +32ms
+Servidor Node pronto em http://localhost:3000
