@@ -65,6 +65,8 @@ import { NcmModule } from '../cadastros/ncm/ncm.module';
 //import { TransportadoraModule } from '../cadastros/transportadora/transportadora.module';
 import { UfModule } from '../cadastros/uf/uf.module';
 import { VendedorModule } from '../cadastros/vendedor/vendedor.module';
+import { IbptModule } from './ibpt/ibpt.module';
+import { NfseListaServicoModule } from './nfse-lista-servico/nfse-lista-servico.module';
 
 @Module({
 	imports: [
@@ -99,6 +101,8 @@ import { VendedorModule } from '../cadastros/vendedor/vendedor.module';
 		//		TransportadoraModule,
 		UfModule,
 		VendedorModule,
+		IbptModule,
+		NfseListaServicoModule,
 	],
 })
 export class CadastrosModule { }
