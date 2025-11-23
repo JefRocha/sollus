@@ -3,40 +3,42 @@ version: '3.8'
 services:
   # O Backend (Sua aplicação)
   sollus-backend:
-    container_name: sollus-backend
-    image: sollus-backend:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    # container_name: removido (não suportado no Swarm)
+    image: ghcr.io/jefrocha/sollus:main
+    # build: removido (não suportado no Swarm)
     ports:
       - "3000:3000"
     environment:
       - DB_TYPE=postgres
-      - DB_HOST=sollus-db # Nome do serviço do banco definido abaixo
+      - DB_HOST=sollus-db
       - DB_PORT=5432
       - DB_USERNAME=postgres
-      - DB_PASSWORD=SolucionandoTudo # Altere para uma senha segura
+      - DB_PASSWORD=SolucionandoTudo
       - DB_DATABASE=solluserp
       - PORT=3000
     depends_on:
       - sollus-db
-    restart: always
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - sollus-network
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:
-    container_name: sollus-db
+    # container_name: removido
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: SolucionandoTudo # Mesma senha de cima
+      POSTGRES_PASSWORD: SolucionandoTudo
       POSTGRES_DB: solluserp
     volumes:
-      - sollus_pg_data:/var/lib/postgresql/data # Salva os dados fora do container
+      - sollus_pg_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432" # Opcional: só se quiser acessar o banco externamente
-    restart: always
+      - "5432:5432"
+    deploy:
+      restart_policy:
+        condition: on-failure
     networks:
       - sollus-network
 
@@ -46,4 +48,4 @@ volumes:
 
 networks:
   sollus-network:
-    driver: bridge
+    driver: overlay # Necessário para Swarm
