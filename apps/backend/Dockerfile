@@ -35,6 +35,7 @@ RUN pnpm install --prod
 # Copy built assets from builder stage
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/.env.example ./.env.example
+COPY --from=builder /app/scripts ./scripts
 
 # Expose port
 EXPOSE 3000

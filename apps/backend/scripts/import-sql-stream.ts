@@ -12,7 +12,7 @@ async function importSqlStream() {
     const dataSource = new DataSource(configMySQL as any);
     await dataSource.initialize();
 
-    const sqlFilePath = 'd:/Projetos/NextJS/sollus/apps/artefatos/der/Script_Dados_Postgresql.sql';
+    const sqlFilePath = process.env.SQL_FILE_PATH || './scripts/Script_Dados_Postgresql.sql';
 
     try {
         // Tentar desabilitar FKs e Triggers para agilizar e evitar erros de ordem

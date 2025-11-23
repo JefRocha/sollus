@@ -3,11 +3,9 @@ version: '3.8'
 services:
   # O Backend (Sua aplicação)
   sollus-backend:
-    # container_name: removido (não suportado no Swarm)
     image: ghcr.io/jefrocha/sollus:main
-    # build: removido (não suportado no Swarm)
     ports:
-      - "3000:3000"
+      - "3000:3000" # Mantendo para teste direto, mas o acesso real será via Nginx
     environment:
       - DB_TYPE=postgres
       - DB_HOST=sollus-db
@@ -26,7 +24,6 @@ services:
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:
-    # container_name: removido
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: postgres
@@ -35,18 +32,34 @@ services:
     volumes:
       - sollus_pg_data:/var/lib/postgresql/data
     ports:
-      - "5433:5432" # Alterado para 5433 para evitar conflito com outro Postgres
+      - "5433:5432"
     deploy:
       restart_policy:
         condition: on-failure
     networks:
       - sollus-prod-net
 
+  # Proxy Reverso (Gerencia Domínios e SSL)
+  nginx-proxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    ports:
+      - '80:80' # Porta padrão Web (HTTP)
+      - '81:81' # Painel Administrativo do Proxy
+      - '443:443' # Porta Segura (HTTPS)
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    networks:
+      - sollus-prod-net
+
 volumes:
   sollus_pg_data:
+  npm_data:
+  npm_letsencrypt:
 
 
 networks:
   sollus-prod-net:
     driver: overlay
-    attachable: true # Permite que containers standalone também se conectem, se necessário
+    attachable: true
