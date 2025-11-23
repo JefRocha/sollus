@@ -29,8 +29,8 @@ RUN npm install -g pnpm
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install production dependencies only
-RUN pnpm install --prod
+# Install production dependencies + ts-node for scripts
+RUN pnpm install --prod && pnpm add -g ts-node typescript
 
 # Copy built assets from builder stage
 COPY --from=builder /app/dist ./dist

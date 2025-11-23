@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import { configMySQL } from '../src/orm.config';
 import * as fs from 'fs';
 import * as readline from 'readline';
 import * as dotenv from 'dotenv';
@@ -9,7 +8,17 @@ dotenv.config();
 async function importSqlStream() {
     console.log('🚀 Iniciando importação OTIMIZADA (Stream)...');
 
-    const dataSource = new DataSource(configMySQL as any);
+    // Criar configuração do DataSource diretamente
+    const dataSource = new DataSource({
+        type: 'postgres',
+        host: process.env.DB_HOST || 'localhost',
+        port: parseInt(process.env.DB_PORT || '5432'),
+        username: process.env.DB_USERNAME || 'postgres',
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE || 'solluserp',
+        synchronize: false,
+        logging: false,
+    });
     await dataSource.initialize();
 
     const sqlFilePath = process.env.SQL_FILE_PATH || './scripts/Script_Dados_Postgresql.sql';
