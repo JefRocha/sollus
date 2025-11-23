@@ -15,7 +15,7 @@ services:
       - DB_HOST=sollus-db # Nome do serviço do banco definido abaixo
       - DB_PORT=5432
       - DB_USERNAME=postgres
-      - DB_PASSWORD=sollus_secret_pass # Altere para uma senha segura
+      - DB_PASSWORD=SolucionandoTudo # Altere para uma senha segura
       - DB_DATABASE=solluserp
       - PORT=3000
     depends_on:
@@ -30,7 +30,7 @@ services:
     image: postgres:15-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: sollus_secret_pass # Mesma senha de cima
+      POSTGRES_PASSWORD: SolucionandoTudo # Mesma senha de cima
       POSTGRES_DB: solluserp
     volumes:
       - sollus_pg_data:/var/lib/postgresql/data # Salva os dados fora do container
