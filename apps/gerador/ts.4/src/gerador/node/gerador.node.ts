@@ -16,13 +16,13 @@ export class GeradorNode extends GeradorBase {
 
     nomePasta: string;
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/node/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/node/Node.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/node/Node.Controller.mustache';
-    arquivoTemplateModule = 'c:/t2ti/gerador.codigo/templates/node/Node.Module.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/node/Node.Service.mustache';
-    arquivoTemplateEntitiesExport = 'c:/t2ti/gerador.codigo/templates/node/Node.Entities.Export.mustache';
-    arquivoTemplateModulesExport = 'c:/t2ti/gerador.codigo/templates/node/Node.Modules.Export.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/node/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Controller.mustache';
+    arquivoTemplateModule = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Module.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Service.mustache';
+    arquivoTemplateEntitiesExport = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Entities.Export.mustache';
+    arquivoTemplateModulesExport = 'c:/CS Solutions/gerador.codigo/templates/node/Node.Modules.Export.mustache';
 
     constructor() {
         super();
@@ -199,7 +199,7 @@ export class GeradorNode extends GeradorBase {
             for (let index = 0; index < lista.length; index++) {
                 this.listaTabelas.push(lista[index].nome);
             }
-            
+
             // gera o arquivo com a exportação das entities
             var modelJson = new NodeEntitiesExport(modulo, this.listaTabelas);
             let modelTemplate = fs.readFileSync(this.arquivoTemplateEntitiesExport).toString();

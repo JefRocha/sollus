@@ -4,7 +4,7 @@ export class ComentarioDerJsonModel {
 
     /**
      * Mais informações sobre essa classe podem ser encontradas no repositório, no documento
-     * T2Ti ERP sollus - Estrutura Objeto JSON Comentario DER.doc
+     * CS Solutions ERP sollus - Estrutura Objeto JSON Comentario DER.doc
      */
     cardinalidade: string;
     crud: string;

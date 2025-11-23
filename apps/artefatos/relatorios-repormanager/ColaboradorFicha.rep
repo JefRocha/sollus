@@ -20,12 +20,12 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select p.nome as empregado,'#13#10'   /* endre'#231'o do empregado*/'#13#10'   e.' +
         'logradouro ||'#39' , '#39'|| e.numero endereco, e.bairro, e.cidade, e.uf' +
@@ -65,7 +65,7 @@ object TRpReport
     end
     item
       Alias = 'RELACIONAMENTOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select cr.*, tr.nome as tiporelacionamento'#13#10'from'#13#10'colaborador_re' +
         'lacionamento cr'#13#10'inner join colaborador    c   on c.id = cr.id_c' +
@@ -75,7 +75,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

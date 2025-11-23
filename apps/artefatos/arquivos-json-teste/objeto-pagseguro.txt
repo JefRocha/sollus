@@ -18,6 +18,6 @@
     "metodoPagamento":"1",
     "codigoTipoPagamento":"101",
     "codigoProduto":"999999",
-    "descricaoProduto":"T2Ti Pegasus PDV NFC-e - Assinatura Mensal",
+    "descricaoProduto":"CS Solutions Pegasus PDV NFC-e - Assinatura Mensal",
     "valorUnitario":15.00
 }

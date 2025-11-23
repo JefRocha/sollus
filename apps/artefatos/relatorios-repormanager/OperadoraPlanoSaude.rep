@@ -14,12 +14,12 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select ops.*, ops.nome as operadoraplanosaude, cc.descricao as con' +
         'tabilconta'#13#10'from operadora_plano_saude ops'#13#10'   left join contabil_conta cc on ' +
@@ -28,7 +28,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

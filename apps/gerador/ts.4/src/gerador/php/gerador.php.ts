@@ -10,11 +10,11 @@ import { GeradorBase } from "../../gerador/gerador.base";
 
 export class GeradorPHP extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/php/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/php-doctrine/PHP.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/php-doctrine/PHP.Controller.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/php-doctrine/PHP.Service.mustache';
-    arquivoTemplateIncludesRotas = 'c:/t2ti/gerador.codigo/templates/php-doctrine/PHP.Includes.Rotas.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/php/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/php-doctrine/PHP.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/php-doctrine/PHP.Controller.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/php-doctrine/PHP.Service.mustache';
+    arquivoTemplateIncludesRotas = 'c:/CS Solutions/gerador.codigo/templates/php-doctrine/PHP.Includes.Rotas.mustache';
 
     constructor() {
         super();

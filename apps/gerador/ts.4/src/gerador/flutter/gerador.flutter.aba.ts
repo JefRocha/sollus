@@ -17,15 +17,15 @@ export class GeradorFlutterAba extends GeradorBase {
 
     relacionamentosOneToOne: ComentarioDerJsonModel[];
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/flutter/';
-    arquivoTemplateAbaDetalheListaPage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaDetalheListaPage.mustache';
-    arquivoTemplateAbaDetalheDetalhePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaDetalheDetalhePage.mustache';
-    arquivoTemplateAbaDetalhePersistePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaDetalhePersistePage.mustache';
-    arquivoTemplateAbaMestreListaPage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaMestreListaPage.mustache';
-    arquivoTemplateAbaMestreDetalhePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaMestreDetalhePage.mustache';
-    arquivoTemplateAbaMestrePersistePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaMestrePersistePage.mustache';
-    arquivoTemplateAbaMestrePersistePageOneToOne = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaMestrePersistePageOneToOne.mustache';
-    arquivoTemplateAbaMestrePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.AbaMestrePage.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/flutter/';
+    arquivoTemplateAbaDetalheListaPage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaDetalheListaPage.mustache';
+    arquivoTemplateAbaDetalheDetalhePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaDetalheDetalhePage.mustache';
+    arquivoTemplateAbaDetalhePersistePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaDetalhePersistePage.mustache';
+    arquivoTemplateAbaMestreListaPage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaMestreListaPage.mustache';
+    arquivoTemplateAbaMestreDetalhePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaMestreDetalhePage.mustache';
+    arquivoTemplateAbaMestrePersistePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaMestrePersistePage.mustache';
+    arquivoTemplateAbaMestrePersistePageOneToOne = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaMestrePersistePageOneToOne.mustache';
+    arquivoTemplateAbaMestrePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.AbaMestrePage.mustache';
 
     constructor() {
         super();
@@ -97,14 +97,14 @@ export class GeradorFlutterAba extends GeradorBase {
             if (retorno != true) {
                 return retorno;
             }
-            
+
             // gera a ListaPage - Mestre
             await this.gerarMestreListaPage(this.tabela);
             // gera a DetalhePage - Mestre
             // await this.gerarMestreDetalhePage(this.tabela);            
             // gera a PersistePage - Mestre
             await this.gerarMestrePersistePage(this.tabela);
-            
+
             // gera a page mester
             await this.gerarMestrePage(this.tabela);
 

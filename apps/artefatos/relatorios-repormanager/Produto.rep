@@ -17,12 +17,12 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select p.* ,a.nome as almoxarifado, tgt.descricao as grupotributario, mp.nome as marca, gp.nome as grupoproduto,  sgp.nome as subgrupoproduto, ' +
 		' up.sigla as unidade '#13#10'from produto p'#13#10'   ' +
@@ -36,7 +36,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

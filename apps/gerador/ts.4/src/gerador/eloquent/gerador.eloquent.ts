@@ -10,11 +10,11 @@ import { GeradorBase } from "../../gerador/gerador.base";
 
 export class GeradorEloquent extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/eloquent/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/php-eloquent/Eloquent.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/php-eloquent/Eloquent.Controller.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/php-eloquent/Eloquent.Service.mustache';
-    arquivoTemplateIncludesRotas = 'c:/t2ti/gerador.codigo/templates/php-eloquent/Eloquent.Includes.Rotas.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/eloquent/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/php-eloquent/Eloquent.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/php-eloquent/Eloquent.Controller.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/php-eloquent/Eloquent.Service.mustache';
+    arquivoTemplateIncludesRotas = 'c:/CS Solutions/gerador.codigo/templates/php-eloquent/Eloquent.Includes.Rotas.mustache';
 
     constructor() {
         super();

@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado à tabela [NFE_CABECALHO] 
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.COM                                          
+Copyright: Copyright (C) 2020 CS Solutions.COM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -384,7 +384,7 @@ export class NfeCabecalhoService extends TypeOrmCrudService<NfeCabecalho> {
 		empresa = await this.dataSource.manager.findOneBy(Empresa, { id: 1, });
 		empresa.setEnderecoPrincipal(await this.dataSource.manager.findOneBy(EmpresaEndereco, { id: 1, }));
 
-		let nomeArquivo = "c:\\t2ti\\nfe\\ini\\" + pNfeCabecalho.numero + ".ini";
+		let nomeArquivo = "c:\\CS Solutions\\nfe\\ini\\" + pNfeCabecalho.numero + ".ini";
 		fs.writeFileSync(nomeArquivo, "");
 		const NFeIni = new INI(fs.readFileSync(nomeArquivo, { encoding: 'utf8' }))
 

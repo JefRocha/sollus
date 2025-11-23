@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Service relacionado à sincronização de dados
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -29,7 +29,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -49,79 +49,79 @@ const util = require('util');
 export class SincronizaService {
 
   listaTabelaCentral = [
-		"TRIBUT_ICMS_CUSTOM_CAB",
-		"TRIBUT_ICMS_CUSTOM_DET",
-		"TRIBUT_OPERACAO_FISCAL",
-		"TRIBUT_GRUPO_TRIBUTARIO",
-		"TRIBUT_CONFIGURA_OF_GT",
-		"TRIBUT_COFINS",
-		"TRIBUT_ICMS_UF",
-		"TRIBUT_IPI",
-		"TRIBUT_ISS",
-		"TRIBUT_PIS",
-		"CLIENTE",
-		"COLABORADOR",
-		"FORNECEDOR",
-		"PRODUTO_GRUPO",
-		"PRODUTO_SUBGRUPO",
-		"PRODUTO_TIPO",
-		"PRODUTO_UNIDADE",
-		"PRODUTO",
-		"PRODUTO_FICHA_TECNICA",
-		"PRODUTO_IMAGEM",
-		"PDV_TIPO_PAGAMENTO",
-		"PRODUTO_PROMOCAO",
-		"COMPRA_PEDIDO_CABECALHO",
-		"COMPRA_PEDIDO_DETALHE",
-		"CONTAS_PAGAR",
-		"CONTAS_RECEBER"
+    "TRIBUT_ICMS_CUSTOM_CAB",
+    "TRIBUT_ICMS_CUSTOM_DET",
+    "TRIBUT_OPERACAO_FISCAL",
+    "TRIBUT_GRUPO_TRIBUTARIO",
+    "TRIBUT_CONFIGURA_OF_GT",
+    "TRIBUT_COFINS",
+    "TRIBUT_ICMS_UF",
+    "TRIBUT_IPI",
+    "TRIBUT_ISS",
+    "TRIBUT_PIS",
+    "CLIENTE",
+    "COLABORADOR",
+    "FORNECEDOR",
+    "PRODUTO_GRUPO",
+    "PRODUTO_SUBGRUPO",
+    "PRODUTO_TIPO",
+    "PRODUTO_UNIDADE",
+    "PRODUTO",
+    "PRODUTO_FICHA_TECNICA",
+    "PRODUTO_IMAGEM",
+    "PDV_TIPO_PAGAMENTO",
+    "PRODUTO_PROMOCAO",
+    "COMPRA_PEDIDO_CABECALHO",
+    "COMPRA_PEDIDO_DETALHE",
+    "CONTAS_PAGAR",
+    "CONTAS_RECEBER"
   ];
 
   listaTabelaCentralDelete = [
-		"TRIBUT_ICMS_CUSTOM_DET",
-		"TRIBUT_ICMS_CUSTOM_CAB",
-		"TRIBUT_COFINS",
-		"TRIBUT_ICMS_UF",
-		"TRIBUT_IPI",
-		"TRIBUT_PIS",
-		"TRIBUT_CONFIGURA_OF_GT",
-		"TRIBUT_OPERACAO_FISCAL",
-		"PRODUTO_IMAGEM",
-		"PRODUTO_FICHA_TECNICA",
-		"PRODUTO_PROMOCAO",
-		"PDV_TIPO_PAGAMENTO",
-		"COMPRA_PEDIDO_DETALHE",
-		"COMPRA_PEDIDO_CABECALHO",
-		"CONTAS_PAGAR",
-		"CONTAS_RECEBER",
-		"PRODUTO",
-		"TRIBUT_GRUPO_TRIBUTARIO",
-		"PRODUTO_SUBGRUPO",
-		"PRODUTO_GRUPO",
-		"PRODUTO_TIPO",
-		"PRODUTO_UNIDADE",
-		"CLIENTE",
-		"COLABORADOR",
-		"FORNECEDOR"
+    "TRIBUT_ICMS_CUSTOM_DET",
+    "TRIBUT_ICMS_CUSTOM_CAB",
+    "TRIBUT_COFINS",
+    "TRIBUT_ICMS_UF",
+    "TRIBUT_IPI",
+    "TRIBUT_PIS",
+    "TRIBUT_CONFIGURA_OF_GT",
+    "TRIBUT_OPERACAO_FISCAL",
+    "PRODUTO_IMAGEM",
+    "PRODUTO_FICHA_TECNICA",
+    "PRODUTO_PROMOCAO",
+    "PDV_TIPO_PAGAMENTO",
+    "COMPRA_PEDIDO_DETALHE",
+    "COMPRA_PEDIDO_CABECALHO",
+    "CONTAS_PAGAR",
+    "CONTAS_RECEBER",
+    "PRODUTO",
+    "TRIBUT_GRUPO_TRIBUTARIO",
+    "PRODUTO_SUBGRUPO",
+    "PRODUTO_GRUPO",
+    "PRODUTO_TIPO",
+    "PRODUTO_UNIDADE",
+    "CLIENTE",
+    "COLABORADOR",
+    "FORNECEDOR"
   ];
 
   listaTabelaLocal = [
-		"PDV_MOVIMENTO",
-		"PDV_FECHAMENTO",
-		"PDV_SANGRIA",
-		"PDV_SUPRIMENTO",
-		"PDV_VENDA_CABECALHO",
-		"PDV_VENDA_DETALHE",
-		"PDV_TOTAL_TIPO_PAGAMENTO",
-		"NFE_CABECALHO",
-		"NFE_DESTINATARIO",
-		"NFE_DETALHE",
-		"NFE_DETALHE_IMPOSTO_COFINS",
-		"NFE_DETALHE_IMPOSTO_ICMS",
-		"NFE_DETALHE_IMPOSTO_PIS",
-		"NFE_INFORMACAO_PAGAMENTO",
-		"NFE_NUMERO",
-		"NFE_NUMERO_INUTILIZADO"
+    "PDV_MOVIMENTO",
+    "PDV_FECHAMENTO",
+    "PDV_SANGRIA",
+    "PDV_SUPRIMENTO",
+    "PDV_VENDA_CABECALHO",
+    "PDV_VENDA_DETALHE",
+    "PDV_TOTAL_TIPO_PAGAMENTO",
+    "NFE_CABECALHO",
+    "NFE_DESTINATARIO",
+    "NFE_DETALHE",
+    "NFE_DETALHE_IMPOSTO_COFINS",
+    "NFE_DETALHE_IMPOSTO_ICMS",
+    "NFE_DETALHE_IMPOSTO_PIS",
+    "NFE_INFORMACAO_PAGAMENTO",
+    "NFE_NUMERO",
+    "NFE_NUMERO_INUTILIZADO"
   ];
 
   async sincronizarServidor(bancoSQLite64: string, cnpj: string): Promise<boolean> {
@@ -158,35 +158,35 @@ export class SincronizaService {
 
       try {
         for (let index = 0; index < this.listaTabelaCentralDelete.length; index++) {
-          const tabela = this.listaTabelaCentralDelete[index];        
+          const tabela = this.listaTabelaCentralDelete[index];
           const sqlDelete = "DELETE FROM " + tabela;
           listaDeletes.push(sqlDelete);
         }
-      
+
         for (let index = 0; index < this.listaTabelaCentral.length; index++) {
-          const tabela = this.listaTabelaCentral[index];        
+          const tabela = this.listaTabelaCentral[index];
           listaColunas = [];
 
           // insere o nome das colunas no array
           let consulta = "select * from pragma_table_info('" + tabela + "')";
-          try{
+          try {
             const campos = await dbSqlite.all(consulta);
             for (let i = 0; i < campos.length; i++) {
               const campo = campos[i];
               listaColunas.push(campo.name);
             }
           } catch (e) {
-              throw e;
-          }          
+            throw e;
+          }
 
           // consulta os dados no SQLite
           consulta = "select * from " + tabela;
-          try{
+          try {
             const registros = await dbSqlite.all(consulta);
             for (let i = 0; i < registros.length; i++) { // navega pelos registros
 
               const registro = registros[i];
-              
+
               let sqlInsert = "";
               let colunas = "";
               let valores = "";
@@ -194,23 +194,23 @@ export class SincronizaService {
               // primeiro campo do insert - insere ele primeiro para evitar problemas com a vírgula
               colunas += listaColunas[0];
               valores += "'" + registro[listaColunas[0]] + "'";
-              
+
               // completa o insert com o restante dos campos
               for (let j = 1; j < listaColunas.length; j++) { // pega o conteúdo de cada campo do registro
                 colunas += ", " + listaColunas[j];
                 const valorCampo = registro[listaColunas[j]];
                 if (valorCampo == null) {
-                  valores += ", " +  null;			                	
+                  valores += ", " + null;
                 } else {
                   valores += ", " + (valorCampo == "" ? null : "'" + valorCampo + "'");
                 }
-              }              
+              }
               sqlInsert = "INSERT INTO " + tabela + " (" + colunas + ") VALUES (" + valores + ")";
-              listaInserts.push(sqlInsert);              
+              listaInserts.push(sqlInsert);
             }
           } catch (e) {
             throw e;
-          }          
+          }
         };
 
         // insere/atualiza os dados no MySQL - banco espelhado do Pegasus na retaguarda
@@ -221,12 +221,12 @@ export class SincronizaService {
         for (let i = 0; i < listaDeletes.length; i++) {
           const query = util.promisify(conexaoMySQL.query).bind(conexaoMySQL);
           await query(listaDeletes[i]);
-		    }
+        }
         for (let i = 0; i < listaInserts.length; i++) {
           const query = util.promisify(conexaoMySQL.query).bind(conexaoMySQL);
           await query(listaInserts[i]);
         }
-        
+
         return true;
 
       } catch (e) {
@@ -269,32 +269,32 @@ export class SincronizaService {
 
       try {
         for (let index = 0; index < this.listaTabelaLocal.length; index++) {
-          const tabela = this.listaTabelaLocal[index];        
+          const tabela = this.listaTabelaLocal[index];
           listaColunas = [];
 
-          const sqlDelete = "DELETE FROM " + tabela + " WHERE ID_DISPOSITIVO = '" + idDispositivo + "'"; ;;
+          const sqlDelete = "DELETE FROM " + tabela + " WHERE ID_DISPOSITIVO = '" + idDispositivo + "'";;;
           listaDeletes.push(sqlDelete);
 
           // insere o nome das colunas no array
           let consulta = "select * from pragma_table_info('" + tabela + "')";
-          try{
+          try {
             const campos = await dbSqlite.all(consulta);
             for (let i = 0; i < campos.length; i++) {
               const campo = campos[i];
               listaColunas.push(campo.name);
             }
           } catch (e) {
-              throw e;
-          }          
+            throw e;
+          }
 
           // consulta os dados no SQLite
           consulta = "select * from " + tabela;
-          try{
+          try {
             const registros = await dbSqlite.all(consulta);
             for (let i = 0; i < registros.length; i++) { // navega pelos registros
 
               const registro = registros[i];
-              
+
               let sqlInsert = "";
               let colunas = "";
               let valores = "";
@@ -304,11 +304,11 @@ export class SincronizaService {
                 colunas += ", " + listaColunas[j];
                 const valorCampo = registro[listaColunas[j]];
                 if (valorCampo == null) {
-                  valores += ", " +  null;			                	
+                  valores += ", " + null;
                 } else {
                   valores += ", " + (valorCampo == "" ? null : "'" + valorCampo + "'");
                 }
-              }              
+              }
               colunas = colunas.substring(2); // tira a primeira vírgula
               valores = valores.substring(2); // tira a primeira vírgula
               colunas += ", ID_GERADO_DISPOSITIVO, ID_DISPOSITIVO";
@@ -318,7 +318,7 @@ export class SincronizaService {
             }
           } catch (e) {
             throw e;
-          }          
+          }
         };
 
         // insere/atualiza os dados no MySQL - banco espelhado do Pegasus na retaguarda
@@ -329,12 +329,12 @@ export class SincronizaService {
         for (let i = 0; i < listaDeletes.length; i++) {
           const query = util.promisify(conexaoMySQL.query).bind(conexaoMySQL);
           await query(listaDeletes[i]);
-		    }
+        }
         for (let i = 0; i < listaInserts.length; i++) {
           const query = util.promisify(conexaoMySQL.query).bind(conexaoMySQL);
           await query(listaInserts[i]);
         }
-        
+
         return true;
 
       } catch (e) {
@@ -367,19 +367,19 @@ export class SincronizaService {
         const listaRetorno = [];
 
         for (let index = 0; index < this.listaTabelaCentral.length; index++) {
-          const tabela = this.listaTabelaCentral[index];        
+          const tabela = this.listaTabelaCentral[index];
 
           const objetoSincroniza = new ObjetoSincroniza({});
           objetoSincroniza.tabela = tabela;
 
           const query = util.promisify(conexaoMySQL.query).bind(conexaoMySQL);
           const retorno = await query('select * from ' + tabela);
-          
+
           objetoSincroniza.registros = JSON.stringify(JSON.parse(JSON.stringify(retorno), this.toCamelCase));
           listaRetorno.push(objetoSincroniza);
         }
- 
-        return listaRetorno; 
+
+        return listaRetorno;
       } catch (e) {
         throw e;
       }
@@ -387,7 +387,7 @@ export class SincronizaService {
   }
 
   toCamelCase(key, value) {
-    if (value && typeof value === 'object'){
+    if (value && typeof value === 'object') {
       for (const k in value) {
         if (/^[A-Z]/.test(k) && Object.hasOwnProperty.call(value, k)) {
           value[lodash.camelCase(k)] = value[k];

@@ -10,11 +10,11 @@ import { GeradorBase } from "../../gerador/gerador.base";
 
 export class GeradorDelphi extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/delphi/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/delphi/Delphi.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/delphi/Delphi.Controller.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/delphi/Delphi.Service.mustache';
-    arquivoTemplateWebModule = 'c:/t2ti/gerador.codigo/templates/delphi/Delphi.WebModule.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/delphi/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/delphi/Delphi.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/delphi/Delphi.Controller.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/delphi/Delphi.Service.mustache';
+    arquivoTemplateWebModule = 'c:/CS Solutions/gerador.codigo/templates/delphi/Delphi.WebModule.mustache';
 
     constructor() {
         super();

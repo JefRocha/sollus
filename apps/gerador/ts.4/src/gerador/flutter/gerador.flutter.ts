@@ -15,14 +15,14 @@ import { GeradorFlutterAba } from "./gerador.flutter.aba";
 
 export class GeradorFlutter extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/flutter/';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.Service.mustache';
-    arquivoTemplateViewModel = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.ViewModel.mustache';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.Model.mustache';
-    arquivoTemplateListaPage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.ListaPage.mustache';
-    arquivoTemplateDetalhePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.DetalhePage.mustache';
-    arquivoTemplatePersistePage = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.PersistePage.mustache';
-    arquivoTemplateExportsRotas = 'c:/t2ti/gerador.codigo/templates/flutter/Flutter.Exports.Rotas.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/flutter/';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.Service.mustache';
+    arquivoTemplateViewModel = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.ViewModel.mustache';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.Model.mustache';
+    arquivoTemplateListaPage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.ListaPage.mustache';
+    arquivoTemplateDetalhePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.DetalhePage.mustache';
+    arquivoTemplatePersistePage = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.PersistePage.mustache';
+    arquivoTemplateExportsRotas = 'c:/CS Solutions/gerador.codigo/templates/flutter/Flutter.Exports.Rotas.mustache';
 
     constructor() {
         super();
@@ -41,15 +41,15 @@ export class GeradorFlutter extends GeradorBase {
         retorno = await super.criarDiretorio(this.caminhoFontes + '_VIEW_MODEL');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_SERVICE');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_MODEL');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
 
         // procura pelas tabelas agregadas para criar os relacionamentos de primeiro nível
         retorno = await this.gerarAgregadosPrimeiroNivel();
@@ -124,7 +124,7 @@ export class GeradorFlutter extends GeradorBase {
             await this.gerarPersistePage();
 
             // gera o conjunto de páginas mestre-detalhe
-            
+
             return true;
         } catch (erro) {
             return erro;
@@ -192,7 +192,7 @@ export class GeradorFlutter extends GeradorBase {
         let nomeArquivo = this.tabela.toLowerCase() + '_lista_page';
 
         return super.gravarArquivo(this.caminhoFontes + this.tabela + '/' + nomeArquivo + '.dart', modelGerado);
-    }  
+    }
 
     /**
      * Gera a DetalhePage para a tabela principal
@@ -220,9 +220,9 @@ export class GeradorFlutter extends GeradorBase {
         return super.gravarArquivo(this.caminhoFontes + this.tabela + '/' + nomeArquivo + '.dart', modelGerado);
     }
 
-   /**
-     * Gera arquivos a partir do nome das tabelas
-     */
+    /**
+      * Gera arquivos a partir do nome das tabelas
+      */
     async gerarArquivosLacoTabela(modulo: string, result: (retorno: any, erro: any) => void) {
         try {
             // pega a lista com o nome das tabelas
@@ -230,7 +230,7 @@ export class GeradorFlutter extends GeradorBase {
             for (let index = 0; index < lista.length; index++) {
                 this.listaTabelas.push(lista[index].nome);
             }
-            
+
             // gera o arquivo com o conteúdo para todas e para os includes
             var modelJson = new FlutterExportsRotas(modulo, this.listaTabelas);
             let modelTemplate = fs.readFileSync(this.arquivoTemplateExportsRotas).toString();

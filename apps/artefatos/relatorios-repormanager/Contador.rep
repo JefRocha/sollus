@@ -17,12 +17,12 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'SELECT C.*, P.NOME AS CONTADOR'#13#10'FROM CONTADOR C'#13#10' INNER JOIN  PE' +
         'SSOA P ON (P.ID = C.ID_PESSOA)'#13#10'ORDER BY P.NOME'
@@ -30,7 +30,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

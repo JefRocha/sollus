@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado à tabela [NFE_CONFIGURACAO] 
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,12 +28,12 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Post, Req, Res,} from '@nestjs/common';
+import { Controller, Post, Req, Res, } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { Request, Response } from 'express';
 import { NfeConfiguracaoService } from './nfe-configuracao.service';
@@ -55,9 +55,9 @@ import { Biblioteca } from '../../util/biblioteca';
 export class NfeConfiguracaoController implements CrudController<NfeConfiguracao> {
   constructor(public service: NfeConfiguracaoService) { }
 
-  
-	@Post('atualiza-dados')
-	async atualizar(
+
+  @Post('atualiza-dados')
+  async atualizar(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -68,7 +68,7 @@ export class NfeConfiguracaoController implements CrudController<NfeConfiguracao
     const pdvConfiguracaoJson = JSON.parse(Biblioteca.decifrar(request.headers['pdv-configuracao'] as string));
     const decimaisQuantidade = pdvConfiguracaoJson['decimaisQuantidade'];
     const decimaisValor = pdvConfiguracaoJson['decimaisValor'];
-  
+
     // chama o método atualizar do service
     nfeConfiguracao = await this.service.atualizar(nfeConfiguracao, cnpj, decimaisQuantidade, decimaisValor);
 
@@ -76,8 +76,8 @@ export class NfeConfiguracaoController implements CrudController<NfeConfiguracao
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);
-	}  
+    response.send(retorno);
+  }
 
-  
+
 }

@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus
+Title: CS Solutions ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
 
-Copyright: Copyright (C) 2020 T2Ti.COM
+Copyright: Copyright (C) 2020 CS Solutions.COM
 
  
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@ Copyright: Copyright (C) 2020 T2Ti.COM
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * The author may be contacted at: t2ti.com@gmail.com
+ * The author may be contacted at: CS Solutions.com@gmail.com
  *
 @author Albert Eije (alberteije@gmail.com)
 @version 1.0.0

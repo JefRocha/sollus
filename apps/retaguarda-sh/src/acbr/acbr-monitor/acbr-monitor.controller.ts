@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado ao ACBrMonitor
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -42,16 +42,16 @@ import { createReadStream } from 'fs';
 
 @Controller('acbr-monitor')
 export class AcbrMonitorController {
-  
+
   constructor(public service: AcbrMonitorService) { }
- 
-	@Post('emite-nfce')
-	@Header('Content-Type', 'application/pdf')
-	async emitirNfce(
+
+  @Post('emite-nfce')
+  @Header('Content-Type', 'application/pdf')
+  async emitirNfce(
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    const nfceIni = Biblioteca.decifrar(request.body);      
+    const nfceIni = Biblioteca.decifrar(request.body);
     const numero = Biblioteca.decifrar(request.headers['numero'] as string);
     const cnpj = Biblioteca.decifrar(request.headers['cnpj'] as string);
 
@@ -60,21 +60,21 @@ export class AcbrMonitorController {
     if (!retorno.includes('ERRO')) {
       response.status(200);
       const data = createReadStream(retorno);
-      data.pipe(response);  
+      data.pipe(response);
     } else {
       response.setHeader('Content-Type', 'application/json');
       response.status(418);
-      response.send(retorno);  
+      response.send(retorno);
     }
-	}  
+  }
 
-	@Post('emite-nfce-contingencia')
-	@Header('Content-Type', 'application/pdf')
-	async emitirNfceContingencia(
+  @Post('emite-nfce-contingencia')
+  @Header('Content-Type', 'application/pdf')
+  async emitirNfceContingencia(
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    const nfceIni = Biblioteca.decifrar(request.body);      
+    const nfceIni = Biblioteca.decifrar(request.body);
     const numero = Biblioteca.decifrar(request.headers['numero'] as string);
     const cnpj = Biblioteca.decifrar(request.headers['cnpj'] as string);
 
@@ -83,17 +83,17 @@ export class AcbrMonitorController {
     if (!retorno.includes('ERRO')) {
       response.status(200);
       const data = createReadStream(retorno);
-      data.pipe(response);  
+      data.pipe(response);
     } else {
       response.setHeader('Content-Type', 'application/json');
       response.status(418);
-      response.send(retorno);  
+      response.send(retorno);
     }
-	}  
+  }
 
-	@Post('transmite-nfce-contingenciada')
-	@Header('Content-Type', 'application/pdf')
-	async transmitirNfceContingenciada(
+  @Post('transmite-nfce-contingenciada')
+  @Header('Content-Type', 'application/pdf')
+  async transmitirNfceContingenciada(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -105,16 +105,16 @@ export class AcbrMonitorController {
     if (!retorno.includes('ERRO')) {
       response.status(200);
       const data = createReadStream(retorno);
-      data.pipe(response);  
+      data.pipe(response);
     } else {
       response.setHeader('Content-Type', 'application/json');
       response.status(418);
-      response.send(retorno);  
+      response.send(retorno);
     }
-	}  
+  }
 
-	@Post('trata-nota-anterior-contingencia')
-	async tratarNotaAnteriorContingencia(
+  @Post('trata-nota-anterior-contingencia')
+  async tratarNotaAnteriorContingencia(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -125,11 +125,11 @@ export class AcbrMonitorController {
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-    response.send(Biblioteca.cifrar(retorno));  
-	}  
+    response.send(Biblioteca.cifrar(retorno));
+  }
 
-	@Post('inutiliza-numero-nota')
-	async inutilizarNumeroNota(
+  @Post('inutiliza-numero-nota')
+  async inutilizarNumeroNota(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -140,11 +140,11 @@ export class AcbrMonitorController {
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-    response.send(Biblioteca.cifrar(retorno));  
-	}  
+    response.send(Biblioteca.cifrar(retorno));
+  }
 
-	@Post('cancela-nfce')
-	async cancelarNfce(
+  @Post('cancela-nfce')
+  async cancelarNfce(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -155,12 +155,12 @@ export class AcbrMonitorController {
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-    response.send(Biblioteca.cifrar(retorno));  
-	}  
+    response.send(Biblioteca.cifrar(retorno));
+  }
 
-	@Post('gera-pdf-danfe-nfce')
-	@Header('Content-Type', 'application/pdf')
-	async gerarPdfDanfeNfce(
+  @Post('gera-pdf-danfe-nfce')
+  @Header('Content-Type', 'application/pdf')
+  async gerarPdfDanfeNfce(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -172,18 +172,18 @@ export class AcbrMonitorController {
     if (!retorno.includes('ERRO')) {
       response.status(200);
       const data = createReadStream(retorno);
-      data.pipe(response);  
+      data.pipe(response);
     } else {
       response.setHeader('Content-Type', 'application/json');
       response.status(418);
-      response.send(retorno);  
+      response.send(retorno);
     }
-	}  
-  
-	@Get('download-xml-periodo')
-	@Header('Content-Type', 'application/zip')
-	async retornarArquivosXmlPeriodo(
-    @Req() request: Request, 
+  }
+
+  @Get('download-xml-periodo')
+  @Header('Content-Type', 'application/zip')
+  async retornarArquivosXmlPeriodo(
+    @Req() request: Request,
     @Res() response: Response
   ) {
     const periodo = Biblioteca.decifrar(request.headers['periodo'] as string);
@@ -194,16 +194,16 @@ export class AcbrMonitorController {
     if (retorno) {
       const caminhoArquivo = "C:\\ACBrMonitor\\" + cnpj + "\\NotasFiscaisNFCe_" + periodo + ".zip";
       const data = createReadStream(caminhoArquivo);
-      data.pipe(response);  
+      data.pipe(response);
     }
-	}  
-  
-	@Post('atualiza-certificado')
-	async atualizarCertificado(
+  }
+
+  @Post('atualiza-certificado')
+  async atualizarCertificado(
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    const certificadoBase64 = Biblioteca.decifrar(request.body);      
+    const certificadoBase64 = Biblioteca.decifrar(request.body);
     const senha = Biblioteca.decifrar(request.headers['hash-registro'] as string);
     const cnpj = Biblioteca.decifrar(request.headers['cnpj'] as string);
 
@@ -212,7 +212,7 @@ export class AcbrMonitorController {
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send('Certificado atualizado com sucesso.');
-	}  
+    response.send('Certificado atualizado com sucesso.');
+  }
 
 }

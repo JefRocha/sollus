@@ -12,11 +12,11 @@ import { GeradorBase } from "../../gerador/gerador.base";
 
 export class GeradorJava extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/java/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/java/Java.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/java/Java.Controller.mustache';
-    arquivoTemplateRepository = 'c:/t2ti/gerador.codigo/templates/java/Java.Repository.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/java/Java.Service.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/java/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/java/Java.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/java/Java.Controller.mustache';
+    arquivoTemplateRepository = 'c:/CS Solutions/gerador.codigo/templates/java/Java.Repository.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/java/Java.Service.mustache';
 
     constructor() {
         super();
@@ -39,19 +39,19 @@ export class GeradorJava extends GeradorBase {
         retorno = await super.criarDiretorio(this.caminhoFontes + '_CONTROLLER');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_SERVICE');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_MODEL');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_REPOSITORY');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
 
         // procura pelas tabelas agregadas para criar os relacionamentos de primeiro nível
         retorno = await this.gerarAgregadosPrimeiroNivel();

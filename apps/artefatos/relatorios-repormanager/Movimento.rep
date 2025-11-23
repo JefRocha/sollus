@@ -14,7 +14,7 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'MOVIMENTOCAIXABANCO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select * from '#13#10'MOVIMENTO_CAIXA_BANCO'#13#10'where'#13#10'ID_CONTA_CAIXA = :' +
         'ID_CONTA_CAIXA'#13#10'and '#13#10'(DATA_PAGO_RECEBIDO BETWEEN :DATAINI and :' +
@@ -22,7 +22,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIPAFECF'
+      Alias = 'CS SolutionsPAFECF'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False
@@ -33,7 +33,7 @@ object TRpReport
       ADOConnectionString = ''
     end
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

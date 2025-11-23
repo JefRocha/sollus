@@ -1,7 +1,7 @@
 {
-  "name": "t2ti_erp_sollus_gerador",
+  "name": "CS Solutions_erp_sollus_gerador",
   "version": "1.0.0",
-  "description": "T2Ti ERP sollus Gerador de Código",
+  "description": "CS Solutions ERP sollus Gerador de Código",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "typeorm": "./node_modules/.bin/typeorm "
   },
   "keywords": [],
-  "author": "T2Ti",
+  "author": "CS Solutions",
   "license": "MIT",
   "dependencies": {
     "@types/capitalize": "^1.0.1",

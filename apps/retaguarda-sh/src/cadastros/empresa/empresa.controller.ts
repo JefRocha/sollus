@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado à tabela [EMPRESA] 
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -48,7 +48,7 @@ import { Biblioteca } from '../../util/biblioteca';
   },
   query: {
     join: {
-			admModuloModelList: { eager: true }, // para usar o PDV, comente essa linha
+      admModuloModelList: { eager: true }, // para usar o PDV, comente essa linha
     },
   },
 })
@@ -56,70 +56,70 @@ import { Biblioteca } from '../../util/biblioteca';
 export class EmpresaController implements CrudController<Empresa> {
   constructor(public service: EmpresaService) { }
 
-	@Post()
-	async atualizar(
+  @Post()
+  async atualizar(
     @Req() request: Request,
     @Res() response: Response,
   ) {
     const corpoRequisicao = Biblioteca.decifrar(request.body);
     let empresa = new Empresa(JSON.parse(corpoRequisicao));
-		empresa = await this.service.atualizar(empresa);		
+    empresa = await this.service.atualizar(empresa);
 
     const retorno = Biblioteca.cifrar(JSON.stringify(empresa));
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);
-	}
+    response.send(retorno);
+  }
 
-	@Post('registra-empresa')
-	async registrarEmpresa(
+  @Post('registra-empresa')
+  async registrarEmpresa(
     @Req() request: Request,
     @Res() response: Response,
   ) {
     const corpoRequisicao = Biblioteca.decifrar(request.body);
     let empresa = new Empresa(JSON.parse(corpoRequisicao));
-    empresa = await this.service.registrar(empresa);		
+    empresa = await this.service.registrar(empresa);
 
     const retorno = Biblioteca.cifrar(JSON.stringify(empresa));
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);    
-	}   
+    response.send(retorno);
+  }
 
-	@Post('registra-empresa-erp')
-	async registrarEmpresaErp(
+  @Post('registra-empresa-erp')
+  async registrarEmpresaErp(
     @Req() request: Request,
     @Res() response: Response,
   ) {
     const corpoRequisicao = Biblioteca.decifrar(request.body);
     let empresa = new Empresa(JSON.parse(corpoRequisicao));
-    empresa = await this.service.registrarEmpresaErp(empresa);		
+    empresa = await this.service.registrarEmpresaErp(empresa);
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(empresa);    
-	}   
+    response.send(empresa);
+  }
 
-	@Post('envia-email-confirmacao')
-	async enviarEmailConfirmacao(
+  @Post('envia-email-confirmacao')
+  async enviarEmailConfirmacao(
     @Req() request: Request,
     @Res() response: Response,
   ) {
     const corpoRequisicao = Biblioteca.decifrar(request.body);
     let empresa = new Empresa(JSON.parse(corpoRequisicao));
-    empresa = await this.service.enviarEmailConfirmacao(empresa);		
+    empresa = await this.service.enviarEmailConfirmacao(empresa);
 
     const retorno = Biblioteca.cifrar(JSON.stringify(empresa));
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);    
-	}     
+    response.send(retorno);
+  }
 
-	@Post('confere-codigo-confirmacao')
-	async conferirCodigoConfirmacao(
+  @Post('confere-codigo-confirmacao')
+  async conferirCodigoConfirmacao(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -127,31 +127,31 @@ export class EmpresaController implements CrudController<Empresa> {
     let empresa = new Empresa(JSON.parse(corpoRequisicao));
     const codigoConfirmacao = Biblioteca.decifrar(request.headers['codigo-confirmacao'] as string);
 
-    empresa = await this.service.conferirCodigoConfirmacao(empresa, codigoConfirmacao);		
+    empresa = await this.service.conferirCodigoConfirmacao(empresa, codigoConfirmacao);
 
     const retorno = Biblioteca.cifrar(JSON.stringify(empresa));
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);
+    response.send(retorno);
   }
- 
+
   @Get('cnpj/:cnpj')
-	async getEmpresaPorCnpj(
-    @Req() request: Request, 
+  async getEmpresaPorCnpj(
+    @Req() request: Request,
     @Res() response: Response,
     @Param('cnpj') cnpj
   ) {
     const empresa = await this.service.getEmpresaPorCnpj(cnpj);
-    
+
     if (empresa == null) {
       response.status(404);
-      response.send('Registro não localizado [Consultar Objeto PdvPlanoPagamento]');    
+      response.send('Registro não localizado [Consultar Objeto PdvPlanoPagamento]');
     } else {
       response.setHeader('Content-Type', 'application/json');
       response.status(200);
-      response.send(empresa);    
+      response.send(empresa);
     }
-  }  
+  }
 
 }

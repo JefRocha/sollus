@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /********************************************************************************
-Title: T2Ti ERP sollus
+Title: CS Solutions ERP sollus
 Description: Biblioteca de funções.
 
 The MIT License
 
-Copyright: Copyright (C) 2020 T2Ti.COM
+Copyright: Copyright (C) 2020 CS Solutions.COM
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -29,9 +29,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
        The author may be contacted at:
-           t2ti.com@gmail.com
+           CS Solutions.com@gmail.com
 
-@author T2Ti.COM
+@author CS Solutions.COM
 @version 1.0
 ********************************************************************************/
 import * as fs from 'fs';
@@ -285,7 +285,7 @@ export class Biblioteca {
 
     // fonte: https://morioh.com/p/ca75996654d1
     static enviarEmail(assunto: string, destino: string, corpo: string): boolean {
-        const nomeArquivoIni = "c:\\t2ti\\config-email.ini";
+        const nomeArquivoIni = "c:\\CS Solutions\\config-email.ini";
         const iniFile = new Ini(fs.readFileSync(nomeArquivoIni, { encoding: 'utf8' }));
 
         // const host = iniFile.getKeyIfExists('Host') == null ? '' : iniFile.getKeyIfExists('Host').val;

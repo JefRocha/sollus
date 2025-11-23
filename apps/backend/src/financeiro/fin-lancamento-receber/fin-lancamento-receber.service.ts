@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_LANCAMENTO_RECEBER] 
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.COM                                          
+Copyright: Copyright (C) 2020 CS Solutions.COM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -146,7 +146,7 @@ export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancament
 		let cliente: ViewPessoaCliente;
 		cliente = await this.dataSource.manager.findOneBy(ViewPessoaCliente, { id: lancamento.cliente.id });
 
-		let nomeArquivo = "c:\\t2ti\\boletos\\ini\\" + lancamento.id + ".ini";
+		let nomeArquivo = "c:\\CS Solutions\\boletos\\ini\\" + lancamento.id + ".ini";
 		fs.writeFileSync(nomeArquivo, "");
 		const arquivoIni = new INI(fs.readFileSync(nomeArquivo, { encoding: 'utf8' }))
 
@@ -245,7 +245,7 @@ export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancament
 
 		//  cria o arquivo 'ENT.TXT'
 		let nomeArquivo = "c:\\ACBrMonitor\\ENT.TXT";
-		let conteudoArquivo = 'BOLETO.IncluirTitulos(\"c:\\t2ti\\boletos\\ini\\' + lancamento.id + '.ini\", \"I\"';
+		let conteudoArquivo = 'BOLETO.IncluirTitulos(\"c:\\CS Solutions\\boletos\\ini\\' + lancamento.id + '.ini\", \"I\"';
 		fs.writeFileSync(nomeArquivo, conteudoArquivo);
 	}
 
@@ -253,7 +253,7 @@ export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancament
 		while (!fs.existsSync("C:\\ACBrMonitor\\sai.txt")) {
 		}
 
-		return "C:\\T2Ti\\Boletos\\PDF\\boleto.pdf";
+		return "C:\\CS Solutions\\Boletos\\PDF\\boleto.pdf";
 	}
 
 }

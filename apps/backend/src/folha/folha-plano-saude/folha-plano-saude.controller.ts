@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado à tabela [FOLHA_PLANO_SAUDE] 
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -44,8 +44,8 @@ import { FolhaPlanoSaude } from './folha-plano-saude.entity';
   },
   query: {
     join: {
-		colaborador: { eager: true },
-		operadoraPlanoSaude: { eager: true },
+      colaborador: { eager: true },
+      operadoraPlanoSaude: { eager: true },
     },
   },
 })
@@ -53,7 +53,7 @@ import { FolhaPlanoSaude } from './folha-plano-saude.entity';
 export class FolhaPlanoSaudeController implements CrudController<FolhaPlanoSaude> {
   constructor(public service: FolhaPlanoSaudeService) { }
 
-  
+
 
 
 }

@@ -1,6 +1,7 @@
 version: '3.8'
 
 services:
+  # O Backend (Sua aplicação)
   sollus-backend:
     container_name: sollus-backend
     image: sollus-backend:latest
@@ -11,15 +12,37 @@ services:
       - "3000:3000"
     environment:
       - DB_TYPE=postgres
-      - DB_HOST=host.docker.internal # Ajuste conforme sua rede (ex: nome do container do banco)
+      - DB_HOST=sollus-db # Nome do serviço do banco definido abaixo
       - DB_PORT=5432
       - DB_USERNAME=postgres
-      - DB_PASSWORD=password
+      - DB_PASSWORD=sollus_secret_pass # Altere para uma senha segura
       - DB_DATABASE=solluserp
       - PORT=3000
+    depends_on:
+      - sollus-db
     restart: always
     networks:
       - sollus-network
+
+  # O Banco de Dados (PostgreSQL)
+  sollus-db:
+    container_name: sollus-db
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: sollus_secret_pass # Mesma senha de cima
+      POSTGRES_DB: solluserp
+    volumes:
+      - sollus_pg_data:/var/lib/postgresql/data # Salva os dados fora do container
+    ports:
+      - "5432:5432" # Opcional: só se quiser acessar o banco externamente
+    restart: always
+    networks:
+      - sollus-network
+
+volumes:
+  sollus_pg_data:
+
 
 networks:
   sollus-network:

@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Service relacionado ao ACBrMonitor
 																																							  
 The MIT License                                                                 
 																																							  
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
 																																							  
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -29,7 +29,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																																							  
 			 The author may be contacted at:                                          
-					 t2ti.com@gmail.com                                                   
+					 CS Solutions.com@gmail.com                                                   
 																																							  
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0

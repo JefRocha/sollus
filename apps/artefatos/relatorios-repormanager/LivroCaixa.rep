@@ -17,12 +17,12 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 
         'select * '#13#10'from VIEW_FIN_MOVIMENTO_CAIXA_BANCO '#13#10'where'#13#10'  DATE_F' +
         'ORMAT(DATA_PAGO_RECEBIDO,'#39'%m/%Y'#39') = :PERIODO'#13#10'order by OPERACAO'
@@ -30,7 +30,7 @@ object TRpReport
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False

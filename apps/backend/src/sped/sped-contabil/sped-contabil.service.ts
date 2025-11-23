@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado ao Sped Contabil - ECD
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.COM                                          
+Copyright: Copyright (C) 2020 CS Solutions.COM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -39,7 +39,7 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { getConnection } from 'typeorm';
 
 import { Empresa } from '../../entities-export';
-import { T2TiSpedContabil } from '../../lib/sped/t2ti-sped-contabil';
+import { CsSolutionsSpedContabil } from '../../lib/sped/cs-solutions-sped-contabil';
 
 @Injectable()
 export class SpedContabilService {
@@ -50,7 +50,7 @@ export class SpedContabilService {
 	dataFinal: Date;
 	versaoLeiaute: string;
 	formaEscrituracao: string;
-	spedT2Ti: T2TiSpedContabil;
+	spedCsSolutions: CsSolutionsSpedContabil;
 
 	async gerarSpedContabil(filter: string) {
 		let conteudoFiltro: any[] = filter.split('|');
@@ -65,14 +65,14 @@ export class SpedContabilService {
 		this.formaEscrituracao = conteudoFiltro[2];
 		this.versaoLeiaute = conteudoFiltro[3];
 
-		this.spedT2Ti = new T2TiSpedContabil();
+		this.spedCsSolutions = new CsSolutionsSpedContabil();
 
 		await this.gerarBloco0();
 		await this.gerarBlocoI();
 		await this.gerarBlocoJ();
 
-		let nomeArquivo = "C:\\T2Ti\\Sped\\ECD\\sped-contabil-node.txt";
-		this.spedT2Ti.geraArquivoTxt(nomeArquivo);
+		let nomeArquivo = "C:\\CS Solutions\\Sped\\ECD\\sped-contabil-node.txt";
+		this.spedCsSolutions.geraArquivoTxt(nomeArquivo);
 		return nomeArquivo;
 	}
 
@@ -85,45 +85,45 @@ export class SpedContabilService {
 		empresa = new Empresa({});
 
 		// REGISTRO 0000: ABERTURA DO ARQUIVO DIGITAL E IDENTIFICAÇÃO DO EMPRESÁRIO OU DA SOCIEDADE EMPRESÁRIA
-		this.spedT2Ti.bloco0.registro0000.dtIni = new Date(this.dataInicial);
-		this.spedT2Ti.bloco0.registro0000.dtFin = new Date(this.dataFinal);
-		this.spedT2Ti.bloco0.registro0000.nome = empresa.razaoSocial;
-		this.spedT2Ti.bloco0.registro0000.cnpj = empresa.cnpj;
-		this.spedT2Ti.bloco0.registro0000.ie = empresa.inscricaoEstadual;
-		this.spedT2Ti.bloco0.registro0000.codMun = empresa.codigoIbgeCidade;
-		this.spedT2Ti.bloco0.registro0000.im = empresa.inscricaoMunicipal;
-		this.spedT2Ti.bloco0.registro0000.uf = 'empresa.enderecoPrincipal.uf';
+		this.spedCsSolutions.bloco0.registro0000.dtIni = new Date(this.dataInicial);
+		this.spedCsSolutions.bloco0.registro0000.dtFin = new Date(this.dataFinal);
+		this.spedCsSolutions.bloco0.registro0000.nome = empresa.razaoSocial;
+		this.spedCsSolutions.bloco0.registro0000.cnpj = empresa.cnpj;
+		this.spedCsSolutions.bloco0.registro0000.ie = empresa.inscricaoEstadual;
+		this.spedCsSolutions.bloco0.registro0000.codMun = empresa.codigoIbgeCidade;
+		this.spedCsSolutions.bloco0.registro0000.im = empresa.inscricaoMunicipal;
+		this.spedCsSolutions.bloco0.registro0000.uf = 'empresa.enderecoPrincipal.uf';
 
 		// REGISTRO 0001: ABERTURA DO BLOCO 0
 		// bloco com dados informados = 0 | sem dados inf = 1
-		this.spedT2Ti.bloco0.registro0001.indDad = 0;
+		this.spedCsSolutions.bloco0.registro0001.indDad = 0;
 
 
 		// REGISTRO 0007: OUTRAS INSCRIÇÕES CADASTRAIS DA PESSOA JURÍDICA
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0020: ESCRITURAÇÃO CONTÁBIL DESCENTRALIZADA
-		// Implementado a critério do Participante do T2Ti ERP - Para o treinamento a escrituração será centralizada
+		// Implementado a critério do Participante do CS Solutions ERP - Para o treinamento a escrituração será centralizada
 		// REGISTRO 0150: TABELA DE CADASTRO DO PARTICIPANTE
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0180: IDENTIFICAÇÃO DO RELACIONAMENTO COM O PARTICIPANTE
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 	}
 
 	//Bloco I - Lançamentos Contábeis
 	async gerarBlocoI() {
 		// REGISTRO I001: ABERTURA DO BLOCO I
-		this.spedT2Ti.blocoI.registroI001.indDad = 0;
+		this.spedCsSolutions.blocoI.registroI001.indDad = 0;
 
 		// REGISTRO I010: IDENTIFICAÇÃO DA ESCRITURAÇÃO CONTÁBIL
-		this.spedT2Ti.blocoI.registroI010.indEsc = this.formaEscrituracao;
-		this.spedT2Ti.blocoI.registroI010.codVerLc = this.versaoLeiaute;
+		this.spedCsSolutions.blocoI.registroI010.indEsc = this.formaEscrituracao;
+		this.spedCsSolutions.blocoI.registroI010.codVerLc = this.versaoLeiaute;
 
 		// REGISTRO I012: LIVROS AUXILIARES AO DIÁRIO
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO I015: IDENTIFICAÇÃO DAS CONTAS DA ESCRITURAÇÃO RESUMIDA A QUE SE REFERE A ESCRITURAÇÃO AUXILIAR
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO I020: CAMPOS ADICIONAIS
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO I030: TERMO DE ABERTURA
 		/* TODO
 		filtros.clear();
@@ -147,13 +147,13 @@ export class SpedContabilService {
 				throw new Exception("Registro em Cartório não encontrado");
 			}
 
-			this.spedT2Ti.getBlocoI().getRegistroI030().setNumOrd(contabilTermo.getNumeroRegistro());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setNatLivr(contabilLivro.getDescricao());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setNome(empresa.getRazaoSocial());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setNire(registroCartorio.getNire());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setCnpj(empresa.getCnpj());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setDtArq(registroCartorio.getDataRegistro());
-			this.spedT2Ti.getBlocoI().getRegistroI030().setDescMun(endereco.getCidade());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setNumOrd(contabilTermo.getNumeroRegistro());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setNatLivr(contabilLivro.getDescricao());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setNome(empresa.getRazaoSocial());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setNire(registroCartorio.getNire());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setCnpj(empresa.getCnpj());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setDtArq(registroCartorio.getDataRegistro());
+			this.spedCsSolutions.getBlocoI().getRegistroI030().setDescMun(endereco.getCidade());
 		}
 
 		// REGISTRO I050: PLANO DE CONTAS
@@ -188,13 +188,13 @@ export class SpedContabilService {
 				// Fonte: Manual de Orientação da ECD
 
 				//registroI050.getRegistroi051List().push(registroI051);
-				this.spedT2Ti.getBlocoI().getListaRegistroI050().push(registroI050);
+				this.spedCsSolutions.getBlocoI().getListaRegistroI050().push(registroI050);
 			}
 
 		}*/
 
 		// REGISTRO I052: INDICAÇÃO DOS CÓDIGOS DE AGLUTINAÇÃO
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO I075: TABELA DE HISTÓRICO PADRONIZADO
 		/* TODO
 		filtros.clear();
@@ -207,18 +207,18 @@ export class SpedContabilService {
 			registroI075.setCodHist(contabilHistorico.get(i).getId().toString());
 			registroI075.setDescrHist(contabilHistorico.get(i).getDescricao());
 
-			this.spedT2Ti.getBlocoI().getListaRegistroI075().push(registroI075);
+			this.spedCsSolutions.getBlocoI().getListaRegistroI075().push(registroI075);
 		}
 
 		// REGISTRO I100: CENTRO DE CUSTOS
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO I150: SALDOS PERIÓDICOS – IDENTIFICAÇÃO DO PERÍODO
 		RegistroI150 registroI150 = new RegistroI150();
 		registroI150.setDtIni(dataInicial);
 		registroI150.setDtFin(dataFinal);
 
 		// REGISTRO I151: Hash dos Arquivos que Contêm as Fichas de Lançamento Utilizadas no Período
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		BigDecimal creditos;
 		BigDecimal debitos;
 		BigDecimal saldo;
@@ -298,9 +298,9 @@ export class SpedContabilService {
 			registroI150.getRegistroi155List().push(registroI155);
 
 			// REGISTRO I157: TRANSFERÊNCIA DE SALDOS DE PLANO DE CONTAS ANTERIOR
-			// Implementado a critério do Participante do T2Ti ERP
+			// Implementado a critério do Participante do CS Solutions ERP
 		}
-		this.spedT2Ti.getBlocoI().getListaRegistroI150().push(registroI150);
+		this.spedCsSolutions.getBlocoI().getListaRegistroI150().push(registroI150);
 
 		// REGISTRO I200: LANÇAMENTO CONTÁBIL
 		filtros.clear();
@@ -333,43 +333,43 @@ export class SpedContabilService {
 				registroI200.getRegistroi250List().push(registroI250);
 			}
 
-			this.spedT2Ti.getBlocoI().getListaRegistroI200().push(registroI200);
+			this.spedCsSolutions.getBlocoI().getListaRegistroI200().push(registroI200);
 		}
 		*/
 		// REGISTRO I300: BALANCETES DIÁRIOS – IDENTIFICAÇÃO DA DATA
 		// REGISTRO I310: DETALHES DO BALANCETE DIÁRIO
-		// Implementados a critério do Participante do T2Ti ERP
+		// Implementados a critério do Participante do CS Solutions ERP
 		// REGISTRO I350: SALDOS DAS CONTAS DE RESULTADO ANTES DO ENCERRAMENTO – IDENTIFICAÇÃO DA DATA
 		// REGISTRO I355: DETALHES DOS SALDOS DAS CONTAS DE RESULTADO ANTES DO ENCERRAMENTO
-		// Implementados a critério do Participante do T2Ti ERP
+		// Implementados a critério do Participante do CS Solutions ERP
 		// REGISTRO I500: PARÂMETROS DE IMPRESSÃO E VISUALIZAÇÃO DO LIVRO RAZÃO AUXILIAR COM LEIAUTE PARAMETRIZÁVEL
 		// REGISTRO I510: DEFINIÇÃO DE CAMPOS DO LIVRO RAZÃO AUXILIAR COM LEIAUTE PARAMETRIZÁVEL
 		// REGISTRO I550: DETALHES DO LIVRO AUXILIAR COM LEIAUTE PARAMETRIZÁVEL
 		// REGISTRO I555: TOTAIS NO LIVRO AUXILIAR COM LEIAUTE PARAMETRIZÁVEL
-		// Implementados a critério do Participante do T2Ti ERP
+		// Implementados a critério do Participante do CS Solutions ERP
 	}
 
 	//Bloco J - Demonstrações Contábeis
 	async gerarBlocoJ() {
 		// REGISTRO J001: ABERTURA DO BLOCO J
-		// this.spedT2Ti.blocoJ.registroJ001.indDad = 0;
+		// this.spedCsSolutions.blocoJ.registroJ001.indDad = 0;
 
 		// REGISTRO J005: DEMONSTRAÇÕES CONTÁBEIS
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO J100: BALANÇO PATRIMONIAL
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		//REGISTRO J150: DEMONSTRAÇÃO DO RESULTADO DO EXERCÍCIO
-		//Implementado a critério do Participante do T2Ti ERP
+		//Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO J200: TABELA DE HISTÓRICO DE FATOS CONTÁBEIS QUE MODIFICAM A CONTA LUCROS ACUMULADOS OU A CONTA PREJUÍZOS ACUMULADOS OU TODO O PATRIMÔNIO LÍQUIDO
 		// REGISTRO J210: DLPA – DEMONSTRAÇÃO DE LUCROS OU PREJUÍZOS ACUMULADOS/DMPL – DEMONSTRAÇÃO DE MUTAÇÕES DO PATRIMÔNIO LÍQUIDO
 		// REGISTRO J215: FATO CONTÁBIL QUE ALTERA A CONTA LUCROS ACUMULADOS OU A CONTA PREJUÍZOS ACUMULADOS OU TODO O PATRIMÔNIO LÍQUIDO
-		// Implementados a critério do Participante do T2Ti ERP
+		// Implementados a critério do Participante do CS Solutions ERP
 		// REGISTRO J310: DEMONSTRAÇÃO DO FLUXO DE CAIXA
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO J410: DEMONSTRAÇÃO DO VALOR ADICIONADO
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO J800: OUTRAS INFORMAÇÕES
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO J900: TERMO DE ENCERRAMENTO
 		/* TODO
 		filtros.clear();
@@ -385,11 +385,11 @@ export class SpedContabilService {
 				throw new Exception("Termo de Encerramento não encontrado");
 			}
 
-			this.spedT2Ti.getBlocoJ().getRegistroJ900().setNumOrd(contabilTermo.getNumeroRegistro());
-			this.spedT2Ti.getBlocoJ().getRegistroJ900().setNatLivro(contabilLivro.getDescricao());
-			this.spedT2Ti.getBlocoJ().getRegistroJ900().setNome(empresa.getRazaoSocial());
-			this.spedT2Ti.getBlocoJ().getRegistroJ900().setDtIniEscr(contabilTermo.getEscrituracaoInicio());
-			this.spedT2Ti.getBlocoJ().getRegistroJ900().setDtFinEscr(contabilTermo.getEscrituracaoFim());
+			this.spedCsSolutions.getBlocoJ().getRegistroJ900().setNumOrd(contabilTermo.getNumeroRegistro());
+			this.spedCsSolutions.getBlocoJ().getRegistroJ900().setNatLivro(contabilLivro.getDescricao());
+			this.spedCsSolutions.getBlocoJ().getRegistroJ900().setNome(empresa.getRazaoSocial());
+			this.spedCsSolutions.getBlocoJ().getRegistroJ900().setDtIniEscr(contabilTermo.getEscrituracaoInicio());
+			this.spedCsSolutions.getBlocoJ().getRegistroJ900().setDtFinEscr(contabilTermo.getEscrituracaoFim());
 
 			// REGISTRO J930: IDENTIFICAÇÃO DOS SIGNATÁRIOS DA ESCRITURAÇÃO
 			List<Contador> contadores  = contadorDao.getBeans(Contador.class);
@@ -402,7 +402,7 @@ export class SpedContabilService {
 				registroJ930.setCodAssin("900");
 				registroJ930.setIndCrc(contadores.get(i).getInscricaoCrc());
 
-				this.spedT2Ti.getBlocoJ().getListaRegistroJ930().push(registroJ930);
+				this.spedCsSolutions.getBlocoJ().getListaRegistroJ930().push(registroJ930);
 			}
 		}
 		*/

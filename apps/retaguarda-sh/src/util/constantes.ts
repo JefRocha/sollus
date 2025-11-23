@@ -1,10 +1,10 @@
 /********************************************************************************
-Title: T2Ti ERP sollus
+Title: CS Solutions ERP sollus
 Description: Constantes.
 
 The MIT License
 
-Copyright: Copyright (C) 2021 T2Ti.COM
+Copyright: Copyright (C) 2021 CS Solutions.COM
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -28,9 +28,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
        The author may be contacted at:
-           t2ti.com@gmail.com
+           CS Solutions.com@gmail.com
 
-@author T2Ti.COM
+@author CS Solutions.COM
 @version 1.0
 ********************************************************************************/
 export class Constantes {

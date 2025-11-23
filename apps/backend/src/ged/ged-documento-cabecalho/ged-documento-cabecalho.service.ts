@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado à tabela [GED_DOCUMENTO_CABECALHO] 
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.COM                                          
+Copyright: Copyright (C) 2020 CS Solutions.COM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -94,7 +94,7 @@ export class GedDocumentoCabecalhoService extends TypeOrmCrudService<GedDocument
 	}
 
 	async atualizarDetalhe(arquivo: any) {
-		let nomeArquivoCompleto = "c:\\T2Ti\\GED\\" + arquivo.originalname;
+		let nomeArquivoCompleto = "c:\\CS Solutions\\GED\\" + arquivo.originalname;
 		const writeStream = fs.createWriteStream(nomeArquivoCompleto);
 		writeStream.write(arquivo.buffer);
 		writeStream.end();

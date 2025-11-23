@@ -16,7 +16,7 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Olá, estamos iniciando a Retaguarda da Software House da T2Ti usando o NestJS!');
+      expect(appController.getHello()).toBe('Olá, estamos iniciando a Retaguarda da Software House da CS Solutions usando o NestJS!');
     });
   });
 });

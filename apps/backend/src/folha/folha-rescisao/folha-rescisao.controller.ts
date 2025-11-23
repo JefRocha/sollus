@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado à tabela [FOLHA_RESCISAO] 
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -44,7 +44,7 @@ import { FolhaRescisao } from './folha-rescisao.entity';
   },
   query: {
     join: {
-		colaborador: { eager: true },
+      colaborador: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { FolhaRescisao } from './folha-rescisao.entity';
 export class FolhaRescisaoController implements CrudController<FolhaRescisao> {
   constructor(public service: FolhaRescisaoService) { }
 
-  
+
 
 
 }

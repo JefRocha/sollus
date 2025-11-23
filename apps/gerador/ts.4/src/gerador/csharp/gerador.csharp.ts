@@ -19,13 +19,13 @@ export class GeradorCSharp extends GeradorBase {
     dataPacket: CamposModel[];
     relacionamentos: ComentarioDerJsonModel[];
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/csharp/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.Controller.mustache';
-    arquivoTemplateRepository = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.Repository.mustache';
-    arquivoTemplateIRepository = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.IRepository.mustache';
-    arquivoTemplateExtension = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.Extension.mustache';
-    arquivoTemplateWrapperContext = 'c:/t2ti/gerador.codigo/templates/csharp/CSharp.WrapperContext.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/csharp/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.Controller.mustache';
+    arquivoTemplateRepository = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.Repository.mustache';
+    arquivoTemplateIRepository = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.IRepository.mustache';
+    arquivoTemplateExtension = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.Extension.mustache';
+    arquivoTemplateWrapperContext = 'c:/CS Solutions/gerador.codigo/templates/csharp/CSharp.WrapperContext.mustache';
 
     constructor() {
         super();
@@ -45,27 +45,27 @@ export class GeradorCSharp extends GeradorBase {
         retorno = await super.criarDiretorio(this.caminhoFontes + '_CONTROLLER');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_EXTENSION');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_MODEL');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_REPOSITORY');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_IREPOSITORY');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_WRAPPER_CONTEXT');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
 
         // procura pelas tabelas agregadas para criar os relacionamentos de primeiro nível
         retorno = await this.gerarAgregadosPrimeiroNivel();
@@ -225,9 +225,9 @@ export class GeradorCSharp extends GeradorBase {
         return retorno;
     }
 
-   /**
-     * Gera o Extension para a tabela principal
-     */
+    /**
+      * Gera o Extension para a tabela principal
+      */
     async gerarWrapperContext() {
         var modelJson = new CSharpWrapperContext(this.tabela);
         let modelTemplate = fs.readFileSync(this.arquivoTemplateWrapperContext).toString();

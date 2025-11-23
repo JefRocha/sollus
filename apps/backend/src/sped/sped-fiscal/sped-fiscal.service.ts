@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado ao Sped Fiscal - EFD
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.COM                                          
+Copyright: Copyright (C) 2020 CS Solutions.COM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,7 +28,7 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
@@ -44,7 +44,7 @@ import { NfeDestinatario } from '../../entities-export';
 import { Produto } from '../../entities-export';
 import { ProdutoUnidade } from '../../entities-export';
 import { TributOperacaoFiscal } from '../../entities-export';
-import { T2TiSpedFiscal } from '../../lib/sped/t2ti-sped-fiscal';
+import { CsSolutionsSpedFiscal } from '../../lib/sped/cs-solutions-sped-fiscal';
 import { Registro0150 } from '../../lib/sped/fiscal/bloco-0/registro-0150';
 import { Registro0190 } from '../../lib/sped/fiscal/bloco-0/registro-0190';
 import { Registro0200 } from '../../lib/sped/fiscal/bloco-0/registro-0200';
@@ -71,7 +71,7 @@ export class SpedFiscalService {
 	idEmpresa: number;
 	inventario: number;
 	idContador: number;
-	spedT2Ti: T2TiSpedFiscal;
+	spedCsSolutions: CsSolutionsSpedFiscal;
 
 	async gerarSpedFiscal(filter: string) {
 		let conteudoFiltro: any[] = filter.split('|');
@@ -94,7 +94,7 @@ export class SpedFiscalService {
 		this.inventario = conteudoFiltro[6];
 		this.idContador = conteudoFiltro[7];
 
-		this.spedT2Ti = new T2TiSpedFiscal();
+		this.spedCsSolutions = new CsSolutionsSpedFiscal();
 
 		await this.gerarBloco0();
 		await this.gerarBlocoC();
@@ -102,17 +102,17 @@ export class SpedFiscalService {
 		// Bloco de registros dos dados relativos à emissão ou ao recebimento de
 		// documentos fiscais que acobertam as prestações de serviços de
 		// comunicação, transporte intermunicipal e interestadual.
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		await this.gerarBlocoE();
 		// BLOCO G – CONTROLE DO CRÉDITO DE ICMS DO ATIVO PERMANENTE CIAP
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		if (this.inventario > 0) {
 			await this.gerarBlocoH();
 		}
 		await this.gerarBloco1();
 
-		let nomeArquivo = "C:\\T2Ti\\Sped\\EFD\\sped-fiscal-node.txt";
-		this.spedT2Ti.geraArquivoTxt(nomeArquivo);
+		let nomeArquivo = "C:\\CS Solutions\\Sped\\EFD\\sped-fiscal-node.txt";
+		this.spedCsSolutions.geraArquivoTxt(nomeArquivo);
 		return nomeArquivo;
 	}
 
@@ -142,51 +142,51 @@ export class SpedFiscalService {
 		listaProdutoUnidade = [];
 
 		// REGISTRO 0000: ABERTURA DO ARQUIVO DIGITAL E IDENTIFICAÇÃO DA ENTIDADE
-		this.spedT2Ti.bloco0.registro0000.dtIni = new Date(this.dataInicial);
-		this.spedT2Ti.bloco0.registro0000.dtFin = new Date(this.dataFinal);
-		this.spedT2Ti.bloco0.registro0000.codVer = this.versaoLeiaute;
-		this.spedT2Ti.bloco0.registro0000.codFin = this.finalidadeArquivo;
-		this.spedT2Ti.bloco0.registro0000.indPerfil = this.perfilApresentacao;
-		this.spedT2Ti.bloco0.registro0000.nome = empresa.razaoSocial;
-		this.spedT2Ti.bloco0.registro0000.cnpj = empresa.cnpj;
-		this.spedT2Ti.bloco0.registro0000.cpf = "";
-		this.spedT2Ti.bloco0.registro0000.ie = empresa.inscricaoEstadual;
-		this.spedT2Ti.bloco0.registro0000.codMun = 'empresa.codigoIbgeCidade.toString()';
-		this.spedT2Ti.bloco0.registro0000.im = empresa.inscricaoMunicipal;
-		//TODO: this.spedT2Ti.bloco0.registro0000.suframa = empresa.suframa;
-		this.spedT2Ti.bloco0.registro0000.indAtiv = "1";
-		this.spedT2Ti.bloco0.registro0000.uf = empresa.enderecoPrincipal.uf;
+		this.spedCsSolutions.bloco0.registro0000.dtIni = new Date(this.dataInicial);
+		this.spedCsSolutions.bloco0.registro0000.dtFin = new Date(this.dataFinal);
+		this.spedCsSolutions.bloco0.registro0000.codVer = this.versaoLeiaute;
+		this.spedCsSolutions.bloco0.registro0000.codFin = this.finalidadeArquivo;
+		this.spedCsSolutions.bloco0.registro0000.indPerfil = this.perfilApresentacao;
+		this.spedCsSolutions.bloco0.registro0000.nome = empresa.razaoSocial;
+		this.spedCsSolutions.bloco0.registro0000.cnpj = empresa.cnpj;
+		this.spedCsSolutions.bloco0.registro0000.cpf = "";
+		this.spedCsSolutions.bloco0.registro0000.ie = empresa.inscricaoEstadual;
+		this.spedCsSolutions.bloco0.registro0000.codMun = 'empresa.codigoIbgeCidade.toString()';
+		this.spedCsSolutions.bloco0.registro0000.im = empresa.inscricaoMunicipal;
+		//TODO: this.spedCsSolutions.bloco0.registro0000.suframa = empresa.suframa;
+		this.spedCsSolutions.bloco0.registro0000.indAtiv = "1";
+		this.spedCsSolutions.bloco0.registro0000.uf = empresa.enderecoPrincipal.uf;
 
 		// REGISTRO 0001: ABERTURA DO BLOCO 0
-		this.spedT2Ti.bloco0.registro0001.indMov = 0;
+		this.spedCsSolutions.bloco0.registro0001.indMov = 0;
 
 		// REGISTRO 0005: DADOS COMPLEMENTARES DA ENTIDADE
-		this.spedT2Ti.bloco0.registro0005.fantasia = empresa.nomeFantasia;
-		this.spedT2Ti.bloco0.registro0005.cep = 'empresa.enderecoPrincipal.cep';
-		this.spedT2Ti.bloco0.registro0005.endereco = 'empresa.enderecoPrincipal.logradouro';
-		this.spedT2Ti.bloco0.registro0005.num = 'empresa.enderecoPrincipal.numero';
-		this.spedT2Ti.bloco0.registro0005.compl = 'empresa.enderecoPrincipal.complemento';
-		this.spedT2Ti.bloco0.registro0005.bairro = 'empresa.enderecoPrincipal.bairro';
-		//TODO: this.spedT2Ti.bloco0.registro0005.fone = empresa.enderecoPrincipal.fone;
-		//TODO: this.spedT2Ti.bloco0.registro0005.fax = empresa.enderecoPrincipal.fone;
-		this.spedT2Ti.bloco0.registro0005.email = empresa.email;
+		this.spedCsSolutions.bloco0.registro0005.fantasia = empresa.nomeFantasia;
+		this.spedCsSolutions.bloco0.registro0005.cep = 'empresa.enderecoPrincipal.cep';
+		this.spedCsSolutions.bloco0.registro0005.endereco = 'empresa.enderecoPrincipal.logradouro';
+		this.spedCsSolutions.bloco0.registro0005.num = 'empresa.enderecoPrincipal.numero';
+		this.spedCsSolutions.bloco0.registro0005.compl = 'empresa.enderecoPrincipal.complemento';
+		this.spedCsSolutions.bloco0.registro0005.bairro = 'empresa.enderecoPrincipal.bairro';
+		//TODO: this.spedCsSolutions.bloco0.registro0005.fone = empresa.enderecoPrincipal.fone;
+		//TODO: this.spedCsSolutions.bloco0.registro0005.fax = empresa.enderecoPrincipal.fone;
+		this.spedCsSolutions.bloco0.registro0005.email = empresa.email;
 
 		// REGISTRO 0015: DADOS DO CONTRIBUINTE SUBSTITUTO
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0100: DADOS DO CONTABILISTA
 		// TODO
-		this.spedT2Ti.bloco0.registro0100.nome = "contador.nome";
-		this.spedT2Ti.bloco0.registro0100.cpf = "contador.cpf";
-		this.spedT2Ti.bloco0.registro0100.crc = 'contador.crcInscricao';
-		this.spedT2Ti.bloco0.registro0100.cep = "contador.cep";
-		this.spedT2Ti.bloco0.registro0100.endereco = "contador.logradouro";
-		this.spedT2Ti.bloco0.registro0100.num = "contador.numero";
-		this.spedT2Ti.bloco0.registro0100.compl = "contador.complemento";
-		this.spedT2Ti.bloco0.registro0100.bairro = "contador.bairro";
-		this.spedT2Ti.bloco0.registro0100.fone = "contador.fone";
-		this.spedT2Ti.bloco0.registro0100.fax = "contador.fax";
-		this.spedT2Ti.bloco0.registro0100.email = "contador.email";
-		this.spedT2Ti.bloco0.registro0100.codMun = 123;
+		this.spedCsSolutions.bloco0.registro0100.nome = "contador.nome";
+		this.spedCsSolutions.bloco0.registro0100.cpf = "contador.cpf";
+		this.spedCsSolutions.bloco0.registro0100.crc = 'contador.crcInscricao';
+		this.spedCsSolutions.bloco0.registro0100.cep = "contador.cep";
+		this.spedCsSolutions.bloco0.registro0100.endereco = "contador.logradouro";
+		this.spedCsSolutions.bloco0.registro0100.num = "contador.numero";
+		this.spedCsSolutions.bloco0.registro0100.compl = "contador.complemento";
+		this.spedCsSolutions.bloco0.registro0100.bairro = "contador.bairro";
+		this.spedCsSolutions.bloco0.registro0100.fone = "contador.fone";
+		this.spedCsSolutions.bloco0.registro0100.fax = "contador.fax";
+		this.spedCsSolutions.bloco0.registro0100.email = "contador.email";
+		this.spedCsSolutions.bloco0.registro0100.codMun = 123;
 
 		// REGISTRO 0150: TABELA DE CADASTRO DO PARTICIPANTE
 		/*
@@ -217,7 +217,7 @@ export class SpedFiscalService {
 				registro0150.bairro = emitente.bairro;
 			}
 
-			this.spedT2Ti.bloco0.listaRegistro0150.push(registro0150);
+			this.spedCsSolutions.bloco0.listaRegistro0150.push(registro0150);
 
 			registro0150 = new Registro0150();
 			destinatario = c.nfeDestinatario;
@@ -236,7 +236,7 @@ export class SpedFiscalService {
 				registro0150.bairro = destinatario.bairro;
 			}
 
-			this.spedT2Ti.bloco0.listaRegistro0150.push(registro0150);
+			this.spedCsSolutions.bloco0.listaRegistro0150.push(registro0150);
 
 			// REGISTRO 0175: ALTERAÇÃO DA TABELA DE CADASTRO DE PARTICIPANTE
 			// Pegar os dados de PESSOA_ALTERACAO para gerar o registro 0175
@@ -282,9 +282,9 @@ export class SpedFiscalService {
 
 				// REGISTRO 0206: CÓDIGO DE PRODUTO CONFORME TABELA PUBLICADA
 				// PELA ANP (COMBUSTÍVEIS)
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO 0210: CONSUMO ESPECÍFICO PADRONIZADO
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO 0220: FATORES DE CONVERSÃO DE UNIDADES
 				/* TODO
 				UnidadeConversao unidadeConversao = produto.unidadeConversao();
@@ -306,12 +306,12 @@ export class SpedFiscalService {
 			registro0190.unid = unidade.id.toString();
 			registro0190.descr = unidade.sigla;
 
-			this.spedT2Ti.bloco0.listaRegistro0190.push(registro0190);
+			this.spedCsSolutions.bloco0.listaRegistro0190.push(registro0190);
 		});
 
 		// REGISTRO 0300: CADASTRO DE BENS OU COMPONENTES DO ATIVO IMOBILIZADO
 		// REGISTRO 0305: INFORMAÇÃO SOBRE A UTILIZAÇÃO DO BEM
-		// Implementado a critério do Participante do T2Ti ERP - versão 1.0 não
+		// Implementado a critério do Participante do CS Solutions ERP - versão 1.0 não
 		// possui controle CIAP
 		// REGISTRO 0400: TABELA DE NATUREZA DA OPERAÇÃO/PRESTAÇÃO
 		listaOperacaoFiscal.forEach(operacaoFiscal => {
@@ -322,13 +322,13 @@ export class SpedFiscalService {
 		});
 
 		// REGISTRO 0450: TABELA DE INFORMAÇÃO COMPLEMENTAR DO DOCUMENTO FISCAL
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0460: TABELA DE OBSERVAÇÕES DO LANÇAMENTO FISCAL
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0500: PLANO DE CONTAS CONTÁBEIS
-		// Implementado a critério do Participante do T2Ti ERP
+		// Implementado a critério do Participante do CS Solutions ERP
 		// REGISTRO 0600: CENTRO DE CUSTOS
-		// Implementado a critério do Participante do T2Ti ERP		
+		// Implementado a critério do Participante do CS Solutions ERP		
 
 	}
 
@@ -406,16 +406,16 @@ export class SpedFiscalService {
 
 				// REGISTRO C105: OPERAÇÕES COM ICMS ST RECOLHIDO PARA UF
 				// DIVERSA DO DESTINATÁRIO DO DOCUMENTO FISCAL (CÓDIGO 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C110: INFORMAÇÃO COMPLEMENTAR DA NOTA FISCAL (CÓDIGO
 				// 01, 1B, 04 e 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C111: PROCESSO REFERENCIADO
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C112: DOCUMENTO DE ARRECADAÇÃO REFERENCIADO.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C113: DOCUMENTO FISCAL REFERENCIADO.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C114: CUPOM FISCAL REFERENCIADO
 				nfe.listaNfeCupomFiscalReferenciado.forEach(cupomFiscal => {
 					let registroC114 = new RegistroC114();
@@ -426,28 +426,28 @@ export class SpedFiscalService {
 					registroC114.numDoc = cupomFiscal.coo.toString();
 					registroC114.dtDoc = cupomFiscal.dataEmissaoCupom;
 
-					this.spedT2Ti.blocoC.listaRegistroC114.push(registroC114);
+					this.spedCsSolutions.blocoC.listaRegistroC114.push(registroC114);
 				});
 
 				// REGISTRO C115: LOCAL DA COLETA E/OU ENTREGA (CÓDIGO 01, 1B E
 				// 04).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C116: CUPOM FISCAL ELETRÔNICO REFERENCIADO
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C120: COMPLEMENTO DE DOCUMENTO - OPERAÇÕES DE
 				// IMPORTAÇÃO (CÓDIGOS 01 e 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C130: ISSQN, IRRF E PREVIDÊNCIA SOCIAL.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C140: FATURA (CÓDIGO 01)
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C141: VENCIMENTO DA FATURA (CÓDIGO 01).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C160: VOLUMES TRANSPORTADOS (CÓDIGO 01 E 04) -
 				// EXCETO COMBUSTÍVEIS.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C165: OPERAÇÕES COM COMBUSTÍVEIS (CÓDIGO 01).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C170: ITENS DO DOCUMENTO (CÓDIGO 01, 1B, 04 e 55).
 				nfe.listaNfeDetalhe.forEach(nfeDetalhe => {
 					let registroC170 = new RegistroC170();
@@ -493,26 +493,26 @@ export class SpedFiscalService {
 				});
 
 				// REGISTRO C171: ARMAZENAMENTO DE COMBUSTIVEIS (código 01, 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C172: OPERAÇÕES COM ISSQN (CÓDIGO 01)
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C173: OPERAÇÕES COM MEDICAMENTOS (CÓDIGO 01 e 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C174: OPERAÇÕES COM ARMAS DE FOGO (CÓDIGO 01).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C175: OPERAÇÕES COM VEÍCULOS NOVOS (CÓDIGO 01 e 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C176: RESSARCIMENTO DE ICMS EM OPERAÇÕES COM
 				// SUBSTITUIÇÃO TRIBUTÁRIA (CÓDIGO 01, 55).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C177: OPERAÇÕES COM PRODUTOS SUJEITOS A SELO DE
 				// CONTROLE IPI.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C178: OPERAÇÕES COM PRODUTOS SUJEITOS À TRIBUTAÇÀO
 				// DE IPI POR UNIDADE OU QUANTIDADE DE PRODUTO.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C179: INFORMAÇÕES COMPLEMENTARES ST (CÓDIGO 01).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C190: REGISTRO ANALÍTICO DO DOCUMENTO (CÓDIGO 01,
 				// 1B, 04 ,55 e 65).
 
@@ -540,10 +540,10 @@ export class SpedFiscalService {
 
 				// REGISTRO C195: OBSERVAÇOES DO LANÇAMENTO FISCAL (CÓDIGO 01,
 				// 1B E 55)
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C197: OUTRAS OBRIGAÇÕES TRIBUTÁRIAS, AJUSTES E
 				// INFORMAÇÕES DE VALORES PROVENIENTES DE DOCUMENTO FISCAL.
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 			});
 
 			// REGISTRO C350: NOTA FISCAL DE VENDA A CONSUMIDOR (CÓDIGO 02)
@@ -564,7 +564,7 @@ export class SpedFiscalService {
 				registroC350.vlCofins = notaFiscal.cofins;
 				registroC350.codCta = "";
 
-				this.spedT2Ti.blocoC().listaRegistroC350().push(registroC350);
+				this.spedCsSolutions.blocoC().listaRegistroC350().push(registroC350);
 
 				// REGISTRO C370: ITENS DO DOCUMENTO (CÓDIGO 02)
 				List<ViewSpedC370Id> listaC370 = viewC370Dao.beans(ViewSpedC370Id.class, "viewC370.idNfCabecalho", notaFiscal.id;
@@ -684,7 +684,7 @@ export class SpedFiscalService {
 					registroC300.registroC320List().push(registroC320);
 				}
 
-				this.spedT2Ti.blocoC().listaRegistroC300().push(registroC300);
+				this.spedCsSolutions.blocoC().listaRegistroC300().push(registroC300);
 			}
 			*/
 		}// if (perfil.equals("B")) {
@@ -718,7 +718,7 @@ export class SpedFiscalService {
 
 				// REGISTRO C410: PIS E COFINS TOTALIZADOS NO DIA (CÓDIGO 02 e
 				// 2D).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				// REGISTRO C420: REGISTRO DOS TOTALIZADORES PARCIAIS DA REDUÇÃO
 				// Z (COD 02, 2D e 60).
 				List<EcfR03> listaR03 = ecfR03Dao.beans(EcfR03.class, "idR02", r02.id;
@@ -785,7 +785,7 @@ export class SpedFiscalService {
 							// REGISTRO C465: COMPLEMENTO DO CUPOM FISCAL
 							// ELETRÔNICO EMITIDO POR ECF – CF-e-ECF (CÓDIGO
 							// 60).
-							// Implementado a critério do Participante do T2Ti
+							// Implementado a critério do Participante do CS Solutions
 							// ERP }
 							// REGISTRO C470: ITENS DO DOCUMENTO FISCAL EMITIDO
 							// POR ECF (CÓDIGO 02 e 2D).
@@ -837,7 +837,7 @@ export class SpedFiscalService {
 
 				// REGISTRO C495: RESUMO MENSAL DE ITENS DO ECF POR
 				// ESTABELECIMENTO (CÓDIGO 02 e 2D).
-				// Implementado a critério do Participante do T2Ti ERP
+				// Implementado a critério do Participante do CS Solutions ERP
 				registroC400.registroC405List().push(registroC405);
 			}
 
@@ -876,7 +876,7 @@ export class SpedFiscalService {
 			// REGISTRO C790: REGISTRO ANALÍTICO DOS DOCUMENTOS (CÓDIGOS 06 e
 			// 28).
 			// REGISTRO C791: REGISTRO DE INFORMAÇÕES DE ST POR UF (COD 06)
-			// Implementados a critério do Participante do T2Ti ERP
+			// Implementados a critério do Participante do CS Solutions ERP
 
 			// REGISTRO C800: CUPOM FISCAL ELETRÔNICO (CÓDIGO 59)
 			// REGISTRO C850: REGISTRO ANALÍTICO DO CF-E (CODIGO 59)
@@ -885,7 +885,7 @@ export class SpedFiscalService {
 			// SATCF-E
 			// SERÃO IMPLEMENTADOS QUANDO O SAT FOR CONSTRUIDO
 
-			this.spedT2Ti.blocoC().listaRegistroC400().push(registroC400);
+			this.spedCsSolutions.blocoC().listaRegistroC400().push(registroC400);
 		}
 		*/
 	}
@@ -893,13 +893,13 @@ export class SpedFiscalService {
 	//BLOCO E: APURAÇÃO DO ICMS E DO IPI
 	async gerarBlocoE() {
 		// REGISTRO E001: ABERTURA DO BLOCO E
-		this.spedT2Ti.blocoE.registroE001.indMov = 0;
+		this.spedCsSolutions.blocoE.registroE001.indMov = 0;
 
 		// REGISTRO E100: PERÍODO DA APURAÇÃO DO ICMS.
 		let registroE100 = new RegistroE100();
 		registroE100.dtIni = new Date(this.dataFinal);
 		registroE100.dtFin = new Date(this.dataFinal);
-		this.spedT2Ti.blocoE.listaRegistroE100.push(registroE100);
+		this.spedCsSolutions.blocoE.listaRegistroE100.push(registroE100);
 
 		// REGISTRO E110: APURAÇÃO DO ICMS – OPERAÇÕES PRÓPRIAS.
 		/* TODO
@@ -948,7 +948,7 @@ export class SpedFiscalService {
 	async gerarBlocoH() {
 		//const connection = getConnection();
 
-		this.spedT2Ti.blocoH.registroH001.indMov = 0;// com dados
+		this.spedCsSolutions.blocoH.registroH001.indMov = 0;// com dados
 
 		let listaProduto: Produto[];
 		listaProduto = [];// await this.dataSource.manager.find(Produto);
@@ -963,7 +963,7 @@ export class SpedFiscalService {
 		registroH005.dtInv = new Date(this.dataFinal);
 		registroH005.vlInv = totalGeral;
 		registroH005.motInv = "0" + this.inventario;
-		this.spedT2Ti.blocoH.listaRegistroH005.push(registroH005);
+		this.spedCsSolutions.blocoH.listaRegistroH005.push(registroH005);
 
 		for (let i = 0; i < listaProduto.length; i++) {
 			let registroH010 = new RegistroH010();
@@ -979,12 +979,12 @@ export class SpedFiscalService {
 		}
 
 		// REGISTRO H020: Informação complementar do Inventário.
-		// Implementado a critério do Participante do T2Ti ERP }
+		// Implementado a critério do Participante do CS Solutions ERP }
 	}
 
 	//BLOCO 1: OUTRAS INFORMAÇÕES
 	async gerarBloco1() {
-		this.spedT2Ti.bloco1.registro1001.indMov = 0;// com dados
+		this.spedCsSolutions.bloco1.registro1001.indMov = 0;// com dados
 
 		let registro1010 = new Registro1010();
 		registro1010.indExp = "N";
@@ -997,7 +997,7 @@ export class SpedFiscalService {
 		registro1010.indForm = "N";
 		registro1010.indAer = "N";
 
-		this.spedT2Ti.bloco1.listaRegistro1010.push(registro1010);
+		this.spedCsSolutions.bloco1.listaRegistro1010.push(registro1010);
 	}
 
 }

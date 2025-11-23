@@ -12,11 +12,11 @@ import { GeradorBase } from "../../gerador/gerador.base";
 
 export class GeradorNHibernate extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/nhibernate/';
-    arquivoTemplateModel = 'c:/t2ti/gerador.codigo/templates/nhibernate/NHibernate.Model.mustache';
-    arquivoTemplateController = 'c:/t2ti/gerador.codigo/templates/nhibernate/NHibernate.Controller.mustache';
-    arquivoTemplateService = 'c:/t2ti/gerador.codigo/templates/nhibernate/NHibernate.Service.mustache';
-    arquivoTemplateHBM = 'c:/t2ti/gerador.codigo/templates/nhibernate/NHibernate.HBM.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/nhibernate/';
+    arquivoTemplateModel = 'c:/CS Solutions/gerador.codigo/templates/nhibernate/NHibernate.Model.mustache';
+    arquivoTemplateController = 'c:/CS Solutions/gerador.codigo/templates/nhibernate/NHibernate.Controller.mustache';
+    arquivoTemplateService = 'c:/CS Solutions/gerador.codigo/templates/nhibernate/NHibernate.Service.mustache';
+    arquivoTemplateHBM = 'c:/CS Solutions/gerador.codigo/templates/nhibernate/NHibernate.HBM.mustache';
 
     constructor() {
         super();
@@ -35,19 +35,19 @@ export class GeradorNHibernate extends GeradorBase {
         retorno = await super.criarDiretorio(this.caminhoFontes + '_CONTROLLER');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_SERVICE');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_MODEL');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
         retorno = await super.criarDiretorio(this.caminhoFontes + '_HBM');
         if (retorno != true) {
             return result(null, retorno);
-        }        
+        }
 
         // procura pelas tabelas agregadas para criar os relacionamentos de primeiro nível
         retorno = await this.gerarAgregadosPrimeiroNivel();
@@ -191,6 +191,6 @@ export class GeradorNHibernate extends GeradorBase {
         let retorno = await super.gravarArquivo(this.caminhoFontes + '_HBM/' + nomeArquivo + '.hbm.xml', modelGerado);
         retorno = await super.gravarArquivo(this.caminhoFontes + this.tabela + '/' + nomeArquivo + '.hbm.xml', modelGerado);
         return retorno;
-   }
+    }
 
 }

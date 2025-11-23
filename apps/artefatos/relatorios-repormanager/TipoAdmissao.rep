@@ -14,18 +14,18 @@ object TRpReport
   DataInfo = <
     item
       Alias = 'CABECALHO'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select NOME_FANTASIA, RAZAO_SOCIAL, IMAGEM_LOGOTIPO from EMPRESA'
     end
     item
       Alias = 'DADOS'
-      DatabaseAlias = 'T2TIERP'
+      DatabaseAlias = 'CS SolutionsERP'
       SQL = 'select * '#13#10'from TIPO_ADMISSAO '#13#10'order by CODIGO'
       DataSource = 'CABECALHO'
     end>
   DatabaseInfo = <
     item
-      Alias = 'T2TIERP'
+      Alias = 'CS SolutionsERP'
       LoadParams = True
       LoadDriverParams = True
       LoginPrompt = False
@@ -40,7 +40,7 @@ object TRpReport
       Name = 'TITULORELATORIO'
       Visible = False
       AllowNulls = False
-      Value = 'RELAT'#211'RIO DE TIPO ADMISSÃO'
+      Value = 'RELAT'#211'RIO DE TIPO ADMISSï¿½O'
       Description = 'TITULO RELAT'#211'RIO'
       Hint = ''
       Search = ''

@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Model relacionado à tabela [CTE_CABECALHO] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
-                                                                                
+																			    
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   CS Solutions.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -42,7 +42,7 @@ import { CteRodoviario } from '../../entities-export';
 import { CteTomador } from '../../entities-export';
 
 @Entity({ name: 'CTE_CABECALHO' })
-export class CteCabecalho { 
+export class CteCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -267,23 +267,23 @@ export class CteCabecalho {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => CteDestinatario, cteDestinatario => cteDestinatario.cteCabecalho, { cascade: true })
-    cteDestinatario: CteDestinatario;
+	@OneToOne(() => CteDestinatario, cteDestinatario => cteDestinatario.cteCabecalho, { cascade: true })
+	cteDestinatario: CteDestinatario;
 
-    @OneToOne(() => CteLocalEntrega, cteLocalEntrega => cteLocalEntrega.cteCabecalho, { cascade: true })
-    cteLocalEntrega: CteLocalEntrega;
+	@OneToOne(() => CteLocalEntrega, cteLocalEntrega => cteLocalEntrega.cteCabecalho, { cascade: true })
+	cteLocalEntrega: CteLocalEntrega;
 
-    @OneToOne(() => CteRemetente, cteRemetente => cteRemetente.cteCabecalho, { cascade: true })
-    cteRemetente: CteRemetente;
+	@OneToOne(() => CteRemetente, cteRemetente => cteRemetente.cteCabecalho, { cascade: true })
+	cteRemetente: CteRemetente;
 
-    @OneToOne(() => CteRodoviario, cteRodoviario => cteRodoviario.cteCabecalho, { cascade: true })
-    cteRodoviario: CteRodoviario;
+	@OneToOne(() => CteRodoviario, cteRodoviario => cteRodoviario.cteCabecalho, { cascade: true })
+	cteRodoviario: CteRodoviario;
 
-    @OneToOne(() => CteTomador, cteTomador => cteTomador.cteCabecalho, { cascade: true })
-    cteTomador: CteTomador;
+	@OneToOne(() => CteTomador, cteTomador => cteTomador.cteCabecalho, { cascade: true })
+	cteTomador: CteTomador;
 
-    @OneToMany(() => CteCarga, cteCarga => cteCarga.cteCabecalho, { cascade: true })
-    listaCteCarga: CteCarga[];
+	@OneToMany(() => CteCarga, cteCarga => cteCarga.cteCabecalho, { cascade: true })
+	listaCteCarga: CteCarga[];
 
 
 	/**
@@ -364,7 +364,7 @@ export class CteCabecalho {
 			this.cargaOutrasCaracteristicas = objetoJson['cargaOutrasCaracteristicas'];
 			this.modalVersaoLayout = objetoJson['modalVersaoLayout'];
 			this.chaveCteSubstituido = objetoJson['chaveCteSubstituido'];
-			
+
 			if (objetoJson['cteDestinatario'] != null) {
 				this.cteDestinatario = new CteDestinatario(objetoJson['cteDestinatario']);
 			}
@@ -385,7 +385,7 @@ export class CteCabecalho {
 				this.cteTomador = new CteTomador(objetoJson['cteTomador']);
 			}
 
-			
+
 			this.listaCteCarga = [];
 			let listaCteCargaJson = objetoJson['listaCteCarga'];
 			if (listaCteCargaJson != null) {

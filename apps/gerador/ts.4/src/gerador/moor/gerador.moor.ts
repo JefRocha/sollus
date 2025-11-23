@@ -10,12 +10,12 @@ import { MoorPersistePage } from "./moor.persiste.page";
 
 export class GeradorMoor extends GeradorBase {
 
-    caminhoFontes = 'c:/t2ti/gerador.codigo/fontes/moor/';
-    arquivoTemplateTabela = 'c:/t2ti/gerador.codigo/templates/moor/Moor.Tabela.mustache';
-    arquivoTemplateDao = 'c:/t2ti/gerador.codigo/templates/moor/Moor.Dao.mustache';
-    arquivoTemplateDatabase = 'c:/t2ti/gerador.codigo/templates/moor/Moor.Database.mustache';
-    arquivoTemplateListaPageMoor = 'c:/t2ti/gerador.codigo/templates/moor/Moor.ListaPage.mustache';
-    arquivoTemplatePersistePageMoor = 'c:/t2ti/gerador.codigo/templates/moor/Moor.PersistePage.mustache';
+    caminhoFontes = 'c:/CS Solutions/gerador.codigo/fontes/moor/';
+    arquivoTemplateTabela = 'c:/CS Solutions/gerador.codigo/templates/moor/Moor.Tabela.mustache';
+    arquivoTemplateDao = 'c:/CS Solutions/gerador.codigo/templates/moor/Moor.Dao.mustache';
+    arquivoTemplateDatabase = 'c:/CS Solutions/gerador.codigo/templates/moor/Moor.Database.mustache';
+    arquivoTemplateListaPageMoor = 'c:/CS Solutions/gerador.codigo/templates/moor/Moor.ListaPage.mustache';
+    arquivoTemplatePersistePageMoor = 'c:/CS Solutions/gerador.codigo/templates/moor/Moor.PersistePage.mustache';
 
     constructor() {
         super();
@@ -146,7 +146,7 @@ export class GeradorMoor extends GeradorBase {
     /**
      * Gera a ListaPageMoor para a tabela principal
      */
-     async gerarListaPageMoor() {
+    async gerarListaPageMoor() {
         let modelJson = new MoorListaPage(this.tabela, this.dataPacket);
         let modelTemplate = fs.readFileSync(this.arquivoTemplateListaPageMoor).toString();
         let modelGerado = Mustache.render(modelTemplate, modelJson);
@@ -154,12 +154,12 @@ export class GeradorMoor extends GeradorBase {
         let nomeArquivo = this.tabela.toLowerCase() + '_lista_page';
 
         return super.gravarArquivo(this.caminhoFontes + this.tabela + '/' + nomeArquivo + '.dart', modelGerado);
-    }  
+    }
 
     /**
      * Gera a PersistePage Moor
      */
-     async gerarPersistePageMoor(tabela: string) {
+    async gerarPersistePageMoor(tabela: string) {
         let modelJson = new MoorPersistePage(tabela, this.tabela, this.dataPacket);
         let modelTemplate = fs.readFileSync(this.arquivoTemplatePersistePageMoor).toString();
         let modelGerado = Mustache.render(modelTemplate, modelJson);
@@ -179,7 +179,7 @@ export class GeradorMoor extends GeradorBase {
             for (let index = 0; index < lista.length; index++) {
                 this.listaTabelas.push(lista[index].nome);
             }
-            
+
             // gera o arquivo com o conteúdo para todas e para os includes
             var modelJson = new MoorDatabase(modulo, this.listaTabelas);
             let modelTemplate = fs.readFileSync(this.arquivoTemplateDatabase).toString();

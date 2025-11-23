@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Controller relacionado à sincronização de dados 
                                                                                 
 The MIT License                                                                 
                                                                                 
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
                                                                                 
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,12 +28,12 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
                                                                                 
        The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+           CS Solutions.com@gmail.com                                                   
                                                                                 
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Get, Post, Req, Res,} from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { SincronizaService } from './sincroniza.service';
 import { Biblioteca } from '../util/biblioteca';
@@ -43,44 +43,44 @@ import { AlexaOutputSpeech } from '../alexa/alexa-output-speech';
 
 @Controller('sincroniza')
 export class SincronizaController {
-  
+
   constructor(public service: SincronizaService) { }
-   
-	@Post('upload')
-	async sincronizarServidor(
+
+  @Post('upload')
+  async sincronizarServidor(
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    const bancoSQLite64 = Biblioteca.decifrar(request.body);      
+    const bancoSQLite64 = Biblioteca.decifrar(request.body);
     const cnpj = Biblioteca.decifrar(request.headers['cnpj'] as string);
 
     await this.service.sincronizarServidor(bancoSQLite64, cnpj);
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send('Servidor sincronizado com sucesso.');
-	}  
+    response.send('Servidor sincronizado com sucesso.');
+  }
 
-	@Post('upload-movimento')
-	async armazenarMovimento(
+  @Post('upload-movimento')
+  async armazenarMovimento(
     @Req() request: Request,
     @Res() response: Response,
   ) {
-    const bancoSQLite64 = Biblioteca.decifrar(request.body);      
+    const bancoSQLite64 = Biblioteca.decifrar(request.body);
     const cnpj = Biblioteca.decifrar(request.headers['cnpj'] as string);
     const idMovimento = Biblioteca.decifrar(request.headers['movimento'] as string);
     let dispositivo = Biblioteca.decifrar(request.headers['dispositivo'] as string);
-    dispositivo = dispositivo.trim().replace(/-/g, ""); 					
+    dispositivo = dispositivo.trim().replace(/-/g, "");
 
     await this.service.armazenarMovimento(bancoSQLite64, cnpj, idMovimento, dispositivo);
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send('Movimento sincronizado com sucesso.');
-	}  
+    response.send('Movimento sincronizado com sucesso.');
+  }
 
-	@Get('download')
-	async sincronizarCliente(
+  @Get('download')
+  async sincronizarCliente(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -90,12 +90,12 @@ export class SincronizaController {
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(retorno);
-	}
+    response.send(retorno);
+  }
 
 
-	@Post('twilio')
-	async testarTwilio(
+  @Post('twilio')
+  async testarTwilio(
     @Req() request: Request,
     @Res() response: Response,
   ) {
@@ -107,41 +107,39 @@ export class SincronizaController {
 
     response.setHeader('Content-Type', 'text/html');
     response.status(200);
-		response.send(resposta);
-	}  
+    response.send(resposta);
+  }
 
-	@Post('alexa')
-	async testarAlexa(
+  @Post('alexa')
+  async testarAlexa(
     @Req() request: Request,
     @Res() response: Response,
   ) {
     const requisicaoAlexa = new ObjetoAlexaRequest(JSON.parse(request.body));
-    
+
     const respostaAlexa = new ObjetoAlexaResponse({});
     respostaAlexa.response = new AlexaResponse({});
     respostaAlexa.response.outputSpeech = new AlexaOutputSpeech({});
 
-    if (requisicaoAlexa.request.type == "LaunchRequest")
-    {
-        respostaAlexa.version = "1.0";
-        respostaAlexa.response.shouldEndSession = false;
-        respostaAlexa.response.outputSpeech.type = "PlainText";
-        respostaAlexa.response.outputSpeech.text = "Fala meu chapa, beleza? Seja bem vindo, qual é o seu nome?";
-        respostaAlexa.response.outputSpeech.playBehavior = "ENQUEUE";
+    if (requisicaoAlexa.request.type == "LaunchRequest") {
+      respostaAlexa.version = "1.0";
+      respostaAlexa.response.shouldEndSession = false;
+      respostaAlexa.response.outputSpeech.type = "PlainText";
+      respostaAlexa.response.outputSpeech.text = "Fala meu chapa, beleza? Seja bem vindo, qual é o seu nome?";
+      respostaAlexa.response.outputSpeech.playBehavior = "ENQUEUE";
     }
-    else if (requisicaoAlexa.request.type == "IntentRequest")
-    {
-        const nomeDoCara = requisicaoAlexa.request.intent.slots.nomeUsuario.value;
-        respostaAlexa.version = "1.0";
-        respostaAlexa.response.shouldEndSession = true;
-        respostaAlexa.response.outputSpeech.type = "PlainText";
-        respostaAlexa.response.outputSpeech.text = "Valeu bicho, agora eu sei que o seu nome é " + nomeDoCara;
-        respostaAlexa.response.outputSpeech.playBehavior = "ENQUEUE";
+    else if (requisicaoAlexa.request.type == "IntentRequest") {
+      const nomeDoCara = requisicaoAlexa.request.intent.slots.nomeUsuario.value;
+      respostaAlexa.version = "1.0";
+      respostaAlexa.response.shouldEndSession = true;
+      respostaAlexa.response.outputSpeech.type = "PlainText";
+      respostaAlexa.response.outputSpeech.text = "Valeu bicho, agora eu sei que o seu nome é " + nomeDoCara;
+      respostaAlexa.response.outputSpeech.playBehavior = "ENQUEUE";
     }
 
     response.setHeader('Content-Type', 'application/json');
     response.status(200);
-		response.send(respostaAlexa);
-	}  
+    response.send(respostaAlexa);
+  }
 
 }

@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus
-Description: Lib T2Ti Sped Contábil - ECD
+Title: CS Solutions ERP sollus
+Description: Lib CS Solutions Sped Contábil - ECD
 
 The MIT License
 
-Copyright: Copyright (C) 2020 T2Ti.COM
+Copyright: Copyright (C) 2020 CS Solutions.COM
 
  
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@ Copyright: Copyright (C) 2020 T2Ti.COM
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  * 
- * The author may be contacted at: t2ti.com@gmail.com
+ * The author may be contacted at: CS Solutions.com@gmail.com
  *
 @author Albert Eije (alberteije@gmail.com)
 @version 1.0.0
@@ -38,7 +38,7 @@ import { Bloco9 } from "./contabil/bloco-9/bloco-9";
 import { Registro9900 } from "./contabil/bloco-9/registro-9900";
 import { writeFileSync } from "fs";
 
-export class T2TiSpedContabil {
+export class CsSolutionsSpedContabil {
 
     bloco0: Bloco0;
     blocoI: BlocoI;

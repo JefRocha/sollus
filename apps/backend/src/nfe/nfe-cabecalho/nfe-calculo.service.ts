@@ -1,10 +1,10 @@
 /*******************************************************************************
-Title: T2Ti ERP sollus                                                                
+Title: CS Solutions ERP sollus                                                                
 Description: Classe de calculo da NFE - Lado Servidor
 																			    
 The MIT License                                                                 
 																			    
-Copyright: Copyright (C) 2020 T2Ti.cOM                                          
+Copyright: Copyright (C) 2020 CS Solutions.cOM                                          
 																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
@@ -28,9 +28,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
 	   The author may be contacted at:                                          
-		   t2ti.com@gmail.com                                                   
+		   CS Solutions.com@gmail.com                                                   
 													 
-Versão de Cálculo feita para o T2Ti ERP 1.0 (Delphi) e adaptada para versões posteriores.
+Versão de Cálculo feita para o CS Solutions ERP 1.0 (Delphi) e adaptada para versões posteriores.
 Autor original da primeira versão: Claudio Roberto de Souza (desenvcrs@hotmail.com)
 		   
 @author Albert Eije (alberteije@gmail.com)                    

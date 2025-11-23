@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP 3.0                                                                
+Title: CS Solutions ERP 3.0                                                                
 Description: Model relacionado à tabela [FISCAL_PARAMETRO] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
-Copyright: Copyright (C) 2021 T2Ti.COM                                          
-                                                                                
+																			    
+Copyright: Copyright (C) 2021 CS Solutions.COM                                          
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   CS Solutions.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -39,7 +39,7 @@ import { FiscalEstadualRegime } from '../../entities-export';
 import { FiscalMunicipalRegime } from '../../entities-export';
 
 @Entity({ name: 'FISCAL_PARAMETRO' })
-export class FiscalParametro { 
+export class FiscalParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -87,17 +87,17 @@ export class FiscalParametro {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => FiscalEstadualPorte)
-    @JoinColumn({ name: "ID_FISCAL_ESTADUAL_PORTE" })
-    fiscalEstadualPorte: FiscalEstadualPorte;
+	@OneToOne(() => FiscalEstadualPorte)
+	@JoinColumn({ name: "ID_FISCAL_ESTADUAL_PORTE" })
+	fiscalEstadualPorte: FiscalEstadualPorte;
 
-    @OneToOne(() => FiscalEstadualRegime)
-    @JoinColumn({ name: "ID_FISCAL_ESTADUAL_REGIME" })
-    fiscalEstadualRegime: FiscalEstadualRegime;
+	@OneToOne(() => FiscalEstadualRegime)
+	@JoinColumn({ name: "ID_FISCAL_ESTADUAL_REGIME" })
+	fiscalEstadualRegime: FiscalEstadualRegime;
 
-    @OneToOne(() => FiscalMunicipalRegime)
-    @JoinColumn({ name: "ID_FISCAL_MUNICIPAL_REGIME" })
-    fiscalMunicipalRegime: FiscalMunicipalRegime;
+	@OneToOne(() => FiscalMunicipalRegime)
+	@JoinColumn({ name: "ID_FISCAL_MUNICIPAL_REGIME" })
+	fiscalMunicipalRegime: FiscalMunicipalRegime;
 
 
 	/**
@@ -119,7 +119,7 @@ export class FiscalParametro {
 			this.apuracaoConsolidada = objetoJson['apuracaoConsolidada'];
 			this.substituicaoTributaria = objetoJson['substituicaoTributaria'];
 			this.formaCalculoIss = objetoJson['formaCalculoIss'];
-			
+
 			if (objetoJson['fiscalEstadualPorte'] != null) {
 				this.fiscalEstadualPorte = new FiscalEstadualPorte(objetoJson['fiscalEstadualPorte']);
 			}
@@ -132,7 +132,7 @@ export class FiscalParametro {
 				this.fiscalMunicipalRegime = new FiscalMunicipalRegime(objetoJson['fiscalMunicipalRegime']);
 			}
 
-			
+
 		}
 	}
 }
