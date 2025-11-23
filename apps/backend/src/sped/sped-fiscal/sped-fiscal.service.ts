@@ -50,13 +50,13 @@ import { Registro0190 } from '../../lib/sped/fiscal/bloco-0/registro-0190';
 import { Registro0200 } from '../../lib/sped/fiscal/bloco-0/registro-0200';
 import { Registro0400 } from '../../lib/sped/fiscal/bloco-0/registro-0400';
 import { Registro1010 } from '../../lib/sped/fiscal/bloco-1/registro-1010';
-import { RegistroC100 } from '../../lib/sped/fiscal/bloco-c/registro-C100';
-import { RegistroC114 } from '../../lib/sped/fiscal/bloco-c/registro-C114';
-import { RegistroC170 } from '../../lib/sped/fiscal/bloco-c/registro-C170';
-import { RegistroC190 } from '../../lib/sped/fiscal/bloco-c/registro-C190';
-import { RegistroE100 } from '../../lib/sped/fiscal/bloco-e/registro-E100';
-import { RegistroH005 } from '../../lib/sped/fiscal/bloco-h/registro-H005';
-import { RegistroH010 } from '../../lib/sped/fiscal/bloco-h/registro-H010';
+import { RegistroC100 } from '../../lib/sped/fiscal/bloco-c/registro-c100';
+import { RegistroC114 } from '../../lib/sped/fiscal/bloco-c/registro-c114';
+import { RegistroC170 } from '../../lib/sped/fiscal/bloco-c/registro-c170';
+import { RegistroC190 } from '../../lib/sped/fiscal/bloco-c/registro-c190';
+import { RegistroE100 } from '../../lib/sped/fiscal/bloco-e/registro-e100';
+import { RegistroH005 } from '../../lib/sped/fiscal/bloco-h/registro-h005';
+import { RegistroH010 } from '../../lib/sped/fiscal/bloco-h/registro-h010';
 
 @Injectable()
 export class SpedFiscalService {
