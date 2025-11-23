@@ -35,7 +35,7 @@ services:
     volumes:
       - sollus_pg_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432" # Alterado para 5433 para evitar conflito com outro Postgres
     deploy:
       restart_policy:
         condition: on-failure
