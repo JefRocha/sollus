@@ -4,8 +4,6 @@ services:
   # O Backend (Sua aplicação)
   sollus-backend:
     image: ghcr.io/jefrocha/sollus:main
-    ports:
-      - "3000:3000" # Mantendo para teste direto, mas o acesso real será via Nginx
     environment:
       - DB_TYPE=postgres
       - DB_HOST=sollus-db
@@ -19,8 +17,24 @@ services:
     deploy:
       restart_policy:
         condition: on-failure
+      labels:
+        # Habilita o Traefik para este serviço
+        - "traefik.enable=true"
+        # Define a porta interna do container
+        - "traefik.http.services.sollus-backend.loadbalancer.server.port=3000"
+        # Configura o roteamento por domínio
+        - "traefik.http.routers.sollus-backend.rule=Host(`sollus.sollucoesemgestao.com.br`)"
+        # Habilita HTTPS
+        - "traefik.http.routers.sollus-backend.entrypoints=websecure"
+        - "traefik.http.routers.sollus-backend.tls=true"
+        - "traefik.http.routers.sollus-backend.tls.certresolver=letsencryptresolver"
+        # Redireciona HTTP para HTTPS (usa o middleware do Traefik)
+        - "traefik.http.routers.sollus-backend-http.rule=Host(`sollus.sollucoesemgestao.com.br`)"
+        - "traefik.http.routers.sollus-backend-http.entrypoints=web"
+        - "traefik.http.routers.sollus-backend-http.middlewares=redirect-https@docker"
     networks:
       - sollus-prod-net
+      - minha_rede # Conecta na rede do Traefik
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:
@@ -39,27 +53,13 @@ services:
     networks:
       - sollus-prod-net
 
-  # Proxy Reverso (Gerencia Domínios e SSL)
-  nginx-proxy:
-    image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
-    ports:
-      - '80:80' # Porta padrão Web (HTTP)
-      - '81:81' # Painel Administrativo do Proxy
-      - '443:443' # Porta Segura (HTTPS)
-    volumes:
-      - npm_data:/data
-      - npm_letsencrypt:/etc/letsencrypt
-    networks:
-      - sollus-prod-net
-
 volumes:
   sollus_pg_data:
-  npm_data:
-  npm_letsencrypt:
 
 
 networks:
   sollus-prod-net:
     driver: overlay
     attachable: true
+  minha_rede:
+    external: true # Usa a rede existente do Traefik
