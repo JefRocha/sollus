@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
-export const configMySQL: TypeOrmModuleOptions = {
+export const dbConfig: TypeOrmModuleOptions = {
   type: (process.env.DB_TYPE as any) || 'postgres',
   host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT) || 5432,

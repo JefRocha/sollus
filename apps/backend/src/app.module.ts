@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { configMySQL } from './orm.config';
+import { dbConfig } from './orm.config';
 import { CadastrosModule } from './cadastros/cadastros.module';
 import { FinanceiroModule } from './financeiro/financeiro.module';
 import { EstoqueModule } from './estoque/estoque.module';
@@ -27,7 +27,7 @@ import { TenantModule } from './tenant/tenant.module';
 @Module(
   {
     imports: [
-      TypeOrmModule.forRoot(configMySQL),
+      TypeOrmModule.forRoot(dbConfig),
       CadastrosModule,
       FinanceiroModule,
       EstoqueModule,

@@ -1,11 +1,11 @@
 import { DataSource } from 'typeorm';
-import { configMySQL } from '../src/orm.config';
+import { dbConfig } from '../src/orm.config';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
 async function verifyData() {
-    const dataSource = new DataSource(configMySQL as any);
+    const dataSource = new DataSource(dbConfig as any);
 
     try {
         await dataSource.initialize();
