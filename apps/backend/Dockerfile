@@ -72,5 +72,5 @@ RUN echo '#!/bin/sh' > /app/start.sh && \
     chmod +x /app/start.sh
 
 # Start the application using the startup script
-ENTRYPOINT ["/app/start.sh"]
+CMD ["sh", "/app/start.sh"]
 
