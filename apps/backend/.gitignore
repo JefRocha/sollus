@@ -36,4 +36,3 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # SQL data files (too large for git)
-scripts/Script_Dados_Postgresql.sql
