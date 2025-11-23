@@ -18,23 +18,27 @@ services:
       restart_policy:
         condition: on-failure
       labels:
-        # Habilita o Traefik para este serviço
+        # --- CONFIGURAÇÃO TRAEFIK (Se estiver usando Traefik) ---
+        # Se estiver usando Nginx Proxy Manager, ignore estas labels e configure via UI
         - "traefik.enable=true"
-        # Define a porta interna do container
         - "traefik.http.services.sollus-backend.loadbalancer.server.port=3000"
-        # Configura o roteamento por domínio
         - "traefik.http.routers.sollus-backend.rule=Host(`sollus.sollucoesemgestao.com.br`)"
-        # Habilita HTTPS
         - "traefik.http.routers.sollus-backend.entrypoints=websecure"
         - "traefik.http.routers.sollus-backend.tls=true"
+        # Verifique se o resolver 'letsencryptresolver' existe no seu Traefik
         - "traefik.http.routers.sollus-backend.tls.certresolver=letsencryptresolver"
-        # Redireciona HTTP para HTTPS (usa o middleware do Traefik)
         - "traefik.http.routers.sollus-backend-http.rule=Host(`sollus.sollucoesemgestao.com.br`)"
         - "traefik.http.routers.sollus-backend-http.entrypoints=web"
         - "traefik.http.routers.sollus-backend-http.middlewares=redirect-https@docker"
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s # Tempo generoso para startup e importação de dados
     networks:
       - sollus-prod-net
-      - minha_rede # Conecta na rede do Traefik
+      - minha_rede # IMPORTANTE: O Proxy (Traefik ou NPM) DEVE estar nesta rede!
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:

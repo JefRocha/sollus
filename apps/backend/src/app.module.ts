@@ -24,6 +24,8 @@ import { AppInterceptor } from './app.interceptor';
 import { LoginModule } from './login/login.module';
 import { TenantModule } from './tenant/tenant.module';
 
+import { HealthController } from './health/health.controller';
+
 @Module(
   {
     imports: [
@@ -46,7 +48,7 @@ import { TenantModule } from './tenant/tenant.module';
       LoginModule,
       TenantModule,
     ],
-    controllers: [AppController],
+    controllers: [AppController, HealthController],
     providers: [AppService],//, {
     //   provide: APP_INTERCEPTOR,
     //   useClass: AppInterceptor,

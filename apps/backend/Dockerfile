@@ -18,6 +18,9 @@ COPY . .
 # Build the application
 RUN pnpm build
 
+# Compile scripts
+RUN pnpm tsc scripts/*.ts --outDir dist/scripts --esModuleInterop
+
 # Stage 2: Production
 FROM node:20-alpine
 
@@ -55,10 +58,11 @@ RUN echo '#!/bin/sh' > /app/start.sh && \
     echo '# Verificar se precisa importar dados' >> /app/start.sh && \
     echo 'if [ -f "/app/scripts/Script_Dados_Postgresql.sql" ]; then' >> /app/start.sh && \
     echo '  echo "📦 Verificando se o banco precisa de dados iniciais..."' >> /app/start.sh && \
-    echo '  npx ts-node -e "import { DataSource } from '\''typeorm'\''; import * as dotenv from '\''dotenv'\''; dotenv.config(); const ds = new DataSource({ type: '\''postgres'\'', host: process.env.DB_HOST, port: parseInt(process.env.DB_PORT || '\''5432'\''), username: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE }); ds.initialize().then(async () => { const result = await ds.query('\''SELECT COUNT(*) as count FROM \\\"NCM\\\"'\''); const count = parseInt(result[0].count); await ds.destroy(); process.exit(count > 0 ? 1 : 0); });" && NEEDS_IMPORT=0 || NEEDS_IMPORT=1' >> /app/start.sh && \
+    echo '  # Script inline otimizado para verificar contagem' >> /app/start.sh && \
+    echo '  node -e "const { Client } = require('\''pg'\''); const client = new Client({ host: process.env.DB_HOST, port: parseInt(process.env.DB_PORT || '\''5432'\''), user: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE }); client.connect().then(async () => { try { const res = await client.query('\''SELECT COUNT(*) as count FROM \\\"NCM\\\"'\''); const count = parseInt(res.rows[0].count); process.exit(count > 0 ? 1 : 0); } catch (e) { process.exit(0); } finally { client.end(); } });" && NEEDS_IMPORT=0 || NEEDS_IMPORT=1' >> /app/start.sh && \
     echo '  if [ $NEEDS_IMPORT -eq 1 ]; then' >> /app/start.sh && \
     echo '    echo "📥 Importando dados iniciais..."' >> /app/start.sh && \
-    echo '    npx ts-node scripts/import-sql-stream.ts' >> /app/start.sh && \
+    echo '    node dist/scripts/import-sql-stream.js' >> /app/start.sh && \
     echo '    echo "✅ Dados importados com sucesso!"' >> /app/start.sh && \
     echo '  else' >> /app/start.sh && \
     echo '    echo "⏭️  Dados já existem, pulando importação"' >> /app/start.sh && \
