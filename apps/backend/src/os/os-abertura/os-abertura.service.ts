@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [OS_ABERTURA] 
 																			    
 The MIT License                                                                 

@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado ao Sped Contabil - ECD
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -54,12 +54,12 @@ export class SpedContabilService {
 
 	async gerarSpedContabil(filter: string) {
 		let conteudoFiltro: any[] = filter.split('|');
-        /*
+		/*
 		  0 - Periodo Inicial
 		  1 - Periodo Final
 		  2 - Forma de Escrituração
 		  3 - Layout da Versão
-        */
+		*/
 		this.dataInicial = conteudoFiltro[0];
 		this.dataFinal = conteudoFiltro[1];
 		this.formaEscrituracao = conteudoFiltro[2];
@@ -349,7 +349,7 @@ export class SpedContabilService {
 		// Implementados a critério do Participante do T2Ti ERP
 	}
 
-    //Bloco J - Demonstrações Contábeis
+	//Bloco J - Demonstrações Contábeis
 	async gerarBlocoJ() {
 		// REGISTRO J001: ABERTURA DO BLOCO J
 		// this.spedT2Ti.blocoJ.registroJ001.indDad = 0;

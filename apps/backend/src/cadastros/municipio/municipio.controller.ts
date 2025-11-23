@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [MUNICIPIO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { Municipio } from './municipio.entity';
   },
   query: {
     join: {
-		uf: { eager: true },
+      uf: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { Municipio } from './municipio.entity';
 export class MunicipioController implements CrudController<Municipio> {
   constructor(public service: MunicipioService) { }
 
-  
+
 
 
 }

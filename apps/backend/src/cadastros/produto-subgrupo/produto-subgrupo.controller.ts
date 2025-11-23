@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [PRODUTO_SUBGRUPO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { ProdutoSubgrupo } from './produto-subgrupo.entity';
   },
   query: {
     join: {
-		produtoGrupo: { eager: true },
+      produtoGrupo: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { ProdutoSubgrupo } from './produto-subgrupo.entity';
 export class ProdutoSubgrupoController implements CrudController<ProdutoSubgrupo> {
   constructor(public service: ProdutoSubgrupoService) { }
 
-  
+
 
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [NOTA_FISCAL_TIPO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { NotaFiscalTipo } from './nota-fiscal-tipo.entity';
   },
   query: {
     join: {
-		notaFiscalModelo: { eager: true },
+      notaFiscalModelo: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { NotaFiscalTipo } from './nota-fiscal-tipo.entity';
 export class NotaFiscalTipoController implements CrudController<NotaFiscalTipo> {
   constructor(public service: NotaFiscalTipoService) { }
 
-  
+
 
 
 }

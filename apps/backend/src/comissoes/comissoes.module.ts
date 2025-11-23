@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Gestão de Comissões
                                                                                 
 The MIT License                                                                 
@@ -38,9 +38,9 @@ import { ComissaoObjetivoModule } from '../comissoes/comissao-objetivo/comissao-
 import { ComissaoPerfilModule } from '../comissoes/comissao-perfil/comissao-perfil.module';
 
 @Module({
-    imports: [
-		ComissaoObjetivoModule,
-		ComissaoPerfilModule,
-    ],
+  imports: [
+    ComissaoObjetivoModule,
+    ComissaoPerfilModule,
+  ],
 })
 export class ComissoesModule { }

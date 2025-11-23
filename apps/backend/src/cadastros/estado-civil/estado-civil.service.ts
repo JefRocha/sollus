@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [ESTADO_CIVIL] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class EstadoCivilService extends TypeOrmCrudService<EstadoCivil> {
   constructor(
     @InjectRepository(EstadoCivil) repository) { super(repository); }
 
-  
 
-	
+
+
 }

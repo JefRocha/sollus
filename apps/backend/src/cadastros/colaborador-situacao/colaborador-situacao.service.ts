@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [COLABORADOR_SITUACAO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ColaboradorSituacaoService extends TypeOrmCrudService<ColaboradorSi
   constructor(
     @InjectRepository(ColaboradorSituacao) repository) { super(repository); }
 
-  
 
-	
+
+
 }

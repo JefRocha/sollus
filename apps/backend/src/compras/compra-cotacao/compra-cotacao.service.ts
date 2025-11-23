@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [COMPRA_COTACAO] 
 																			    
 The MIT License                                                                 

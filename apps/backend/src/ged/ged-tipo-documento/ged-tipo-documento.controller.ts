@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [GED_TIPO_DOCUMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { GedTipoDocumento } from './ged-tipo-documento.entity';
 export class GedTipoDocumentoController implements CrudController<GedTipoDocumento> {
   constructor(public service: GedTipoDocumentoService) { }
 
-  
+
 
 
 }

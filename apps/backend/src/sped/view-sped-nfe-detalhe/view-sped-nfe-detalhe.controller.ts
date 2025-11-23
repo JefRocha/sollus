@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_SPED_NFE_DETALHE] 
                                                                                 
 The MIT License                                                                 
@@ -45,10 +45,10 @@ import { Request } from 'express';
   },
   query: {
     join: {
-		produto: { eager: true },
-		tributOperacaoFiscal: { eager: true },
-		produtoUnidade: { eager: true },
-		listaNfeCabecalho: { eager: true },
+      produto: { eager: true },
+      tributOperacaoFiscal: { eager: true },
+      produtoUnidade: { eager: true },
+      listaNfeCabecalho: { eager: true },
     },
   },
 })

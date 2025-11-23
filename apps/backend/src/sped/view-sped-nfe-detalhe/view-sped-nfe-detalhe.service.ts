@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_SPED_NFE_DETALHE] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewSpedNfeDetalheService extends TypeOrmCrudService<ViewSpedNfeDet
   constructor(
     @InjectRepository(ViewSpedNfeDetalhe) repository) { super(repository); }
 
-  
 
-	
+
+
 }

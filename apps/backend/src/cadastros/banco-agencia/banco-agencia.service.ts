@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [BANCO_AGENCIA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class BancoAgenciaService extends TypeOrmCrudService<BancoAgencia> {
   constructor(
     @InjectRepository(BancoAgencia) repository) { super(repository); }
 
-  
 
-	
+
+
 }

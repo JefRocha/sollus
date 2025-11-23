@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [NOTA_FISCAL_MODELO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { NotaFiscalModelo } from './nota-fiscal-modelo.entity';
 export class NotaFiscalModeloController implements CrudController<NotaFiscalModelo> {
   constructor(public service: NotaFiscalModeloService) { }
 
-  
+
 
 
 }

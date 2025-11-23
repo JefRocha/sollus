@@ -34,7 +34,7 @@ df = df.rename(columns={
 })
 
 # Criar a conexão com o banco de dados MySQL
-engine = create_engine('mysql+pymysql://root:root@localhost/fenix')
+engine = create_engine('mysql+pymysql://root:root@localhost/sollus')
 
 # Persistir os dados na tabela "banco"
 df.to_sql('banco', con=engine, if_exists='append', index=False)

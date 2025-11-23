@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_FIN_CHEQUE_NAO_COMPENSADO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewFinChequeNaoCompensadoService extends TypeOrmCrudService<ViewFi
   constructor(
     @InjectRepository(ViewFinChequeNaoCompensado) repository) { super(repository); }
 
-  
 
-	
+
+
 }

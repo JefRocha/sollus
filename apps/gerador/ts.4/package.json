@@ -1,7 +1,7 @@
 {
-  "name": "t2ti_erp_fenix_gerador",
+  "name": "t2ti_erp_sollus_gerador",
   "version": "1.0.0",
-  "description": "T2Ti ERP Fenix Gerador de Código",
+  "description": "T2Ti ERP sollus Gerador de Código",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

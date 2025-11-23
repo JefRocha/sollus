@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -30,7 +30,7 @@ Copyright: Copyright (C) 2020 T2Ti.COM
 @version 1.0.0
 *******************************************************************************/
 export class Registro0001 {
-    
+
     indMov: number; //Indicador de movimento: 0 - Bloco com dados informados, 1 - Bloco sem dados informados
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller para definir a rota que será utilizada para realizar 
 o login.
                                                                                 
@@ -52,7 +52,7 @@ export class LoginController {
 
             let token = await this.service.login(usuario);
 
-			return response.status(HttpStatus.OK).json({ token: token });
+            return response.status(HttpStatus.OK).json({ token: token });
         } catch (error) {
             throw error;
         }

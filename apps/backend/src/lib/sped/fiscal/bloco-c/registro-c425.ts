@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -32,11 +32,11 @@ Copyright: Copyright (C) 2020 T2Ti.COM
 
 export class RegistroC425 {
 
-    codItem:  string;	 // Código do item (campo 02 do Registro 0200)
-    qtd:  number;	 // Quantidade acumulada do item
-    unid:  string;	 // Unidade do item (Campo 02 do registro 0190)
-    vlItem:  number;	 // Valor acumulado do item
-    vlPis:  number;	 // Valor do PIS
-    vlCofins:  number;	 // Valor da COFINS
-    
+    codItem: string;	 // Código do item (campo 02 do Registro 0200)
+    qtd: number;	 // Quantidade acumulada do item
+    unid: string;	 // Unidade do item (Campo 02 do registro 0190)
+    vlItem: number;	 // Valor acumulado do item
+    vlPis: number;	 // Valor do PIS
+    vlCofins: number;	 // Valor da COFINS
+
 }

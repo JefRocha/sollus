@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [COLABORADOR_SITUACAO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ColaboradorSituacao } from './colaborador-situacao.entity';
 export class ColaboradorSituacaoController implements CrudController<ColaboradorSituacao> {
   constructor(public service: ColaboradorSituacaoService) { }
 
-  
+
 
 
 }

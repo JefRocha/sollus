@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado ao Sped Contabil - ECD
                                                                                 
 The MIT License                                                                 

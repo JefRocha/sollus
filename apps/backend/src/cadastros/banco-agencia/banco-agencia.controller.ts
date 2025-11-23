@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [BANCO_AGENCIA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { BancoAgencia } from './banco-agencia.entity';
   },
   query: {
     join: {
-		banco: { eager: true },
+      banco: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { BancoAgencia } from './banco-agencia.entity';
 export class BancoAgenciaController implements CrudController<BancoAgencia> {
   constructor(public service: BancoAgenciaService) { }
 
-  
+
 
 
 }

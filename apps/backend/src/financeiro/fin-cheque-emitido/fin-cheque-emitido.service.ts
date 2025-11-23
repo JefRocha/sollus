@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_CHEQUE_EMITIDO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinChequeEmitidoService extends TypeOrmCrudService<FinChequeEmitido
   constructor(
     @InjectRepository(FinChequeEmitido) repository) { super(repository); }
 
-  
 
-	
+
+
 }

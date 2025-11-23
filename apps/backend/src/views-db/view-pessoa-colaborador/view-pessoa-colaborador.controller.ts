@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_PESSOA_COLABORADOR] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewPessoaColaborador } from './view-pessoa-colaborador.entity';
 export class ViewPessoaColaboradorController implements CrudController<ViewPessoaColaborador> {
   constructor(public service: ViewPessoaColaboradorService) { }
 
-  
+
 
 
 }

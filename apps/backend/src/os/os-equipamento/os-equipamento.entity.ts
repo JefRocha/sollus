@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [OS_EQUIPAMENTO] 
 																			    
 The MIT License                                                                 

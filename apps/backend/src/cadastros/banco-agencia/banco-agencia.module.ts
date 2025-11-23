@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado à tabela [BANCO_AGENCIA] 
                                                                                 
 The MIT License                                                                 

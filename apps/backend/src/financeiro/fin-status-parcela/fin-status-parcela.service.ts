@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_STATUS_PARCELA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinStatusParcelaService extends TypeOrmCrudService<FinStatusParcela
   constructor(
     @InjectRepository(FinStatusParcela) repository) { super(repository); }
 
-  
 
-	
+
+
 }

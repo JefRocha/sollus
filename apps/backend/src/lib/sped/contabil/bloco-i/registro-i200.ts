@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -39,7 +39,7 @@ export class RegistroI200 {
     vlLcto: number;	 // Valor do Lançamento
     indLcto: string;	 // Indicador do tipo do lançamento
     registroi250List: RegistroI250[];	 /// BLOCO I - Lista de RegistroI250 (FILHO)
-    
+
     constructor() {
         this.registroi250List = [];
     }

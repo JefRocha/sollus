@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema fenix
+-- Schema sollus
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema fenix
+-- Schema sollus
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `fenix` DEFAULT CHARACTER SET utf8 ;
-USE `fenix` ;
+CREATE SCHEMA IF NOT EXISTS `sollus` DEFAULT CHARACTER SET utf8 ;
+USE `sollus` ;
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA`
+-- Table `sollus`.`PESSOA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(150) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"label\":\"nome\",\"labeltext\":\"nome\",\"tooltip\":\"nome\",\"hinttext\":\"informe o nome da pessoa\",\"validacao\":\"alfanumerico\",\"obrigatorio\":true,\"readonly\":false,\"tabelalookup\":\"\",\"campolookup\":\"\",\"campolookuptipodado\":\"\",\"valorpadraolookup\":\"\",\"desenhacontrole\":true,\"comentario\":\"\",\"linhabootstrap\":1,\"colunabootstrap\":1,\"sizesbootstrap\":\"col-12 col-md-8\",\"tipocontrole\":{\"tipo\":\"textformfield\",\"keyboardtype\":\"\",\"mascara\":\"\"}}',
   `tipo` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"label\":\"tipo pessoa\",\"labeltext\":\"tipo pessoa\",\"tooltip\":\"tipo pessoa\",\"hinttext\":\"selecione a opção desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readonly\":false,\"tabelalookup\":\"\",\"campolookup\":\"\",\"campolookuptipodado\":\"\",\"valorpadraolookup\":\"\",\"desenhacontrole\":true,\"comentario\":\"\",\"linhabootstrap\":1,\"colunabootstrap\":2,\"sizesbootstrap\":\"col-12 col-md-4\",\"tipocontrole\":{\"tipo\":\"dropdownbutton\",\"persiste\":\"char\",\"valorpadrao\":\"\",\"itens\":[{\"dropdownbuttonitem\":\"física\"},{\"dropdownbuttonitem\":\"jurídica\"}]}}',
@@ -39,9 +39,9 @@ COMMENT = 'essa tabela vai armazenar os dados da entidade pessoa';
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NIVEL_FORMACAO`
+-- Table `sollus`.`NIVEL_FORMACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NIVEL_FORMACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NIVEL_FORMACAO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Nome\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -50,9 +50,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTADO_CIVIL`
+-- Table `sollus`.`ESTADO_CIVIL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTADO_CIVIL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTADO_CIVIL` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Nome\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -61,9 +61,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_FISICA`
+-- Table `sollus`.`PESSOA_FISICA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_FISICA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_FISICA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}\n',
   `ID_NIVEL_FORMACAO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nível de Formação\",\"labelText\":\"Nível de Formação\",\"tooltip\":\"Nível de Formação\",\"hintText\":\"Importe o Nível de Formação Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nivel_formacao\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -85,17 +85,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_FISICA` (
   INDEX `fk_PESSOA_FISICA_ESTADO_CIVIL1_idx` (`ID_ESTADO_CIVIL` ASC),
   CONSTRAINT `fk_PESSOA_FISICA_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PESSOA_FISICA_NIVEL_FORMACAO1`
     FOREIGN KEY (`ID_NIVEL_FORMACAO`)
-    REFERENCES `fenix`.`NIVEL_FORMACAO` (`ID`)
+    REFERENCES `sollus`.`NIVEL_FORMACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PESSOA_FISICA_ESTADO_CIVIL1`
     FOREIGN KEY (`ID_ESTADO_CIVIL`)
-    REFERENCES `fenix`.`ESTADO_CIVIL` (`ID`)
+    REFERENCES `sollus`.`ESTADO_CIVIL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -103,9 +103,9 @@ COMMENT = 'Tabela que armazena os dados específicos para Pessoas Físicas';
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_JURIDICA`
+-- Table `sollus`.`PESSOA_JURIDICA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_JURIDICA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_JURIDICA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":true,\"tooltip\":\"CNPJ\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -119,16 +119,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_JURIDICA` (
   INDEX `fk_PESSOA_JURIDICA_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PESSOA_JURIDICA_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TABELA_PRECO`
+-- Table `sollus`.`TABELA_PRECO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TABELA_PRECO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TABELA_PRECO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `PRINCIPAL` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Principal\",\"labelText\":\"Principal\",\"tooltip\":\"Principal\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Informar se esta tabela é a principal - nao pode ser deletada.\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"Sim\"},{\"dropDownButtonItem\":\"Não\"}]}}',
@@ -140,9 +140,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CLIENTE`
+-- Table `sollus`.`CLIENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CLIENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CLIENTE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}',
   `ID_TABELA_PRECO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"TABELA_PRECO\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Tabela de Preços\",\"labelText\":\"Tabela de Preços\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Tabela de Preços\",\"hintText\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -156,21 +156,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CLIENTE` (
   INDEX `fk_CLIENTE_TABELA_PRECO1_idx` (`ID_TABELA_PRECO` ASC),
   CONSTRAINT `fk_CLIENTE_PESSOA`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CLIENTE_TABELA_PRECO1`
     FOREIGN KEY (`ID_TABELA_PRECO`)
-    REFERENCES `fenix`.`TABELA_PRECO` (`ID`)
+    REFERENCES `sollus`.`TABELA_PRECO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FORNECEDOR`
+-- Table `sollus`.`FORNECEDOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FORNECEDOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FORNECEDOR` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}\\n',
   `DESDE` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Desde\",\"labelText\":\"É Fornecedor Desde\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Fornecedor Desde\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -180,16 +180,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FORNECEDOR` (
   INDEX `fk_FORNECEDOR_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_FORNECEDOR_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRANSPORTADORA`
+-- Table `sollus`.`TRANSPORTADORA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRANSPORTADORA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRANSPORTADORA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}\\n',
   `DATA_CADASTRO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Data de Cadastro\",\"labelText\":\"Data de Cadastro\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Data de Cadastro\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -198,16 +198,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRANSPORTADORA` (
   INDEX `fk_TRANSPORTADORA_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_TRANSPORTADORA_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTADOR`
+-- Table `sollus`.`CONTADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTADOR` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}\\n',
   `CRC_INSCRICAO` VARCHAR(15) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Inscrição CRC\",\"labelText\":\"Inscrição CRC\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Inscrição CRC\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -216,16 +216,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTADOR` (
   INDEX `fk_CONTADOR_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_CONTADOR_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CARGO`
+-- Table `sollus`.`CARGO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CARGO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CARGO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"validarObrigatorio\",\"obrigatorio\":true,\"tooltip\":\"Nome\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"linhaBootstrap\":3,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -237,9 +237,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SETOR`
+-- Table `sollus`.`SETOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SETOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SETOR` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Setor\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Setor\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -248,9 +248,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COLABORADOR_SITUACAO`
+-- Table `sollus`.`COLABORADOR_SITUACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR_SITUACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COLABORADOR_SITUACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT 'Exemplos: 100=Trabalhando | 101=Licença Saúde | 102=Licença interesse',
   `NOME` VARCHAR(100) NULL,
@@ -262,9 +262,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_ADMISSAO`
+-- Table `sollus`.`TIPO_ADMISSAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_ADMISSAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_ADMISSAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT 'Exemplos: 100=Admissão Normal | 101=Transferência | 102=Reintegração',
   `NOME` VARCHAR(100) NULL,
@@ -276,9 +276,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COLABORADOR_TIPO`
+-- Table `sollus`.`COLABORADOR_TIPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR_TIPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COLABORADOR_TIPO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(20) NULL,
   `DESCRICAO` TEXT NULL,
@@ -289,9 +289,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SINDICATO`
+-- Table `sollus`.`SINDICATO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SINDICATO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SINDICATO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL,
   `CODIGO_BANCO` INT(11) UNSIGNED NULL,
@@ -318,9 +318,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COLABORADOR`
+-- Table `sollus`.`COLABORADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COLABORADOR` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}\n',
   `ID_CARGO` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"cargo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Cargo\",\"labelText\":\"Cargo\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tooltip\":\"Cargo\",\"hintText\":\"Importe o Cargo Vinculado\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -348,46 +348,46 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR` (
   INDEX `fk_COLABORADOR_SINDICATO1_idx` (`ID_SINDICATO` ASC),
   CONSTRAINT `fk_COLABORADOR_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_CARGO1`
     FOREIGN KEY (`ID_CARGO`)
-    REFERENCES `fenix`.`CARGO` (`ID`)
+    REFERENCES `sollus`.`CARGO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_SETOR1`
     FOREIGN KEY (`ID_SETOR`)
-    REFERENCES `fenix`.`SETOR` (`ID`)
+    REFERENCES `sollus`.`SETOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_COLABORADOR_SITUACAO1`
     FOREIGN KEY (`ID_COLABORADOR_SITUACAO`)
-    REFERENCES `fenix`.`COLABORADOR_SITUACAO` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR_SITUACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_TIPO_ADMISSAO1`
     FOREIGN KEY (`ID_TIPO_ADMISSAO`)
-    REFERENCES `fenix`.`TIPO_ADMISSAO` (`ID`)
+    REFERENCES `sollus`.`TIPO_ADMISSAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_COLABORADOR_TIPO1`
     FOREIGN KEY (`ID_COLABORADOR_TIPO`)
-    REFERENCES `fenix`.`COLABORADOR_TIPO` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR_TIPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_SINDICATO1`
     FOREIGN KEY (`ID_SINDICATO`)
-    REFERENCES `fenix`.`SINDICATO` (`ID`)
+    REFERENCES `sollus`.`SINDICATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMISSAO_PERFIL`
+-- Table `sollus`.`COMISSAO_PERFIL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMISSAO_PERFIL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMISSAO_PERFIL` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-9\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -398,9 +398,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDEDOR`
+-- Table `sollus`.`VENDEDOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDEDOR` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_COMISSAO_PERFIL` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"comissao_perfil\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Perfil Comissão\",\"labelText\":\"Perfil Comissão\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Perfil Comissão\",\"hintText\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -411,21 +411,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR` (
   INDEX `fk_VENDEDOR_COMISSAO_PERFIL1_idx` (`ID_COMISSAO_PERFIL` ASC),
   CONSTRAINT `fk_VENDEDOR_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDEDOR_COMISSAO_PERFIL1`
     FOREIGN KEY (`ID_COMISSAO_PERFIL`)
-    REFERENCES `fenix`.`COMISSAO_PERFIL` (`ID`)
+    REFERENCES `sollus`.`COMISSAO_PERFIL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_ENDERECO`
+-- Table `sollus`.`PESSOA_ENDERECO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_ENDERECO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_ENDERECO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"PESSOA\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Id Pessoa\",\"labelText\":\"Id Pessoa\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Id Pessoa\",\"hintText\":\"Conteúdo para o campo Id Pessoa\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `LOGRADOURO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Logradouro\",\"labelText\":\"Logradouro\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Logradouro\",\"hintText\":\"Conteúdo para o campo Logradouro\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
@@ -444,16 +444,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_ENDERECO` (
   INDEX `fk_PESSOA_ENDERECO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PESSOA_ENDERECO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_CONTATO`
+-- Table `sollus`.`PESSOA_CONTATO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_CONTATO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_CONTATO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"desenhaControle\":false,\"tipoControle\":null}',
   `NOME` VARCHAR(150) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -463,16 +463,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_CONTATO` (
   INDEX `fk_PESSOA_CONTATO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PESSOA_CONTATO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_TELEFONE`
+-- Table `sollus`.`PESSOA_TELEFONE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_TELEFONE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_TELEFONE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"PESSOA\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Id Pessoa\",\"labelText\":\"Id Pessoa\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Id Pessoa\",\"hintText\":\"Conteúdo para o campo Id Pessoa\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `TIPO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Tipo\",\"labelText\":\"Tipo\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Tipo\",\"hintText\":\"Conteúdo para o campo Tipo\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"itens\":[{\"dropDownButtonItem\":\"Sim\"},{\"dropDownButtonItem\":\"Não\"}],\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\"},\"comentario\":\"\"}',
@@ -481,16 +481,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_TELEFONE` (
   INDEX `fk_PESSOA_TELEFONE_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PESSOA_TELEFONE_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PAPEL`
+-- Table `sollus`.`PAPEL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PAPEL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PAPEL` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Papel\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Papel\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -500,9 +500,9 @@ COMMENT = 'Armazena os papéis (roles) da aplicação. Por exemplo: admnistrativ
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`USUARIO`
+-- Table `sollus`.`USUARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`USUARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`USUARIO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}\\n',
   `ID_PAPEL` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"papel\",\"label\":\"Papel\",\"labelText\":\"Papel\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Papel\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -515,21 +515,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`USUARIO` (
   INDEX `fk_USUARIO_PAPEL1_idx` (`ID_PAPEL` ASC),
   CONSTRAINT `fk_USUARIO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_USUARIO_PAPEL1`
     FOREIGN KEY (`ID_PAPEL`)
-    REFERENCES `fenix`.`PAPEL` (`ID`)
+    REFERENCES `sollus`.`PAPEL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FUNCAO`
+-- Table `sollus`.`FUNCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FUNCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FUNCAO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Função\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Função\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -539,9 +539,9 @@ COMMENT = 'Armazena as funções da aplicação. Pode ser uma tela. Exemplos: Ca
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PAPEL_FUNCAO`
+-- Table `sollus`.`PAPEL_FUNCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PAPEL_FUNCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PAPEL_FUNCAO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PAPEL` INT NOT NULL,
   `ID_FUNCAO` INT NOT NULL,
@@ -554,21 +554,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PAPEL_FUNCAO` (
   INDEX `fk_PAPEL_FUNCAO_FUNCAO1_idx` (`ID_FUNCAO` ASC),
   CONSTRAINT `fk_PAPEL_FUNCAO_PAPEL1`
     FOREIGN KEY (`ID_PAPEL`)
-    REFERENCES `fenix`.`PAPEL` (`ID`)
+    REFERENCES `sollus`.`PAPEL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PAPEL_FUNCAO_FUNCAO1`
     FOREIGN KEY (`ID_FUNCAO`)
-    REFERENCES `fenix`.`FUNCAO` (`ID`)
+    REFERENCES `sollus`.`FUNCAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA`
+-- Table `sollus`.`EMPRESA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `RAZAO_SOCIAL` VARCHAR(150) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Razão Social\",\"labelText\":\"Razão Social\",\"tooltip\":\"Razão Social\",\"hintText\":\"Informe a Razão Social da Empresa\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `NOME_FANTASIA` VARCHAR(150) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome Fantasia\",\"labelText\":\"Nome Fantasia\",\"tooltip\":\"Nome Fantasia\",\"hintText\":\"Informe o Nome de Fantasia da Empresa\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -594,9 +594,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_GRUPO`
+-- Table `sollus`.`PRODUTO_GRUPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_GRUPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_GRUPO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Grupo\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Grupo\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -605,9 +605,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_SUBGRUPO`
+-- Table `sollus`.`PRODUTO_SUBGRUPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_SUBGRUPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_SUBGRUPO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO_GRUPO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"produto_grupo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"label\":\"Grupo\",\"labelText\":\"Grupo\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tooltip\":\"Grupo\",\"hintText\":\"Importe o Grupo de Produto Vinculado\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Subgrupo\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -616,16 +616,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_SUBGRUPO` (
   INDEX `fk_PRODUTO_SUBGRUPO_PRODUTO_GRUPO1_idx` (`ID_PRODUTO_GRUPO` ASC),
   CONSTRAINT `fk_PRODUTO_SUBGRUPO_PRODUTO_GRUPO1`
     FOREIGN KEY (`ID_PRODUTO_GRUPO`)
-    REFERENCES `fenix`.`PRODUTO_GRUPO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO_GRUPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_MARCA`
+-- Table `sollus`.`PRODUTO_MARCA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_MARCA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_MARCA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Marca\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Marca\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -634,9 +634,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_UNIDADE`
+-- Table `sollus`.`PRODUTO_UNIDADE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_UNIDADE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_UNIDADE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `SIGLA` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Sigla\",\"labelText\":\"Sigla\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Sigla\",\"hintText\":\"Informe a Sigla da Unidade\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Unidade\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -646,9 +646,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_ICMS_CUSTOM_CAB`
+-- Table `sollus`.`TRIBUT_ICMS_CUSTOM_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ICMS_CUSTOM_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_ICMS_CUSTOM_CAB` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do ICMS Customizado\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ORIGEM_MERCADORIA` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Origem da Mercadoria\",\"labelText\":\"Origem da Mercadoria\",\"tooltip\":\"Origem da Mercadoria\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"0-Nacional\"},{\"dropDownButtonItem\":\"1-Estrangeira - Importação direta\"},{\"dropDownButtonItem\":\"2-Estrangeira - Adquirida no mercado interno\"}]}}',
@@ -659,9 +659,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_GRUPO_TRIBUTARIO`
+-- Table `sollus`.`TRIBUT_GRUPO_TRIBUTARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_GRUPO_TRIBUTARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_GRUPO_TRIBUTARIO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Grupo Tributário\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ORIGEM_MERCADORIA` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Origem da Mercadoria\",\"labelText\":\"Origem da Mercadoria\",\"tooltip\":\"Origem da Mercadoria\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"0-Nacional\"},{\"dropDownButtonItem\":\"1-Estrangeira - Importação direta\"},{\"dropDownButtonItem\":\"2-Estrangeira - Adquirida no mercado interno\"}]}}\n',
@@ -673,9 +673,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO`
+-- Table `sollus`.`PRODUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO_SUBGRUPO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"produto_subgrupo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"label\":\"Subgrupo\",\"labelText\":\"Subgrupo\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tooltip\":\"Subgrupo\",\"hintText\":\"Importe o Subgrupo de Produto Vinculado\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_PRODUTO_MARCA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"produto_marca\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"label\":\"Marca\",\"labelText\":\"Marca\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tooltip\":\"Marca\",\"hintText\":\"Importe a Marca Vinculada\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -701,36 +701,36 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO` (
   INDEX `fk_PRODUTO_TRIBUT_GRUPO_TRIBUTARIO1_idx` (`ID_TRIBUT_GRUPO_TRIBUTARIO` ASC),
   CONSTRAINT `fk_PRODUTO_PRODUTO_SUBGRUPO1`
     FOREIGN KEY (`ID_PRODUTO_SUBGRUPO`)
-    REFERENCES `fenix`.`PRODUTO_SUBGRUPO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO_SUBGRUPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUTO_PRODUTO_MARCA1`
     FOREIGN KEY (`ID_PRODUTO_MARCA`)
-    REFERENCES `fenix`.`PRODUTO_MARCA` (`ID`)
+    REFERENCES `sollus`.`PRODUTO_MARCA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUTO_PRODUTO_UNIDADE1`
     FOREIGN KEY (`ID_PRODUTO_UNIDADE`)
-    REFERENCES `fenix`.`PRODUTO_UNIDADE` (`ID`)
+    REFERENCES `sollus`.`PRODUTO_UNIDADE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUTO_TRIBUT_ICMS_CUSTOM_CAB1`
     FOREIGN KEY (`ID_TRIBUT_ICMS_CUSTOM_CAB`)
-    REFERENCES `fenix`.`TRIBUT_ICMS_CUSTOM_CAB` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_ICMS_CUSTOM_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRODUTO_TRIBUT_GRUPO_TRIBUTARIO1`
     FOREIGN KEY (`ID_TRIBUT_GRUPO_TRIBUTARIO`)
-    REFERENCES `fenix`.`TRIBUT_GRUPO_TRIBUTARIO` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_GRUPO_TRIBUTARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BANCO`
+-- Table `sollus`.`BANCO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BANCO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BANCO` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `codigo` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"campolookup\":\"\",\"label\":\"código\",\"labeltext\":\"código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"código\",\"linhabootstrap\":1,\"colunabootstrap\":1,\"sizesbootstrap\":\"col-12 col-md-4\",\"tipocontrole\":{\"tipo\":\"textformfield\",\"keyboardtype\":\"number\",\"mascara\":\"\"}}\\n',
   `nome` VARCHAR(250) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"campolookup\":\"\",\"label\":\"nome\",\"labeltext\":\"nome\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"nome\",\"linhabootstrap\":1,\"colunabootstrap\":2,\"sizesbootstrap\":\"col-12 col-md-8\",\"tipocontrole\":{\"tipo\":\"textformfield\",\"keyboardtype\":\"\",\"mascara\":\"\"}}',
@@ -744,9 +744,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BANCO_AGENCIA`
+-- Table `sollus`.`BANCO_AGENCIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BANCO_AGENCIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BANCO_AGENCIA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_BANCO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Banco\",\"labelText\":\"Banco\",\"tooltip\":\"Banco\",\"hintText\":\"Importe o Banco Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"banco\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NUMERO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número\",\"labelText\":\"Número\",\"tooltip\":\"Número\",\"hintText\":\"Informe o Número da Agência\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":3,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -760,16 +760,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BANCO_AGENCIA` (
   INDEX `fk_BANCO_AGENCIA_BANCO1_idx` (`ID_BANCO` ASC),
   CONSTRAINT `fk_BANCO_AGENCIA_BANCO1`
     FOREIGN KEY (`ID_BANCO`)
-    REFERENCES `fenix`.`BANCO` (`id`)
+    REFERENCES `sollus`.`BANCO` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BANCO_CONTA_CAIXA`
+-- Table `sollus`.`BANCO_CONTA_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BANCO_CONTA_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BANCO_CONTA_CAIXA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_BANCO_AGENCIA` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"banco_agencia\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"label\":\"Agência\",\"labelText\":\"Agência\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":true,\"tooltip\":\"Agência\",\"hintText\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NUMERO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Número\",\"labelText\":\"Número\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Número\",\"hintText\":\"Informe o Número da Conta\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-2\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -781,16 +781,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BANCO_CONTA_CAIXA` (
   INDEX `fk_BANCO_CONTA_CAIXA_BANCO_AGENCIA1_idx` (`ID_BANCO_AGENCIA` ASC),
   CONSTRAINT `fk_BANCO_CONTA_CAIXA_BANCO_AGENCIA1`
     FOREIGN KEY (`ID_BANCO_AGENCIA`)
-    REFERENCES `fenix`.`BANCO_AGENCIA` (`ID`)
+    REFERENCES `sollus`.`BANCO_AGENCIA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CEP`
+-- Table `sollus`.`CEP`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CEP` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CEP` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NUMERO` VARCHAR(8) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Número CEP\",\"labelText\":\"CEP\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"CEP\",\"hintText\":\"Informe o CEP\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CEP\"}}',
   `LOGRADOURO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Logradouro\",\"labelText\":\"Logradouro\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Logradouro\",\"hintText\":\"Informe o Logradouro\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-5\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -804,9 +804,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`UF`
+-- Table `sollus`.`UF`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`UF` (
+CREATE TABLE IF NOT EXISTS `sollus`.`UF` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `SIGLA` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Sigla\",\"labelText\":\"Sigla\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Sigla\",\"hintText\":\"Informe a Sigla da UF\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da UF\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -816,9 +816,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MUNICIPIO`
+-- Table `sollus`.`MUNICIPIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MUNICIPIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MUNICIPIO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_UF` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"sigla\",\"tabelaLookup\":\"uf\",\"valorPadraoLookup\":\"%\",\"label\":\"UF\",\"labelText\":\"UF\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"UF\",\"hintText\":\"Importe a UF Vinculada\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Nome\",\"labelText\":\"Nome\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Município\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -829,16 +829,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MUNICIPIO` (
   INDEX `fk_MUNICIPIO_UF1_idx` (`ID_UF` ASC),
   CONSTRAINT `fk_MUNICIPIO_UF1`
     FOREIGN KEY (`ID_UF`)
-    REFERENCES `fenix`.`UF` (`ID`)
+    REFERENCES `sollus`.`UF` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NCM`
+-- Table `sollus`.`NCM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NCM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NCM` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` VARCHAR(8) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(1000) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do NCM\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -848,9 +848,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CFOP`
+-- Table `sollus`.`CFOP`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CFOP` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CFOP` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` INT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(1000) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do CFOP\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -860,9 +860,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CST_ICMS`
+-- Table `sollus`.`CST_ICMS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CST_ICMS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CST_ICMS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -872,9 +872,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CST_IPI`
+-- Table `sollus`.`CST_IPI`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CST_IPI` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CST_IPI` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -884,9 +884,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CST_COFINS`
+-- Table `sollus`.`CST_COFINS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CST_COFINS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CST_COFINS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -896,9 +896,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CST_PIS`
+-- Table `sollus`.`CST_PIS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CST_PIS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CST_PIS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -908,9 +908,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CSOSN`
+-- Table `sollus`.`CSOSN`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CSOSN` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CSOSN` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":true,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -920,9 +920,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_ENDERECO`
+-- Table `sollus`.`EMPRESA_ENDERECO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_ENDERECO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_ENDERECO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `LOGRADOURO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Logradouro\",\"labelText\":\"Logradouro\",\"tooltip\":\"Logradouro\",\"hintText\":\"Informe o Logradouro\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -941,16 +941,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_ENDERECO` (
   INDEX `fk_EMPRESA_ENDERECO_EMPRESA1_idx` (`ID_EMPRESA` ASC),
   CONSTRAINT `fk_EMPRESA_ENDERECO_EMPRESA1`
     FOREIGN KEY (`ID_EMPRESA`)
-    REFERENCES `fenix`.`EMPRESA` (`ID`)
+    REFERENCES `sollus`.`EMPRESA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_CONTATO`
+-- Table `sollus`.`EMPRESA_CONTATO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_CONTATO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_CONTATO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NOME` VARCHAR(150) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Contato\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -960,16 +960,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_CONTATO` (
   INDEX `fk_EMPRESA_CONTATO_EMPRESA1_idx` (`ID_EMPRESA` ASC),
   CONSTRAINT `fk_EMPRESA_CONTATO_EMPRESA1`
     FOREIGN KEY (`ID_EMPRESA`)
-    REFERENCES `fenix`.`EMPRESA` (`ID`)
+    REFERENCES `sollus`.`EMPRESA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_TELEFONE`
+-- Table `sollus`.`EMPRESA_TELEFONE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_TELEFONE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_TELEFONE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `TIPO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo\",\"labelText\":\"Tipoe\",\"tooltip\":\"Tipo\",\"hintText\":\"Informe o Tipo de Telefone\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"indice\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"Residencial\"},{\"dropDownButtonItem\":\"Comercial\"},{\"dropDownButtonItem\":\"Celular\"},{\"dropDownButtonItem\":\"Outro\"}]}}',
@@ -978,16 +978,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_TELEFONE` (
   INDEX `fk_EMPRESA_TELEFONE_EMPRESA1_idx` (`ID_EMPRESA` ASC),
   CONSTRAINT `fk_EMPRESA_TELEFONE_EMPRESA1`
     FOREIGN KEY (`ID_EMPRESA`)
-    REFERENCES `fenix`.`EMPRESA` (`ID`)
+    REFERENCES `sollus`.`EMPRESA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CNAE`
+-- Table `sollus`.`CNAE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CNAE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CNAE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Código\",\"labelText\":\"Código\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DENOMINACAO` VARCHAR(1000) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"label\":\"Denominação\",\"labelText\":\"Denominação\",\"validacao\":\"\",\"obrigatorio\":false,\"tooltip\":\"Denominação\",\"hintText\":\"Informe a Denominação\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -996,9 +996,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TALONARIO_CHEQUE`
+-- Table `sollus`.`TALONARIO_CHEQUE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TALONARIO_CHEQUE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TALONARIO_CHEQUE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Conta/Caixa\",\"labelText\":\"Conta/Caixa\",\"tooltip\":\"Conta/Caixa\",\"hintText\":\"Importe a Conta/Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"banco_conta_caixa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `TALAO` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código do Talão\",\"labelText\":\"Código do Talão\",\"tooltip\":\"Código do Talão\",\"hintText\":\"Informe o Código do Talão\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1008,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TALONARIO_CHEQUE` (
   INDEX `fk_TALONARIO_CHEQUE_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_TALONARIO_CHEQUE_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os talonario de cheque de determinada empresa.'
@@ -1017,9 +1017,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CHEQUE`
+-- Table `sollus`.`CHEQUE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CHEQUE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CHEQUE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TALONARIO_CHEQUE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":null}',
   `NUMERO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número\",\"labelText\":\"Número\",\"tooltip\":\"Número\",\"hintText\":\"Informe o Número do Cheque\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -1029,7 +1029,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CHEQUE` (
   INDEX `FK_TALONARIO_CHEQUE` (`ID_TALONARIO_CHEQUE` ASC),
   CONSTRAINT `fk_{E7B18D4F-5CF4-4A5D-AC05-B57A05559CA6}`
     FOREIGN KEY (`ID_TALONARIO_CHEQUE`)
-    REFERENCES `fenix`.`TALONARIO_CHEQUE` (`ID`)
+    REFERENCES `sollus`.`TALONARIO_CHEQUE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela com a relação dos cheques vinculados a determinado talão.'
@@ -1038,9 +1038,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_FECHAMENTO_CAIXA_BANCO`
+-- Table `sollus`.`FIN_FECHAMENTO_CAIXA_BANCO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_FECHAMENTO_CAIXA_BANCO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_FECHAMENTO_CAIXA_BANCO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Conta/Caixa\",\"labelText\":\"Conta/Caixa\",\"tooltip\":\"Conta/Caixa\",\"hintText\":\"Importe a Conta/Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"banco_conta_caixa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_FECHAMENTO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data do Fechamento\",\"labelText\":\"Data do Fechamento\",\"tooltip\":\"Data do Fechamento\",\"hintText\":\"Informe a Data do Fechamento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}\n',
@@ -1057,7 +1057,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_FECHAMENTO_CAIXA_BANCO` (
   INDEX `fk_FIN_FECHAMENTO_CAIXA_BANCO_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_FIN_FECHAMENTO_CAIXA_BANCO_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados de um fechamento mensal.'
@@ -1066,9 +1066,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_EXTRATO_CONTA_BANCO`
+-- Table `sollus`.`FIN_EXTRATO_CONTA_BANCO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_EXTRATO_CONTA_BANCO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_EXTRATO_CONTA_BANCO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Conta/Caixa\",\"labelText\":\"Conta/Caixa\",\"tooltip\":\"Conta/Caixa\",\"hintText\":\"Importe a Conta/Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"banco_conta_caixa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `MES_ANO` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Mês/Ano\",\"labelText\":\"Mês/Ano\",\"tooltip\":\"Mês/Ano\",\"hintText\":\"Informe o Mês/Ano\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}\n',
@@ -1085,7 +1085,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_EXTRATO_CONTA_BANCO` (
   INDEX `fk_FIN_EXTRATO_CONTA_BANCO_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_FIN_EXTRATO_CONTA_BANCO_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados do extrato bancário.'
@@ -1094,9 +1094,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_DOCUMENTO_ORIGEM`
+-- Table `sollus`.`FIN_DOCUMENTO_ORIGEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_DOCUMENTO_ORIGEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_DOCUMENTO_ORIGEM` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código do Documento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `SIGLA` CHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Sigla\",\"labelText\":\"Sigla\",\"tooltip\":\"Sigla\",\"hintText\":\"Informe a Sigla do Documento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"Exemplos: NF, CHQ, NFe, DP, NP, CTe, CT, CF, CFe\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1108,9 +1108,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_NATUREZA_FINANCEIRA`
+-- Table `sollus`.`FIN_NATUREZA_FINANCEIRA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_NATUREZA_FINANCEIRA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_NATUREZA_FINANCEIRA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código da Natureza Financeira\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Natureza Financeira\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1123,9 +1123,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_LANCAMENTO_PAGAR`
+-- Table `sollus`.`FIN_LANCAMENTO_PAGAR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_LANCAMENTO_PAGAR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_LANCAMENTO_PAGAR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FIN_DOCUMENTO_ORIGEM` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Documento Origem\",\"labelText\":\"Documento Origem\",\"tooltip\":\"Documento Origem\",\"hintText\":\"Importe o Documento de Origem Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"fin_documento_origem\",\"campoLookup\":\"sigla\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Natureza Financeira\",\"labelText\":\"Natureza Financeira\",\"tooltip\":\"Natureza Financeira\",\"hintText\":\"Importe a Natureza Financeira Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"fin_natureza_financeira\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1146,22 +1146,22 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_LANCAMENTO_PAGAR` (
   INDEX `fk_FIN_LANCAMENTO_PAGAR_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_{78F2F6A7-9A1B-4960-9786-757E3E77873A}`
     FOREIGN KEY (`ID_FIN_DOCUMENTO_ORIGEM`)
-    REFERENCES `fenix`.`FIN_DOCUMENTO_ORIGEM` (`ID`)
+    REFERENCES `sollus`.`FIN_DOCUMENTO_ORIGEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_PAGAR_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_PAGAR_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_PAGAR_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela de lançamentos das contas a pagar.'
@@ -1170,9 +1170,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_STATUS_PARCELA`
+-- Table `sollus`.`FIN_STATUS_PARCELA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_STATUS_PARCELA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_STATUS_PARCELA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `SITUACAO` CHAR(2) NOT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Situação\",\"labelText\":\"Situação\",\"tooltip\":\"Situação\",\"hintText\":\"Informe a Situação\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"01 = Aberto | 02 = Quitado | 03 = Quitado Parcial | 04 = Vencido | 05 = Renegociado\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `DESCRICAO` VARCHAR(30) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Status\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1184,9 +1184,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_TIPO_PAGAMENTO`
+-- Table `sollus`.`FIN_TIPO_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_TIPO_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_TIPO_PAGAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código Pagamento\",\"labelText\":\"Código Pagamento\",\"tooltip\":\"Código Pagamento\",\"hintText\":\"Informe o Código do Tipo de Pagamento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(30) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Código de Pagamento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"Exemplos: 01 = Dinheiro | 02 = Cheque | 03 = Cartao\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1197,9 +1197,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_CHEQUE_EMITIDO`
+-- Table `sollus`.`FIN_CHEQUE_EMITIDO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CHEQUE_EMITIDO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_CHEQUE_EMITIDO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CHEQUE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Cheque\",\"labelText\":\"Cheque\",\"tooltip\":\"Cheque\",\"hintText\":\"Importe o Cheque Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cheque\",\"campoLookup\":\"numero\",\"campoLookupTipoDado\":\"int\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_EMISSAO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data do Status\",\"labelText\":\"Data do Status\",\"tooltip\":\"Data do Status\",\"hintText\":\"Informe a Data do Status\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"Dia em que o cheque foi emitido\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -1211,7 +1211,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CHEQUE_EMITIDO` (
   INDEX `FK_CHEQUE_EMITIDO` (`ID_CHEQUE` ASC),
   CONSTRAINT `fk_{75F21313-9E6B-4319-9C96-B460CCA89916}`
     FOREIGN KEY (`ID_CHEQUE`)
-    REFERENCES `fenix`.`CHEQUE` (`ID`)
+    REFERENCES `sollus`.`CHEQUE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que faz o controle dos cheque emitidos.'
@@ -1220,9 +1220,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_PARCELA_PAGAR`
+-- Table `sollus`.`FIN_PARCELA_PAGAR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_PARCELA_PAGAR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_PARCELA_PAGAR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FIN_LANCAMENTO_PAGAR` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_FIN_STATUS_PARCELA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Status Parcela\",\"labelText\":\"Status Parcela\",\"tooltip\":\"Status Parcela\",\"hintText\":\"Importe o Status Parcela Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fin_status_parcela\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1249,22 +1249,22 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_PARCELA_PAGAR` (
   INDEX `fk_FIN_PARCELA_PAGAR_FIN_CHEQUE_EMITIDO1_idx` (`ID_FIN_CHEQUE_EMITIDO` ASC),
   CONSTRAINT `fk_{56615208-C2D0-4DD9-802B-2B99BFF4EF53}`
     FOREIGN KEY (`ID_FIN_STATUS_PARCELA`)
-    REFERENCES `fenix`.`FIN_STATUS_PARCELA` (`ID`)
+    REFERENCES `sollus`.`FIN_STATUS_PARCELA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{06A2AAB2-9856-4010-AEDB-BB0F0EC86ABF}`
     FOREIGN KEY (`ID_FIN_LANCAMENTO_PAGAR`)
-    REFERENCES `fenix`.`FIN_LANCAMENTO_PAGAR` (`ID`)
+    REFERENCES `sollus`.`FIN_LANCAMENTO_PAGAR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_PARCELA_PAGAR_FIN_TIPO_PAGAMENTO1`
     FOREIGN KEY (`ID_FIN_TIPO_PAGAMENTO`)
-    REFERENCES `fenix`.`FIN_TIPO_PAGAMENTO` (`ID`)
+    REFERENCES `sollus`.`FIN_TIPO_PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_PARCELA_PAGAR_FIN_CHEQUE_EMITIDO1`
     FOREIGN KEY (`ID_FIN_CHEQUE_EMITIDO`)
-    REFERENCES `fenix`.`FIN_CHEQUE_EMITIDO` (`ID`)
+    REFERENCES `sollus`.`FIN_CHEQUE_EMITIDO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que garda as parcelas para pagamento. Caso o pagamento seja efetuado de uma vez, a tabela LANCAMENTO_PAGAR gerará uma parcela para ser paga e a mesma será armazenada nesta tabela.'
@@ -1273,9 +1273,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_TIPO_RECEBIMENTO`
+-- Table `sollus`.`FIN_TIPO_RECEBIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_TIPO_RECEBIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_TIPO_RECEBIMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código Recebimento\",\"labelText\":\"Código Recebimento\",\"tooltip\":\"Código Recebimento\",\"hintText\":\"Informe o Código do Tipo de Recebimento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Tipo de Recebimento\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"Exemplos: 01 = Dinheiro | 02 = Cheque | 03 = Cartao\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1286,9 +1286,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_LANCAMENTO_RECEBER`
+-- Table `sollus`.`FIN_LANCAMENTO_RECEBER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_LANCAMENTO_RECEBER` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_LANCAMENTO_RECEBER` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FIN_DOCUMENTO_ORIGEM` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Documento Origem\",\"labelText\":\"Documento Origem\",\"tooltip\":\"Documento Origem\",\"hintText\":\"Importe o Documento de Origem Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fin_documento_origem\",\"campoLookup\":\"sigla\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Natureza Financeira\",\"labelText\":\"Natureza Financeira\",\"tooltip\":\"Natureza Financeira\",\"hintText\":\"Importe a Natureza Financeira Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fin_natureza_financeira\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1310,22 +1310,22 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_LANCAMENTO_RECEBER` (
   INDEX `fk_FIN_LANCAMENTO_RECEBER_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_{B290D08D-4B6D-4B5C-8C08-29AE67AB180C}`
     FOREIGN KEY (`ID_FIN_DOCUMENTO_ORIGEM`)
-    REFERENCES `fenix`.`FIN_DOCUMENTO_ORIGEM` (`ID`)
+    REFERENCES `sollus`.`FIN_DOCUMENTO_ORIGEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_RECEBER_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_RECEBER_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_LANCAMENTO_RECEBER_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela de lançamentos das contas a receber.\n'
@@ -1334,9 +1334,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_CHEQUE_RECEBIDO`
+-- Table `sollus`.`FIN_CHEQUE_RECEBIDO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CHEQUE_RECEBIDO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_CHEQUE_RECEBIDO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Pessoa\",\"labelText\":\"Pessoa\",\"tooltip\":\"Pessoa\",\"hintText\":\"Importe a Pessoa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"pessoa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `CPF` VARCHAR(11) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CPF\",\"labelText\":\"CPF\",\"tooltip\":\"CPF\",\"hintText\":\"Informe o CPF do Cliente\",\"validacao\":\"CPF\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CPF\"}}',
@@ -1361,7 +1361,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CHEQUE_RECEBIDO` (
   INDEX `fk_FIN_CHEQUE_RECEBIDO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_FIN_CHEQUE_RECEBIDO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazenar os dados dos cheques recebidos identicando a pessoa que emitiu o cheque, estando cadastrada no BD ou não.'
@@ -1370,9 +1370,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_PARCELA_RECEBER`
+-- Table `sollus`.`FIN_PARCELA_RECEBER`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_PARCELA_RECEBER` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_PARCELA_RECEBER` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FIN_LANCAMENTO_RECEBER` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_FIN_STATUS_PARCELA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Status Parcela\",\"labelText\":\"Status Parcela\",\"tooltip\":\"Status Parcela\",\"hintText\":\"Importe o Status Parcela Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fin_status_parcela\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1401,22 +1401,22 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_PARCELA_RECEBER` (
   INDEX `fk_FIN_PARCELA_RECEBER_FIN_CHEQUE_RECEBIDO1_idx` (`ID_FIN_CHEQUE_RECEBIDO` ASC),
   CONSTRAINT `fk_{8779D373-1258-4798-A769-5765822422BB}`
     FOREIGN KEY (`ID_FIN_LANCAMENTO_RECEBER`)
-    REFERENCES `fenix`.`FIN_LANCAMENTO_RECEBER` (`ID`)
+    REFERENCES `sollus`.`FIN_LANCAMENTO_RECEBER` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{DCA2496F-0D8C-484B-95D4-A7DCDE607642}`
     FOREIGN KEY (`ID_FIN_STATUS_PARCELA`)
-    REFERENCES `fenix`.`FIN_STATUS_PARCELA` (`ID`)
+    REFERENCES `sollus`.`FIN_STATUS_PARCELA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_PARCELA_RECEBER_FIN_TIPO_RECEBIMENTO1`
     FOREIGN KEY (`ID_FIN_TIPO_RECEBIMENTO`)
-    REFERENCES `fenix`.`FIN_TIPO_RECEBIMENTO` (`ID`)
+    REFERENCES `sollus`.`FIN_TIPO_RECEBIMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FIN_PARCELA_RECEBER_FIN_CHEQUE_RECEBIDO1`
     FOREIGN KEY (`ID_FIN_CHEQUE_RECEBIDO`)
-    REFERENCES `fenix`.`FIN_CHEQUE_RECEBIDO` (`ID`)
+    REFERENCES `sollus`.`FIN_CHEQUE_RECEBIDO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que garda as parcelas para recebimento. Caso o recebimento seja efetuado de uma vez, a tabela LANCAMENTO_RECEBER gerará uma parcela para ser recebida e a mesma será armazenada nesta tabela.'
@@ -1425,9 +1425,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FIN_CONFIGURACAO_BOLETO`
+-- Table `sollus`.`FIN_CONFIGURACAO_BOLETO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CONFIGURACAO_BOLETO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FIN_CONFIGURACAO_BOLETO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Conta/Caixa\",\"labelText\":\"Conta/Caixa\",\"tooltip\":\"Conta/Caixa\",\"hintText\":\"Importe a Conta/Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"banco_conta_caixa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
   `INSTRUCAO01` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Instrução 01\",\"labelText\":\"Instrução 01\",\"tooltip\":\"Instrução 01\",\"hintText\":\"Informe a Instrução 01 do Boleto\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -1452,7 +1452,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FIN_CONFIGURACAO_BOLETO` (
   INDEX `fk_FIN_CONFIGURACAO_BOLETO_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_FIN_CONFIGURACAO_BOLETO_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as configurações dos boletos.'
@@ -1461,9 +1461,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_OPERACAO_FISCAL`
+-- Table `sollus`.`TRIBUT_OPERACAO_FISCAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_OPERACAO_FISCAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_OPERACAO_FISCAL` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Operação Fiscal\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO_NA_NF` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição na NF\",\"labelText\":\"Descrição na NF\",\"tooltip\":\"Descrição na NF\",\"hintText\":\"Informe a Descrição na NF da Operação Fiscal\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"Sai no campo Natureza da Operação\",\"linhaBootstrap\":2,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1476,9 +1476,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_CONFIGURA_OF_GT`
+-- Table `sollus`.`TRIBUT_CONFIGURA_OF_GT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_CONFIGURA_OF_GT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_CONFIGURA_OF_GT` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_GRUPO_TRIBUTARIO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Grupo Tributário\",\"labelText\":\"Grupo Tributário\",\"tooltip\":\"Grupo Tributário\",\"hintText\":\"Importe o Grupo Tributário Vinculado\",\"validacao\":\"\",\"tabelaLookup\":\"tribut_grupo_tributario\",\"campoLookup\":\"descricao\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_TRIBUT_OPERACAO_FISCAL` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Operação Fiscal\",\"labelText\":\"Operação Fiscal\",\"tooltip\":\"Operação Fiscal\",\"hintText\":\"Importe a Operação Fiscal Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"tribut_operacao_fiscal\",\"campoLookup\":\"descricao\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1487,12 +1487,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_CONFIGURA_OF_GT` (
   INDEX `FK_GRUPO_TRIB_CONFIGURA` (`ID_TRIBUT_GRUPO_TRIBUTARIO` ASC),
   CONSTRAINT `fk_{6AF0FD4D-0B2B-495D-951B-03F72360D2F8}`
     FOREIGN KEY (`ID_TRIBUT_OPERACAO_FISCAL`)
-    REFERENCES `fenix`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{7992BFAD-59FB-4EF4-9024-FFD46F78BC5E}`
     FOREIGN KEY (`ID_TRIBUT_GRUPO_TRIBUTARIO`)
-    REFERENCES `fenix`.`TRIBUT_GRUPO_TRIBUTARIO` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_GRUPO_TRIBUTARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Configura Operação Fiscal / Grupo Tributário\n\nArmazena as configurações dos tributos da Operação Fiscal relacionada com o Grupo Tributário'
@@ -1501,9 +1501,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_ICMS_UF`
+-- Table `sollus`.`TRIBUT_ICMS_UF`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ICMS_UF` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_ICMS_UF` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_CONFIGURA_OF_GT` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `UF_DESTINO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF de Destino\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"UF destino para cálculo do ICMS\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
@@ -1527,7 +1527,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ICMS_UF` (
   INDEX `FK_CONFIG_OF_GT_ICMS` (`ID_TRIBUT_CONFIGURA_OF_GT` ASC),
   CONSTRAINT `fk_{19D06CF5-5DC7-480E-A49D-BECF75F651EE}`
     FOREIGN KEY (`ID_TRIBUT_CONFIGURA_OF_GT`)
-    REFERENCES `fenix`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela ira armazenar a tributaçao para cada UF em cada GRUPO TRIBUTARIO dentro de cada operação cadastrada.\n'
@@ -1536,9 +1536,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_PIS`
+-- Table `sollus`.`TRIBUT_PIS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_PIS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_PIS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_CONFIGURA_OF_GT` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CST_PIS` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CST PIS\",\"labelText\":\"CST PIS\",\"tooltip\":\"CST PIS\",\"hintText\":\"Informe o CST PIS\",\"validacao\":\"\",\"campoLookup\":\"codigo\",\"tabelaLookup\":\"cst_pis\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1553,7 +1553,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_PIS` (
   INDEX `FK_CONFIG_OF_GT_PIS` (`ID_TRIBUT_CONFIGURA_OF_GT` ASC),
   CONSTRAINT `fk_{6400E21E-AE1E-47EB-9DD4-FD8D4F5F00B9}`
     FOREIGN KEY (`ID_TRIBUT_CONFIGURA_OF_GT`)
-    REFERENCES `fenix`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'O objetivo é relacionar para cada CST_PIS um codigo de apuração conforme a tabela acima, informando ainda a modalidade calculo do PIS que pode ser por percentual ou por unidade de produto.\nCom esta tabela podemos armazenar as inúmeras formas de calculo, combinada com suas respectivas alíquotas e CST_PIS possíves e imagináveis que existem ou venha a existir na nossa complexa legislação.\nDesta forma, podemos fazer este vínculo em TABELA DE GRUPO_TRIBUTACAO e depois vincular este ID_GRUPO_TRIBUTACAO no cadastro de cada um dos produtosp ossibilitando um calculo totalmente automatizado em todo o sistema.\n'
@@ -1562,9 +1562,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_COFINS`
+-- Table `sollus`.`TRIBUT_COFINS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_COFINS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_COFINS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_CONFIGURA_OF_GT` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CST_COFINS` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CST COFINS\",\"labelText\":\"CST COFINS\",\"tooltip\":\"CST COFINS\",\"hintText\":\"Informe o CST COFINS\",\"validacao\":\"\",\"campoLookup\":\"codigo\",\"tabelaLookup\":\"cst_cofins\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1579,7 +1579,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_COFINS` (
   INDEX `FK_CONFIG_OF_GT_COFINS` (`ID_TRIBUT_CONFIGURA_OF_GT` ASC),
   CONSTRAINT `fk_{F13F47B6-BC52-4363-9CE2-39CED083A615}`
     FOREIGN KEY (`ID_TRIBUT_CONFIGURA_OF_GT`)
-    REFERENCES `fenix`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'O objetivo é relacionar para cada CST_COFINS um codigo de apuração, informando ainda a modalidade calculo do COFINS que pode ser por percentual ou por unidade de produto.\nCom esta tabela podemos armazenar as inúmeras formas de calculo, combinada com suas respectivas alíquotas e CST_COFINS possíves e imagináveis que existem ou venha a existir na nossa complexa legislação.\nDesta forma, podemos fazer este vínculo em TABELA DE GRUPO_TRIBUTACAO e depois vincular este ID_GRUPO_TRIBUTACAO no cadastro de cada um dos produtos possibilitando um calculo totalmente automatizado em todo o sistema.\n'
@@ -1588,9 +1588,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_IPI`
+-- Table `sollus`.`TRIBUT_IPI`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_IPI` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_IPI` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_CONFIGURA_OF_GT` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CST_IPI` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CST IPI\",\"labelText\":\"CST IPI\",\"tooltip\":\"CST IPI\",\"hintText\":\"Informe o CST IPI\",\"validacao\":\"\",\"campoLookup\":\"codigo\",\"tabelaLookup\":\"cst_ipi\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1604,7 +1604,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_IPI` (
   INDEX `FK_CONFIG_OF_GT_IPI` (`ID_TRIBUT_CONFIGURA_OF_GT` ASC),
   CONSTRAINT `fk_{C143DDE4-2A66-4AD3-9C39-E7151907C43F}`
     FOREIGN KEY (`ID_TRIBUT_CONFIGURA_OF_GT`)
-    REFERENCES `fenix`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_CONFIGURA_OF_GT` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazenar as tributações de IPI usadas pelas empresas.'
@@ -1613,9 +1613,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_ISS`
+-- Table `sollus`.`TRIBUT_ISS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ISS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_ISS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_OPERACAO_FISCAL` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Operação Fiscal\",\"labelText\":\"Operação Fiscal\",\"tooltip\":\"Operação Fiscal\",\"hintText\":\"Importe a Operação Fiscal Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"tribut_operacao_fiscal\",\"campoLookup\":\"descricao\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `MODALIDADE_BASE_CALCULO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Modalidade Base Cálculo\",\"labelText\":\"Modalidade Base Cálculo\",\"tooltip\":\"Modalidade Base Cálculo\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"0-Valor Operação\"},{\"dropDownButtonItem\":\"9-Outros\"}]}}\n',
@@ -1630,7 +1630,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ISS` (
   INDEX `FK_TRIBUT_OP_FISCAL_ISS` (`ID_TRIBUT_OPERACAO_FISCAL` ASC),
   CONSTRAINT `fk_{63899E57-57EC-423C-9D38-DD9E673F4159}`
     FOREIGN KEY (`ID_TRIBUT_OPERACAO_FISCAL`)
-    REFERENCES `fenix`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados de ISS - Imposto Sobre Serviços.'
@@ -1639,9 +1639,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_TIPO_REQUISICAO`
+-- Table `sollus`.`COMPRA_TIPO_REQUISICAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_TIPO_REQUISICAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_TIPO_REQUISICAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código Pagamento\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código do Tipo de Requisição\",\"validacao\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"01=Interna | 02=Externa\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(30) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o nome do tipo de requisição\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-9\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1653,9 +1653,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_REQUISICAO`
+-- Table `sollus`.`COMPRA_REQUISICAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_REQUISICAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_REQUISICAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_TIPO_REQUISICAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Requisição\",\"labelText\":\"Tipo Requisição\",\"tooltip\":\"Tipo Requisição\",\"hintText\":\"Importe o Tipo de Requisição Vinculado\",\"validacao\":\"\",\"tabelaLookup\":\"compra_tipo_requisicao\",\"campoLookup\":\"nome\",\"obrigatorio\":true,\"valorPadraoLookup\":\"%\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-9\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1667,12 +1667,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_REQUISICAO` (
   INDEX `fk_COMPRA_REQUISICAO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{38C90B1B-4612-4019-8BC4-DB19CB8591F3}`
     FOREIGN KEY (`ID_COMPRA_TIPO_REQUISICAO`)
-    REFERENCES `fenix`.`COMPRA_TIPO_REQUISICAO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_TIPO_REQUISICAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_REQUISICAO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as requisições de compra. Uma mesma requisição pode gerar várias cotações no decorrer do tempo. É possível que um pedido padrão seja sempre realizado pela empresa, então basta deixa uma requisição salva e ficar fazendo cotações em cima dela ou até mesmo gerar um pedido diretamente a partir de uma requisição.'
@@ -1681,9 +1681,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_REQUISICAO_DETALHE`
+-- Table `sollus`.`COMPRA_REQUISICAO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_REQUISICAO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_REQUISICAO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_REQUISICAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1693,12 +1693,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_REQUISICAO_DETALHE` (
   INDEX `fk_COMPRA_REQUISICAO_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{ECA5555D-212D-4D7B-A79C-D5560C161C8F}`
     FOREIGN KEY (`ID_COMPRA_REQUISICAO`)
-    REFERENCES `fenix`.`COMPRA_REQUISICAO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_REQUISICAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_REQUISICAO_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela com os detalhes da requisição de compra'
@@ -1707,9 +1707,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_COTACAO`
+-- Table `sollus`.`COMPRA_COTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_COTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_COTACAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_REQUISICAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Requisição\",\"labelText\":\"Requisição\",\"tooltip\":\"Requisição\",\"hintText\":\"Importe a Requisição Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"compra_requisicao\",\"campoLookup\":\"descricao\",\"obrigatorio\":true\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_COTACAO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data da Cotação\",\"labelText\":\"Data da Cotação\",\"tooltip\":\"Data da Cotação\",\"hintText\":\"Informe a Data da Cotação\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -1718,7 +1718,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_COTACAO` (
   INDEX `fk_COMPRA_COTACAO_COMPRA_REQUISICAO1_idx` (`ID_COMPRA_REQUISICAO` ASC),
   CONSTRAINT `fk_COMPRA_COTACAO_COMPRA_REQUISICAO1`
     FOREIGN KEY (`ID_COMPRA_REQUISICAO`)
-    REFERENCES `fenix`.`COMPRA_REQUISICAO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_REQUISICAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as cotações de compra. Uma cotação pode ter vários fornecedores agregados a ela e pode gerar vários pedidos, se for o caso.'
@@ -1727,9 +1727,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_FORNECEDOR_COTACAO`
+-- Table `sollus`.`COMPRA_FORNECEDOR_COTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_FORNECEDOR_COTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_FORNECEDOR_COTACAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_COTACAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_FORNECEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Fornecedor\",\"labelText\":\"Fornecedor\",\"tooltip\":\"Fornecedor\",\"hintText\":\"Importe o Fornecedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fornecedor\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1745,12 +1745,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_FORNECEDOR_COTACAO` (
   INDEX `fk_COMPRA_FORNECEDOR_COTACAO_FORNECEDOR1_idx` (`ID_FORNECEDOR` ASC),
   CONSTRAINT `fk_{F28D90D4-59C0-49A3-8AF2-94BA6F6B55CE}`
     FOREIGN KEY (`ID_COMPRA_COTACAO`)
-    REFERENCES `fenix`.`COMPRA_COTACAO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_COTACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_FORNECEDOR_COTACAO_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Uma cotação pode ter vários fornecedores e um fornecedor pode fazer parte de várias cotações.'
@@ -1759,9 +1759,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_COTACAO_DETALHE`
+-- Table `sollus`.`COMPRA_COTACAO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_COTACAO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_COTACAO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_FORNECEDOR_COTACAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1776,12 +1776,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_COTACAO_DETALHE` (
   INDEX `fk_COMPRA_COTACAO_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{2DE08AA3-A7B9-41A3-A33E-5F3FBEF89674}`
     FOREIGN KEY (`ID_COMPRA_FORNECEDOR_COTACAO`)
-    REFERENCES `fenix`.`COMPRA_FORNECEDOR_COTACAO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_FORNECEDOR_COTACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_COTACAO_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os itens da cotação. Uma cotação é gerada a partir de uma requisição. Uma cotação pode gerar vários pedidos.'
@@ -1790,9 +1790,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_TIPO_PEDIDO`
+-- Table `sollus`.`COMPRA_TIPO_PEDIDO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_TIPO_PEDIDO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_TIPO_PEDIDO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código do Pedido\",\"labelText\":\"Código do Pedido\",\"tooltip\":\"Código do Pedido\",\"hintText\":\"Informe o Código do Pedido\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"comentario\":\"01-Normal | 02-Planejado | 03-Aberto\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(30) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Pedido\",\"validacao\":\"Alfanumerico\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-9\",\"campoLookup\":\"\",\"obrigatorio\":true,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1804,9 +1804,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_PEDIDO`
+-- Table `sollus`.`COMPRA_PEDIDO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_PEDIDO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_PEDIDO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_TIPO_PEDIDO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Pedido\",\"labelText\":\"Tipo Pedido\",\"tooltip\":\"Tipo Pedido\",\"hintText\":\"Importe o Tipo de Pedido Vinculado\",\"validacao\":\"\",\"tabelaLookup\":\"compra_tipo_pedido\",\"campoLookup\":\"nome\",\"valorPadraoLookup\":\"%\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_FORNECEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Fornecedor\",\"labelText\":\"Fornecedor\",\"tooltip\":\"Fornecedor\",\"hintText\":\"Importe o Fornecedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fornecedor\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1844,17 +1844,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_PEDIDO` (
   INDEX `fk_COMPRA_PEDIDO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{E9033C3C-AFA4-444D-8A06-165419B51DD3}`
     FOREIGN KEY (`ID_COMPRA_TIPO_PEDIDO`)
-    REFERENCES `fenix`.`COMPRA_TIPO_PEDIDO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_TIPO_PEDIDO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_PEDIDO_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_PEDIDO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os pedidos de compra.'
@@ -1863,9 +1863,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMPRA_PEDIDO_DETALHE`
+-- Table `sollus`.`COMPRA_PEDIDO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_PEDIDO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMPRA_PEDIDO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMPRA_PEDIDO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1888,12 +1888,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMPRA_PEDIDO_DETALHE` (
   INDEX `fk_COMPRA_PEDIDO_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{F87F64FC-8F40-43C6-9A94-7E84A1551C3A}`
     FOREIGN KEY (`ID_COMPRA_PEDIDO`)
-    REFERENCES `fenix`.`COMPRA_PEDIDO` (`ID`)
+    REFERENCES `sollus`.`COMPRA_PEDIDO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMPRA_PEDIDO_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os itens do pedido. Uma cotação poderá gerar vários pedidos.'
@@ -1902,9 +1902,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_CONDICOES_PAGAMENTO`
+-- Table `sollus`.`VENDA_CONDICOES_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_CONDICOES_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_CONDICOES_PAGAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Condição\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"Exemplo: BOLETO 20/40/60\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição da Condição\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"Texto descritivo da condição de pagamento\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1922,9 +1922,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_ORCAMENTO_CABECALHO`
+-- Table `sollus`.`VENDA_ORCAMENTO_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_ORCAMENTO_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_ORCAMENTO_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_CONDICOES_PAGAMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Condição Pagamento\",\"labelText\":\"Condição  Pagamento\",\"tooltip\":\"Condição Pagamento\",\"hintText\":\"Importe a Condição de Pagamento Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"venda_condicoes_pagamento\",\"campoLookup\":\"nome\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_VENDEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1950,22 +1950,22 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_ORCAMENTO_CABECALHO` (
   INDEX `fk_VENDA_ORCAMENTO_CABECALHO_TRANSPORTADORA1_idx` (`ID_TRANSPORTADORA` ASC),
   CONSTRAINT `fk_{013A2B4A-7CC7-4170-AE92-55132D36367E}`
     FOREIGN KEY (`ID_VENDA_CONDICOES_PAGAMENTO`)
-    REFERENCES `fenix`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_ORCAMENTO_CABECALHO_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_ORCAMENTO_CABECALHO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_ORCAMENTO_CABECALHO_TRANSPORTADORA1`
     FOREIGN KEY (`ID_TRANSPORTADORA`)
-    REFERENCES `fenix`.`TRANSPORTADORA` (`ID`)
+    REFERENCES `sollus`.`TRANSPORTADORA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o cabeçalho do orçamento/pedido de venda.\n\nO usuário informa aqui as condições de pagamentos, mas não gera neste momento as parcelas. As mesmas só serão geradas no momento da confirmação da venda.'
@@ -1974,9 +1974,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NOTA_FISCAL_MODELO`
+-- Table `sollus`.`NOTA_FISCAL_MODELO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NOTA_FISCAL_MODELO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NOTA_FISCAL_MODELO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código do Modelo\",\"labelText\":\"Código do Modelo\",\"tooltip\":\"Código do Modelo\",\"hintText\":\"Informe o Código do Modelo\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Modelo\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -1988,9 +1988,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NOTA_FISCAL_TIPO`
+-- Table `sollus`.`NOTA_FISCAL_TIPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NOTA_FISCAL_TIPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NOTA_FISCAL_TIPO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NOTA_FISCAL_MODELO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Modelo NF\",\"labelText\":\"Modelo NF\",\"tooltip\":\"Modelo Nota Fiscal\",\"hintText\":\"Importe o Modelo da Nota Fiscal Vinculado\",\"validacao\":\"\",\"tabelaLookup\":\"nota_fiscal_modelo\",\"campoLookup\":\"descricao\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Tipo NF\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2002,7 +2002,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NOTA_FISCAL_TIPO` (
   INDEX `FK_NF_TIPO_MODELO` (`ID_NOTA_FISCAL_MODELO` ASC),
   CONSTRAINT `fk_{5365C99B-97BA-432A-A1B4-5139D0F192AA}`
     FOREIGN KEY (`ID_NOTA_FISCAL_MODELO`)
-    REFERENCES `fenix`.`NOTA_FISCAL_MODELO` (`ID`)
+    REFERENCES `sollus`.`NOTA_FISCAL_MODELO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os tipos de NF utilizados pela empresa e controla a numeração das notas.'
@@ -2011,9 +2011,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_ORCAMENTO_DETALHE`
+-- Table `sollus`.`VENDA_ORCAMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_ORCAMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_ORCAMENTO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_ORCAMENTO_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2028,12 +2028,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_ORCAMENTO_DETALHE` (
   INDEX `fk_VENDA_ORCAMENTO_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{E312F633-27BF-4104-95C5-4A093136448D}`
     FOREIGN KEY (`ID_VENDA_ORCAMENTO_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_ORCAMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_ORCAMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_ORCAMENTO_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os itens do orçamento de venda'
@@ -2042,9 +2042,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_CABECALHO`
+-- Table `sollus`.`VENDA_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_ORCAMENTO_CABECALHO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Orçamento\",\"labelText\":\"Orçamento\",\"tooltip\":\"Orçamento\",\"hintText\":\"Importe o Orçamento Vinculado\",\"validacao\":\"\",\"tabelaLookup\":\"venda_orcamento_cabecalho\",\"campoLookup\":\"codigo\",\"obrigatorio\":false,\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_VENDA_CONDICOES_PAGAMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Condição Pagamento\",\"labelText\":\"Condição  Pagamento\",\"tooltip\":\"Condição Pagamento\",\"hintText\":\"Importe a Condição de Pagamento Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"venda_condicoes_pagamento\",\"campoLookup\":\"nome\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2080,32 +2080,32 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_CABECALHO` (
   INDEX `fk_VENDA_CABECALHO_VENDEDOR1_idx` (`ID_VENDEDOR` ASC),
   CONSTRAINT `fk_{0B6B64FC-0B7F-439D-9BC9-FE77D46D7A07}`
     FOREIGN KEY (`ID_VENDA_ORCAMENTO_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_ORCAMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_ORCAMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{67810BBB-E8C9-4BC1-AA83-E96DC12A98E1}`
     FOREIGN KEY (`ID_VENDA_CONDICOES_PAGAMENTO`)
-    REFERENCES `fenix`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{91559D47-8B0E-4A62-ACEB-4953401CE72A}`
     FOREIGN KEY (`ID_NOTA_FISCAL_TIPO`)
-    REFERENCES `fenix`.`NOTA_FISCAL_TIPO` (`ID`)
+    REFERENCES `sollus`.`NOTA_FISCAL_TIPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_CABECALHO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_CABECALHO_TRANSPORTADORA1`
     FOREIGN KEY (`ID_TRANSPORTADORA`)
-    REFERENCES `fenix`.`TRANSPORTADORA` (`ID`)
+    REFERENCES `sollus`.`TRANSPORTADORA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_CABECALHO_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena o cabeçalho das vendas do sistema.'
@@ -2114,9 +2114,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_DETALHE`
+-- Table `sollus`.`VENDA_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2131,12 +2131,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_DETALHE` (
   INDEX `fk_VENDA_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{69C29C33-DFCD-49FA-8F5F-105E19884FEE}`
     FOREIGN KEY (`ID_VENDA_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os itens da venda.'
@@ -2145,9 +2145,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_CONDICOES_PARCELAS`
+-- Table `sollus`.`VENDA_CONDICOES_PARCELAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_CONDICOES_PARCELAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_CONDICOES_PARCELAS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_CONDICOES_PAGAMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `PARCELA` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número da Parcela\",\"labelText\":\"Número da Parcela\",\"tooltip\":\"Número da Parcela\",\"hintText\":\"Informe a Número da Parcela\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"readOnly\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
@@ -2157,7 +2157,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_CONDICOES_PARCELAS` (
   INDEX `FK_CONDICOES_PARCELAS` (`ID_VENDA_CONDICOES_PAGAMENTO` ASC),
   CONSTRAINT `fk_{BED0D350-FF66-4FF7-8CE2-3CEE91CB7EBC}`
     FOREIGN KEY (`ID_VENDA_CONDICOES_PAGAMENTO`)
-    REFERENCES `fenix`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CONDICOES_PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela matriz para geração de parcelas.'
@@ -2166,9 +2166,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_FRETE`
+-- Table `sollus`.`VENDA_FRETE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_FRETE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_FRETE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Venda\",\"labelText\":\"Venda\",\"tooltip\":\"Venda\",\"hintText\":\"Importe a Venda Vinculada\",\"validacao\":\"\",\"tabelaLookup\":\"venda_cabecalho\",\"campoLookup\":\"id\",\"campoLookupTipoDado\":\"int\",\"obrigatorio\":true,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_TRANSPORTADORA` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Transportadora\",\"labelText\":\"Transportadora\",\"tooltip\":\"Transportadora\",\"hintText\":\"Importe a Transportadora Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"transportadora\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2187,12 +2187,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_FRETE` (
   INDEX `fk_VENDA_FRETE_TRANSPORTADORA1_idx` (`ID_TRANSPORTADORA` ASC),
   CONSTRAINT `fk_{1ABD2167-8D93-47C8-B224-4799D3AC3986}`
     FOREIGN KEY (`ID_VENDA_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_FRETE_TRANSPORTADORA1`
     FOREIGN KEY (`ID_TRANSPORTADORA`)
-    REFERENCES `fenix`.`TRANSPORTADORA` (`ID`)
+    REFERENCES `sollus`.`TRANSPORTADORA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados de frete da venda'
@@ -2201,9 +2201,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDA_COMISSAO`
+-- Table `sollus`.`VENDA_COMISSAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_COMISSAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDA_COMISSAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDA_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_VENDEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2217,12 +2217,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDA_COMISSAO` (
   INDEX `fk_VENDA_COMISSAO_VENDEDOR1_idx` (`ID_VENDEDOR` ASC),
   CONSTRAINT `fk_{E8EEED49-135C-4572-A661-9D85DFB65356}`
     FOREIGN KEY (`ID_VENDA_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDA_COMISSAO_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela deve armazenar as comissões calculadas em cada venda. Desta forma toda vez que houver uma venda com indicaçao de comissao este valor será lançado nesta tabela, com indicaçao do VALOR_VENDA, VALOR_COMISSAO, TIPO (liquidez ou faturamento), e indicador se o lançamento é a debito ou a credito, pois se houver uma devoluaçao desta venda deve haver o debito (estorno da comissao) mediante um lançamento de saldo DEVEDOR para aquele vendedor. Essa tabela é do primeiro ciclo e serve para calcular a comissão dessa forma. Existe a opção de utilizar as tabelas para gerenciamento das comissões através dos perfis cadastrados, feitas no segundo ciclo do ERP.\n'
@@ -2231,9 +2231,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`REQUISICAO_INTERNA_CABECALHO`
+-- Table `sollus`.`REQUISICAO_INTERNA_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`REQUISICAO_INTERNA_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`REQUISICAO_INTERNA_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_REQUISICAO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data da Requisição\",\"labelText\":\"Data da Requisição\",\"tooltip\":\"Data da Requisição\",\"hintText\":\"Informe a Data da Requisição\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -2242,7 +2242,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`REQUISICAO_INTERNA_CABECALHO` (
   INDEX `fk_REQUISICAO_INTERNA_CABECALHO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_REQUISICAO_INTERNA_CABECALHO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela para armazenar os dados das requisições internas de produto. Os itens da requisição interna serão utilizados pela própria empresa. Após o deferimento da requisição, os itens serão baixados do estoque.'
@@ -2251,9 +2251,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`REQUISICAO_INTERNA_DETALHE`
+-- Table `sollus`.`REQUISICAO_INTERNA_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`REQUISICAO_INTERNA_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`REQUISICAO_INTERNA_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_REQUISICAO_INTERNA_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2263,12 +2263,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`REQUISICAO_INTERNA_DETALHE` (
   INDEX `fk_REQUISICAO_INTERNA_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{34AD1B31-03E7-4FE2-80FC-9EB2E4AF025E}`
     FOREIGN KEY (`ID_REQUISICAO_INTERNA_CABECALHO`)
-    REFERENCES `fenix`.`REQUISICAO_INTERNA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`REQUISICAO_INTERNA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_REQUISICAO_INTERNA_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela para armazenar os itens das requisições internas de produtos.'
@@ -2277,9 +2277,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_REAJUSTE_CABECALHO`
+-- Table `sollus`.`ESTOQUE_REAJUSTE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_REAJUSTE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_REAJUSTE_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_REAJUSTE` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data do Reajuste\",\"labelText\":\"Data do Reajuste\",\"tooltip\":\"Data do Reajuste\",\"hintText\":\"Informe a Data do Reajuste\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -2290,7 +2290,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_REAJUSTE_CABECALHO` (
   INDEX `fk_ESTOQUE_REAJUSTE_CABECALHO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_ESTOQUE_REAJUSTE_CABECALHO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela para armazenar o histórico de reajustes realizados.'
@@ -2299,9 +2299,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_REAJUSTE_DETALHE`
+-- Table `sollus`.`ESTOQUE_REAJUSTE_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_REAJUSTE_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_REAJUSTE_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ESTOQUE_REAJUSTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2312,12 +2312,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_REAJUSTE_DETALHE` (
   INDEX `fk_ESTOQUE_REAJUSTE_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{4CC49A7E-B388-4C3C-8F2A-E307C07CE241}`
     FOREIGN KEY (`ID_ESTOQUE_REAJUSTE_CABECALHO`)
-    REFERENCES `fenix`.`ESTOQUE_REAJUSTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`ESTOQUE_REAJUSTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ESTOQUE_REAJUSTE_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela para armazenar os produtos que sofreram reajuste.'
@@ -2326,9 +2326,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_COR`
+-- Table `sollus`.`ESTOQUE_COR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_COR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_COR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código da Cor\",\"labelText\":\"Código da Cor\",\"tooltip\":\"Código da Cor\",\"hintText\":\"Informe o Código da Cor\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Cor\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2339,9 +2339,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_TAMANHO`
+-- Table `sollus`.`ESTOQUE_TAMANHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_TAMANHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_TAMANHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código do Tamanho\",\"labelText\":\"Código do Tamanho\",\"tooltip\":\"Código do Tamanho\",\"hintText\":\"Informe o Código do Tamanho\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome do Tamanho\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2355,9 +2355,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_SABOR`
+-- Table `sollus`.`ESTOQUE_SABOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_SABOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_SABOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código da Sabor\",\"labelText\":\"Código da Sabor\",\"tooltip\":\"Código da Sabor\",\"hintText\":\"Informe o Código da Sabor\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Sabor\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2368,9 +2368,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_MARCA`
+-- Table `sollus`.`ESTOQUE_MARCA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_MARCA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_MARCA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código da Marca\",\"labelText\":\"Código da Marca\",\"tooltip\":\"Código da Marca\",\"hintText\":\"Informe o Código da Marca\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome da Marca\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"\",\"obrigatorio\":true,\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2381,9 +2381,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESTOQUE_GRADE`
+-- Table `sollus`.`ESTOQUE_GRADE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_GRADE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESTOQUE_GRADE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ESTOQUE_MARCA` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Marca\",\"labelText\":\"Marca\",\"tooltip\":\"Marca\",\"hintText\":\"Importe a Marca Vinculada\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"nome\",\"obrigatorio\":true,\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_ESTOQUE_SABOR` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Sabor\",\"labelText\":\"Sabor\",\"tooltip\":\"Sabor\",\"hintText\":\"Importe o Sabor Vinculado\",\"validacao\":\"Alfanumerico\",\"campoLookup\":\"nome\",\"obrigatorio\":true,\"linhaBootstrap\":2,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2400,27 +2400,27 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ESTOQUE_GRADE` (
   INDEX `fk_ESTOQUE_GRADE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{B599518C-2BAD-4EE0-A146-E41754BEE49D}`
     FOREIGN KEY (`ID_ESTOQUE_COR`)
-    REFERENCES `fenix`.`ESTOQUE_COR` (`ID`)
+    REFERENCES `sollus`.`ESTOQUE_COR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{08CB887D-2458-4189-957A-2B8DC12F08C4}`
     FOREIGN KEY (`ID_ESTOQUE_TAMANHO`)
-    REFERENCES `fenix`.`ESTOQUE_TAMANHO` (`ID`)
+    REFERENCES `sollus`.`ESTOQUE_TAMANHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{F4C36775-73AD-4D90-AB42-1DB3E5EDF85D}`
     FOREIGN KEY (`ID_ESTOQUE_SABOR`)
-    REFERENCES `fenix`.`ESTOQUE_SABOR` (`ID`)
+    REFERENCES `sollus`.`ESTOQUE_SABOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{5E639E1C-5C60-46BE-A862-D3802D631C3C}`
     FOREIGN KEY (`ID_ESTOQUE_MARCA`)
-    REFERENCES `fenix`.`ESTOQUE_MARCA` (`ID`)
+    REFERENCES `sollus`.`ESTOQUE_MARCA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ESTOQUE_GRADE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Faz o controle da grade de produtos. A quantidade em estoque é controlada na tabela PRODUTO, mas a quantidade em relação à grade deve/pode ser controlada nesse conjunto de tabelas.'
@@ -2429,9 +2429,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TRIBUT_ICMS_CUSTOM_DET`
+-- Table `sollus`.`TRIBUT_ICMS_CUSTOM_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ICMS_CUSTOM_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TRIBUT_ICMS_CUSTOM_DET` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TRIBUT_ICMS_CUSTOM_CAB` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `UF_DESTINO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF de Destino\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"comentario\":\"UF destino para cálculo do ICMS\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
@@ -2455,7 +2455,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TRIBUT_ICMS_CUSTOM_DET` (
   INDEX `FK_ICMS_CUSTOM_CAB_DET` (`ID_TRIBUT_ICMS_CUSTOM_CAB` ASC),
   CONSTRAINT `fk_{BD28B261-3A95-45B9-9E5F-59D51A1B2B0A}`
     FOREIGN KEY (`ID_TRIBUT_ICMS_CUSTOM_CAB`)
-    REFERENCES `fenix`.`TRIBUT_ICMS_CUSTOM_CAB` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_ICMS_CUSTOM_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Caso a configuração do ICMS precise ser \'customizada\' para determinado produto, utiliza-se essa tabela e sua \'mãe\'.\n'
@@ -2464,9 +2464,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`DIA_PARCELA`
+-- Table `sollus`.`DIA_PARCELA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`DIA_PARCELA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`DIA_PARCELA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `DIA` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Dia\",\"labelText\":\"Dia\",\"tooltip\":\"Dia\",\"hintText\":\"Informe o Dia\",\"validacao\":\"DIA\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"DIA\"}}',
   PRIMARY KEY (`ID`))
@@ -2475,9 +2475,9 @@ COMMENT = 'Tabela que armazena os dias que podem ser utilizados para a geração
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_OPERADOR`
+-- Table `sollus`.`NFCE_OPERADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_OPERADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_OPERADOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `LOGIN` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Login\",\"labelText\":\"Login\",\"tooltip\":\"Login\",\"hintText\":\"Informe o Login\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2487,7 +2487,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_OPERADOR` (
   INDEX `fk_NFCE_OPERADOR_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_NFCE_OPERADOR_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os operadores de caixa. Tem relacionamento com a tabela de funcionários, que vem do banco de dados principal.'
@@ -2496,9 +2496,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_CAIXA`
+-- Table `sollus`.`NFCE_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_CAIXA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_CADASTRO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data de Cadastro\",\"labelText\":\"Data de Cadastro\",\"tooltip\":\"Data de Cadastro\",\"hintText\":\"Informe a Data de Cadastro\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -2509,9 +2509,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_MOVIMENTO`
+-- Table `sollus`.`NFCE_MOVIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_MOVIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_MOVIMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFCE_CAIXA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Caixa\",\"labelText\":\"Caixa\",\"tooltip\":\"Caixa\",\"hintText\":\"Importe a Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_caixa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_NFCE_OPERADOR` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Operador\",\"labelText\":\"Operador\",\"tooltip\":\"Operador\",\"hintText\":\"Importe o Operador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_operador\",\"campoLookup\":\"login\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2536,12 +2536,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_MOVIMENTO` (
   INDEX `FK_NFCE_CAIXA_MOV` (`ID_NFCE_CAIXA` ASC),
   CONSTRAINT `fk_{B756D09A-C3D6-4012-A7D6-79F83A8EFBE7}`
     FOREIGN KEY (`ID_NFCE_OPERADOR`)
-    REFERENCES `fenix`.`NFCE_OPERADOR` (`ID`)
+    REFERENCES `sollus`.`NFCE_OPERADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{C40AD05D-651F-4DE6-A93A-F0B3CF973D36}`
     FOREIGN KEY (`ID_NFCE_CAIXA`)
-    REFERENCES `fenix`.`NFCE_CAIXA` (`ID`)
+    REFERENCES `sollus`.`NFCE_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os movimentos para determinado caixa. Podem haver vários movimentos durante um dia. Um movimento deve ter obrigatoriamente:\n\n-Operador\n-Caixa (terminal)\n-Impressora\n-Turno\n-Status\n\nÉ através dessa tabela que o caixa deve funcionar. Sem um movimento aberto não pode haver movimentação no caixa.'
@@ -2550,9 +2550,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CABECALHO`
+-- Table `sollus`.`NFE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDEDOR` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"comentario\":\"\",\"desenhaControle\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `UF_EMITENTE` INT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código UF\",\"labelText\":\"Código UF\",\"tooltip\":\"Código UF\",\"hintText\":\"Importe o Código UF\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"uf\",\"campoLookup\":\"codigoIbge\",\"campoLookupTipoDado\":\"int\",\"valorPadraoLookup\":\"\",\"comentario\":\"B02 - cUF\",\"desenhaControle\":false,\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2645,32 +2645,32 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CABECALHO` (
   INDEX `fk_NFE_CABECALHO_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_NFE_CABECALHO_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_CABECALHO_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_CABECALHO_NFCE_MOVIMENTO1`
     FOREIGN KEY (`ID_NFCE_MOVIMENTO`)
-    REFERENCES `fenix`.`NFCE_MOVIMENTO` (`ID`)
+    REFERENCES `sollus`.`NFCE_MOVIMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_CABECALHO_VENDA_CABECALHO1`
     FOREIGN KEY (`ID_VENDA_CABECALHO`)
-    REFERENCES `fenix`.`VENDA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`VENDA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_CABECALHO_TRIBUT_OPERACAO_FISCAL1`
     FOREIGN KEY (`ID_TRIBUT_OPERACAO_FISCAL`)
-    REFERENCES `fenix`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
+    REFERENCES `sollus`.`TRIBUT_OPERACAO_FISCAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_CABECALHO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[B. Identificação da Nota Fiscal eletrônica]\n[Grupo W. Total da NF-e]\n[Grupo W01. Total da NF-e / ISSQN]\n[Grupo W02. Total da NF-e / Retenção de Tributos]\n[Grupo Z. Informações Adicionais da NF-e]\n[Grupo ZA. Informações de Comércio Exterior]\n[Grupo ZB. Informações de Compras]\n[Grupo ZX. Informações Suplementares da Nota Fiscal]'
@@ -2679,9 +2679,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE`
+-- Table `sollus`.`NFE_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2725,12 +2725,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE` (
   INDEX `fk_NFE_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{C0606BAB-4C4A-4C16-AC2D-F3605E698BF0}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo H. Detalhamento de Produtos e Serviços da NF-e] \n[Grupo I. Produtos e Serviços da NF-e]\n[Grupo I05. Produtos e Serviços / Pedido de Compra]\n[Grupo I07. Produtos e Serviços / Grupo Diversos]\n[Grupo LB. Detalhamento Específico para Operação com Papel Imune]\n[Grupo UA. Tributos Devolvidos (para o item da NF-e)]\n[Grupo V. Informações adicionais (para o item da NF-e)]'
@@ -2739,9 +2739,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_REFERENCIADA`
+-- Table `sollus`.`NFE_REFERENCIADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_REFERENCIADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_REFERENCIADA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CHAVE_ACESSO` VARCHAR(44) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Chave de Acesso\",\"labelText\":\"Chave de Acesso\",\"tooltip\":\"Chave de Acesso\",\"hintText\":\"Chave de Acesso\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"BA02 - refNFe\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2749,7 +2749,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_REFERENCIADA` (
   INDEX `FK_NFE_REFERENCIADA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{AFFD7A57-423B-4616-90AA-D7C269FF9C5E}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo BA. Documento Fiscal Referenciado] BA01 - Informação de Documentos Fiscais\nreferenciados'
@@ -2758,9 +2758,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_EMITENTE`
+-- Table `sollus`.`NFE_EMITENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_EMITENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_EMITENTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"C02 - CNPJ\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -2787,7 +2787,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_EMITENTE` (
   INDEX `FK_NFE_EMITENTE` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{49365C97-491E-489C-9F44-C5B537E8913D}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo C. Identificação do Emitente da Nota Fiscal eletrônica]'
@@ -2796,9 +2796,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DESTINATARIO`
+-- Table `sollus`.`NFE_DESTINATARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DESTINATARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DESTINATARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"E02 - CNPJ\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -2825,7 +2825,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DESTINATARIO` (
   INDEX `FK_NFE_DESTINATARIO` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{11F2D433-04D6-44FD-BAA8-D5B266160973}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo E. Identificação do Destinatário da Nota Fiscal eletrônica]'
@@ -2834,9 +2834,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_LOCAL_RETIRADA`
+-- Table `sollus`.`NFE_LOCAL_RETIRADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_LOCAL_RETIRADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_LOCAL_RETIRADA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"F02 - CNPJ\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -2859,7 +2859,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_LOCAL_RETIRADA` (
   INDEX `FK_NFE_LOCAL_RETIRADA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{8CDD5E8C-6254-41DE-A520-F318A3809796}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo F. Identificação do Local de Retirada]'
@@ -2868,9 +2868,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_LOCAL_ENTREGA`
+-- Table `sollus`.`NFE_LOCAL_ENTREGA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_LOCAL_ENTREGA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_LOCAL_ENTREGA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"G02 - CNPJ\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -2893,7 +2893,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_LOCAL_ENTREGA` (
   INDEX `FK_NFE_LOCAL_ENTREGA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{BABA4BA0-DE05-4541-A1B6-03B53B66C5B1}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo G. Identificação do Local de Entrega]'
@@ -2902,9 +2902,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DET_ESPECIFICO_VEICULO`
+-- Table `sollus`.`NFE_DET_ESPECIFICO_VEICULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_VEICULO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DET_ESPECIFICO_VEICULO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `TIPO_OPERACAO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Operação\",\"labelText\":\"Tipo Operação\",\"tooltip\":\"Tipo Operação\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"J02 - tpOp\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"1=Venda concessionária\"},{\"dropDownButtonItem\":\"2=Faturamento direto para consumidor final\"},{\"dropDownButtonItem\":\"3=Venda direta para grandes consumidores\"},{\"dropDownButtonItem\":\"0=Outros\"}]}}',
@@ -2935,7 +2935,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_VEICULO` (
   INDEX `FK_NFE_DET_ESPECIFICO_VEICULO` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{02840D51-CFB3-4D99-AC7B-F82104B522C2}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo JA. Detalhamento Específico de Veículos novos]'
@@ -2944,9 +2944,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DET_ESPECIFICO_MEDICAMENTO`
+-- Table `sollus`.`NFE_DET_ESPECIFICO_MEDICAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_MEDICAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DET_ESPECIFICO_MEDICAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_ANVISA` VARCHAR(13) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código Anvisa\",\"labelText\":\"Código Anvisa\",\"tooltip\":\"Código Anvisa\",\"hintText\":\"Informe o Código Anvisa\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"K01a - cProdANVISA\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -2956,7 +2956,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_MEDICAMENTO` (
   INDEX `FK_NFE_DET_ESP_MEDICAMENTO` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{EE95E781-991D-48B7-815A-4BC87F24190B}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo K. Detalhamento Específico de Medicamento e de matérias-primas farmacêuticas]'
@@ -2965,9 +2965,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DET_ESPECIFICO_ARMAMENTO`
+-- Table `sollus`.`NFE_DET_ESPECIFICO_ARMAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_ARMAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DET_ESPECIFICO_ARMAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `TIPO_ARMA` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Indicador Tipo Arma\",\"labelText\":\"Indicador Tipo Arma\",\"tooltip\":\"Indicador Tipo Arma\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"L02 - tpArma\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"0=Uso permitido\"},{\"dropDownButtonItem\":\"1=Uso restrito\"}]}}\n',
@@ -2978,7 +2978,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_ARMAMENTO` (
   INDEX `FK_NFE_DET_ESP_ARMAMENTO` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{AA2001E7-A2C4-4E15-89D2-693E8939F1BD}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo L. Detalhamento Específico de Armamentos]'
@@ -2987,9 +2987,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DET_ESPECIFICO_COMBUSTIVEL`
+-- Table `sollus`.`NFE_DET_ESPECIFICO_COMBUSTIVEL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_COMBUSTIVEL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DET_ESPECIFICO_COMBUSTIVEL` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_ANP` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código ANP\",\"labelText\":\"Código ANP\",\"tooltip\":\"Código ANP\",\"hintText\":\"Informe a Código ANP\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"LA02 - cProdANP\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3013,7 +3013,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DET_ESPECIFICO_COMBUSTIVEL` (
   INDEX `FK_NFE_DET_ESP_COMBUSTIVEL` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{723B7CE2-E4EB-44C4-B2EA-C44402D5DCB4}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo LA. Detalhamento Específico de Combustíveis]'
@@ -3022,9 +3022,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_TRANSPORTE`
+-- Table `sollus`.`NFE_TRANSPORTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_TRANSPORTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_TRANSPORTADORA` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Transportadora\",\"labelText\":\"Transportadora\",\"tooltip\":\"Transportadora\",\"hintText\":\"Importe a Transportadora Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"transportadora\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3050,12 +3050,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE` (
   INDEX `fk_NFE_TRANSPORTE_TRANSPORTADORA1_idx` (`ID_TRANSPORTADORA` ASC),
   CONSTRAINT `fk_{BDFB69FA-15C2-4D43-ABDF-E39AB5044709}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFE_TRANSPORTE_TRANSPORTADORA1`
     FOREIGN KEY (`ID_TRANSPORTADORA`)
-    REFERENCES `fenix`.`TRANSPORTADORA` (`ID`)
+    REFERENCES `sollus`.`TRANSPORTADORA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo X. Informações do Transporte da NF-e]'
@@ -3064,9 +3064,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_FATURA`
+-- Table `sollus`.`NFE_FATURA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_FATURA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_FATURA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número\",\"labelText\":\"Número\",\"tooltip\":\"Número\",\"hintText\":\"Informe o Número\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Y03 - nFat\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3077,7 +3077,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_FATURA` (
   INDEX `FK_NFE_CAB_FATURA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{FB825C01-BAC2-48B6-8B14-6D37BE3DAFF8}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo Y. Dados da Cobrança] Y02'
@@ -3086,9 +3086,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DUPLICATA`
+-- Table `sollus`.`NFE_DUPLICATA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DUPLICATA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DUPLICATA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_FATURA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número\",\"labelText\":\"Número\",\"tooltip\":\"Número\",\"hintText\":\"Informe o Número\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Y08 - nDup\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3098,7 +3098,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DUPLICATA` (
   INDEX `fk_NFE_DUPLICATA_NFE_FATURA1_idx` (`ID_NFE_FATURA` ASC),
   CONSTRAINT `fk_NFE_DUPLICATA_NFE_FATURA1`
     FOREIGN KEY (`ID_NFE_FATURA`)
-    REFERENCES `fenix`.`NFE_FATURA` (`ID`)
+    REFERENCES `sollus`.`NFE_FATURA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo Y. Dados da Cobrança] Y07'
@@ -3107,9 +3107,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DECLARACAO_IMPORTACAO`
+-- Table `sollus`.`NFE_DECLARACAO_IMPORTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DECLARACAO_IMPORTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DECLARACAO_IMPORTACAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO_DOCUMENTO` VARCHAR(12) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número do Documento\",\"labelText\":\"Número do Documento\",\"tooltip\":\"Número do Documento\",\"hintText\":\"Informe o Número do Documento\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"I19 - nDI\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3127,7 +3127,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DECLARACAO_IMPORTACAO` (
   INDEX `FK_NFE_DET_DEC_IMPORTACAO` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{1771AE4C-E276-4F94-99EB-BDA61D415790}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo I01. Produtos e Serviços / Declaração de Importação]'
@@ -3136,9 +3136,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_IMPORTACAO_DETALHE`
+-- Table `sollus`.`NFE_IMPORTACAO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_IMPORTACAO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_IMPORTACAO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DECLARACAO_IMPORTACAO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO_ADICAO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número Adição\",\"labelText\":\"Número Adição\",\"tooltip\":\"Número Adição\",\"hintText\":\"Informe o Número Adição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"I26 - nAdicao\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3150,7 +3150,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_IMPORTACAO_DETALHE` (
   INDEX `FK_NFE_IMPORTACAO_DETALHE` (`ID_NFE_DECLARACAO_IMPORTACAO` ASC),
   CONSTRAINT `fk_{788F333A-DCB0-4371-AECF-18A42ABF93B6}`
     FOREIGN KEY (`ID_NFE_DECLARACAO_IMPORTACAO`)
-    REFERENCES `fenix`.`NFE_DECLARACAO_IMPORTACAO` (`ID`)
+    REFERENCES `sollus`.`NFE_DECLARACAO_IMPORTACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo I01. Produtos e Serviços / Declaração de Importação] Adições - I18'
@@ -3159,9 +3159,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CANA`
+-- Table `sollus`.`NFE_CANA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CANA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `SAFRA` VARCHAR(9) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Safra\",\"labelText\":\"Safra\",\"tooltip\":\"Safra\",\"hintText\":\"Safra\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"ZC02 - safra - Identificação da safra - Informar a safra, AAAA ou AAAA/AAAA\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3170,7 +3170,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA` (
   INDEX `FK_NFE_CAB_CANA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{D05C4271-B5E5-47EB-BD5B-3885FEA3E899}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo ZC. Informações do Registro de Aquisição de Cana]'
@@ -3179,9 +3179,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CANA_FORNECIMENTO_DIARIO`
+-- Table `sollus`.`NFE_CANA_FORNECIMENTO_DIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA_FORNECIMENTO_DIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CANA_FORNECIMENTO_DIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CANA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DIA` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Dia\",\"labelText\":\"Dia\",\"tooltip\":\"Dia\",\"hintText\":\"Informe o Dia\",\"validacao\":\"DIA\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"ZC04 - dia\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"DIA\"}}\n',
@@ -3193,7 +3193,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA_FORNECIMENTO_DIARIO` (
   INDEX `FK_NFE_CANA_FORNECIMENTO` (`ID_NFE_CANA` ASC),
   CONSTRAINT `fk_{71A66239-C538-4B83-AD23-EFC8F3FA0AB4}`
     FOREIGN KEY (`ID_NFE_CANA`)
-    REFERENCES `fenix`.`NFE_CANA` (`ID`)
+    REFERENCES `sollus`.`NFE_CANA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo ZC. Informações do Registro de Aquisição de Cana] ZC04'
@@ -3202,9 +3202,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CANA_DEDUCOES_SAFRA`
+-- Table `sollus`.`NFE_CANA_DEDUCOES_SAFRA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA_DEDUCOES_SAFRA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CANA_DEDUCOES_SAFRA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CANA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DECRICAO` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"ZC11 - xDed\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3216,7 +3216,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CANA_DEDUCOES_SAFRA` (
   INDEX `FK_NFE_CANA_DEDUCOES` (`ID_NFE_CANA` ASC),
   CONSTRAINT `fk_{3C5FF51C-922A-47C7-B352-E32615CA2327}`
     FOREIGN KEY (`ID_NFE_CANA`)
-    REFERENCES `fenix`.`NFE_CANA` (`ID`)
+    REFERENCES `sollus`.`NFE_CANA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo ZC. Informações do Registro de Aquisição de Cana] ZC10'
@@ -3225,9 +3225,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CUPOM_FISCAL_REFERENCIADO`
+-- Table `sollus`.`NFE_CUPOM_FISCAL_REFERENCIADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CUPOM_FISCAL_REFERENCIADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CUPOM_FISCAL_REFERENCIADO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `MODELO_DOCUMENTO_FISCAL` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Modelo Documento Fiscal\",\"labelText\":\"Modelo Documento Fiscal\",\"tooltip\":\"Modelo Documento Fiscal\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"BA21 - mod\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char(2)\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"2B=Cupom Fiscal emitido por máquina registradora\"},{\"dropDownButtonItem\":\"2C=Cupom Fiscal PDV\"},{\"dropDownButtonItem\":\"2D=Cupom Fiscal-emitido por ECF\"}]}}',
@@ -3240,7 +3240,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CUPOM_FISCAL_REFERENCIADO` (
   INDEX `FK_NFE_CF_REFERENCIADO` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{0B096A6D-C97B-4DE5-B93D-254B25C37CC5}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo BA. Documento Fiscal Referenciado] Informações do Cupom Fiscal referenciado'
@@ -3249,9 +3249,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_NUMERO`
+-- Table `sollus`.`NFE_NUMERO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_NUMERO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_NUMERO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `SERIE` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Série\",\"labelText\":\"Série\",\"tooltip\":\"Série\",\"hintText\":\"Informe o Série\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NUMERO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número NF\",\"labelText\":\"Número NF\",\"tooltip\":\"Número NF\",\"hintText\":\"Informe o Número NF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3262,9 +3262,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_PROD_RURAL_REFERENCIADA`
+-- Table `sollus`.`NFE_PROD_RURAL_REFERENCIADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_PROD_RURAL_REFERENCIADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_PROD_RURAL_REFERENCIADA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_UF` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código UF\",\"labelText\":\"Código UF\",\"tooltip\":\"Código UF\",\"hintText\":\"Importe o Código UF\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"uf\",\"campoLookup\":\"codigo_ibge\",\"campoLookupTipoDado\":\"int\",\"valorPadraoLookup\":\"\",\"comentario\":\"BA11 - cUF\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3279,7 +3279,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_PROD_RURAL_REFERENCIADA` (
   INDEX `FK_NFE_RURAL_REFERENCIADO` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{7C9760BE-F8ED-418D-AED9-1F65ACB76F67}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo BA. Documento Fiscal Referenciado] Grupo de informações da NF de produtor rural referenciada'
@@ -3288,9 +3288,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_NF_REFERENCIADA`
+-- Table `sollus`.`NFE_NF_REFERENCIADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_NF_REFERENCIADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_NF_REFERENCIADA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_UF` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código UF\",\"labelText\":\"Código UF\",\"tooltip\":\"Código UF\",\"hintText\":\"Importe o Código UF\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"uf\",\"campoLookup\":\"codigo_ibge\",\"campoLookupTipoDado\":\"int\",\"valorPadraoLookup\":\"\",\"comentario\":\"BA04 - cUF\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3303,7 +3303,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_NF_REFERENCIADA` (
   INDEX `FK_NFE_NF_REFERENCIADA` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{172BA844-7467-4E30-BB11-F98E00D75E8F}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo BA. Documento Fiscal Referenciado] Grupo de informação da NF modelo 1/1A referenciada. '
@@ -3312,9 +3312,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_ICMS`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_ICMS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ICMS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_ICMS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ORIGEM_MERCADORIA` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Origem da Mercadoria\",\"labelText\":\"Origem da Mercadoria\",\"tooltip\":\"Origem da Mercadoria\",\"hintText\":\"Informe a Origem da Mercadoria\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"N11 - orig\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaIcmsOrigemMercadoria\"}]}}',
@@ -3363,7 +3363,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ICMS` (
   INDEX `FK_NFE_DET_ICMS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{2ECA610C-69B9-43E7-B65D-F30EDC701A59}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo N. ICMS Normal e ST]'
@@ -3372,9 +3372,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_IPI`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_IPI`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_IPI` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_IPI` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ_PRODUTOR` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ Produtor\",\"labelText\":\"CNPJ Produtor\",\"tooltip\":\"CNPJ Produtor\",\"hintText\":\"Informe o CNPJ Produtor\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"O03 - CNPJProd\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -3391,7 +3391,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_IPI` (
   INDEX `FK_NFE_DET_IPI` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{848512E8-6818-4FF8-85B2-FD9773A5AAA8}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo O. Imposto sobre Produtos Industrializados]'
@@ -3400,9 +3400,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_II`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_II`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_II` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_II` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `VALOR_BC_II` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Valor BC II\",\"labelText\":\"Valor BC II\",\"tooltip\":\"Valor BC II\",\"hintText\":\"Informe o Valor BC II\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"P02 - vBC\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -3413,7 +3413,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_II` (
   INDEX `FK_NFE_DET_II` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{DD990476-FEE7-4709-BD8D-A6D372781AE1}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo P. Imposto de Importação]'
@@ -3422,9 +3422,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_PIS`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_PIS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_PIS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_PIS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CST_PIS` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CST PIS\",\"labelText\":\"CST PIS\",\"tooltip\":\"CST PIS\",\"hintText\":\"Informe o CST PIS\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cst_ipi\",\"campoLookup\":\"codigo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"Q06 - CST\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}\n',
@@ -3437,7 +3437,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_PIS` (
   INDEX `FK_NFE_DET_PIS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{A901B4CB-EECC-4E0D-8163-E9C48092FBB3}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo Q. PIS]'
@@ -3446,9 +3446,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_COFINS`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_COFINS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_COFINS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_COFINS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CST_COFINS` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CST COFINS\",\"labelText\":\"CST COFINS\",\"tooltip\":\"CST COFINS\",\"hintText\":\"Informe o CST COFINS\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cst_cofins\",\"campoLookup\":\"codigo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"CST\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3461,7 +3461,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_COFINS` (
   INDEX `FK_NFE_DET_COFINS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{45F41988-B667-4183-8517-DD1800D74792}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo S. COFINS]'
@@ -3470,9 +3470,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_ISSQN`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_ISSQN`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ISSQN` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_ISSQN` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `BASE_CALCULO_ISSQN` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Valor BC ISSQN\",\"labelText\":\"Valor BC ISSQN\",\"tooltip\":\"Valor BC ISSQN\",\"hintText\":\"Informe o Valor BC ISSQN\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"U02 - vBC\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -3495,7 +3495,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ISSQN` (
   INDEX `FK_NFE_DET_ISSQN` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{D3EADE39-4BA1-402D-9AE5-F55A6327DA3B}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo U. ISSQN]'
@@ -3504,9 +3504,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_TRANSPORTE_REBOQUE`
+-- Table `sollus`.`NFE_TRANSPORTE_REBOQUE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_REBOQUE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_TRANSPORTE_REBOQUE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_TRANSPORTE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `PLACA` VARCHAR(8) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Placa\",\"labelText\":\"Placa\",\"tooltip\":\"Placa\",\"hintText\":\"Informe a Placa\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"X23 - placa\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3518,7 +3518,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_REBOQUE` (
   INDEX `FK_NFE_TRANSP_REBOQUE` (`ID_NFE_TRANSPORTE` ASC),
   CONSTRAINT `fk_{33120FEA-84FA-45B1-9F95-183D64AC0F6F}`
     FOREIGN KEY (`ID_NFE_TRANSPORTE`)
-    REFERENCES `fenix`.`NFE_TRANSPORTE` (`ID`)
+    REFERENCES `sollus`.`NFE_TRANSPORTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo X. Informações do Transporte da NF-e] X22'
@@ -3527,9 +3527,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_TRANSPORTE_VOLUME`
+-- Table `sollus`.`NFE_TRANSPORTE_VOLUME`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_VOLUME` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_TRANSPORTE_VOLUME` (
   `ID` INT UNSIGNED NOT NULL,
   `ID_NFE_TRANSPORTE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `QUANTIDADE` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Quantidade\",\"labelText\":\"Quantidade\",\"tooltip\":\"Quantidade\",\"hintText\":\"Informe a Quantidade\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"X27 - qVol\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3542,7 +3542,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_VOLUME` (
   INDEX `FK_TRANSP_VOLUME` (`ID_NFE_TRANSPORTE` ASC),
   CONSTRAINT `fk_{683237C6-9879-4C55-BBD3-8CD3F1AF00EF}`
     FOREIGN KEY (`ID_NFE_TRANSPORTE`)
-    REFERENCES `fenix`.`NFE_TRANSPORTE` (`ID`)
+    REFERENCES `sollus`.`NFE_TRANSPORTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo X. Informações do Transporte da NF-e] X26'
@@ -3551,9 +3551,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_TRANSPORTE_VOLUME_LACRE`
+-- Table `sollus`.`NFE_TRANSPORTE_VOLUME_LACRE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_VOLUME_LACRE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_TRANSPORTE_VOLUME_LACRE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_TRANSPORTE_VOLUME` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número\",\"labelText\":\"Número\",\"tooltip\":\"Número\",\"hintText\":\"Informe o Número\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"X34 - nLacre\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3561,7 +3561,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_TRANSPORTE_VOLUME_LACRE` (
   INDEX `FK_NFE_TRANSP_VOL_LACRE` (`ID_NFE_TRANSPORTE_VOLUME` ASC),
   CONSTRAINT `fk_{C379B512-7C71-41D4-8D32-7A543923DC1E}`
     FOREIGN KEY (`ID_NFE_TRANSPORTE_VOLUME`)
-    REFERENCES `fenix`.`NFE_TRANSPORTE_VOLUME` (`ID`)
+    REFERENCES `sollus`.`NFE_TRANSPORTE_VOLUME` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo X. Informações do Transporte da NF-e] X33'
@@ -3570,9 +3570,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_PROCESSO_REFERENCIADO`
+-- Table `sollus`.`NFE_PROCESSO_REFERENCIADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_PROCESSO_REFERENCIADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_PROCESSO_REFERENCIADO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `IDENTIFICADOR` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Identificador\",\"labelText\":\"Identificador\",\"tooltip\":\"Identificador\",\"hintText\":\"Informe o Identificador\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Z11 - nProc\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3581,7 +3581,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_PROCESSO_REFERENCIADO` (
   INDEX `NFE_CAB_PROC_REF` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{9C752FAA-B71F-425A-ACB6-A3E8972E6FF4}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo Z. Informações Adicionais da NF-e]'
@@ -3590,9 +3590,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CTE_REFERENCIADO`
+-- Table `sollus`.`NFE_CTE_REFERENCIADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CTE_REFERENCIADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CTE_REFERENCIADO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CHAVE_ACESSO` VARCHAR(44) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Chave de Acesso\",\"labelText\":\"Chave de Acesso\",\"tooltip\":\"Chave de Acesso\",\"hintText\":\"Chave de Acesso\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"BA19 - refCTe\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3600,7 +3600,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CTE_REFERENCIADO` (
   INDEX `FK_NFE_CTE_REFERENCIADO` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{43CDCD03-AB6A-4120-BB27-CBDB6C26B4A7}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo BA. Documento Fiscal Referenciado] refCTe'
@@ -3609,9 +3609,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_CONFIGURACAO`
+-- Table `sollus`.`NFE_CONFIGURACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_CONFIGURACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_CONFIGURACAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CERTIFICADO_DIGITAL_SERIE` VARCHAR(100) NULL COMMENT 'Numero do Certificado Digital - CAPICOM',
   `CERTIFICADO_DIGITAL_CAMINHO` TEXT NULL COMMENT 'Local do Certificado - OpenSSL',
@@ -3647,9 +3647,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_ACESSO_XML`
+-- Table `sollus`.`NFE_ACESSO_XML`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_ACESSO_XML` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_ACESSO_XML` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"GA02 - CNPJ\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}\n',
@@ -3658,7 +3658,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_ACESSO_XML` (
   INDEX `FK_ACESSO_XML` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{B466EFD3-8C2D-4EFD-B9AA-9DCEAAF57FA8}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo GA. Autorização para obter XML]'
@@ -3667,9 +3667,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_EXPORTACAO`
+-- Table `sollus`.`NFE_EXPORTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_EXPORTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_EXPORTACAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DRAWBACK` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Drawback\",\"labelText\":\"Drawback\",\"tooltip\":\"Drawback\",\"hintText\":\"Informe o Drawback\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"I51 - nDraw\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3680,7 +3680,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_EXPORTACAO` (
   INDEX `FK_NFE_EXPORTACAO` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{29DDD06F-DDD4-4255-94EE-1E32334EB138}`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo I03. Produtos e Serviços / Grupo de Exportação]'
@@ -3689,9 +3689,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_INFORMACAO_PAGAMENTO`
+-- Table `sollus`.`NFE_INFORMACAO_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_INFORMACAO_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_INFORMACAO_PAGAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `INDICADOR_PAGAMENTO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Indicador Pagamento\",\"labelText\":\"Indicador Pagamento\",\"tooltip\":\"Indicador Pagamento\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"YA01b - indPag\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[\n{\"dropDownButtonItem\":\"0=Pagamento à vista\"},\n{\"dropDownButtonItem\":\"1=Pagamento à prazo\"}]}}',
@@ -3706,7 +3706,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_INFORMACAO_PAGAMENTO` (
   INDEX `FK_NFE_FORMA_PAGAMENTO` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_{BFB74DEB-FAC6-4F44-8FDA-F52BFEC321ED}`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo YA. Informações de Pagamento]'
@@ -3715,9 +3715,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_NUMERO_INUTILIZADO`
+-- Table `sollus`.`NFE_NUMERO_INUTILIZADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_NUMERO_INUTILIZADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_NUMERO_INUTILIZADO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `SERIE` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Série\",\"labelText\":\"Série\",\"tooltip\":\"Série\",\"hintText\":\"Informe o Série\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NUMERO` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número NF\",\"labelText\":\"Número NF\",\"tooltip\":\"Número NF\",\"hintText\":\"Informe a Número NF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}\n',
@@ -3730,9 +3730,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_ITEM_RASTREADO`
+-- Table `sollus`.`NFE_ITEM_RASTREADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_ITEM_RASTREADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_ITEM_RASTREADO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO_LOTE` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número do Lote\",\"labelText\":\"Número do Lote\",\"tooltip\":\"Número do Lote\",\"hintText\":\"Informe o Número do Lote\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"I81 - nLote\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3744,7 +3744,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_ITEM_RASTREADO` (
   INDEX `fk_NFE_ITEM_RASTREADO_NFE_DETALHE1_idx` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_NFE_ITEM_RASTREADO_NFE_DETALHE1`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -3752,9 +3752,9 @@ COMMENT = '[Grupo I80. Rastreabilidade de produto]';
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_PIS_ST`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_PIS_ST`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_PIS_ST` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_PIS_ST` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `VALOR_BASE_CALCULO_PIS_ST` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Base Cálculo PIS ST\",\"labelText\":\"Base Cálculo PIS ST\",\"tooltip\":\"Base Cálculo PIS ST\",\"hintText\":\"Informe a Base de Cálculo do PIS ST\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"R02 - vBC\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -3766,7 +3766,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_PIS_ST` (
   INDEX `FK_NFE_DET_PIS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{A901B4CB-EECC-4E0D-8163-E9C48092FBB3}0`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo R. PIS ST]'
@@ -3775,9 +3775,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_ICMS_UFDEST`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_ICMS_UFDEST`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ICMS_UFDEST` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_ICMS_UFDEST` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `VALOR_BC_ICMS_UF_DESTINO` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Valor BC ICMS UF Destino\",\"labelText\":\"Valor BC ICMS UF Destino\",\"tooltip\":\"Valor BC ICMS UF Destino\",\"hintText\":\"Informe o Valor BC ICMS UF Destino\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"NA03 - vBCUFDest\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -3793,7 +3793,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_ICMS_UFDEST` (
   INDEX `FK_NFE_DET_ICMS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{2ECA610C-69B9-43E7-B65D-F30EDC701A59}0`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo NA. ICMS para a UF de destino]'
@@ -3802,9 +3802,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_DETALHE_IMPOSTO_COFINS_ST`
+-- Table `sollus`.`NFE_DETALHE_IMPOSTO_COFINS_ST`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_COFINS_ST` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_DETALHE_IMPOSTO_COFINS_ST` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `BASE_CALCULO_COFINS_ST` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Valor BC COFINS ST\",\"labelText\":\"Valor BC COFINS ST\",\"tooltip\":\"Valor BC COFINS ST\",\"hintText\":\"Informe o Valor BC COFINS ST\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"T02 - vBC\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -3816,7 +3816,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_DETALHE_IMPOSTO_COFINS_ST` (
   INDEX `FK_NFE_DET_COFINS` (`ID_NFE_DETALHE` ASC),
   CONSTRAINT `fk_{45F41988-B667-4183-8517-DD1800D74792}0`
     FOREIGN KEY (`ID_NFE_DETALHE`)
-    REFERENCES `fenix`.`NFE_DETALHE` (`ID`)
+    REFERENCES `sollus`.`NFE_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = '[Grupo T. COFINS ST]'
@@ -3825,9 +3825,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFE_RESPONSAVEL_TECNICO`
+-- Table `sollus`.`NFE_RESPONSAVEL_TECNICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFE_RESPONSAVEL_TECNICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFE_RESPONSAVEL_TECNICO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"ZD02 - CNPJ\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -3840,7 +3840,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFE_RESPONSAVEL_TECNICO` (
   INDEX `fk_NFE_RESPONSAVEL_TECNICO_NFE_CABECALHO1_idx` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_NFE_RESPONSAVEL_TECNICO_NFE_CABECALHO1`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -3848,9 +3848,9 @@ COMMENT = '[Grupo ZD. Informações do Responsável Técnico]';
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CBO`
+-- Table `sollus`.`CBO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CBO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CBO` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `codigo` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"label\":\"código cbo 2002\",\"labeltext\":\"código cbo 2002\",\"tooltip\":\"código cbo 2002\",\"hinttext\":\"informe o código cbo 2002\",\"validacao\":\"\",\"obrigatorio\":false,\"readonly\":false,\"tabelalookup\":\"\",\"campolookup\":\"\",\"campolookuptipodado\":\"\",\"valorpadraolookup\":\"\",\"comentario\":\"\",\"tipocontrole\":{\"tipo\":\"textformfield\",\"keyboardtype\":\"\",\"mascara\":\"\"}}',
   `codigo_1994` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanremoval\":false,\"label\":\"código cbo 1994\",\"labeltext\":\"código cbo 1994\",\"tooltip\":\"código cbo 1994\",\"hinttext\":\"informe o código cbo 1994\",\"validacao\":\"\",\"obrigatorio\":false,\"readonly\":false,\"tabelalookup\":\"\",\"campolookup\":\"\",\"campolookuptipodado\":\"\",\"valorpadraolookup\":\"\",\"comentario\":\"\",\"tipocontrole\":{\"tipo\":\"textformfield\",\"keyboardtype\":\"\",\"mascara\":\"\"}}',
@@ -3863,9 +3863,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PAIS`
+-- Table `sollus`.`PAIS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PAIS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PAIS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` INT NULL,
   `NOME_EN` VARCHAR(100) NULL,
@@ -3878,9 +3878,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TABELA_PRECO_PRODUTO`
+-- Table `sollus`.`TABELA_PRECO_PRODUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TABELA_PRECO_PRODUTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TABELA_PRECO_PRODUTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TABELA_PRECO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-9\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3890,12 +3890,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`TABELA_PRECO_PRODUTO` (
   INDEX `fk_TABELA_PRECO_PRODUTO_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{1C28A567-0398-406B-9243-4403C0E93099}`
     FOREIGN KEY (`ID_TABELA_PRECO`)
-    REFERENCES `fenix`.`TABELA_PRECO` (`ID`)
+    REFERENCES `sollus`.`TABELA_PRECO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_TABELA_PRECO_PRODUTO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Vincula a tabela de preço aos produtos que fazem parte dela.'
@@ -3904,9 +3904,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GED_TIPO_DOCUMENTO`
+-- Table `sollus`.`GED_TIPO_DOCUMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GED_TIPO_DOCUMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GED_TIPO_DOCUMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `TAMANHO_MAXIMO` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tamanho Máximo\",\"labelText\":\"Tamanho Máximo\",\"tooltip\":\"Tamanho Máximo\",\"hintText\":\"Informe o Tamanho Máximo\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Indica o tamanho maximo do documento em MB\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}\n',
@@ -3917,9 +3917,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GED_DOCUMENTO_CABECALHO`
+-- Table `sollus`.`GED_DOCUMENTO_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GED_DOCUMENTO_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GED_DOCUMENTO_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Nome do documento ou grupo de documentos\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição do Documento\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Descricao do documento ou grupo de documentos\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3931,9 +3931,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GED_DOCUMENTO_DETALHE`
+-- Table `sollus`.`GED_DOCUMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GED_DOCUMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GED_DOCUMENTO_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_GED_DOCUMENTO_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_GED_TIPO_DOCUMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Documento\",\"labelText\":\"Tipo Documento\",\"tooltip\":\"Tipo Documento\",\"hintText\":\"Importe o Tipo de Documento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"GED_TIPO_DOCUMENTO\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3950,12 +3950,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`GED_DOCUMENTO_DETALHE` (
   INDEX `FK_GED_DOCUMENTO_CAB_DET` (`ID_GED_DOCUMENTO_CABECALHO` ASC),
   CONSTRAINT `fk_{57544F31-81AC-4880-AB10-168655128E85}`
     FOREIGN KEY (`ID_GED_TIPO_DOCUMENTO`)
-    REFERENCES `fenix`.`GED_TIPO_DOCUMENTO` (`ID`)
+    REFERENCES `sollus`.`GED_TIPO_DOCUMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{CF2C5E46-A149-422F-B16C-A9731C76F40B}`
     FOREIGN KEY (`ID_GED_DOCUMENTO_CABECALHO`)
-    REFERENCES `fenix`.`GED_DOCUMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`GED_DOCUMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados do documento que foi digitalizado ou capturado pelo GED.'
@@ -3964,9 +3964,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GED_VERSAO_DOCUMENTO`
+-- Table `sollus`.`GED_VERSAO_DOCUMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GED_VERSAO_DOCUMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GED_VERSAO_DOCUMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_GED_DOCUMENTO_DETALHE` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -3981,12 +3981,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`GED_VERSAO_DOCUMENTO` (
   INDEX `fk_GED_VERSAO_DOCUMENTO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{B1B3E93F-737D-4043-9164-AD1418B05011}`
     FOREIGN KEY (`ID_GED_DOCUMENTO_DETALHE`)
-    REFERENCES `fenix`.`GED_DOCUMENTO_DETALHE` (`ID`)
+    REFERENCES `sollus`.`GED_DOCUMENTO_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_GED_VERSAO_DOCUMENTO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados de versionamento dos documentos gerenciados pelo GED.'
@@ -3995,9 +3995,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_STATUS`
+-- Table `sollus`.`OS_STATUS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_STATUS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_STATUS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-9\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4007,9 +4007,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_ABERTURA`
+-- Table `sollus`.`OS_ABERTURA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_ABERTURA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_ABERTURA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_OS_STATUS` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Status\",\"labelText\":\"Status\",\"tooltip\":\"Status\",\"hintText\":\"Importe o Status Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"os_status\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_CLIENTE` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Cliente\",\"labelText\":\"Cliente\",\"tooltip\":\"Cliente\",\"hintText\":\"Importe o Cliente Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cliente\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4031,17 +4031,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`OS_ABERTURA` (
   INDEX `fk_OS_ABERTURA_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{6BCAE8D3-8EF5-45FD-8A45-38B20DFF9FB0}`
     FOREIGN KEY (`ID_OS_STATUS`)
-    REFERENCES `fenix`.`OS_STATUS` (`ID`)
+    REFERENCES `sollus`.`OS_STATUS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_OS_ABERTURA_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_OS_ABERTURA_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4049,9 +4049,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_EQUIPAMENTO`
+-- Table `sollus`.`OS_EQUIPAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_EQUIPAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_EQUIPAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4062,9 +4062,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_ABERTURA_EQUIPAMENTO`
+-- Table `sollus`.`OS_ABERTURA_EQUIPAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_ABERTURA_EQUIPAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_ABERTURA_EQUIPAMENTO` (
   `ID` INT UNSIGNED NOT NULL,
   `ID_OS_EQUIPAMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Equipamento\",\"labelText\":\"Equipamento\",\"tooltip\":\"Equipamento\",\"hintText\":\"Importe o Equipamento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"os_equipamento\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_OS_ABERTURA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
@@ -4075,12 +4075,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`OS_ABERTURA_EQUIPAMENTO` (
   INDEX `FK_OS_EQUIP_ABERT` (`ID_OS_EQUIPAMENTO` ASC),
   CONSTRAINT `fk_{810B527C-FC00-4178-9F83-0DCE34F553A7}`
     FOREIGN KEY (`ID_OS_ABERTURA`)
-    REFERENCES `fenix`.`OS_ABERTURA` (`ID`)
+    REFERENCES `sollus`.`OS_ABERTURA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{22CA1568-F45B-42E9-B840-4C2FDA5D9D90}`
     FOREIGN KEY (`ID_OS_EQUIPAMENTO`)
-    REFERENCES `fenix`.`OS_EQUIPAMENTO` (`ID`)
+    REFERENCES `sollus`.`OS_EQUIPAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Equipamentos que estão sendo atendidos na OS'
@@ -4089,9 +4089,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_PRODUTO_SERVICO`
+-- Table `sollus`.`OS_PRODUTO_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_PRODUTO_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_PRODUTO_SERVICO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_OS_ABERTURA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-9\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4108,12 +4108,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`OS_PRODUTO_SERVICO` (
   INDEX `fk_OS_PRODUTO_SERVICO_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{1076F74A-D810-46A7-BC95-BC173A02F8E1}`
     FOREIGN KEY (`ID_OS_ABERTURA`)
-    REFERENCES `fenix`.`OS_ABERTURA` (`ID`)
+    REFERENCES `sollus`.`OS_ABERTURA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_OS_PRODUTO_SERVICO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Serviços prestados durante a OS. Produtos comercializados por conta da OS.'
@@ -4122,9 +4122,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OS_EVOLUCAO`
+-- Table `sollus`.`OS_EVOLUCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OS_EVOLUCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OS_EVOLUCAO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_OS_ABERTURA` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DATA_REGISTRO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data do Registro\",\"labelText\":\"Data do Registro\",\"tooltip\":\"Data do Registro\",\"hintText\":\"Informe a Data do Registro\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"EEE, d / MMM / yyyy\"}}',
@@ -4135,7 +4135,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`OS_EVOLUCAO` (
   INDEX `OS_EVOLUCAO_FKIndex1` (`ID_OS_ABERTURA` ASC),
   CONSTRAINT `fk_{6EFF3578-C97B-4E12-8768-F5D4247D08A9}`
     FOREIGN KEY (`ID_OS_ABERTURA`)
-    REFERENCES `fenix`.`OS_ABERTURA` (`ID`)
+    REFERENCES `sollus`.`OS_ABERTURA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4143,9 +4143,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COMISSAO_OBJETIVO`
+-- Table `sollus`.`COMISSAO_OBJETIVO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COMISSAO_OBJETIVO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COMISSAO_OBJETIVO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COMISSAO_PERFIL` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Pefil\",\"labelText\":\"Pefil\",\"tooltip\":\"Pefil\",\"hintText\":\"Importe o Pefil Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"pessoa\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4162,12 +4162,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COMISSAO_OBJETIVO` (
   INDEX `fk_COMISSAO_OBJETIVO_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{351EF9CB-7F6D-4EDE-A2C3-E35B9EF1F796}`
     FOREIGN KEY (`ID_COMISSAO_PERFIL`)
-    REFERENCES `fenix`.`COMISSAO_PERFIL` (`ID`)
+    REFERENCES `sollus`.`COMISSAO_PERFIL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COMISSAO_OBJETIVO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Os objetivos serão previamente cadastrados. Códigos:\n\n001 - Venda Bruta - valor bruto vendido dentro do mês\n002 - Recebimento Bruto - valor bruto recebido dentro do mês\n003 - Recebimento Liquido - valor liquido recebido dentro do mês\n004 - Valor Produto - valor bruto de determinado produto vendido dentro do mês\n005 - Quantidade Produto - Quantidade de determinado prodito vendido dentro do mês'
@@ -4176,9 +4176,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDEDOR_ROTA`
+-- Table `sollus`.`VENDEDOR_ROTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR_ROTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDEDOR_ROTA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_VENDEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_CLIENTE` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Cliente\",\"labelText\":\"Cliente\",\"tooltip\":\"Cliente\",\"hintText\":\"Importe o Cliente Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cliente\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4188,21 +4188,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR_ROTA` (
   INDEX `fk_VENDEDOR_ROTA_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_VENDEDOR_ROTA_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDEDOR_ROTA_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`VENDEDOR_META`
+-- Table `sollus`.`VENDEDOR_META`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR_META` (
+CREATE TABLE IF NOT EXISTS `sollus`.`VENDEDOR_META` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_VENDEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_CLIENTE` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Cliente\",\"labelText\":\"Cliente\",\"tooltip\":\"Cliente\",\"hintText\":\"Importe o Cliente Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cliente\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4216,21 +4216,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`VENDEDOR_META` (
   INDEX `fk_VENDEDOR_META_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_VENDEDOR_META_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_VENDEDOR_META_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_SANGRIA`
+-- Table `sollus`.`NFCE_SANGRIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_SANGRIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_SANGRIA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFCE_MOVIMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Movimento\",\"labelText\":\"Movimento\",\"tooltip\":\"Movimento\",\"hintText\":\"Importe o Movimento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_movimento\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_SANGRIA` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data da Sangria\",\"labelText\":\"Data da Sangria\",\"tooltip\":\"Data da Sangria\",\"hintText\":\"Informe a Data da Sangria\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -4240,7 +4240,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_SANGRIA` (
   INDEX `FK_NFCE_MOV_SANGRIA` (`ID_NFCE_MOVIMENTO` ASC),
   CONSTRAINT `fk_{2777AC82-DFA3-4F0E-9EE3-1F4AE5C53CF3}`
     FOREIGN KEY (`ID_NFCE_MOVIMENTO`)
-    REFERENCES `fenix`.`NFCE_MOVIMENTO` (`ID`)
+    REFERENCES `sollus`.`NFCE_MOVIMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena todas as sangrias que são feitas no caixa. Tem relacionamento direto com a tabela de movimento, já que uma sangria só pode ser feita se houver um \nmovimento aberto.'
@@ -4249,9 +4249,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_TIPO_PAGAMENTO`
+-- Table `sollus`.`NFCE_TIPO_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_TIPO_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_TIPO_PAGAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4264,9 +4264,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_FECHAMENTO`
+-- Table `sollus`.`NFCE_FECHAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_FECHAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_FECHAMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFCE_MOVIMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Movimento\",\"labelText\":\"Movimento\",\"tooltip\":\"Movimento\",\"hintText\":\"Importe o Movimento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_movimento\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_NFCE_TIPO_PAGAMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Pagamento\",\"labelText\":\"Tipo Pagamento\",\"tooltip\":\"Tipo Pagamento\",\"hintText\":\"Importe o Tipo Pagamento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_tipo_pagamento\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4276,12 +4276,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_FECHAMENTO` (
   INDEX `fk_NFCE_FECHAMENTO_NFCE_TIPO_PAGAMENTO1_idx` (`ID_NFCE_TIPO_PAGAMENTO` ASC),
   CONSTRAINT `fk_{7EE389FF-4DBB-42FE-8EC6-50DA93B8778E}`
     FOREIGN KEY (`ID_NFCE_MOVIMENTO`)
-    REFERENCES `fenix`.`NFCE_MOVIMENTO` (`ID`)
+    REFERENCES `sollus`.`NFCE_MOVIMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFCE_FECHAMENTO_NFCE_TIPO_PAGAMENTO1`
     FOREIGN KEY (`ID_NFCE_TIPO_PAGAMENTO`)
-    REFERENCES `fenix`.`NFCE_TIPO_PAGAMENTO` (`ID`)
+    REFERENCES `sollus`.`NFCE_TIPO_PAGAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4289,9 +4289,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFCE_SUPRIMENTO`
+-- Table `sollus`.`NFCE_SUPRIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_SUPRIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFCE_SUPRIMENTO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFCE_MOVIMENTO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Movimento\",\"labelText\":\"Movimento\",\"tooltip\":\"Movimento\",\"hintText\":\"Importe o Movimento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfce_movimento\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_SUPRIMENTO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data do Suprimento\",\"labelText\":\"Data do Suprimento\",\"tooltip\":\"Data do Suprimento\",\"hintText\":\"Informe a Data do Suprimento\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -4301,7 +4301,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFCE_SUPRIMENTO` (
   INDEX `FK_NFCE_MOV_SUPRIMENTO` (`ID_NFCE_MOVIMENTO` ASC),
   CONSTRAINT `fk_{2B61D0B4-58A2-49F5-A893-B0C551865C45}`
     FOREIGN KEY (`ID_NFCE_MOVIMENTO`)
-    REFERENCES `fenix`.`NFCE_MOVIMENTO` (`ID`)
+    REFERENCES `sollus`.`NFCE_MOVIMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena todos os suprimentos que são feitos no caixa. Tem relacionamento direto com a tabela de movimento, já que um suprimento só pode ser feito se houver um movimento aberto.'
@@ -4310,9 +4310,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFSE_LISTA_SERVICO`
+-- Table `sollus`.`NFSE_LISTA_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_LISTA_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFSE_LISTA_SERVICO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(5) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4323,9 +4323,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFSE_CABECALHO`
+-- Table `sollus`.`NFSE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFSE_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CLIENTE` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Cliente\",\"labelText\":\"Cliente\",\"tooltip\":\"Cliente\",\"hintText\":\"Importe o Cliente Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cliente\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_OS_ABERTURA` INT UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Ordem de Serviço\",\"labelText\":\"Ordem de Serviço\",\"tooltip\":\"Ordem de Serviço\",\"hintText\":\"Importe o Ordem de Serviço Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"os_abertura\",\"campoLookup\":\"numero\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -4348,12 +4348,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_CABECALHO` (
   INDEX `fk_NFSE_CABECALHO_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_NFSE_CABECALHO_OS_ABERTURA1`
     FOREIGN KEY (`ID_OS_ABERTURA`)
-    REFERENCES `fenix`.`OS_ABERTURA` (`ID`)
+    REFERENCES `sollus`.`OS_ABERTURA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_NFSE_CABECALHO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4361,9 +4361,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFSE_DETALHE`
+-- Table `sollus`.`NFSE_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFSE_DETALHE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFSE_LISTA_SERVICO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Lista Serviço\",\"labelText\":\"Lista Serviço\",\"tooltip\":\"Lista Serviço\",\"hintText\":\"Importe a Lista Serviço Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfse_lista_servico\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_NFSE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
@@ -4393,12 +4393,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_DETALHE` (
   INDEX `FK_LISTA_SER_DET` (`ID_NFSE_LISTA_SERVICO` ASC),
   CONSTRAINT `fk_{A4D96B77-6862-43DE-9D90-6CE7C219395A}`
     FOREIGN KEY (`ID_NFSE_CABECALHO`)
-    REFERENCES `fenix`.`NFSE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFSE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{250949FC-A04F-43DA-B79F-E473F538AA92}`
     FOREIGN KEY (`ID_NFSE_LISTA_SERVICO`)
-    REFERENCES `fenix`.`NFSE_LISTA_SERVICO` (`ID`)
+    REFERENCES `sollus`.`NFSE_LISTA_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4406,9 +4406,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`NFSE_INTERMEDIARIO`
+-- Table `sollus`.`NFSE_INTERMEDIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_INTERMEDIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`NFSE_INTERMEDIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFSE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-3\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -4418,7 +4418,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`NFSE_INTERMEDIARIO` (
   INDEX `FK_NFSE_INTERMEDIARIO` (`ID_NFSE_CABECALHO` ASC),
   CONSTRAINT `fk_{239E588F-852E-4B34-8B15-85253428F291}`
     FOREIGN KEY (`ID_NFSE_CABECALHO`)
-    REFERENCES `fenix`.`NFSE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFSE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4426,9 +4426,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_CABECALHO`
+-- Table `sollus`.`CTE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF_EMITENTE` INT UNSIGNED NULL COMMENT 'cUF - Código da UF do emitente do CT-e - Utilizar a Tabela do IBGE',
   `CODIGO_NUMERICO` VARCHAR(8) NULL COMMENT 'cCT - Código numérico que compõe a  Chave de Acesso. Número aleatório gerado pelo emitente  para cada CT-e, com o objetivo de evitar  acessos indevidos ao documento.',
@@ -4508,9 +4508,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_EMITENTE`
+-- Table `sollus`.`CTE_EMITENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_EMITENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_EMITENTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -4530,7 +4530,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_EMITENTE` (
   INDEX `FK_CTE_CAB_EMITENTE` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{8E0EA66C-EA89-4C1F-8CF4-778365C7AE3B}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4538,9 +4538,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_LOCAL_COLETA`
+-- Table `sollus`.`CTE_LOCAL_COLETA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_LOCAL_COLETA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_LOCAL_COLETA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -4557,7 +4557,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_LOCAL_COLETA` (
   INDEX `FK_CTE_CAB_COLETA` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{BB10E3A1-3572-4882-ADE2-B20451A6C58A}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4565,9 +4565,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_TOMADOR`
+-- Table `sollus`.`CTE_TOMADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_TOMADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_TOMADOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -4591,7 +4591,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_TOMADOR` (
   INDEX `FK_CTE_CAB_TOMADOR` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{FB54EDC5-F918-4617-A828-70539984BB46}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4599,9 +4599,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_PASSAGEM`
+-- Table `sollus`.`CTE_PASSAGEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_PASSAGEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_PASSAGEM` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `SIGLA_PASSAGEM` VARCHAR(15) NULL COMMENT 'xPass - Sigla ou código interno da  Filial/Porto/Estação/Aeroporto de  Passagem',
@@ -4611,7 +4611,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_PASSAGEM` (
   INDEX `FK_CTE_CAB_PASSAGEM` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{08191DFB-E061-4102-A065-34C8E0503CDA}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4619,9 +4619,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_REMETENTE`
+-- Table `sollus`.`CTE_REMETENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_REMETENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_REMETENTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -4645,7 +4645,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_REMETENTE` (
   INDEX `FK_CTE_CAB_REMETENTE` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{44C5AE01-875B-414A-B141-210DE88D5716}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4653,9 +4653,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_EXPEDIDOR`
+-- Table `sollus`.`CTE_EXPEDIDOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_EXPEDIDOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_EXPEDIDOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -4679,7 +4679,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_EXPEDIDOR` (
   INDEX `FK_CTE_CAB_EXPEDIDOR` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{B49F680D-20F5-4D89-945B-ED7A99C5EBFF}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4687,9 +4687,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RECEBEDOR`
+-- Table `sollus`.`CTE_RECEBEDOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RECEBEDOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RECEBEDOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -4713,7 +4713,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RECEBEDOR` (
   INDEX `FK_CTE_CAB_RECEBEDOR` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{73407675-AEAC-4EF4-80E5-3EF4401CF4D3}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4721,9 +4721,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_DESTINATARIO`
+-- Table `sollus`.`CTE_DESTINATARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DESTINATARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_DESTINATARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -4747,7 +4747,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DESTINATARIO` (
   INDEX `FK_CTE_CAB_DESTINATARIO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{BE7E7FC1-4115-40C2-AB9E-A9B2B1B52D98}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4755,9 +4755,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_LOCAL_ENTREGA`
+-- Table `sollus`.`CTE_LOCAL_ENTREGA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_LOCAL_ENTREGA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_LOCAL_ENTREGA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -4774,7 +4774,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_LOCAL_ENTREGA` (
   INDEX `FK_CTE_CAB_ENTREGA` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{754026B8-770A-45E5-B53C-385E92689A57}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4782,9 +4782,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_COMPONENTE`
+-- Table `sollus`.`CTE_COMPONENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_COMPONENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_COMPONENTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NOME` VARCHAR(15) NULL COMMENT 'xNome - Nome do componente - Exemplos: FRETE PESO, FRETE  VALOR, SEC/CAT, ADEME,  AGENDAMENTO, etc',
@@ -4793,7 +4793,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_COMPONENTE` (
   INDEX `FK_CTE_CAB_COMPONENTE` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{6A4B28DA-0868-47B1-B135-35B9AB1D1598}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4801,9 +4801,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_CARGA`
+-- Table `sollus`.`CTE_CARGA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_CARGA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_CARGA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_UNIDADE_MEDIDA` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código Unidade Medida\",\"labelText\":\"Código Unidade Medida\",\"tooltip\":\"Código Unidade Medida\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"00-M3\"},{\"dropDownButtonItem\":\"01-KG\"},{\"dropDownButtonItem\":\"02-TON\"},{\"dropDownButtonItem\":\"03-UNIDADE\"},{\"dropDownButtonItem\":\"04-LITROS\"},{\"dropDownButtonItem\":\"05-MMBTU\"}]}}',
@@ -4813,7 +4813,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_CARGA` (
   INDEX `FK_CTE_CAB_CARGA` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{9B8A42CB-E13A-475F-81FE-5E7C48ED6E2F}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4821,9 +4821,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_INFORMACAO_NF_OUTROS`
+-- Table `sollus`.`CTE_INFORMACAO_NF_OUTROS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_OUTROS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_INFORMACAO_NF_OUTROS` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NUMERO_ROMANEIO` VARCHAR(20) NULL COMMENT 'nRoma - Número do Romaneio da NF',
@@ -4851,7 +4851,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_OUTROS` (
   INDEX `FK_CTE_CAB_INFORMACAO_NF` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{9E6856B9-7569-4D16-BE24-71BF8F64DC1E}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena o cabeçalho das notas fiscais eletrônicas.'
@@ -4860,9 +4860,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_INFORMACAO_NF_TRANSPORTE`
+-- Table `sollus`.`CTE_INFORMACAO_NF_TRANSPORTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_TRANSPORTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_INFORMACAO_NF_TRANSPORTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_INFORMACAO_NF` INT UNSIGNED NOT NULL,
   `TIPO_UNIDADE_TRANSPORTE` CHAR(1) NULL COMMENT 'tpUnidTransp - 1 - Rodoviário Tração  2 - Rodoviário Reboque  3 - Navio  4 - Balsa  5 - Aeronave  6 - Vagão  7 - Outros',
@@ -4871,7 +4871,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_TRANSPORTE` (
   INDEX `FK_CTE_INF_NF_TRANSP` (`ID_CTE_INFORMACAO_NF` ASC),
   CONSTRAINT `fk_{A8CC2C9B-5112-4914-AA89-D8E0D2B6E646}`
     FOREIGN KEY (`ID_CTE_INFORMACAO_NF`)
-    REFERENCES `fenix`.`CTE_INFORMACAO_NF_OUTROS` (`ID`)
+    REFERENCES `sollus`.`CTE_INFORMACAO_NF_OUTROS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4879,9 +4879,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_INF_NF_TRANSPORTE_LACRE`
+-- Table `sollus`.`CTE_INF_NF_TRANSPORTE_LACRE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INF_NF_TRANSPORTE_LACRE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_INF_NF_TRANSPORTE_LACRE` (
   `ID` INT UNSIGNED NOT NULL,
   `ID_CTE_INFORMACAO_NF_TRANSPORTE` INT UNSIGNED NOT NULL,
   `NUMERO` VARCHAR(20) NULL COMMENT 'nLacre',
@@ -4889,7 +4889,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INF_NF_TRANSPORTE_LACRE` (
   INDEX `FK_CTE_INF_NF_TRANS_LACRE` (`ID_CTE_INFORMACAO_NF_TRANSPORTE` ASC),
   CONSTRAINT `fk_{95A36096-9355-464E-A5DB-22B8F81E9908}`
     FOREIGN KEY (`ID_CTE_INFORMACAO_NF_TRANSPORTE`)
-    REFERENCES `fenix`.`CTE_INFORMACAO_NF_TRANSPORTE` (`ID`)
+    REFERENCES `sollus`.`CTE_INFORMACAO_NF_TRANSPORTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4897,9 +4897,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_INFORMACAO_NF_CARGA`
+-- Table `sollus`.`CTE_INFORMACAO_NF_CARGA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_CARGA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_INFORMACAO_NF_CARGA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_INFORMACAO_NF` INT UNSIGNED NOT NULL,
   `TIPO_UNIDADE_CARGA` CHAR(1) NULL COMMENT 'tpUnidCarga - 1 - Container  2 - ULD  3 - Pallet  4 - Outros',
@@ -4908,7 +4908,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INFORMACAO_NF_CARGA` (
   INDEX `FK_CTE_INF_NF_CARGA` (`ID_CTE_INFORMACAO_NF` ASC),
   CONSTRAINT `fk_{5DB05F41-B797-49A1-B003-D7B4DF8BF69C}`
     FOREIGN KEY (`ID_CTE_INFORMACAO_NF`)
-    REFERENCES `fenix`.`CTE_INFORMACAO_NF_OUTROS` (`ID`)
+    REFERENCES `sollus`.`CTE_INFORMACAO_NF_OUTROS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4916,9 +4916,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_INF_NF_CARGA_LACRE`
+-- Table `sollus`.`CTE_INF_NF_CARGA_LACRE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INF_NF_CARGA_LACRE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_INF_NF_CARGA_LACRE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_INFORMACAO_NF_CARGA` INT UNSIGNED NOT NULL,
   `NUMERO` VARCHAR(20) NULL COMMENT 'nLacre',
@@ -4927,7 +4927,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_INF_NF_CARGA_LACRE` (
   INDEX `FK_CTE_INF_CARGA_LACRE` (`ID_CTE_INFORMACAO_NF_CARGA` ASC),
   CONSTRAINT `fk_{54ED8F7F-282E-4133-B2EF-771071F016AC}`
     FOREIGN KEY (`ID_CTE_INFORMACAO_NF_CARGA`)
-    REFERENCES `fenix`.`CTE_INFORMACAO_NF_CARGA` (`ID`)
+    REFERENCES `sollus`.`CTE_INFORMACAO_NF_CARGA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4935,9 +4935,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_DOCUMENTO_ANTERIOR`
+-- Table `sollus`.`CTE_DOCUMENTO_ANTERIOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DOCUMENTO_ANTERIOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_DOCUMENTO_ANTERIOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -4949,7 +4949,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DOCUMENTO_ANTERIOR` (
   INDEX `FK_CTE_CAB_DOC_ANTERIOR` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{A53759A7-D844-4D7F-A5EF-B72EACB5ED21}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4957,9 +4957,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_DOCUMENTO_ANTERIOR_ID`
+-- Table `sollus`.`CTE_DOCUMENTO_ANTERIOR_ID`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DOCUMENTO_ANTERIOR_ID` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_DOCUMENTO_ANTERIOR_ID` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_DOCUMENTO_ANTERIOR` INT UNSIGNED NOT NULL,
   `TIPO` CHAR(2) NULL COMMENT 'tpDoc - Preencher com:  00-CTRC;  01-CTAC;  02-ACT;  03 - NF Modelo 7;  04 - NF Modelo 27;  05-Conhecimento Aéreo Nacional;  06-CTMC;  07-ATRE;  08-DTA (Despacho de Transito  Aduaneiro);  09-Conhecimento Aéreo Internacional;  10  Conhecimento - Carta de Porte  Internacional;  11  Conhecimento Avulso;  12-TIF (Transporte Internacional  Ferroviário);  99 - outros',
@@ -4972,7 +4972,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DOCUMENTO_ANTERIOR_ID` (
   INDEX `FK_CTE_DOC_ANTERIOR_ID` (`ID_CTE_DOCUMENTO_ANTERIOR` ASC),
   CONSTRAINT `fk_{9A75406F-0C01-483F-8130-100DDC289E23}`
     FOREIGN KEY (`ID_CTE_DOCUMENTO_ANTERIOR`)
-    REFERENCES `fenix`.`CTE_DOCUMENTO_ANTERIOR` (`ID`)
+    REFERENCES `sollus`.`CTE_DOCUMENTO_ANTERIOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -4980,9 +4980,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_SEGURO`
+-- Table `sollus`.`CTE_SEGURO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_SEGURO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_SEGURO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `RESPONSAVEL` CHAR(1) NULL COMMENT 'respSeg - Preencher com:  0- Remetente;  1- Expedidor;  2 - Recebedor;3 - Destinatário;  4 - Emitente do CT-e;  5 - Tomador de Serviço.  Dados obrigatórios apenas no modal  Rodoviário, depois da lei 11.442/07. Para  os demais modais esta informação é  opcional',
@@ -4994,7 +4994,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_SEGURO` (
   INDEX `FK_CTE_CAB_SEGURO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{C775F390-C782-4417-A741-5F64688574C5}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5002,9 +5002,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_PERIGOSO`
+-- Table `sollus`.`CTE_PERIGOSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_PERIGOSO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_PERIGOSO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NUMERO_ONU` VARCHAR(4) NULL COMMENT 'nONU',
@@ -5018,7 +5018,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_PERIGOSO` (
   INDEX `FK_CTE_CAB_PERIGO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{B945A292-6A0E-4DF9-83F2-A595019696D1}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5026,9 +5026,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_VEICULO_NOVO`
+-- Table `sollus`.`CTE_VEICULO_NOVO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_VEICULO_NOVO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_VEICULO_NOVO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `CHASSI` VARCHAR(17) NULL COMMENT 'chassi - VIN (código-identificaçãoveículo)',
@@ -5041,7 +5041,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_VEICULO_NOVO` (
   INDEX `FK_CTE_CAB_VEICULO_NOVO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{7276AE5B-E77E-49F1-B481-FA55D8680C6D}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Grupo do detalhamento de Veículos novos. Informar apenas quando se tratar de veículos novos'
@@ -5050,9 +5050,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_FATURA`
+-- Table `sollus`.`CTE_FATURA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FATURA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_FATURA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NUMERO` VARCHAR(60) NULL COMMENT 'nFat - Número da Fatura',
@@ -5063,7 +5063,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FATURA` (
   INDEX `FK_CTE_CAB_FATURA` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{6438723E-81DB-4412-ABEC-40020AAE5DF6}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Grupo da Fatura'
@@ -5072,9 +5072,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_DUPLICATA`
+-- Table `sollus`.`CTE_DUPLICATA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DUPLICATA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_DUPLICATA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NUMERO` VARCHAR(60) NULL COMMENT 'nDup - Número da Duplicata',
@@ -5084,7 +5084,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DUPLICATA` (
   INDEX `FK_CTE_CAB_DUPLICATA` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{59427324-F43F-494C-B707-2C3544786351}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Informações das duplicatas.'
@@ -5093,9 +5093,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO`
+-- Table `sollus`.`CTE_RODOVIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `RNTRC` VARCHAR(8) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"RNTRC\",\"labelText\":\"RNTRC\",\"tooltip\":\"RNTRC\",\"hintText\":\"Informe o RNTRC\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -5106,7 +5106,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO` (
   INDEX `FK_CTE_CAB_RODOVIARIO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{F5250044-0CC7-4629-AFFF-D28B8FDA5EA1}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5114,9 +5114,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO_OCC`
+-- Table `sollus`.`CTE_RODOVIARIO_OCC`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_OCC` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO_OCC` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_RODOVIARIO` INT UNSIGNED NOT NULL,
   `SERIE` CHAR(3) NULL COMMENT 'serie',
@@ -5131,7 +5131,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_OCC` (
   INDEX `FK_CTE_ROD_OCC` (`ID_CTE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{DD4F9E16-BFDD-4934-A6A0-AFAD56955E2A}`
     FOREIGN KEY (`ID_CTE_RODOVIARIO`)
-    REFERENCES `fenix`.`CTE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5139,9 +5139,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO_PEDAGIO`
+-- Table `sollus`.`CTE_RODOVIARIO_PEDAGIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_PEDAGIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO_PEDAGIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_RODOVIARIO` INT UNSIGNED NOT NULL,
   `CNPJ_FORNECEDOR` VARCHAR(14) NULL COMMENT 'CNPJForn',
@@ -5152,7 +5152,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_PEDAGIO` (
   INDEX `FK_CTE_ROD_PEDAGIO` (`ID_CTE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{1DD17407-7E79-4DC1-B8EC-40D707A49A50}`
     FOREIGN KEY (`ID_CTE_RODOVIARIO`)
-    REFERENCES `fenix`.`CTE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5160,9 +5160,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO_VEICULO`
+-- Table `sollus`.`CTE_RODOVIARIO_VEICULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_VEICULO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO_VEICULO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_RODOVIARIO` INT UNSIGNED NOT NULL,
   `CODIGO_INTERNO` VARCHAR(10) NULL COMMENT 'cInt',
@@ -5187,7 +5187,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_VEICULO` (
   INDEX `FK_CTE_ROD_VEICULO` (`ID_CTE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{8F53C9C0-2DBD-4833-9A6F-65464DB09C72}`
     FOREIGN KEY (`ID_CTE_RODOVIARIO`)
-    REFERENCES `fenix`.`CTE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5195,9 +5195,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO_LACRE`
+-- Table `sollus`.`CTE_RODOVIARIO_LACRE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_LACRE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO_LACRE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_RODOVIARIO` INT UNSIGNED NOT NULL,
   `NUMERO` VARCHAR(20) NULL,
@@ -5205,7 +5205,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_LACRE` (
   INDEX `FK_CTE_ROD_LACRE` (`ID_CTE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{004EE9FA-6941-4146-834D-227A24BAD2A6}`
     FOREIGN KEY (`ID_CTE_RODOVIARIO`)
-    REFERENCES `fenix`.`CTE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5213,9 +5213,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_RODOVIARIO_MOTORISTA`
+-- Table `sollus`.`CTE_RODOVIARIO_MOTORISTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_MOTORISTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_RODOVIARIO_MOTORISTA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_RODOVIARIO` INT UNSIGNED NOT NULL,
   `NOME` VARCHAR(60) NULL,
@@ -5224,7 +5224,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_RODOVIARIO_MOTORISTA` (
   INDEX `FK_CTE_ROD_MOTORISTA` (`ID_CTE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{C8EBA555-FAA4-4B1E-BBD6-6544E2BC65B6}`
     FOREIGN KEY (`ID_CTE_RODOVIARIO`)
-    REFERENCES `fenix`.`CTE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5232,9 +5232,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_AEREO`
+-- Table `sollus`.`CTE_AEREO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AEREO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_AEREO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `NUMERO_MINUTA` INT UNSIGNED NULL COMMENT 'nMinu',
@@ -5252,7 +5252,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AEREO` (
   INDEX `FK_CTE_CAB_AEREO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{582ED563-2B8F-4348-9777-94FA1657E73D}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5260,9 +5260,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_AQUAVIARIO`
+-- Table `sollus`.`CTE_AQUAVIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AQUAVIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_AQUAVIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `VALOR_PRESTACAO` DECIMAL(18,6) NULL COMMENT 'vPrest',
@@ -5274,7 +5274,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AQUAVIARIO` (
   INDEX `FK_CTE_CAB_AQUAVIARIO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{EDB7A037-01B1-41C0-935C-32998709A4CA}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5282,9 +5282,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_AQUAVIARIO_BALSA`
+-- Table `sollus`.`CTE_AQUAVIARIO_BALSA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AQUAVIARIO_BALSA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_AQUAVIARIO_BALSA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_AQUAVIARIO` INT UNSIGNED NOT NULL,
   `ID_BALSA` VARCHAR(60) NULL COMMENT 'xBalsa',
@@ -5299,7 +5299,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_AQUAVIARIO_BALSA` (
   INDEX `FK_CTE_AQUA_BALSA` (`ID_CTE_AQUAVIARIO` ASC),
   CONSTRAINT `fk_{C55A2FC7-979F-4114-A228-699EFFDFF750}`
     FOREIGN KEY (`ID_CTE_AQUAVIARIO`)
-    REFERENCES `fenix`.`CTE_AQUAVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_AQUAVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5307,9 +5307,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_FERROVIARIO`
+-- Table `sollus`.`CTE_FERROVIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_FERROVIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `TIPO_TRAFEGO` CHAR(1) NULL COMMENT 'tpTraf - Preencher com:  0-Próprio;  1-Mútuo;  2-Rodoferroviário;  3-Rodoviário.',
@@ -5322,7 +5322,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO` (
   INDEX `FK_CTE_CAB_FERROVIARIO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{9633509A-D7F9-476B-B37E-8210A6404789}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5330,9 +5330,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_FERROVIARIO_FERROVIA`
+-- Table `sollus`.`CTE_FERROVIARIO_FERROVIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO_FERROVIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_FERROVIARIO_FERROVIA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_FERROVIARIO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -5351,7 +5351,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO_FERROVIA` (
   INDEX `FK_CTE_FERRO_VIA` (`ID_CTE_FERROVIARIO` ASC),
   CONSTRAINT `fk_{AB21B268-A4C7-48C0-AB57-87A4561FC4F2}`
     FOREIGN KEY (`ID_CTE_FERROVIARIO`)
-    REFERENCES `fenix`.`CTE_FERROVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_FERROVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5359,9 +5359,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_FERROVIARIO_VAGAO`
+-- Table `sollus`.`CTE_FERROVIARIO_VAGAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO_VAGAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_FERROVIARIO_VAGAO` (
   `ID` INT UNSIGNED NOT NULL,
   `ID_CTE_FERROVIARIO` INT UNSIGNED NOT NULL,
   `NUMERO_VAGAO` INT UNSIGNED NULL COMMENT 'nVag',
@@ -5373,7 +5373,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_FERROVIARIO_VAGAO` (
   INDEX `FK_CTE_FERRO_VAGAO` (`ID_CTE_FERROVIARIO` ASC),
   CONSTRAINT `fk_{3913F060-202C-40F7-8696-5C45BD7ED67A}`
     FOREIGN KEY (`ID_CTE_FERROVIARIO`)
-    REFERENCES `fenix`.`CTE_FERROVIARIO` (`ID`)
+    REFERENCES `sollus`.`CTE_FERROVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5381,9 +5381,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_DUTOVIARIO`
+-- Table `sollus`.`CTE_DUTOVIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DUTOVIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_DUTOVIARIO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `VALOR_TARIFA` DECIMAL(18,6) NULL COMMENT 'vTar',
@@ -5393,7 +5393,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_DUTOVIARIO` (
   INDEX `FK_CTE_CAB_DUTO` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{9FEE0E93-DDB5-4B3F-ADA6-8301E12F3CD9}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5401,9 +5401,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CTE_MULTIMODAL`
+-- Table `sollus`.`CTE_MULTIMODAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CTE_MULTIMODAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CTE_MULTIMODAL` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CTE_CABECALHO` INT UNSIGNED NOT NULL,
   `COTM` VARCHAR(20) NULL,
@@ -5412,7 +5412,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CTE_MULTIMODAL` (
   INDEX `FK_CTE_CAB_MULTI` (`ID_CTE_CABECALHO` ASC),
   CONSTRAINT `fk_{D4D31624-133A-4E99-9505-EFF8AA9EE66C}`
     FOREIGN KEY (`ID_CTE_CABECALHO`)
-    REFERENCES `fenix`.`CTE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CTE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5420,9 +5420,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OPERADORA_CARTAO`
+-- Table `sollus`.`OPERADORA_CARTAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OPERADORA_CARTAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OPERADORA_CARTAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL,
   `BANDEIRA` VARCHAR(30) NULL,
@@ -5438,7 +5438,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`OPERADORA_CARTAO` (
   INDEX `fk_OPERADORA_CARTAO_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_OPERADORA_CARTAO_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela das operadoras de cartão.'
@@ -5447,9 +5447,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_RELACIONAMENTO`
+-- Table `sollus`.`TIPO_RELACIONAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_RELACIONAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_RELACIONAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT 'Exemplos: 100=Conjuge | 101=Filho | 102=Pai',
   `NOME` VARCHAR(100) NULL,
@@ -5461,9 +5461,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COLABORADOR_RELACIONAMENTO`
+-- Table `sollus`.`COLABORADOR_RELACIONAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR_RELACIONAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COLABORADOR_RELACIONAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_TIPO_RELACIONAMENTO` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -5486,12 +5486,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COLABORADOR_RELACIONAMENTO` (
   INDEX `fk_COLABORADOR_RELACIONAMENTO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{195AEAA0-25CF-41CB-B13F-5AAA18580AC8}`
     FOREIGN KEY (`ID_TIPO_RELACIONAMENTO`)
-    REFERENCES `fenix`.`TIPO_RELACIONAMENTO` (`ID`)
+    REFERENCES `sollus`.`TIPO_RELACIONAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_COLABORADOR_RELACIONAMENTO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela com os relacionamentos dos colaboradores.'
@@ -5500,9 +5500,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FORNECEDOR_PRODUTO`
+-- Table `sollus`.`FORNECEDOR_PRODUTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FORNECEDOR_PRODUTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FORNECEDOR_PRODUTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO` INT NOT NULL,
   `ID_FORNECEDOR` INT NOT NULL,
@@ -5517,12 +5517,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FORNECEDOR_PRODUTO` (
   INDEX `fk_FORNECEDOR_PRODUTO_FORNECEDOR1_idx` (`ID_FORNECEDOR` ASC),
   CONSTRAINT `fk_FORNECEDOR_PRODUTO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FORNECEDOR_PRODUTO_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Vinculo entre fornecedor e produto'
@@ -5531,9 +5531,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AIDF_AIMDF`
+-- Table `sollus`.`AIDF_AIMDF`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AIDF_AIMDF` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AIDF_AIMDF` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NUMERO` INT(11) UNSIGNED NULL,
   `DATA_VALIDADE` DATE NULL,
@@ -5547,9 +5547,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_PROMOCAO`
+-- Table `sollus`.`PRODUTO_PROMOCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_PROMOCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_PROMOCAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"PRODUTO\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Id Produto\",\"labelText\":\"Id Produto\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Id Produto\",\"hintText\":\"Conteúdo para o campo Id Produto\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `DATA_INICIO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Data Inicio\",\"labelText\":\"Data Inicio\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Data Inicio\",\"hintText\":\"Conteúdo para o campo Data Inicio\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"itens\":[],\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"},\"comentario\":\"\"}',
@@ -5561,7 +5561,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_PROMOCAO` (
   INDEX `fk_PRODUTO_PROMOCAO_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_PRODUTO_PROMOCAO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela de promoções. '
@@ -5570,9 +5570,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_FICHA_TECNICA`
+-- Table `sollus`.`PRODUTO_FICHA_TECNICA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_FICHA_TECNICA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_FICHA_TECNICA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"PRODUTO\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Id Produto\",\"labelText\":\"Id Produto\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Id Produto\",\"hintText\":\"Conteúdo para o campo Id Produto\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Descricao\",\"labelText\":\"Descricao\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Descricao\",\"hintText\":\"Conteúdo para o campo Descricao\",\"linhaBootstrap\":3,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
@@ -5583,7 +5583,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_FICHA_TECNICA` (
   INDEX `fk_PRODUTO_FICHA_TECNICA_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_PRODUTO_FICHA_TECNICA_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela de ficha técnica para produtos produzidos pelo proprio estabelecimento.'
@@ -5592,9 +5592,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_ITEM_SPED`
+-- Table `sollus`.`TIPO_ITEM_SPED`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_ITEM_SPED` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_ITEM_SPED` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `DESCRICAO` VARCHAR(50) NULL,
@@ -5605,9 +5605,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_CODIGO_ADICIONAL`
+-- Table `sollus`.`PRODUTO_CODIGO_ADICIONAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_CODIGO_ADICIONAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_CODIGO_ADICIONAL` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"nome\",\"tabelaLookup\":\"PRODUTO\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Id Produto\",\"labelText\":\"Id Produto\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Id Produto\",\"hintText\":\"Conteúdo para o campo Id Produto\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `CODIGO` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Codigo\",\"labelText\":\"Codigo\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Codigo\",\"hintText\":\"Conteúdo para o campo Codigo\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
@@ -5615,7 +5615,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_CODIGO_ADICIONAL` (
   INDEX `fk_PRODUTO_CODIGO_ADICIONAL_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_PRODUTO_CODIGO_ADICIONAL_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Códigos adicionais para produtos.'
@@ -5624,9 +5624,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ALMOXARIFADO`
+-- Table `sollus`.`ALMOXARIFADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ALMOXARIFADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ALMOXARIFADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL,
   PRIMARY KEY (`ID`))
@@ -5636,9 +5636,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`OPERADORA_PLANO_SAUDE`
+-- Table `sollus`.`OPERADORA_PLANO_SAUDE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`OPERADORA_PLANO_SAUDE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`OPERADORA_PLANO_SAUDE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `REGISTRO_ANS` VARCHAR(20) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -5650,9 +5650,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`IRRF`
+-- Table `sollus`.`IRRF`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`IRRF` (
+CREATE TABLE IF NOT EXISTS `sollus`.`IRRF` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COMPETENCIA` VARCHAR(7) NULL COMMENT 'Exemplo: 10/2011',
   `DESCONTO_POR_DEPENDENTE` DECIMAL(18,6) NULL,
@@ -5664,9 +5664,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`IRRF_DETALHE`
+-- Table `sollus`.`IRRF_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`IRRF_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`IRRF_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_IRRF` INT(11) UNSIGNED NOT NULL,
   `FAIXA` INT(11) UNSIGNED NULL,
@@ -5678,7 +5678,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`IRRF_DETALHE` (
   INDEX `FK_IRRF_DETALHE` (`ID_IRRF` ASC),
   CONSTRAINT `fk_{5C43C789-8DD4-40E6-BEDC-2EF8F4646E21}`
     FOREIGN KEY (`ID_IRRF`)
-    REFERENCES `fenix`.`IRRF` (`ID`)
+    REFERENCES `sollus`.`IRRF` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela IRRF detalhes'
@@ -5687,9 +5687,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`INSS`
+-- Table `sollus`.`INSS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`INSS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`INSS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COMPETENCIA` VARCHAR(7) NULL COMMENT 'Exemplo: 12/2011',
   PRIMARY KEY (`ID`))
@@ -5699,9 +5699,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`INSS_DETALHE`
+-- Table `sollus`.`INSS_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`INSS_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`INSS_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_INSS` INT(11) UNSIGNED NOT NULL,
   `FAIXA` INT(11) UNSIGNED NULL,
@@ -5712,7 +5712,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`INSS_DETALHE` (
   INDEX `FK_INSS_DETALHE` (`ID_INSS` ASC),
   CONSTRAINT `fk_{460758BF-536F-4B1D-B83C-D7D676CCA7FD}`
     FOREIGN KEY (`ID_INSS`)
-    REFERENCES `fenix`.`INSS` (`ID`)
+    REFERENCES `sollus`.`INSS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5720,9 +5720,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SALARIO_FAMILIA`
+-- Table `sollus`.`SALARIO_FAMILIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SALARIO_FAMILIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SALARIO_FAMILIA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_INSS` INT(11) UNSIGNED NOT NULL,
   `FAIXA` INT(11) UNSIGNED NULL,
@@ -5733,7 +5733,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`SALARIO_FAMILIA` (
   INDEX `FK_INSS_SALARIO_FAMILIA` (`ID_INSS` ASC),
   CONSTRAINT `fk_{460A3E57-743B-45D3-BC2F-89C6779EB22A}`
     FOREIGN KEY (`ID_INSS`)
-    REFERENCES `fenix`.`INSS` (`ID`)
+    REFERENCES `sollus`.`INSS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5741,9 +5741,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SALARIO_MINIMO`
+-- Table `sollus`.`SALARIO_MINIMO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SALARIO_MINIMO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SALARIO_MINIMO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `VIGENCIA` DATE NULL,
   `VALOR_MENSAL` DECIMAL(18,6) NULL,
@@ -5758,9 +5758,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRIB_SIND_PATRONAL_CAB`
+-- Table `sollus`.`CONTRIB_SIND_PATRONAL_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRIB_SIND_PATRONAL_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRIB_SIND_PATRONAL_CAB` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_SINDICATO` INT(11) UNSIGNED NOT NULL,
   `VIGENCIA_ANO` CHAR(4) NULL COMMENT 'Exemplo: 2011',
@@ -5768,7 +5768,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRIB_SIND_PATRONAL_CAB` (
   INDEX `FK_SIND_PATRO_CONTR` (`ID_SINDICATO` ASC),
   CONSTRAINT `fk_{3B251EB4-F260-4A83-8C67-BFCF190AEC38}`
     FOREIGN KEY (`ID_SINDICATO`)
-    REFERENCES `fenix`.`SINDICATO` (`ID`)
+    REFERENCES `sollus`.`SINDICATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela com as contribuições para os sindicados patronais.'
@@ -5777,9 +5777,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRIB_SIND_PATRONAL_DET`
+-- Table `sollus`.`CONTRIB_SIND_PATRONAL_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRIB_SIND_PATRONAL_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRIB_SIND_PATRONAL_DET` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTRIB_SIND_PATRONAL_CAB` INT(11) UNSIGNED NOT NULL,
   `DE` DECIMAL(18,6) NULL,
@@ -5790,7 +5790,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRIB_SIND_PATRONAL_DET` (
   INDEX `FK_CONTR_SIND_PATRONAL` (`ID_CONTRIB_SIND_PATRONAL_CAB` ASC),
   CONSTRAINT `fk_{107BD546-819B-41B2-B009-646739BD5837}`
     FOREIGN KEY (`ID_CONTRIB_SIND_PATRONAL_CAB`)
-    REFERENCES `fenix`.`CONTRIB_SIND_PATRONAL_CAB` (`ID`)
+    REFERENCES `sollus`.`CONTRIB_SIND_PATRONAL_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -5798,9 +5798,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_TRANSPORTE`
+-- Table `sollus`.`EMPRESA_TRANSPORTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_TRANSPORTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_TRANSPORTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF` CHAR(2) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -5812,9 +5812,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_TRANSPORTE_ITINERARIO`
+-- Table `sollus`.`EMPRESA_TRANSPORTE_ITINERARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_TRANSPORTE_ITINERARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_TRANSPORTE_ITINERARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA_TRANSPORTE` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(100) NULL COMMENT 'Nome itinerário',
@@ -5824,7 +5824,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_TRANSPORTE_ITINERARIO` (
   INDEX `FK_EMP_TRANS_ITINER` (`ID_EMPRESA_TRANSPORTE` ASC),
   CONSTRAINT `fk_{8FE3D483-E7D9-4361-B2E8-464F7D802A73}`
     FOREIGN KEY (`ID_EMPRESA_TRANSPORTE`)
-    REFERENCES `fenix`.`EMPRESA_TRANSPORTE` (`ID`)
+    REFERENCES `sollus`.`EMPRESA_TRANSPORTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Itinerários das empresas de transporte. para controle de vale transporte'
@@ -5833,9 +5833,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_CAIXA`
+-- Table `sollus`.`PDV_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_CAIXA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(30) NULL,
   `DATA_CADASTRO` DATE NULL,
@@ -5846,9 +5846,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_IMPRESSORA`
+-- Table `sollus`.`ECF_IMPRESSORA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_IMPRESSORA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_IMPRESSORA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NUMERO` INT(11) UNSIGNED NULL,
   `CODIGO` VARCHAR(10) NULL,
@@ -5878,9 +5878,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_TIPO_PAGAMENTO`
+-- Table `sollus`.`PDV_TIPO_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_TIPO_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_TIPO_PAGAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL,
   `DESCRICAO` VARCHAR(20) NULL,
@@ -5896,9 +5896,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_MOVIMENTO`
+-- Table `sollus`.`PDV_MOVIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_MOVIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_MOVIMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL COMMENT 'Id do Movimento gerado no terminal de caixa',
@@ -5931,9 +5931,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_VENDA_CABECALHO`
+-- Table `sollus`.`PDV_VENDA_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_VENDA_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_VENDA_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -5982,9 +5982,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_VENDA_DETALHE`
+-- Table `sollus`.`PDV_VENDA_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_VENDA_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_VENDA_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6031,9 +6031,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_TOTAL_TIPO_PAGAMENTO`
+-- Table `sollus`.`PDV_TOTAL_TIPO_PAGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_TOTAL_TIPO_PAGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_TOTAL_TIPO_PAGAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6060,9 +6060,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_CONFIGURACAO`
+-- Table `sollus`.`PDV_CONFIGURACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_CONFIGURACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_CONFIGURACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6108,9 +6108,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_DOCUMENTOS_EMITIDOS`
+-- Table `sollus`.`ECF_DOCUMENTOS_EMITIDOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_DOCUMENTOS_EMITIDOS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_DOCUMENTOS_EMITIDOS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6129,9 +6129,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_FECHAMENTO`
+-- Table `sollus`.`PDV_FECHAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_FECHAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_FECHAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6147,9 +6147,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_RECEBIMENTO_NAO_FISCAL`
+-- Table `sollus`.`ECF_RECEBIMENTO_NAO_FISCAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_RECEBIMENTO_NAO_FISCAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_RECEBIMENTO_NAO_FISCAL` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6167,9 +6167,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_SUPRIMENTO`
+-- Table `sollus`.`PDV_SUPRIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_SUPRIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_SUPRIMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6186,9 +6186,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_R02`
+-- Table `sollus`.`ECF_R02`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_R02` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_R02` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6215,9 +6215,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_R03`
+-- Table `sollus`.`ECF_R03`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_R03` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_R03` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6237,9 +6237,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_R06`
+-- Table `sollus`.`ECF_R06`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_R06` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_R06` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6265,9 +6265,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_R07`
+-- Table `sollus`.`ECF_R07`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_R07` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_R07` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(8) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -6288,9 +6288,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SEFIP_CODIGO_RECOLHIMENTO`
+-- Table `sollus`.`SEFIP_CODIGO_RECOLHIMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SEFIP_CODIGO_RECOLHIMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SEFIP_CODIGO_RECOLHIMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL,
   `DESCRICAO` TEXT NULL,
@@ -6301,9 +6301,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SEFIP_CATEGORIA_TRABALHO`
+-- Table `sollus`.`SEFIP_CATEGORIA_TRABALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SEFIP_CATEGORIA_TRABALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SEFIP_CATEGORIA_TRABALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL,
   `NOME` TEXT NULL,
@@ -6313,9 +6313,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SEFIP_CODIGO_MOVIMENTACAO`
+-- Table `sollus`.`SEFIP_CODIGO_MOVIMENTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SEFIP_CODIGO_MOVIMENTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SEFIP_CODIGO_MOVIMENTACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `DESCRICAO` TEXT NULL,
@@ -6326,9 +6326,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FPAS`
+-- Table `sollus`.`FPAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FPAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FPAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL,
   `CNAE` VARCHAR(14) NULL,
@@ -6343,9 +6343,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CODIGO_GPS`
+-- Table `sollus`.`CODIGO_GPS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CODIGO_GPS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CODIGO_GPS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL,
   `DESCRICAO` VARCHAR(250) NULL,
@@ -6355,9 +6355,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FAP`
+-- Table `sollus`.`FAP`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FAP` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FAP` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `FAP` DECIMAL(18,6) NULL,
   `DATA_INICIAL` DATE NULL,
@@ -6369,9 +6369,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_RECEITA_DACON`
+-- Table `sollus`.`TIPO_RECEITA_DACON`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_RECEITA_DACON` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_RECEITA_DACON` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL,
   `DESCRICAO` VARCHAR(50) NULL,
@@ -6383,9 +6383,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_435`
+-- Table `sollus`.`EFD_TABELA_435`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_435` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_435` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -6396,9 +6396,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`COD_APURACAO_RECEITA_DACON`
+-- Table `sollus`.`COD_APURACAO_RECEITA_DACON`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`COD_APURACAO_RECEITA_DACON` (
+CREATE TABLE IF NOT EXISTS `sollus`.`COD_APURACAO_RECEITA_DACON` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CODIGO_APURACAO_EFD` INT(11) UNSIGNED NOT NULL,
   `ID_TIPO_RECEITA_DACON` INT(11) UNSIGNED NOT NULL,
@@ -6407,12 +6407,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`COD_APURACAO_RECEITA_DACON` (
   INDEX `FK_COD_APURA_DACON` (`ID_CODIGO_APURACAO_EFD` ASC),
   CONSTRAINT `fk_{871BBBAD-37B7-4523-9FF5-7DDC7049997C}`
     FOREIGN KEY (`ID_TIPO_RECEITA_DACON`)
-    REFERENCES `fenix`.`TIPO_RECEITA_DACON` (`ID`)
+    REFERENCES `sollus`.`TIPO_RECEITA_DACON` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{A797B44B-92E2-4EDF-A831-52EE511664F6}`
     FOREIGN KEY (`ID_CODIGO_APURACAO_EFD`)
-    REFERENCES `fenix`.`EFD_TABELA_435` (`ID`)
+    REFERENCES `sollus`.`EFD_TABELA_435` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela visa relacionar o CODIGO DE APURACAO PIS COFINS com o respectivo tipo de Receita da DAcon'
@@ -6421,9 +6421,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_RECEITA_DIPI`
+-- Table `sollus`.`TIPO_RECEITA_DIPI`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_RECEITA_DIPI` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_RECEITA_DIPI` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL,
   PRIMARY KEY (`ID`))
@@ -6432,9 +6432,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_FLUXO_CAIXA_PERIODO`
+-- Table `sollus`.`ORCAMENTO_FLUXO_CAIXA_PERIODO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA_PERIODO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_FLUXO_CAIXA_PERIODO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BANCO_CONTA_CAIXA` INT NOT NULL,
   `PERIODO` CHAR(2) NULL COMMENT '01=Diário | 02=Semanal | 03=Mensal | 04=Bimestral | 05=Trimestral | 06=Semestral | 07=Anual',
@@ -6443,7 +6443,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA_PERIODO` (
   INDEX `fk_ORCAMENTO_FLUXO_CAIXA_PERIODO_BANCO_CONTA_CAIXA1_idx` (`ID_BANCO_CONTA_CAIXA` ASC),
   CONSTRAINT `fk_ORCAMENTO_FLUXO_CAIXA_PERIODO_BANCO_CONTA_CAIXA1`
     FOREIGN KEY (`ID_BANCO_CONTA_CAIXA`)
-    REFERENCES `fenix`.`BANCO_CONTA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`BANCO_CONTA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os possíveis períodos para gerar os fluxos de caixa.\n\nExistem sete períodos padrões que já serão armazenados para todas as empresas cadastradas:\n01=Diário | 02=Semanal | 03=Mensal | 04=Bimestral | 05=Trimestral | 06=Semestral | 07=Anual\n\nO objetivo é gerar de forma automática os períodos que serão informados pelo sistema/usuário.'
@@ -6452,9 +6452,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_FLUXO_CAIXA`
+-- Table `sollus`.`ORCAMENTO_FLUXO_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_FLUXO_CAIXA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ORC_FLUXO_CAIXA_PERIODO` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(30) NULL COMMENT 'Nome do orçamento',
@@ -6466,7 +6466,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA` (
   INDEX `FK_FLUXO_CX_PERIODO` (`ID_ORC_FLUXO_CAIXA_PERIODO` ASC),
   CONSTRAINT `fk_{DAE02892-954D-49C1-95AD-159E01E5B882}`
     FOREIGN KEY (`ID_ORC_FLUXO_CAIXA_PERIODO`)
-    REFERENCES `fenix`.`ORCAMENTO_FLUXO_CAIXA_PERIODO` (`ID`)
+    REFERENCES `sollus`.`ORCAMENTO_FLUXO_CAIXA_PERIODO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os diversos fluxos de caixa da empresa.\n\nSe o usuario informar um período mensal e preencher \'10\' no campo NUMERO_PERIODOS, o sistema automaticamente gerará os dados para o orçamento para os 10 meses a partir da DATA_INICIAL. \n\nO mesmo ocorre com os outros períodos: diário, semanal, anual, etc.'
@@ -6475,9 +6475,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_FLUXO_CAIXA_DETALHE`
+-- Table `sollus`.`ORCAMENTO_FLUXO_CAIXA_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_FLUXO_CAIXA_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ORCAMENTO_FLUXO_CAIXA` INT(11) UNSIGNED NOT NULL,
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL,
@@ -6491,12 +6491,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_FLUXO_CAIXA_DETALHE` (
   INDEX `fk_ORCAMENTO_FLUXO_CAIXA_DETALHE_FIN_NATUREZA_FINANCEIRA1_idx` (`ID_FIN_NATUREZA_FINANCEIRA` ASC),
   CONSTRAINT `fk_{7DA41A8E-71FF-4158-A2F6-284EFD0C66C0}`
     FOREIGN KEY (`ID_ORCAMENTO_FLUXO_CAIXA`)
-    REFERENCES `fenix`.`ORCAMENTO_FLUXO_CAIXA` (`ID`)
+    REFERENCES `sollus`.`ORCAMENTO_FLUXO_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ORCAMENTO_FLUXO_CAIXA_DETALHE_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os itens de determinado fluxo de caixa.\n\n=============\nExemplo para o campo PERIODO:\nSe o usuário escolheu um periodo mensal, com DATA_INICIAL (tabela FLUXO_CAIXA) em 15/01/2011 e preencheu o campo NUMERO_PERIODOS (tabela FLUXO_CAIXA)  com o valor \'5\', para cada NATUREZA_FINANCEIRA serão gerados 5 registros na tabela FLUXO_CAIXA_DETALHE. O campo período seria preenchido da seguinte forma:\n\n01/2011\n02/2011\n03/2011\n04/2011\n05/2011\n============='
@@ -6505,9 +6505,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`REGISTRO_CARTORIO`
+-- Table `sollus`.`REGISTRO_CARTORIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`REGISTRO_CARTORIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`REGISTRO_CARTORIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CARTORIO` VARCHAR(100) NULL,
   `DATA_REGISTRO` DATE NULL,
@@ -6522,9 +6522,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_PARAMETRO`
+-- Table `sollus`.`CONTABIL_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `MASCARA` VARCHAR(30) NULL COMMENT 'Exemplo: A.B.C.DD.EEEE (mascara com 5 níveis)',
   `NIVEIS` INT(11) UNSIGNED ZEROFILL NULL COMMENT 'Quantidade de níveis para o plano',
@@ -6569,9 +6569,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PLANO_CONTA_REF_SPED`
+-- Table `sollus`.`PLANO_CONTA_REF_SPED`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PLANO_CONTA_REF_SPED` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PLANO_CONTA_REF_SPED` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COD_CTA_REF` VARCHAR(30) NULL,
   `DESCRICAO` TEXT NULL,
@@ -6586,9 +6586,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PLANO_CONTA`
+-- Table `sollus`.`PLANO_CONTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PLANO_CONTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PLANO_CONTA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL,
   `DATA_INCLUSAO` DATE NULL,
@@ -6601,9 +6601,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_CONTA`
+-- Table `sollus`.`CONTABIL_CONTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_CONTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_CONTA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PLANO_CONTA` INT(11) UNSIGNED NOT NULL,
   `ID_CONTABIL_CONTA` INT(11) UNSIGNED NULL,
@@ -6626,17 +6626,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_CONTA` (
   INDEX `FK_PLANO_CONTA_CONTA` (`ID_PLANO_CONTA` ASC),
   CONSTRAINT `fk_{B91BDB7E-3C89-47F2-B87F-EF076C65C6F9}`
     FOREIGN KEY (`ID_PLANO_CONTA_REF_SPED`)
-    REFERENCES `fenix`.`PLANO_CONTA_REF_SPED` (`ID`)
+    REFERENCES `sollus`.`PLANO_CONTA_REF_SPED` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{1A1B29A3-97FA-4561-BCC1-98667B3C27B1}`
     FOREIGN KEY (`ID_CONTABIL_CONTA`)
-    REFERENCES `fenix`.`CONTABIL_CONTA` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{115D906C-AFF4-472A-B675-4F4FF01593D7}`
     FOREIGN KEY (`ID_PLANO_CONTA`)
-    REFERENCES `fenix`.`PLANO_CONTA` (`ID`)
+    REFERENCES `sollus`.`PLANO_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Contas contábeis da empresa.'
@@ -6645,9 +6645,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_HISTORICO`
+-- Table `sollus`.`CONTABIL_HISTORICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_HISTORICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_HISTORICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL,
   `HISTORICO` VARCHAR(250) NULL,
@@ -6659,9 +6659,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LANCAMENTO_PADRAO`
+-- Table `sollus`.`CONTABIL_LANCAMENTO_PADRAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_PADRAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LANCAMENTO_PADRAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL,
   `HISTORICO` VARCHAR(250) NULL,
@@ -6674,9 +6674,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LOTE`
+-- Table `sollus`.`CONTABIL_LOTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LOTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LOTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL,
   `LIBERADO` CHAR(1) NULL,
@@ -6691,9 +6691,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LANCAMENTO_CABECALHO`
+-- Table `sollus`.`CONTABIL_LANCAMENTO_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LANCAMENTO_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_LOTE` INT(11) UNSIGNED NULL,
   `DATA_LANCAMENTO` DATE NULL,
@@ -6705,7 +6705,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_CABECALHO` (
   INDEX `FK_LOTE_LANC_CAB` (`ID_CONTABIL_LOTE` ASC),
   CONSTRAINT `fk_{792712E2-E225-495D-A777-E44DE2565BE7}`
     FOREIGN KEY (`ID_CONTABIL_LOTE`)
-    REFERENCES `fenix`.`CONTABIL_LOTE` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_LOTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Lançamentos efetuados no sistema contábil - cabeçalho'
@@ -6714,9 +6714,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LANCAMENTO_DETALHE`
+-- Table `sollus`.`CONTABIL_LANCAMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LANCAMENTO_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_CONTA` INT(11) UNSIGNED NOT NULL,
   `ID_CONTABIL_HISTORICO` INT(11) UNSIGNED NULL,
@@ -6730,17 +6730,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_DETALHE` (
   INDEX `FK_CONTA_LANCAMENTO` (`ID_CONTABIL_CONTA` ASC),
   CONSTRAINT `fk_{91277FE7-0BBC-47D5-AF99-7477DA2CDE13}`
     FOREIGN KEY (`ID_CONTABIL_LANCAMENTO_CAB`)
-    REFERENCES `fenix`.`CONTABIL_LANCAMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_LANCAMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{105193A2-FC4D-4B16-A6AD-6C6C337D8FF7}`
     FOREIGN KEY (`ID_CONTABIL_HISTORICO`)
-    REFERENCES `fenix`.`CONTABIL_HISTORICO` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_HISTORICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{E1CB8197-3D7D-44A6-82F6-C882BA9FAA40}`
     FOREIGN KEY (`ID_CONTABIL_CONTA`)
-    REFERENCES `fenix`.`CONTABIL_CONTA` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os lançamentos contábeis - detalhes.'
@@ -6749,9 +6749,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LANCAMENTO_ORCADO`
+-- Table `sollus`.`CONTABIL_LANCAMENTO_ORCADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_ORCADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LANCAMENTO_ORCADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_CONTA` INT(11) UNSIGNED NOT NULL,
   `ANO` CHAR(4) NULL,
@@ -6771,7 +6771,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LANCAMENTO_ORCADO` (
   INDEX `FK_CONTA_LANC_ORCADO` (`ID_CONTABIL_CONTA` ASC),
   CONSTRAINT `fk_{9821838A-9514-48E9-8385-17A587D1A2C1}`
     FOREIGN KEY (`ID_CONTABIL_CONTA`)
-    REFERENCES `fenix`.`CONTABIL_CONTA` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os saldos de determinada conta para todos os meses do ano. A partir daí o usuário poderá fazer um comparativo dos saldos orçados com os valores realizados nos lançamentos contábeis.'
@@ -6780,9 +6780,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_DRE_CABECALHO`
+-- Table `sollus`.`CONTABIL_DRE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_DRE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_DRE_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(100) NULL,
   `PADRAO` CHAR(1) NULL COMMENT 'S=Sim | N=Não',
@@ -6795,9 +6795,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_DRE_DETALHE`
+-- Table `sollus`.`CONTABIL_DRE_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_DRE_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_DRE_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_DRE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `CLASSIFICACAO` VARCHAR(30) NULL,
@@ -6810,7 +6810,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_DRE_DETALHE` (
   INDEX `FK_DRE_CAB_DET` (`ID_CONTABIL_DRE_CABECALHO` ASC),
   CONSTRAINT `fk_{6DDCBE08-695E-44C5-8412-EBA846C11BDB}`
     FOREIGN KEY (`ID_CONTABIL_DRE_CABECALHO`)
-    REFERENCES `fenix`.`CONTABIL_DRE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_DRE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'DRE - detalhes.'
@@ -6819,9 +6819,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_LIVRO`
+-- Table `sollus`.`CONTABIL_LIVRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_LIVRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_LIVRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(50) NULL,
   `COMPETENCIA` VARCHAR(7) NULL,
@@ -6833,9 +6833,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_TERMO`
+-- Table `sollus`.`CONTABIL_TERMO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_TERMO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_TERMO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_LIVRO` INT(11) UNSIGNED NOT NULL,
   `ABERTURA_ENCERRAMENTO` CHAR(1) NULL COMMENT 'A|E',
@@ -6854,7 +6854,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_TERMO` (
   INDEX `FK_CONTABIL_LIVRO_TERMO` (`ID_CONTABIL_LIVRO` ASC),
   CONSTRAINT `fk_{90B322A0-2DA8-4EF0-9D6A-4D8467F07F59}`
     FOREIGN KEY (`ID_CONTABIL_LIVRO`)
-    REFERENCES `fenix`.`CONTABIL_LIVRO` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_LIVRO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Termos de abertura e encerramento dos livros.'
@@ -6863,9 +6863,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_ENCERRAMENTO_EXE_CAB`
+-- Table `sollus`.`CONTABIL_ENCERRAMENTO_EXE_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_ENCERRAMENTO_EXE_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_ENCERRAMENTO_EXE_CAB` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_INICIO` DATE NULL,
   `DATA_FIM` DATE NULL,
@@ -6878,9 +6878,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_ENCERRAMENTO_EXE_DET`
+-- Table `sollus`.`CONTABIL_ENCERRAMENTO_EXE_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_ENCERRAMENTO_EXE_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_ENCERRAMENTO_EXE_DET` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_CONTA` INT(11) UNSIGNED NOT NULL,
   `ID_CONTABIL_ENCERRAMENTO_EXE` INT(11) UNSIGNED NOT NULL,
@@ -6893,12 +6893,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_ENCERRAMENTO_EXE_DET` (
   INDEX `FK_CONTABIL_CONTA_ENC_DET` (`ID_CONTABIL_CONTA` ASC),
   CONSTRAINT `fk_{E3F23D1A-CCDC-467F-A8F2-9E0A03FD6C63}`
     FOREIGN KEY (`ID_CONTABIL_ENCERRAMENTO_EXE`)
-    REFERENCES `fenix`.`CONTABIL_ENCERRAMENTO_EXE_CAB` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_ENCERRAMENTO_EXE_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{74FD9080-F3C3-4C60-A10D-D7A2F34EBE60}`
     FOREIGN KEY (`ID_CONTABIL_CONTA`)
-    REFERENCES `fenix`.`CONTABIL_CONTA` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Dados do encerramento do exercício;  Detalhes.'
@@ -6907,9 +6907,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PLANO_CENTRO_RESULTADO`
+-- Table `sollus`.`PLANO_CENTRO_RESULTADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PLANO_CENTRO_RESULTADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PLANO_CENTRO_RESULTADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL,
   `MASCARA` VARCHAR(50) NULL,
@@ -6922,9 +6922,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CENTRO_RESULTADO`
+-- Table `sollus`.`CENTRO_RESULTADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CENTRO_RESULTADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CENTRO_RESULTADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PLANO_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `CLASSIFICACAO` VARCHAR(30) NULL,
@@ -6934,7 +6934,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CENTRO_RESULTADO` (
   INDEX `FK_PLANO_CENTRO` (`ID_PLANO_CENTRO_RESULTADO` ASC),
   CONSTRAINT `fk_{A188D698-8145-4182-9A82-AFD03C7BCD15}`
     FOREIGN KEY (`ID_PLANO_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`PLANO_CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`PLANO_CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela com o cadastro do Centro de Resultado. Seria o Centro de Custo.   \n  \nQuando se menciona CUSTO, associa-se apenas às despesas e afins. Quando se menciona RESULTADO, pode-se associar a receitas e despesas. Ex: O departamento de  \nprodução praticamente só aparece nas despesas, mas o setor comercial gera receitas e despesas, daí o conceito de resultado.  \n'
@@ -6943,9 +6943,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`LANCA_CENTRO_RESULTADO`
+-- Table `sollus`.`LANCA_CENTRO_RESULTADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`LANCA_CENTRO_RESULTADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`LANCA_CENTRO_RESULTADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `VALOR` DECIMAL(18,6) NULL,
@@ -6957,7 +6957,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`LANCA_CENTRO_RESULTADO` (
   INDEX `FK_CENTRO_LANCA` (`ID_CENTRO_RESULTADO` ASC),
   CONSTRAINT `fk_{F9581400-B548-4933-B0AE-9DA6EE5FB941}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazenar todos os lançamentos nos CENTROS DE RESULTADOS (tambem chamado de CENTRO DE CUSTOS).'
@@ -6966,9 +6966,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`RATEIO_CENTRO_RESULTADO_CAB`
+-- Table `sollus`.`RATEIO_CENTRO_RESULTADO_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`RATEIO_CENTRO_RESULTADO_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`RATEIO_CENTRO_RESULTADO_CAB` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `DESCRICAO` VARCHAR(100) NULL,
@@ -6976,7 +6976,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`RATEIO_CENTRO_RESULTADO_CAB` (
   INDEX `FK_CENTRO_RATEIO_CAB` (`ID_CENTRO_RESULTADO` ASC),
   CONSTRAINT `fk_{5030A2EA-FFE1-4F33-8380-AE8B4D236121}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazernar os parametros de SUB_RATEIO. Isto é, quando o Saldo de um CENTRO será rateado para outros CENTROS. Ex. o saldo do CENTRO ADM será rateado para os CENTROS PRODUCAO E COMERCIAL. Cabeçalho.'
@@ -6985,9 +6985,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`RATEIO_CENTRO_RESULTADO_DET`
+-- Table `sollus`.`RATEIO_CENTRO_RESULTADO_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`RATEIO_CENTRO_RESULTADO_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`RATEIO_CENTRO_RESULTADO_DET` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO_DESTINO` INT(11) UNSIGNED NOT NULL,
   `ID_RATEIO_CENTRO_RESUL_CAB` INT(11) UNSIGNED NOT NULL,
@@ -6997,12 +6997,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`RATEIO_CENTRO_RESULTADO_DET` (
   INDEX `FK_CENTRO_RATEIO` (`ID_CENTRO_RESULTADO_DESTINO` ASC),
   CONSTRAINT `fk_{B3EC49D9-B1D3-47BB-B51B-FF23F144819C}`
     FOREIGN KEY (`ID_RATEIO_CENTRO_RESUL_CAB`)
-    REFERENCES `fenix`.`RATEIO_CENTRO_RESULTADO_CAB` (`ID`)
+    REFERENCES `sollus`.`RATEIO_CENTRO_RESULTADO_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{9AC87DD8-9BFC-4D4C-B4B9-6B39B2A16C49}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO_DESTINO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazernar os parametros de SUB_RATEIO. Isto é, quando o Saldo de um CENTRO será rateado para outros CENTROS. Ex. o saldo do CENTRO ADM será rateado para os CENTROS PRODUCAO E COMERCIAL. Detalhes.'
@@ -7011,9 +7011,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ENCERRA_CENTRO_RESULTADO`
+-- Table `sollus`.`ENCERRA_CENTRO_RESULTADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ENCERRA_CENTRO_RESULTADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ENCERRA_CENTRO_RESULTADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `COMPETENCIA` VARCHAR(7) NULL,
@@ -7023,7 +7023,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ENCERRA_CENTRO_RESULTADO` (
   INDEX `FK_CENTRO_ENCERRA` (`ID_CENTRO_RESULTADO` ASC),
   CONSTRAINT `fk_{CA4C3C76-2109-472E-A979-8CA8A104070C}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazenar os saldos mensais de cada CENTRO DE RESULTADO. Estes registros serão inseridos quando for acionado no sistema uma ROTINA DE ENCERRAMENTO DOS CENTROS DE RESULTADOS. Se o Cadastro do Centro de Resultado sofrer rateio, o sistema deve: apurar o saldo, registrar o encerramento nesta tabela, pegar esse saldo e fazer a rotina de SUB_RATEIO lançando o saldo no campo VALOR_SUB_RATEIO desta tabela. Assim o Centro terá 2 saldos O VALOR PROPRIO E VALOR ORIUNDO DE OUTROS CENTROS.'
@@ -7032,9 +7032,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_LANCAMENTO_COMISSAO`
+-- Table `sollus`.`FOLHA_LANCAMENTO_COMISSAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_COMISSAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_LANCAMENTO_COMISSAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_VENDEDOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Vendedor\",\"labelText\":\"Vendedor\",\"tooltip\":\"Vendedor\",\"hintText\":\"Importe o Vendedor Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"vendedor\",\"campoLookup\":\"colaborador?.pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competencia\",\"labelText\":\"Mês/Ano Competencia\",\"tooltip\":\"Mês/Ano Competencia\",\"hintText\":\"Informe o Mês/Ano Competencia\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 10/2013\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -7045,7 +7045,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_COMISSAO` (
   INDEX `fk_FOLHA_LANCAMENTO_COMISSAO_VENDEDOR1_idx` (`ID_VENDEDOR` ASC),
   CONSTRAINT `fk_FOLHA_LANCAMENTO_COMISSAO_VENDEDOR1`
     FOREIGN KEY (`ID_VENDEDOR`)
-    REFERENCES `fenix`.`VENDEDOR` (`ID`)
+    REFERENCES `sollus`.`VENDEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as comissões que devem ser pagas aos colaboradores.\n'
@@ -7054,9 +7054,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_CONTA_RATEIO`
+-- Table `sollus`.`CONTABIL_CONTA_RATEIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_CONTA_RATEIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_CONTA_RATEIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `ID_CONTABIL_CONTA` INT(11) UNSIGNED NOT NULL,
@@ -7066,12 +7066,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_CONTA_RATEIO` (
   INDEX `FK_CENTRO_RESULTADO_RATEIO` (`ID_CENTRO_RESULTADO` ASC),
   CONSTRAINT `fk_{846C5684-4DCA-4EF2-8210-D5E1A11E71FE}`
     FOREIGN KEY (`ID_CONTABIL_CONTA`)
-    REFERENCES `fenix`.`CONTABIL_CONTA` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_CONTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{21B68C00-3BFB-469C-AAA0-AD350248A949}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Esta tabela irá armazenar os parâmetros para o Rateio automático dos lançamentos nas CONTA_CONTABIL para os CENTRO_RESULTADO. Toda vez que aquela conta recebe um lançamento o sistema deve ter uma rotina que checa se esta conta posssui parâmetro nesta tabela e procede com os devidos lançamentos nos CENTROS DE RESULTADOS. A vantagem deste procedimento é que vai evitar que usuario tenha de fazer isso de forma Manual perdendo tempo e aumentando as chances de erro operacional. Ex. A CONTA DE LUZ da empresa é compartilhada por todos os CENTROS DE RESULTADOS, mas a empresa precisa fazer esse rateio de forma que cada CENTRO recebe seu respectivo valor. Neste caso, iremos no CAD DA CONTA CONTABIL informar quais os CENTROS e os PERCENTUAIS que serão RATEADOS pra cada CENTRO.'
@@ -7080,9 +7080,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`LOG_IMPORTACAO`
+-- Table `sollus`.`LOG_IMPORTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`LOG_IMPORTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`LOG_IMPORTACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_IMPORTACAO` DATE NULL,
   `HORA_IMPORTACAO` VARCHAR(8) NULL,
@@ -7094,9 +7094,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`LOG_EXPORTACAO`
+-- Table `sollus`.`LOG_EXPORTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`LOG_EXPORTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`LOG_EXPORTACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_EXPORTACAO` DATE NULL,
   `HORA_EXPORTACAO` VARCHAR(8) NULL,
@@ -7108,9 +7108,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`INTEGRACAO_PDV`
+-- Table `sollus`.`INTEGRACAO_PDV`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`INTEGRACAO_PDV` (
+CREATE TABLE IF NOT EXISTS `sollus`.`INTEGRACAO_PDV` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `IDENTIFICA` VARCHAR(50) NULL,
   `DATA_INTEGRACAO` DATE NULL,
@@ -7121,9 +7121,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_436`
+-- Table `sollus`.`EFD_TABELA_436`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_436` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_436` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7134,9 +7134,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_437`
+-- Table `sollus`.`EFD_TABELA_437`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_437` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_437` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` VARCHAR(250) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7147,9 +7147,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_4316`
+-- Table `sollus`.`EFD_TABELA_4316`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_4316` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_4316` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7163,9 +7163,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_4315`
+-- Table `sollus`.`EFD_TABELA_4315`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_4315` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_4315` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7179,9 +7179,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_4314`
+-- Table `sollus`.`EFD_TABELA_4314`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_4314` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_4314` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7195,9 +7195,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_4313`
+-- Table `sollus`.`EFD_TABELA_4313`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_4313` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_4313` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7211,9 +7211,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_439`
+-- Table `sollus`.`EFD_TABELA_439`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_439` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_439` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7227,9 +7227,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EFD_TABELA_4310`
+-- Table `sollus`.`EFD_TABELA_4310`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EFD_TABELA_4310` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EFD_TABELA_4310` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
   `DESCRICAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7243,9 +7243,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`EMPRESA_CNAE`
+-- Table `sollus`.`EMPRESA_CNAE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_CNAE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`EMPRESA_CNAE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA` INT NOT NULL,
   `ID_CNAE` INT NOT NULL,
@@ -7257,12 +7257,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`EMPRESA_CNAE` (
   INDEX `fk_EMPRESA_CNAE_CNAE1_idx` (`ID_CNAE` ASC),
   CONSTRAINT `fk_EMPRESA_CNAE_EMPRESA1`
     FOREIGN KEY (`ID_EMPRESA`)
-    REFERENCES `fenix`.`EMPRESA` (`ID`)
+    REFERENCES `sollus`.`EMPRESA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_EMPRESA_CNAE_CNAE1`
     FOREIGN KEY (`ID_CNAE`)
-    REFERENCES `fenix`.`CNAE` (`ID`)
+    REFERENCES `sollus`.`CNAE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as informações dos CNAE da empresa, inclusive marcando qual dele é o principal.'
@@ -7271,9 +7271,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`INVENTARIO_CONTAGEM_CAB`
+-- Table `sollus`.`INVENTARIO_CONTAGEM_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`INVENTARIO_CONTAGEM_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`INVENTARIO_CONTAGEM_CAB` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_CONTAGEM` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data da Contagem\",\"labelText\":\"Data da Contagem\",\"tooltip\":\"Data da Contagem\",\"hintText\":\"Informe a Data da Contagem\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}\n',
   `ESTOQUE_ATUALIZADO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Estoque Atualizado\",\"labelText\":\"Estoque Atualizado\",\"tooltip\":\"Estoque Atualizado\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"se o estoque for atualizado a partir da contagem, marca como S\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"Sim\"},{\"dropDownButtonItem\":\"Não\"}]}}\n',
@@ -7285,9 +7285,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`INVENTARIO_CONTAGEM_DET`
+-- Table `sollus`.`INVENTARIO_CONTAGEM_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`INVENTARIO_CONTAGEM_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`INVENTARIO_CONTAGEM_DET` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_INVENTARIO_CONTAGEM_CAB` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_PRODUTO` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Produto\",\"labelText\":\"Produto\",\"tooltip\":\"Produto\",\"hintText\":\"Importe o Produto Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"produto\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7303,12 +7303,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`INVENTARIO_CONTAGEM_DET` (
   INDEX `fk_INVENTARIO_CONTAGEM_DET_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{0FF2B94B-9A4B-47D1-A536-25332FAF4CFA}`
     FOREIGN KEY (`ID_INVENTARIO_CONTAGEM_CAB`)
-    REFERENCES `fenix`.`INVENTARIO_CONTAGEM_CAB` (`ID`)
+    REFERENCES `sollus`.`INVENTARIO_CONTAGEM_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_INVENTARIO_CONTAGEM_DET_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os detalhes de uma contagem de produtos e já faz os calculos de acuracidade e divergência.'
@@ -7317,9 +7317,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_PERIODO`
+-- Table `sollus`.`ORCAMENTO_PERIODO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_PERIODO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_PERIODO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `PERIODO` CHAR(2) NULL COMMENT '01=Diário | 02=Semanal | 03=Mensal | 04=Bimestral | 05=Trimestral | 06=Semestral | 07=Anual',
   `NOME` VARCHAR(30) NULL,
@@ -7330,9 +7330,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_EMPRESARIAL`
+-- Table `sollus`.`ORCAMENTO_EMPRESARIAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_EMPRESARIAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_EMPRESARIAL` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ORCAMENTO_PERIODO` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(30) NULL COMMENT 'Nome do orçamento',
@@ -7344,7 +7344,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_EMPRESARIAL` (
   INDEX `FK_ORCAMENTO_PERIODO_ORC` (`ID_ORCAMENTO_PERIODO` ASC),
   CONSTRAINT `fk_{34B87EE9-0908-4947-9A62-962274B9E2E6}`
     FOREIGN KEY (`ID_ORCAMENTO_PERIODO`)
-    REFERENCES `fenix`.`ORCAMENTO_PERIODO` (`ID`)
+    REFERENCES `sollus`.`ORCAMENTO_PERIODO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os diversos tipos de orçamento da empresa.\n\nSe o usuario informar um período mensal e preencher \'10\' no campo NUMERO_PERIODOS, o sistema automaticamente gerará os dados para o orçamento para os 10 meses a partir da DATA_INICIAL. \n\nO mesmo ocorre com os outros períodos: diário, semanal, anual, etc.'
@@ -7353,9 +7353,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ORCAMENTO_DETALHE`
+-- Table `sollus`.`ORCAMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ORCAMENTO_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ORCAMENTO_EMPRESARIAL` INT(11) UNSIGNED NOT NULL,
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL,
@@ -7369,12 +7369,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ORCAMENTO_DETALHE` (
   INDEX `fk_ORCAMENTO_DETALHE_FIN_NATUREZA_FINANCEIRA1_idx` (`ID_FIN_NATUREZA_FINANCEIRA` ASC),
   CONSTRAINT `fk_{579ED741-CDCD-4302-923C-704283061EFB}`
     FOREIGN KEY (`ID_ORCAMENTO_EMPRESARIAL`)
-    REFERENCES `fenix`.`ORCAMENTO_EMPRESARIAL` (`ID`)
+    REFERENCES `sollus`.`ORCAMENTO_EMPRESARIAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ORCAMENTO_DETALHE_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os itens de determinado orçamento.\n\n=============\nExemplo para o campo PERIODO:\nSe o usuário escolheu um periodo mensal, com DATA_INICIAL (tabela ORCAMENTO_EMPRESARIAL) em 15/01/2011 e preencheu o campo NUMERO_PERIODOS (tabela ORCAMENTO_EMPRESARIAL  com o valor \'5\', para cada NATUREZA_FINANCEIRA serão gerados 5 registros na tabela ORCAMENTO_DETALHE. O campo período seria preenchido da seguinte forma:\n\n01/2011\n02/2011\n03/2011\n04/2011\n05/2011\n============='
@@ -7383,9 +7383,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_INDICE_ATUALIZACAO`
+-- Table `sollus`.`PATRIM_INDICE_ATUALIZACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_INDICE_ATUALIZACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_INDICE_ATUALIZACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_INDICE` DATE NULL COMMENT 'data do indice',
   `NOME` VARCHAR(10) NULL COMMENT 'Nome do Indice - UFIR, FAP, BTN, BTNF, ORTN, OTN',
@@ -7398,9 +7398,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_TAXA_DEPRECIACAO`
+-- Table `sollus`.`PATRIM_TAXA_DEPRECIACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_TAXA_DEPRECIACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_TAXA_DEPRECIACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NCM` VARCHAR(8) NULL COMMENT 'Classificação Fiscal',
   `BEM` VARCHAR(250) NULL COMMENT 'Descrição dos bens',
@@ -7413,9 +7413,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_GRUPO_BEM`
+-- Table `sollus`.`PATRIM_GRUPO_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_GRUPO_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_GRUPO_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL,
   `NOME` VARCHAR(50) NULL,
@@ -7431,9 +7431,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_TIPO_AQUISICAO_BEM`
+-- Table `sollus`.`PATRIM_TIPO_AQUISICAO_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_TIPO_AQUISICAO_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_TIPO_AQUISICAO_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `TIPO` CHAR(2) NULL COMMENT '01=Compra | 02=Permuta | 03=Doação | 04=Locação | 05=Comodato | 06=Leasing | 07=Transferência',
   `NOME` VARCHAR(50) NULL,
@@ -7445,9 +7445,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_ESTADO_CONSERVACAO`
+-- Table `sollus`.`PATRIM_ESTADO_CONSERVACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_ESTADO_CONSERVACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_ESTADO_CONSERVACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL COMMENT '01=Novo | 02=Bom | 03=Recuperável | 04=Inservível',
   `NOME` VARCHAR(50) NULL,
@@ -7459,9 +7459,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_BEM`
+-- Table `sollus`.`PATRIM_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `ID_PATRIM_TIPO_AQUISICAO_BEM` INT(11) UNSIGNED NOT NULL,
@@ -7508,37 +7508,37 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_BEM` (
   INDEX `fk_PATRIM_BEM_SETOR1_idx` (`ID_SETOR` ASC),
   CONSTRAINT `fk_{6763D73F-CAD3-45F5-B326-F15F787593C8}`
     FOREIGN KEY (`ID_PATRIM_GRUPO_BEM`)
-    REFERENCES `fenix`.`PATRIM_GRUPO_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_GRUPO_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{308BF881-15EC-4EDB-A8D9-031C5760DD18}`
     FOREIGN KEY (`ID_PATRIM_TIPO_AQUISICAO_BEM`)
-    REFERENCES `fenix`.`PATRIM_TIPO_AQUISICAO_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_TIPO_AQUISICAO_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{5E078F04-ADF7-48EE-A482-6E2B657F63C7}`
     FOREIGN KEY (`ID_PATRIM_ESTADO_CONSERVACAO`)
-    REFERENCES `fenix`.`PATRIM_ESTADO_CONSERVACAO` (`ID`)
+    REFERENCES `sollus`.`PATRIM_ESTADO_CONSERVACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{791E6013-2F02-480A-B5B6-5DD83DBE5125}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PATRIM_BEM_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PATRIM_BEM_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PATRIM_BEM_SETOR1`
     FOREIGN KEY (`ID_SETOR`)
-    REFERENCES `fenix`.`SETOR` (`ID`)
+    REFERENCES `sollus`.`SETOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Cadastro dos bens móveis da empresa.\nO vinculo com CENTRO_RESULTADO tem por objetivo gerar informações para os registros 0305 e 0600 do Sped Fiscal.'
@@ -7547,9 +7547,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SEGURADORA`
+-- Table `sollus`.`SEGURADORA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SEGURADORA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SEGURADORA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL,
   `CONTATO` VARCHAR(50) NULL,
@@ -7561,9 +7561,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_DOCUMENTO_BEM`
+-- Table `sollus`.`PATRIM_DOCUMENTO_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_DOCUMENTO_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_DOCUMENTO_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PATRIM_BEM` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(50) NULL,
@@ -7573,7 +7573,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_DOCUMENTO_BEM` (
   INDEX `FK_PATRIM_DOCUMENTO_BEM` (`ID_PATRIM_BEM` ASC),
   CONSTRAINT `fk_{7A0C1480-E244-4328-B2CB-2AB8A169B89F}`
     FOREIGN KEY (`ID_PATRIM_BEM`)
-    REFERENCES `fenix`.`PATRIM_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os documentos vinculados ao bem'
@@ -7582,9 +7582,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_DEPRECIACAO_BEM`
+-- Table `sollus`.`PATRIM_DEPRECIACAO_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_DEPRECIACAO_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_DEPRECIACAO_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PATRIM_BEM` INT(11) UNSIGNED NOT NULL,
   `DATA_DEPRECIACAO` DATE NULL,
@@ -7597,7 +7597,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_DEPRECIACAO_BEM` (
   INDEX `FK_PATRIM_BEM_DEPRECIACAO` (`ID_PATRIM_BEM` ASC),
   CONSTRAINT `fk_{3702F0F7-CF21-41C8-AAAB-A7D9A723936E}`
     FOREIGN KEY (`ID_PATRIM_BEM`)
-    REFERENCES `fenix`.`PATRIM_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados de depreciação dos bens'
@@ -7606,9 +7606,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_TIPO_MOVIMENTACAO`
+-- Table `sollus`.`PATRIM_TIPO_MOVIMENTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_TIPO_MOVIMENTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_TIPO_MOVIMENTACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `TIPO` CHAR(2) NULL COMMENT '01=Distribuição | 02=Remanejamento | 03=Saída Provisória | 04=Empréstimo | 05=Arrendamento',
   `NOME` VARCHAR(50) NULL,
@@ -7620,9 +7620,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_MOVIMENTACAO_BEM`
+-- Table `sollus`.`PATRIM_MOVIMENTACAO_BEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_MOVIMENTACAO_BEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_MOVIMENTACAO_BEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PATRIM_BEM` INT(11) UNSIGNED NOT NULL,
   `ID_PATRIM_TIPO_MOVIMENTACAO` INT(11) UNSIGNED NOT NULL,
@@ -7633,12 +7633,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_MOVIMENTACAO_BEM` (
   INDEX `FK_PATRIM_BEM_MOVIMENTACAO` (`ID_PATRIM_BEM` ASC),
   CONSTRAINT `fk_{59673D06-99DA-4BF3-95DC-3A4AB382D4D1}`
     FOREIGN KEY (`ID_PATRIM_TIPO_MOVIMENTACAO`)
-    REFERENCES `fenix`.`PATRIM_TIPO_MOVIMENTACAO` (`ID`)
+    REFERENCES `sollus`.`PATRIM_TIPO_MOVIMENTACAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{AD129E44-F68B-4EA3-9952-207A4E51D786}`
     FOREIGN KEY (`ID_PATRIM_BEM`)
-    REFERENCES `fenix`.`PATRIM_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as movimentações do bem'
@@ -7647,9 +7647,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PATRIM_APOLICE_SEGURO`
+-- Table `sollus`.`PATRIM_APOLICE_SEGURO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_APOLICE_SEGURO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PATRIM_APOLICE_SEGURO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PATRIM_BEM` INT(11) UNSIGNED NOT NULL,
   `ID_SEGURADORA` INT(11) UNSIGNED NOT NULL,
@@ -7665,12 +7665,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PATRIM_APOLICE_SEGURO` (
   INDEX `FK_PATRIM_APOLICE_BEM` (`ID_PATRIM_BEM` ASC),
   CONSTRAINT `fk_{51FF0562-515B-417C-894C-C79DDBFCDFE3}`
     FOREIGN KEY (`ID_SEGURADORA`)
-    REFERENCES `fenix`.`SEGURADORA` (`ID`)
+    REFERENCES `sollus`.`SEGURADORA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{1072F0B3-8A3C-4836-9F4D-77CCAEDC3279}`
     FOREIGN KEY (`ID_PATRIM_BEM`)
-    REFERENCES `fenix`.`PATRIM_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os dados das apólices de seguro dos bens da empresa.'
@@ -7679,9 +7679,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_MUNICIPAL_REGIME`
+-- Table `sollus`.`FISCAL_MUNICIPAL_REGIME`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_MUNICIPAL_REGIME` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_MUNICIPAL_REGIME` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
   `CODIGO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7693,9 +7693,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_ESTADUAL_REGIME`
+-- Table `sollus`.`FISCAL_ESTADUAL_REGIME`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_ESTADUAL_REGIME` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_ESTADUAL_REGIME` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
   `CODIGO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7707,9 +7707,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_ESTADUAL_PORTE`
+-- Table `sollus`.`FISCAL_ESTADUAL_PORTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_ESTADUAL_PORTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_ESTADUAL_PORTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
   `CODIGO` VARCHAR(20) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7721,9 +7721,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_PARAMETRO`
+-- Table `sollus`.`FISCAL_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FISCAL_ESTADUAL_PORTE` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Porte Estadual\",\"labelText\":\"Porte Estadual\",\"tooltip\":\"Porte Estadual\",\"hintText\":\"Importe o Porte Estadual Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fiscal_estadual_porte\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_FISCAL_ESTADUAL_REGIME` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Regime Estadual\",\"labelText\":\"Regime Estadual\",\"tooltip\":\"Regime Estadual\",\"hintText\":\"Importe o Regime Estadual Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fiscal_estadual_regime\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -7747,17 +7747,17 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_PARAMETRO` (
   INDEX `FK_PORTE_EST_PAR` (`ID_FISCAL_ESTADUAL_PORTE` ASC),
   CONSTRAINT `fk_{98296489-0EE6-403B-9EAF-D990246B28D1}`
     FOREIGN KEY (`ID_FISCAL_MUNICIPAL_REGIME`)
-    REFERENCES `fenix`.`FISCAL_MUNICIPAL_REGIME` (`ID`)
+    REFERENCES `sollus`.`FISCAL_MUNICIPAL_REGIME` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{3A841007-27D6-43C3-A356-56427E03924F}`
     FOREIGN KEY (`ID_FISCAL_ESTADUAL_REGIME`)
-    REFERENCES `fenix`.`FISCAL_ESTADUAL_REGIME` (`ID`)
+    REFERENCES `sollus`.`FISCAL_ESTADUAL_REGIME` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{D9548E2C-5E6B-4C6C-88C1-2CD968DA496C}`
     FOREIGN KEY (`ID_FISCAL_ESTADUAL_PORTE`)
-    REFERENCES `fenix`.`FISCAL_ESTADUAL_PORTE` (`ID`)
+    REFERENCES `sollus`.`FISCAL_ESTADUAL_PORTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Parâmetros do sistema fiscal.\n\nArmazena os parâmetros federais, estaduais e municipais'
@@ -7766,9 +7766,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_LIVRO`
+-- Table `sollus`.`FISCAL_LIVRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_LIVRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_LIVRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DESCRICAO` VARCHAR(50) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Descrição\",\"labelText\":\"Descrição\",\"tooltip\":\"Descrição\",\"hintText\":\"Informe a Descrição\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   PRIMARY KEY (`ID`))
@@ -7778,9 +7778,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_TERMO`
+-- Table `sollus`.`FISCAL_TERMO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_TERMO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_TERMO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FISCAL_LIVRO` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Termo\",\"labelText\":\"Termo\",\"tooltip\":\"Termo\",\"hintText\":\"Importe o Termo Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fiscal_termo\",\"campoLookup\":\"descricao\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ABERTURA_ENCERRAMENTO` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Abertura / Encerramento\",\"labelText\":\"Abertura / Encerramento\",\"tooltip\":\"Abertura / Encerramento\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"A|E\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"Abertura\"},{\"dropDownButtonItem\":\"Encerramento\"}]}}',
@@ -7799,7 +7799,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_TERMO` (
   INDEX `FK_FISCAL_LIVRO_TERMO` (`ID_FISCAL_LIVRO` ASC),
   CONSTRAINT `fk_{A4F4C576-8F6F-4FF9-9BD1-DE2E881A7252}`
     FOREIGN KEY (`ID_FISCAL_LIVRO`)
-    REFERENCES `fenix`.`FISCAL_LIVRO` (`ID`)
+    REFERENCES `sollus`.`FISCAL_LIVRO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Termos de abertura e encerramento dos livros.'
@@ -7808,9 +7808,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_INSCRICOES_SUBSTITUTAS`
+-- Table `sollus`.`FISCAL_INSCRICOES_SUBSTITUTAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_INSCRICOES_SUBSTITUTAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_INSCRICOES_SUBSTITUTAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FISCAL_PARAMETROS` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Parâmetros\",\"labelText\":\"Parâmetros\",\"tooltip\":\"Parâmetros\",\"hintText\":\"Importe os Parâmetros Vinculados\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"fiscal_parametros\",\"campoLookup\":\"vigencia\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `UF` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"UF\",\"labelText\":\"UF\",\"tooltip\":\"UF\",\"hintText\":\"Informe a UF\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"valor\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"listaUF\"}]}}',
@@ -7820,7 +7820,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_INSCRICOES_SUBSTITUTAS` (
   INDEX `FK_PAR_INSC_SUBSTITUTA` (`ID_FISCAL_PARAMETROS` ASC),
   CONSTRAINT `fk_{8B1F8BD0-2A38-4B9B-91EF-E8D9FBA98567}`
     FOREIGN KEY (`ID_FISCAL_PARAMETROS`)
-    REFERENCES `fenix`.`FISCAL_PARAMETRO` (`ID`)
+    REFERENCES `sollus`.`FISCAL_PARAMETRO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Inscrições de substituto tributário que a empresa tenha, inclusive na própria UF, também informar se a UF onde a mesma tem a inscrição de substituta, utiliza o PMPF.'
@@ -7829,9 +7829,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SIMPLES_NACIONAL_CABECALHO`
+-- Table `sollus`.`SIMPLES_NACIONAL_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SIMPLES_NACIONAL_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SIMPLES_NACIONAL_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `VIGENCIA_INICIAL` DATE NULL,
   `VIGENCIA_FINAL` DATE NULL,
@@ -7844,9 +7844,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`SIMPLES_NACIONAL_DETALHE`
+-- Table `sollus`.`SIMPLES_NACIONAL_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`SIMPLES_NACIONAL_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`SIMPLES_NACIONAL_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_SIMPLES_NACIONAL_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `FAIXA` INT(11) UNSIGNED NULL,
@@ -7865,7 +7865,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`SIMPLES_NACIONAL_DETALHE` (
   INDEX `FK_SIMPLES_NACIONAL_CAB_DET` (`ID_SIMPLES_NACIONAL_CABECALHO` ASC),
   CONSTRAINT `fk_{6638A7A1-0BA3-4D46-A720-BE1BBC8966A0}`
     FOREIGN KEY (`ID_SIMPLES_NACIONAL_CABECALHO`)
-    REFERENCES `fenix`.`SIMPLES_NACIONAL_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`SIMPLES_NACIONAL_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Detalhes dos dados das tabelas Simples Nacional'
@@ -7874,9 +7874,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_NOTA_FISCAL_ENTRADA`
+-- Table `sollus`.`FISCAL_NOTA_FISCAL_ENTRADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_NOTA_FISCAL_ENTRADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_NOTA_FISCAL_ENTRADA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"NF-e\",\"labelText\":\"NF-e\",\"tooltip\":\"NF-e\",\"hintText\":\"Importe a NF-e Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfe_cabecalho\",\"campoLookup\":\"chaveAcesso\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competência\",\"labelText\":\"Mês/Ano Competência\",\"tooltip\":\"Mês/Ano Competência\",\"hintText\":\"Informe o Mês/Ano Competência\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -7909,7 +7909,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_NOTA_FISCAL_ENTRADA` (
   INDEX `fk_FISCAL_NOTA_FISCAL_ENTRADA_NFE_CABECALHO1_idx` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_FISCAL_NOTA_FISCAL_ENTRADA_NFE_CABECALHO1`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Informações adicionais para as notas de entrada para escrituração fiscal.'
@@ -7918,9 +7918,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PARAMETRO`
+-- Table `sollus`.`FOLHA_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competencia\",\"labelText\":\"Mês/Ano Competencia\",\"tooltip\":\"Mês/Ano Competencia\",\"hintText\":\"Informe o Mês/Ano Competencia\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 10/2011\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
   `CONTRIBUI_PIS` CHAR(1) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Contribui PIS\",\"labelText\":\"Contribui PIS\",\"tooltip\":\"Contribui PIS\",\"hintText\":\"Selecione a Opção Desejada\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"S=Sim | N=Não\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"dropDownButton\",\"persiste\":\"char\",\"valorPadrao\":\"\",\"itens\":[{\"dropDownButtonItem\":\"Sim\"},{\"dropDownButtonItem\":\"Não\"}]}}',
@@ -7946,9 +7946,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GUIAS_ACUMULADAS`
+-- Table `sollus`.`GUIAS_ACUMULADAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GUIAS_ACUMULADAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GUIAS_ACUMULADAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `GPS_TIPO` CHAR(1) NULL COMMENT '1=emite GPS de apenas uma filial (serviços que representam a própria empresa, um tomador de serviço ou obra por empreitada parcial) | 2=emite GPS somente de um serviço (obra própria/empreitada total) | 3=emite GPS apenas de uma filial referente aos cooperados (tomadores de serviço de cooperativa de trabalho)',
   `GPS_COMPETENCIA` VARCHAR(7) NULL COMMENT 'Competência correspondente. Exemplo: 10/2011',
@@ -7969,9 +7969,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_FECHAMENTO`
+-- Table `sollus`.`FOLHA_FECHAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_FECHAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_FECHAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `FECHAMENTO_ATUAL` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Fechamento Atual\",\"labelText\":\"Mês/Ano Fechamento Atual\",\"tooltip\":\"Mês/Ano Fechamento Atual\",\"hintText\":\"Informe o Mês/Ano Fechamento Atual\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 10/2011\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
   `PROXIMO_FECHAMENTO` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Próximo Fechamento\",\"labelText\":\"Mês/Ano Próximo Fechamento\",\"tooltip\":\"Mês/Ano Próximo Fechamento\",\"hintText\":\"Informe o Mês/Ano Próximo Fechamento\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 11/2011\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -7982,9 +7982,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FERIAS_PERIODO_AQUISITIVO`
+-- Table `sollus`.`FERIAS_PERIODO_AQUISITIVO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FERIAS_PERIODO_AQUISITIVO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FERIAS_PERIODO_AQUISITIVO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `DATA_INICIO` DATE NULL,
@@ -8004,7 +8004,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FERIAS_PERIODO_AQUISITIVO` (
   INDEX `fk_FERIAS_PERIODO_AQUISITIVO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_FERIAS_PERIODO_AQUISITIVO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Todas as situações de gozo de férias do colaborador.'
@@ -8013,9 +8013,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_TIPO_AFASTAMENTO`
+-- Table `sollus`.`FOLHA_TIPO_AFASTAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_TIPO_AFASTAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_TIPO_AFASTAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplos: 001=Acidente de trabalho superior a 15 dias | 002=Doença superior a 15 dias\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8028,9 +8028,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_AFASTAMENTO`
+-- Table `sollus`.`FOLHA_AFASTAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_AFASTAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_AFASTAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_TIPO_AFASTAMENTO` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Tipo Afastamento\",\"labelText\":\"Tipo Afastamento\",\"tooltip\":\"Tipo Afastamento\",\"hintText\":\"Importe o Tipo Afastamento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cargo\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"cargo\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8042,12 +8042,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_AFASTAMENTO` (
   INDEX `fk_FOLHA_AFASTAMENTO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{26D6C2DC-E017-4773-81D1-87F4CA4DB521}`
     FOREIGN KEY (`ID_FOLHA_TIPO_AFASTAMENTO`)
-    REFERENCES `fenix`.`FOLHA_TIPO_AFASTAMENTO` (`ID`)
+    REFERENCES `sollus`.`FOLHA_TIPO_AFASTAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FOLHA_AFASTAMENTO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os afastamentos do colaborador.'
@@ -8056,9 +8056,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PLANO_SAUDE`
+-- Table `sollus`.`FOLHA_PLANO_SAUDE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PLANO_SAUDE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PLANO_SAUDE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_OPERADORA_PLANO_SAUDE` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Operadora Plano Saúde\",\"labelText\":\"Operadora Plano Saúde\",\"tooltip\":\"Operadora Plano Saúde\",\"hintText\":\"Importe o Operadora Plano Saúde Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"operadora_plano_saude\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8069,12 +8069,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PLANO_SAUDE` (
   INDEX `fk_FOLHA_PLANO_SAUDE_OPERADORA_PLANO_SAUDE1_idx` (`ID_OPERADORA_PLANO_SAUDE` ASC),
   CONSTRAINT `fk_FOLHA_PLANO_SAUDE_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FOLHA_PLANO_SAUDE_OPERADORA_PLANO_SAUDE1`
     FOREIGN KEY (`ID_OPERADORA_PLANO_SAUDE`)
-    REFERENCES `fenix`.`OPERADORA_PLANO_SAUDE` (`ID`)
+    REFERENCES `sollus`.`OPERADORA_PLANO_SAUDE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena informações do plano de saúde do colaborador.'
@@ -8083,9 +8083,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_EVENTO`
+-- Table `sollus`.`FOLHA_EVENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_EVENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_EVENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplos: 105=SALÁRIO FAMÍLIA | 001=Salário Base | 008=Previdencia Social\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8110,9 +8110,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_RESCISAO`
+-- Table `sollus`.`FOLHA_RESCISAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_RESCISAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_RESCISAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `DATA_DEMISSAO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data de Demissão\",\"labelText\":\"Data de Demissão\",\"tooltip\":\"Data de Demissão\",\"hintText\":\"Informe a Data de Demissão\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -8134,7 +8134,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_RESCISAO` (
   INDEX `fk_FOLHA_RESCISAO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_FOLHA_RESCISAO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena dados da rescisão contratual.'
@@ -8143,9 +8143,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_LANCAMENTO_CABECALHO`
+-- Table `sollus`.`FOLHA_LANCAMENTO_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_LANCAMENTO_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competencia\",\"labelText\":\"Mês/Ano Competencia\",\"tooltip\":\"Mês/Ano Competencia\",\"hintText\":\"Informe o Mês/Ano Competencia\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 10/2011\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -8154,7 +8154,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_CABECALHO` (
   INDEX `fk_FOLHA_LANCAMENTO_CABECALHO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_FOLHA_LANCAMENTO_CABECALHO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os lançamentos da folha por colaborador.'
@@ -8163,9 +8163,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_LANCAMENTO_DETALHE`
+-- Table `sollus`.`FOLHA_LANCAMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_LANCAMENTO_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_EVENTO` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Evento\",\"labelText\":\"Evento\",\"tooltip\":\"Evento\",\"hintText\":\"Importe o Evento Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"folha_evento\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_FOLHA_LANCAMENTO_CABECALHO` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
@@ -8177,12 +8177,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_LANCAMENTO_DETALHE` (
   INDEX `FK_FOLHA_EVENTO_LANCAMENTO` (`ID_FOLHA_EVENTO` ASC),
   CONSTRAINT `fk_{69A27780-AD58-4027-A361-69821375B7E3}`
     FOREIGN KEY (`ID_FOLHA_LANCAMENTO_CABECALHO`)
-    REFERENCES `fenix`.`FOLHA_LANCAMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`FOLHA_LANCAMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{A20D00A9-82D2-4C0A-8319-25FB9531AA16}`
     FOREIGN KEY (`ID_FOLHA_EVENTO`)
-    REFERENCES `fenix`.`FOLHA_EVENTO` (`ID`)
+    REFERENCES `sollus`.`FOLHA_EVENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os lançamentos de folha por colaborador.'
@@ -8191,9 +8191,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_FERIAS_COLETIVAS`
+-- Table `sollus`.`FOLHA_FERIAS_COLETIVAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_FERIAS_COLETIVAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_FERIAS_COLETIVAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_INICIO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data de Início\",\"labelText\":\"Data de Início\",\"tooltip\":\"Data de Início\",\"hintText\":\"Informe a Data de Início\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Data início gozo\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
   `DATA_FIM` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data Fim\",\"labelText\":\"Data Fim\",\"tooltip\":\"Data Fim\",\"hintText\":\"Informe a Data Fim\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Data fim gozo\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -8209,9 +8209,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_VALE_TRANSPORTE`
+-- Table `sollus`.`FOLHA_VALE_TRANSPORTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_VALE_TRANSPORTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_VALE_TRANSPORTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_EMPRESA_TRANSP_ITIN` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Transporte Itinerário\",\"labelText\":\"Transporte Itinerário\",\"tooltip\":\"Transporte Itinerário\",\"hintText\":\"Importe a Transporte Itinerário Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"empresa_transporte_itinerario\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"%\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8221,12 +8221,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_VALE_TRANSPORTE` (
   INDEX `fk_FOLHA_VALE_TRANSPORTE_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{DFEFE399-D353-4963-A41E-26A38DB31853}`
     FOREIGN KEY (`ID_EMPRESA_TRANSP_ITIN`)
-    REFERENCES `fenix`.`EMPRESA_TRANSPORTE_ITINERARIO` (`ID`)
+    REFERENCES `sollus`.`EMPRESA_TRANSPORTE_ITINERARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FOLHA_VALE_TRANSPORTE_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena a quantidade de vales transporte distribuida por colaborador / itinerário.'
@@ -8235,9 +8235,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_INSS`
+-- Table `sollus`.`FOLHA_INSS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_INSS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_INSS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competência\",\"labelText\":\"Mês/Ano Competência\",\"tooltip\":\"Mês/Ano Competência\",\"hintText\":\"Informe o Mês/Ano Competência\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 11/2011\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
   PRIMARY KEY (`ID`))
@@ -8247,9 +8247,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_INSS_SERVICO`
+-- Table `sollus`.`FOLHA_INSS_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_INSS_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_INSS_SERVICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8260,9 +8260,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_INSS_RETENCAO`
+-- Table `sollus`.`FOLHA_INSS_RETENCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_INSS_RETENCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_INSS_RETENCAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_INSS` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `ID_FOLHA_INSS_SERVICO` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Serviço\",\"labelText\":\"Serviço\",\"tooltip\":\"Serviço\",\"hintText\":\"Importe a Serviço Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"folha_inss_servico\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8273,12 +8273,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_INSS_RETENCAO` (
   INDEX `FK_FOLHA_INSS_RETENCAO` (`ID_FOLHA_INSS` ASC),
   CONSTRAINT `fk_{2D85FCF0-30DF-40F9-8182-DCA007E88A1D}`
     FOREIGN KEY (`ID_FOLHA_INSS_SERVICO`)
-    REFERENCES `fenix`.`FOLHA_INSS_SERVICO` (`ID`)
+    REFERENCES `sollus`.`FOLHA_INSS_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{5265F7ED-9310-4991-A56C-C0541E246DCE}`
     FOREIGN KEY (`ID_FOLHA_INSS`)
-    REFERENCES `fenix`.`FOLHA_INSS` (`ID`)
+    REFERENCES `sollus`.`FOLHA_INSS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as retenções de INSS.'
@@ -8287,9 +8287,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PPP`
+-- Table `sollus`.`FOLHA_PPP`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PPP` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `OBSERVACAO` TEXT NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Observação\",\"labelText\":\"Observação\",\"tooltip\":\"Observação\",\"hintText\":\"Observações Gerais\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -8297,7 +8297,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP` (
   INDEX `fk_FOLHA_PPP_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_FOLHA_PPP_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'PPP = Perfil Profissiográfico Previdenciário'
@@ -8306,9 +8306,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PPP_CAT`
+-- Table `sollus`.`FOLHA_PPP_CAT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_CAT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PPP_CAT` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_PPP` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NUMERO_CAT` INT(11) UNSIGNED NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Número CAT\",\"labelText\":\"Número CAT\",\"tooltip\":\"Número CAT\",\"hintText\":\"Informe a Número CAT\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"\"}}',
@@ -8318,7 +8318,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_CAT` (
   INDEX `FK_FOLHA_PPP_CAT` (`ID_FOLHA_PPP` ASC),
   CONSTRAINT `fk_{8C91D200-46D5-4C33-A1EB-74F1C11AC8B5}`
     FOREIGN KEY (`ID_FOLHA_PPP`)
-    REFERENCES `fenix`.`FOLHA_PPP` (`ID`)
+    REFERENCES `sollus`.`FOLHA_PPP` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Informações prestadas quando o colaborador estiver afastado por acidente de trabalho.'
@@ -8327,9 +8327,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PPP_ATIVIDADE`
+-- Table `sollus`.`FOLHA_PPP_ATIVIDADE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_ATIVIDADE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PPP_ATIVIDADE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_PPP` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DATA_INICIO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data de Início\",\"labelText\":\"Data de Início\",\"tooltip\":\"Data de Início\",\"hintText\":\"Informe a Data de Início\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -8339,7 +8339,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_ATIVIDADE` (
   INDEX `FK_FOLHA_PPP_ATIVIDADE` (`ID_FOLHA_PPP` ASC),
   CONSTRAINT `fk_{F750F228-A23B-4262-A967-E271B442CAF0}`
     FOREIGN KEY (`ID_FOLHA_PPP`)
-    REFERENCES `fenix`.`FOLHA_PPP` (`ID`)
+    REFERENCES `sollus`.`FOLHA_PPP` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Descrição de todas as atividades físicas ou mentais realizadas pelo empregado.'
@@ -8348,9 +8348,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PPP_FATOR_RISCO`
+-- Table `sollus`.`FOLHA_PPP_FATOR_RISCO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_FATOR_RISCO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PPP_FATOR_RISCO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_PPP` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DATA_INICIO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data de Início\",\"labelText\":\"Data de Início\",\"tooltip\":\"Data de Início\",\"hintText\":\"Informe a Data de Início\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Período inicial da atividade do colaborador  com relação a exposição a algum fator de risco\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -8371,7 +8371,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_FATOR_RISCO` (
   INDEX `FK_FOLHA_PPP_FATOR_RISCO` (`ID_FOLHA_PPP` ASC),
   CONSTRAINT `fk_{0FFE40C7-1419-4FFD-9298-1D1468DAA9F2}`
     FOREIGN KEY (`ID_FOLHA_PPP`)
-    REFERENCES `fenix`.`FOLHA_PPP` (`ID`)
+    REFERENCES `sollus`.`FOLHA_PPP` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Informações sobre a exposição do colaborador a fatores de risco ambientais, ergonômicos e mecânicos.\nMais informações em:\n\nhttp://www1.previdencia.gov.br/pg_secundarias/paginas_perfis/perfil_Empregador_10_07.asp'
@@ -8380,9 +8380,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_PPP_EXAME_MEDICO`
+-- Table `sollus`.`FOLHA_PPP_EXAME_MEDICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_EXAME_MEDICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_PPP_EXAME_MEDICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FOLHA_PPP` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `DATA_ULTIMO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Data Último\",\"labelText\":\"Data Último\",\"tooltip\":\"Data Último\",\"hintText\":\"Informe a Data Último\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Data referente ao último exame médico feito pelo colaborador\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"}}',
@@ -8394,7 +8394,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_PPP_EXAME_MEDICO` (
   INDEX `FK_FOLHA_PPP_EXAME_MEDIDO` (`ID_FOLHA_PPP` ASC),
   CONSTRAINT `fk_{1521EFA1-7447-4A6C-AC0C-853B15624864}`
     FOREIGN KEY (`ID_FOLHA_PPP`)
-    REFERENCES `fenix`.`FOLHA_PPP` (`ID`)
+    REFERENCES `sollus`.`FOLHA_PPP` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Exames médicos obrigatórios, clínicos e complementares, realizados pelo empregado'
@@ -8403,9 +8403,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FOLHA_HISTORICO_SALARIAL`
+-- Table `sollus`.`FOLHA_HISTORICO_SALARIAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_HISTORICO_SALARIAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FOLHA_HISTORICO_SALARIAL` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Colaborador\",\"labelText\":\"Colaborador\",\"tooltip\":\"Colaborador\",\"hintText\":\"Importe o Colaborador Vinculado\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"colaborador\",\"campoLookup\":\"pessoa?.nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competência\",\"labelText\":\"Mês/Ano Competência\",\"tooltip\":\"Mês/Ano Competência\",\"hintText\":\"Informe o Mês/Ano Competência\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Exemplo: 10/2011\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -8418,7 +8418,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FOLHA_HISTORICO_SALARIAL` (
   INDEX `fk_FOLHA_HISTORICO_SALARIAL_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_FOLHA_HISTORICO_SALARIAL_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o histórico de alterações no salário.'
@@ -8427,9 +8427,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`TIPO_CONTRATO`
+-- Table `sollus`.`TIPO_CONTRATO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`TIPO_CONTRATO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`TIPO_CONTRATO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL,
   `DESCRICAO` TEXT NULL,
@@ -8440,9 +8440,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_TIPO_SERVICO`
+-- Table `sollus`.`CONTRATO_TIPO_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_TIPO_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_TIPO_SERVICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT 'Normal, Frete, Outros',
   `DESCRICAO` TEXT NULL,
@@ -8453,9 +8453,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_SOLICITACAO_SERVICO`
+-- Table `sollus`.`CONTRATO_SOLICITACAO_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_SOLICITACAO_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_SOLICITACAO_SERVICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTRATO_TIPO_SERVICO` INT(11) UNSIGNED NOT NULL,
   `ID_SETOR` INT NOT NULL,
@@ -8475,27 +8475,27 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_SOLICITACAO_SERVICO` (
   INDEX `fk_CONTRATO_SOLICITACAO_SERVICO_FORNECEDOR1_idx` (`ID_FORNECEDOR` ASC),
   CONSTRAINT `fk_{11550058-0569-4D22-9D52-79ECED1CB6F4}`
     FOREIGN KEY (`ID_CONTRATO_TIPO_SERVICO`)
-    REFERENCES `fenix`.`CONTRATO_TIPO_SERVICO` (`ID`)
+    REFERENCES `sollus`.`CONTRATO_TIPO_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CONTRATO_SOLICITACAO_SERVICO_SETOR1`
     FOREIGN KEY (`ID_SETOR`)
-    REFERENCES `fenix`.`SETOR` (`ID`)
+    REFERENCES `sollus`.`SETOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CONTRATO_SOLICITACAO_SERVICO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CONTRATO_SOLICITACAO_SERVICO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CONTRATO_SOLICITACAO_SERVICO_FORNECEDOR1`
     FOREIGN KEY (`ID_FORNECEDOR`)
-    REFERENCES `fenix`.`FORNECEDOR` (`ID`)
+    REFERENCES `sollus`.`FORNECEDOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Cadastro das solicitações de serviço que geram os contratos'
@@ -8504,9 +8504,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO`
+-- Table `sollus`.`CONTRATO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO` (
   `ID` INT(11) UNSIGNED NOT NULL,
   `ID_SOLICITACAO_SERVICO` INT(11) UNSIGNED NOT NULL,
   `ID_TIPO_CONTRATO` INT(11) UNSIGNED NOT NULL,
@@ -8527,12 +8527,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO` (
   INDEX `FK_SOL_SERVICO_CONTRATO` (`ID_SOLICITACAO_SERVICO` ASC),
   CONSTRAINT `fk_{361E6865-AACA-4AAE-835D-69951506B97C}`
     FOREIGN KEY (`ID_TIPO_CONTRATO`)
-    REFERENCES `fenix`.`TIPO_CONTRATO` (`ID`)
+    REFERENCES `sollus`.`TIPO_CONTRATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{26AD0339-9A7F-44D5-A937-974AF985C5C6}`
     FOREIGN KEY (`ID_SOLICITACAO_SERVICO`)
-    REFERENCES `fenix`.`CONTRATO_SOLICITACAO_SERVICO` (`ID`)
+    REFERENCES `sollus`.`CONTRATO_SOLICITACAO_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Cadastro dos contratos da empresa'
@@ -8541,9 +8541,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_HISTORICO_REAJUSTE`
+-- Table `sollus`.`CONTRATO_HISTORICO_REAJUSTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_HISTORICO_REAJUSTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_HISTORICO_REAJUSTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTRATO` INT(11) UNSIGNED NOT NULL,
   `INDICE` DECIMAL(18,6) NULL,
@@ -8555,7 +8555,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_HISTORICO_REAJUSTE` (
   INDEX `FK_CONTRATO_HISTORICO_REAJUSTE` (`ID_CONTRATO` ASC),
   CONSTRAINT `fk_{5930B5F3-8D84-48F3-ADE0-546A1D58EF8A}`
     FOREIGN KEY (`ID_CONTRATO`)
-    REFERENCES `fenix`.`CONTRATO` (`ID`)
+    REFERENCES `sollus`.`CONTRATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o histórico de reajustes do contrato.'
@@ -8564,9 +8564,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_PREV_FATURAMENTO`
+-- Table `sollus`.`CONTRATO_PREV_FATURAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_PREV_FATURAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_PREV_FATURAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTRATO` INT(11) UNSIGNED NOT NULL,
   `DATA_PREVISTA` DATE NULL,
@@ -8575,7 +8575,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_PREV_FATURAMENTO` (
   INDEX `FK_CONTRATO_PREV_FATURAMENTO` (`ID_CONTRATO` ASC),
   CONSTRAINT `fk_{08124560-2F8F-419E-911B-8193C17AC936}`
     FOREIGN KEY (`ID_CONTRATO`)
-    REFERENCES `fenix`.`CONTRATO` (`ID`)
+    REFERENCES `sollus`.`CONTRATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as previsões de faturamento do contrato.'
@@ -8584,9 +8584,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_HIST_FATURAMENTO`
+-- Table `sollus`.`CONTRATO_HIST_FATURAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_HIST_FATURAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_HIST_FATURAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTRATO` INT(11) UNSIGNED NOT NULL,
   `DATA_FATURA` DATE NULL,
@@ -8595,7 +8595,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_HIST_FATURAMENTO` (
   INDEX `FK_CONTRATO_HIST_FATURAMENTO` (`ID_CONTRATO` ASC),
   CONSTRAINT `fk_{04A46B13-CDC1-42A8-A029-987FD4C07CC3}`
     FOREIGN KEY (`ID_CONTRATO`)
-    REFERENCES `fenix`.`CONTRATO` (`ID`)
+    REFERENCES `sollus`.`CONTRATO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o histórico de faturamentos do contrato.'
@@ -8604,9 +8604,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FERIADOS`
+-- Table `sollus`.`FERIADOS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FERIADOS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FERIADOS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ANO` CHAR(4) NULL,
   `NOME` VARCHAR(50) NULL,
@@ -8622,9 +8622,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_PARAMETRO`
+-- Table `sollus`.`PONTO_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `MES_ANO` VARCHAR(7) NULL COMMENT 'Exemplo: 05/2011',
   `DIA_INICIAL_APURACAO` INT(11) UNSIGNED NULL COMMENT 'Dia do mês em que as ocorrências começam a ser contabilizadas',
@@ -8643,9 +8643,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_HORARIO`
+-- Table `sollus`.`PONTO_HORARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_HORARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_HORARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `TIPO` CHAR(1) NULL COMMENT 'F=Fixo | D=Diário | S=Semanal | M=Mensal',
   `CODIGO` CHAR(4) NULL COMMENT 'Código para o período a critério da empresa. Exemplo: 0001=Comercial, 0002=Sábado, etc.',
@@ -8671,9 +8671,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_ESCALA`
+-- Table `sollus`.`PONTO_ESCALA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_ESCALA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_ESCALA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT 'Nome da escala',
   `DESCONTO_HORA_DIA` VARCHAR(8) NULL COMMENT 'Número de horas que serão descontadas do funcionário caso perca um dia',
@@ -8692,9 +8692,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_RELOGIO`
+-- Table `sollus`.`PONTO_RELOGIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_RELOGIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_RELOGIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `LOCALIZACAO` VARCHAR(50) NULL,
   `MARCA` VARCHAR(30) NULL,
@@ -8708,9 +8708,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_TURMA`
+-- Table `sollus`.`PONTO_TURMA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_TURMA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_TURMA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PONTO_ESCALA` INT(11) UNSIGNED NOT NULL,
   `CODIGO` CHAR(5) NULL,
@@ -8719,7 +8719,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_TURMA` (
   INDEX `FK_PONTO_ESCALA_TURMA` (`ID_PONTO_ESCALA` ASC),
   CONSTRAINT `fk_{24DAD7DC-0965-4EDF-8059-E958A0821AA1}`
     FOREIGN KEY (`ID_PONTO_ESCALA`)
-    REFERENCES `fenix`.`PONTO_ESCALA` (`ID`)
+    REFERENCES `sollus`.`PONTO_ESCALA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Cadastro das turmas de trabalho.'
@@ -8728,9 +8728,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_MARCACAO`
+-- Table `sollus`.`PONTO_MARCACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_MARCACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_MARCACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PONTO_RELOGIO` INT(11) UNSIGNED NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -8746,12 +8746,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_MARCACAO` (
   INDEX `fk_PONTO_MARCACAO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{41E0724D-FD60-49CE-B95C-119CDB59790C}`
     FOREIGN KEY (`ID_PONTO_RELOGIO`)
-    REFERENCES `fenix`.`PONTO_RELOGIO` (`ID`)
+    REFERENCES `sollus`.`PONTO_RELOGIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PONTO_MARCACAO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as marcações realizadas pelo colaborador.'
@@ -8760,9 +8760,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_BANCO_HORAS`
+-- Table `sollus`.`PONTO_BANCO_HORAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_BANCO_HORAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_BANCO_HORAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `DATA_TRABALHO` DATE NULL,
@@ -8772,7 +8772,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_BANCO_HORAS` (
   INDEX `fk_PONTO_BANCO_HORAS_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_PONTO_BANCO_HORAS_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Realiza o controle do banco de horas do funcionário.'
@@ -8781,9 +8781,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_CLASSIFICACAO_JORNADA`
+-- Table `sollus`.`PONTO_CLASSIFICACAO_JORNADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_CLASSIFICACAO_JORNADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_CLASSIFICACAO_JORNADA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL COMMENT 'Código criado pelo usuário. Ex: 100=Trabalho normal | 101=Falta Não Abonada | 102=Falta Abonada | 103=Licença Saúde | 105=Banco de Horas',
   `NOME` VARCHAR(50) NULL COMMENT 'Nome referente ao código informado',
@@ -8797,9 +8797,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_HORARIO_AUTORIZADO`
+-- Table `sollus`.`PONTO_HORARIO_AUTORIZADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_HORARIO_AUTORIZADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_HORARIO_AUTORIZADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `DATA_HORARIO` DATE NULL,
@@ -8820,7 +8820,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_HORARIO_AUTORIZADO` (
   INDEX `fk_PONTO_HORARIO_AUTORIZADO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_PONTO_HORARIO_AUTORIZADO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os horários autorizados para o funcionário em determinados dias pelo seu superior. Caso exista um registro para determinado dia nessa tabela, a mesma será utilizada para realizar todos os cálculos para o funci, independente de sua escala.\n\nEssa tabela também deve ser utilizada para controlar as prorrogações de horário do funci. Dessa forma, se o funci precisar prorrogar (fazer hora extra), isso deve ser autorizado pelo seu superior e um registro deve ser armazenado nessa tabela.\n\nSempre que o funci for realizar um trabalho diferente do que está acordado na sua escala, um registro deve ser armazenado nesta tabela.'
@@ -8829,9 +8829,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_ABONO`
+-- Table `sollus`.`PONTO_ABONO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_ABONO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_ABONO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `QUANTIDADE` INT(11) UNSIGNED NULL,
@@ -8844,7 +8844,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_ABONO` (
   INDEX `fk_PONTO_ABONO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_PONTO_ABONO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os abonos por funcionário.'
@@ -8853,9 +8853,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_ABONO_UTILIZACAO`
+-- Table `sollus`.`PONTO_ABONO_UTILIZACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_ABONO_UTILIZACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_ABONO_UTILIZACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PONTO_ABONO` INT(11) UNSIGNED NOT NULL,
   `DATA_UTILIZACAO` DATE NULL,
@@ -8864,7 +8864,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_ABONO_UTILIZACAO` (
   INDEX `FK_PONTO_ABONO_UTILIZACAO` (`ID_PONTO_ABONO` ASC),
   CONSTRAINT `fk_{5E373E19-7D30-4782-BBBC-5C35C10CB2D9}`
     FOREIGN KEY (`ID_PONTO_ABONO`)
-    REFERENCES `fenix`.`PONTO_ABONO` (`ID`)
+    REFERENCES `sollus`.`PONTO_ABONO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as utilizacoes de abono do funcionario;'
@@ -8873,9 +8873,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`DAV_CABECALHO`
+-- Table `sollus`.`DAV_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`DAV_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`DAV_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL,
   `NUMERO_DAV` VARCHAR(10) NULL,
@@ -8899,7 +8899,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`DAV_CABECALHO` (
   INDEX `fk_DAV_CABECALHO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_DAV_CABECALHO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o cabeçalho do DAV.'
@@ -8908,9 +8908,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`DAV_DETALHE`
+-- Table `sollus`.`DAV_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`DAV_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`DAV_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_DAV_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `ID_PRODUTO` INT NOT NULL,
@@ -8933,12 +8933,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`DAV_DETALHE` (
   INDEX `fk_DAV_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{01AF191E-A00C-44B1-95BE-FCA329907DA1}`
     FOREIGN KEY (`ID_DAV_CABECALHO`)
-    REFERENCES `fenix`.`DAV_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`DAV_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DAV_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os detalhes do DAV.'
@@ -8947,9 +8947,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRE_VENDA_CABECALHO`
+-- Table `sollus`.`PRE_VENDA_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRE_VENDA_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRE_VENDA_CABECALHO` (
   `ID` INT(11) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL,
   `DATA_EMISSAO` DATE NULL,
@@ -8968,7 +8968,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRE_VENDA_CABECALHO` (
   INDEX `fk_PRE_VENDA_CABECALHO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PRE_VENDA_CABECALHO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o cabeçalho da pre-venda.'
@@ -8977,9 +8977,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRE_VENDA_DETALHE`
+-- Table `sollus`.`PRE_VENDA_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRE_VENDA_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRE_VENDA_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRE_VENDA_CABECALHO` INT(11) UNSIGNED ZEROFILL NOT NULL,
   `ID_PRODUTO` INT NOT NULL,
@@ -8997,12 +8997,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRE_VENDA_DETALHE` (
   INDEX `fk_PRE_VENDA_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{B35253D2-3EE9-435C-8911-6FAA488C3BAF}`
     FOREIGN KEY (`ID_PRE_VENDA_CABECALHO`)
-    REFERENCES `fenix`.`PRE_VENDA_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`PRE_VENDA_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PRE_VENDA_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os detalhes da pre-venda.'
@@ -9011,9 +9011,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_FECHAMENTO`
+-- Table `sollus`.`CONTABIL_FECHAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_FECHAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_FECHAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_INICIO` DATE NULL,
   `DATA_FIM` DATE NULL,
@@ -9025,9 +9025,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_INDICE`
+-- Table `sollus`.`CONTABIL_INDICE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_INDICE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_INDICE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `INDICE` VARCHAR(50) NULL,
   `PERIODICIDADE` CHAR(1) NOT NULL COMMENT 'D=Diário | M=Mensal',
@@ -9040,9 +9040,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTABIL_INDICE_VALOR`
+-- Table `sollus`.`CONTABIL_INDICE_VALOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_INDICE_VALOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTABIL_INDICE_VALOR` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CONTABIL_INDICE` INT(11) UNSIGNED NOT NULL,
   `DATA_INDICE` DATE NULL,
@@ -9051,7 +9051,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CONTABIL_INDICE_VALOR` (
   INDEX `FK_CONTABIL_INDICE_VALOR` (`ID_CONTABIL_INDICE` ASC),
   CONSTRAINT `fk_{7B3E8135-BFC8-4495-AD53-62286EAAC690}`
     FOREIGN KEY (`ID_CONTABIL_INDICE`)
-    REFERENCES `fenix`.`CONTABIL_INDICE` (`ID`)
+    REFERENCES `sollus`.`CONTABIL_INDICE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Valores dos índices.'
@@ -9060,9 +9060,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`QUADRO_SOCIETARIO`
+-- Table `sollus`.`QUADRO_SOCIETARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`QUADRO_SOCIETARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`QUADRO_SOCIETARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_REGISTRO` DATE NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Data Registro\",\"labelText\":\"Data Registro\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Data Registro\",\"hintText\":\"Conteúdo para o campo Data Registro\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"itens\":[],\"tipo\":\"datePickerItem\",\"firstDate\":\"1900-01-01\",\"lastDate\":\"now\",\"mascara\":\"dd/MM/yyyy\"},\"comentario\":\"\"}',
   `CAPITAL_SOCIAL` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Capital Social\",\"labelText\":\"Capital Social\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Conteúdo para o campo Capital Social\",\"hintText\":\"Conteúdo para o campo Capital Social\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"Valor do capital social da empresa.\"}',
@@ -9075,9 +9075,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CONTRATO_TEMPLATE`
+-- Table `sollus`.`CONTRATO_TEMPLATE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CONTRATO_TEMPLATE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CONTRATO_TEMPLATE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT 'Nome do template',
   `DESCRICAO` TEXT NULL COMMENT 'Descrição do template',
@@ -9088,9 +9088,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_BANCO_HORAS_UTILIZACAO`
+-- Table `sollus`.`PONTO_BANCO_HORAS_UTILIZACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_BANCO_HORAS_UTILIZACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_BANCO_HORAS_UTILIZACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PONTO_BANCO_HORAS` INT(11) UNSIGNED NOT NULL,
   `DATA_UTILIZACAO` DATE NULL,
@@ -9100,7 +9100,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_BANCO_HORAS_UTILIZACAO` (
   INDEX `FK_BANCO_HORA_UTILIZACAO` (`ID_PONTO_BANCO_HORAS` ASC),
   CONSTRAINT `fk_{95E38BE7-8889-4039-A9EF-9B3F06C021C1}`
     FOREIGN KEY (`ID_PONTO_BANCO_HORAS`)
-    REFERENCES `fenix`.`PONTO_BANCO_HORAS` (`ID`)
+    REFERENCES `sollus`.`PONTO_BANCO_HORAS` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena as utilizacoes do banco de horas do funcionário.'
@@ -9109,9 +9109,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PONTO_FECHAMENTO_JORNADA`
+-- Table `sollus`.`PONTO_FECHAMENTO_JORNADA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_FECHAMENTO_JORNADA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PONTO_FECHAMENTO_JORNADA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PONTO_CLASSIFICACAO_JORNADA` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9155,12 +9155,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PONTO_FECHAMENTO_JORNADA` (
   INDEX `fk_PONTO_FECHAMENTO_JORNADA_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{46D94076-83BD-47CF-81A8-CFB7358E7852}`
     FOREIGN KEY (`ID_PONTO_CLASSIFICACAO_JORNADA`)
-    REFERENCES `fenix`.`PONTO_CLASSIFICACAO_JORNADA` (`ID`)
+    REFERENCES `sollus`.`PONTO_CLASSIFICACAO_JORNADA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PONTO_FECHAMENTO_JORNADA_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena o fechamento de uma jornada de determinado colaborador. É a consolidação dos dados armazenados nas marcações do dia.'
@@ -9169,9 +9169,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ADM_MODULO`
+-- Table `sollus`.`ADM_MODULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ADM_MODULO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ADM_MODULO` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `codigo` CHAR(3) NULL,
   `bloco` VARCHAR(100) NULL,
@@ -9186,9 +9186,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CT_RESULTADO_NT_FINANCEIRA`
+-- Table `sollus`.`CT_RESULTADO_NT_FINANCEIRA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CT_RESULTADO_NT_FINANCEIRA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CT_RESULTADO_NT_FINANCEIRA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_CENTRO_RESULTADO` INT(11) UNSIGNED NOT NULL,
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL,
@@ -9198,12 +9198,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CT_RESULTADO_NT_FINANCEIRA` (
   INDEX `fk_CT_RESULTADO_NT_FINANCEIRA_FIN_NATUREZA_FINANCEIRA1_idx` (`ID_FIN_NATUREZA_FINANCEIRA` ASC),
   CONSTRAINT `fk_{858FCE59-EBDE-45C6-BA90-BE4EE82F5897}`
     FOREIGN KEY (`ID_CENTRO_RESULTADO`)
-    REFERENCES `fenix`.`CENTRO_RESULTADO` (`ID`)
+    REFERENCES `sollus`.`CENTRO_RESULTADO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CT_RESULTADO_NT_FINANCEIRA_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Faz o meio de campo entre CENTRO_RESULTADO e NATUREZA_FINANCEIRA. Relacionamento N:M.'
@@ -9212,9 +9212,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_ALIQUOTAS`
+-- Table `sollus`.`ECF_ALIQUOTAS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_ALIQUOTAS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_ALIQUOTAS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `TOTALIZADOR_PARCIAL` VARCHAR(10) NULL,
   `ECF_ICMS_ST` VARCHAR(4) NULL,
@@ -9225,9 +9225,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AUDITORIA`
+-- Table `sollus`.`AUDITORIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AUDITORIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AUDITORIA` (
   `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `data_registro` DATE NULL,
   `hora_registro` VARCHAR(8) NULL,
@@ -9244,9 +9244,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PRODUTO_ALTERACAO_ITEM`
+-- Table `sollus`.`PRODUTO_ALTERACAO_ITEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_ALTERACAO_ITEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PRODUTO_ALTERACAO_ITEM` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PRODUTO` INT NOT NULL,
   `CODIGO` VARCHAR(14) NULL COMMENT 'COD_ANT_ITEM [Código anterior do item com relação à última informação apresentada.]',
@@ -9257,7 +9257,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PRODUTO_ALTERACAO_ITEM` (
   INDEX `fk_PRODUTO_ALTERACAO_ITEM_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_PRODUTO_ALTERACAO_ITEM_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Registro 0205 do Sped Fiscal. Este registro tem por objetivo informar alterações ocorridas na descrição do produto, desde que não o descaracterize ou haja modificação que o identifique como sendo novo produto. Caso não tenha ocorrido movimentação no período da alteração do item, deverá ser informada no primeiro período em que houver movimentação do item ou no inventário. Deverá ser ainda informado quando ocorrer alteração na codificação do produto.'
@@ -9266,9 +9266,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_APURACAO_ICMS`
+-- Table `sollus`.`FISCAL_APURACAO_ICMS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_APURACAO_ICMS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_APURACAO_ICMS` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competência\",\"labelText\":\"Mês/Ano Competência\",\"tooltip\":\"Mês/Ano Competência\",\"hintText\":\"Informe o Mês/Ano Competência\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
   `VALOR_TOTAL_DEBITO` DECIMAL(18,6) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Valor Total a Débitos\",\"labelText\":\"Valor Total a Débitos\",\"tooltip\":\"Valor Total a Débitos\",\"hintText\":\"Informe o Valor Total a Débitos\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Sped Fiscal - Registro E110 - VL_TOT_DEBITOS [o valor informado deve  corresponder ao somatório de todos  os documentos fiscais de saída que  geram débito de ICMS]\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"VALOR\"}}',
@@ -9292,9 +9292,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FISCAL_NOTA_FISCAL_SAIDA`
+-- Table `sollus`.`FISCAL_NOTA_FISCAL_SAIDA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_NOTA_FISCAL_SAIDA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FISCAL_NOTA_FISCAL_SAIDA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_NFE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"NF-e\",\"labelText\":\"NF-e\",\"tooltip\":\"NF-e\",\"hintText\":\"Importe a NF-e Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"nfe_cabecalho\",\"campoLookup\":\"chaveAcesso\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `COMPETENCIA` VARCHAR(7) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Competência\",\"labelText\":\"Mês/Ano Competência\",\"tooltip\":\"Mês/Ano Competência\",\"hintText\":\"Informe o Mês/Ano Competência\",\"validacao\":\"MES_ANO\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"MES_ANO\"}}',
@@ -9302,7 +9302,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FISCAL_NOTA_FISCAL_SAIDA` (
   INDEX `fk_FISCAL_NOTA_FISCAL_SAIDA_NFE_CABECALHO1_idx` (`ID_NFE_CABECALHO` ASC),
   CONSTRAINT `fk_FISCAL_NOTA_FISCAL_SAIDA_NFE_CABECALHO1`
     FOREIGN KEY (`ID_NFE_CABECALHO`)
-    REFERENCES `fenix`.`NFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`NFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Informações adicionais para as notas de saída para escrituração fiscal.'
@@ -9311,9 +9311,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_SINTEGRA_60M`
+-- Table `sollus`.`ECF_SINTEGRA_60M`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_SINTEGRA_60M` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_SINTEGRA_60M` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(8) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -9337,9 +9337,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_SINTEGRA_60A`
+-- Table `sollus`.`ECF_SINTEGRA_60A`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_SINTEGRA_60A` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_SINTEGRA_60A` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(8) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -9356,9 +9356,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ADM_PARAMETRO`
+-- Table `sollus`.`ADM_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ADM_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ADM_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `FIN_PARCELA_ABERTO` INT(11) UNSIGNED NULL COMMENT 'ID padrão da parcela com status ABERTO [Usado no Contas a Pagar e no Contas a Receber]',
   `FIN_PARCELA_QUITADO` INT(11) UNSIGNED NULL COMMENT 'ID padrão da parcela com status QUITADO [Usado no Contas a Pagar e no Contas a Receber]',
@@ -9373,9 +9373,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ECF_E3`
+-- Table `sollus`.`ECF_E3`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ECF_E3` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ECF_E3` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `SERIE_ECF` VARCHAR(20) NULL COMMENT 'Número de fabricação do ECF responsável pela atualização do estoque',
   `MF_ADICIONAL` CHAR(1) NULL COMMENT 'Letra indicativa de MF adicional',
@@ -9391,9 +9391,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PESSOA_ALTERACAO`
+-- Table `sollus`.`PESSOA_ALTERACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_ALTERACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PESSOA_ALTERACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PESSOA` INT NOT NULL,
   `DATA_ALTERACAO` DATE NULL,
@@ -9403,7 +9403,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PESSOA_ALTERACAO` (
   INDEX `fk_PESSOA_ALTERACAO_PESSOA1_idx` (`ID_PESSOA` ASC),
   CONSTRAINT `fk_PESSOA_ALTERACAO_PESSOA1`
     FOREIGN KEY (`ID_PESSOA`)
-    REFERENCES `fenix`.`PESSOA` (`id`)
+    REFERENCES `sollus`.`PESSOA` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Essa tabela tem por objetivo armazenar todas as alterações realizadas em PESSOA, PESSOA_FISICA, PESSOA_JURIDICA, ENDERECO para que seja possível gerar o registro 0175 do Sped Fiscal. Deve-se armazenar os objetos serializados e realizar os devidos testes no momento da geração do arquivo.'
@@ -9412,9 +9412,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`DAV_DETALHE_ALTERACAO`
+-- Table `sollus`.`DAV_DETALHE_ALTERACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`DAV_DETALHE_ALTERACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`DAV_DETALHE_ALTERACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_DAV_DETALHE` INT(11) UNSIGNED NOT NULL,
   `DATA_ALTERACAO` DATE NULL,
@@ -9425,7 +9425,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`DAV_DETALHE_ALTERACAO` (
   INDEX `DAV_DETALHE_ALTERACAO_FKIndex1` (`ID_DAV_DETALHE` ASC),
   CONSTRAINT `fk_{38EB7611-F536-4209-BEFD-EE739D12E364}`
     FOREIGN KEY (`ID_DAV_DETALHE`)
-    REFERENCES `fenix`.`DAV_DETALHE` (`ID`)
+    REFERENCES `sollus`.`DAV_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Para geração do registro tipo D4 do PAF.'
@@ -9434,9 +9434,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PDV_SANGRIA`
+-- Table `sollus`.`PDV_SANGRIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PDV_SANGRIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PDV_SANGRIA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME_CAIXA` VARCHAR(30) NULL,
   `ID_GERADO_CAIXA` INT(11) UNSIGNED NULL,
@@ -9453,9 +9453,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MALOTE_DIGITAL_DOCUMENTO`
+-- Table `sollus`.`MALOTE_DIGITAL_DOCUMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_DOCUMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MALOTE_DIGITAL_DOCUMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `NOME` VARCHAR(100) NULL COMMENT 'nome fornecido pelo remetente',
@@ -9469,7 +9469,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_DOCUMENTO` (
   INDEX `fk_MALOTE_DIGITAL_DOCUMENTO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_MALOTE_DIGITAL_DOCUMENTO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Controla o envio de documentos digitais entre usuários do sistema.'
@@ -9478,9 +9478,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MALOTE_DIGITAL_DESTINATARIO`
+-- Table `sollus`.`MALOTE_DIGITAL_DESTINATARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_DESTINATARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MALOTE_DIGITAL_DESTINATARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MALOTE_DIGITAL_DOCUMENTO` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9489,12 +9489,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_DESTINATARIO` (
   INDEX `fk_MALOTE_DIGITAL_DESTINATARIO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{F02D780C-73D7-42A1-B054-410048C997D8}`
     FOREIGN KEY (`ID_MALOTE_DIGITAL_DOCUMENTO`)
-    REFERENCES `fenix`.`MALOTE_DIGITAL_DOCUMENTO` (`ID`)
+    REFERENCES `sollus`.`MALOTE_DIGITAL_DOCUMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_MALOTE_DIGITAL_DESTINATARIO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os destinatários do documento'
@@ -9503,9 +9503,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MALOTE_DIGITAL_ACESSO`
+-- Table `sollus`.`MALOTE_DIGITAL_ACESSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_ACESSO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MALOTE_DIGITAL_ACESSO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MALOTE_DIGITAL_DESTINATARIO` INT(11) UNSIGNED NOT NULL,
   `DATA_ACESSO` DATE NULL,
@@ -9514,7 +9514,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MALOTE_DIGITAL_ACESSO` (
   INDEX `FK_MALOTE_DIG_DEST_ACESSO` (`ID_MALOTE_DIGITAL_DESTINATARIO` ASC),
   CONSTRAINT `fk_{040820C8-9AB6-47E2-8A77-B292404C61D4}`
     FOREIGN KEY (`ID_MALOTE_DIGITAL_DESTINATARIO`)
-    REFERENCES `fenix`.`MALOTE_DIGITAL_DESTINATARIO` (`ID`)
+    REFERENCES `sollus`.`MALOTE_DIGITAL_DESTINATARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena data e hora de acesso sempre que um destinatário clicar para acessar o documento'
@@ -9523,9 +9523,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ETIQUETA_FORMATO_PAPEL`
+-- Table `sollus`.`ETIQUETA_FORMATO_PAPEL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ETIQUETA_FORMATO_PAPEL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ETIQUETA_FORMATO_PAPEL` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(50) NULL COMMENT 'A4, A0, A3, LETTER, LEGAL',
   `ALTURA` INT(11) UNSIGNED NULL COMMENT 'Em milímetros',
@@ -9537,9 +9537,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ETIQUETA_LAYOUT`
+-- Table `sollus`.`ETIQUETA_LAYOUT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ETIQUETA_LAYOUT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ETIQUETA_LAYOUT` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_FORMATO_PAPEL` INT(11) UNSIGNED NOT NULL,
   `CODIGO_FABRICANTE` VARCHAR(50) NULL,
@@ -9556,7 +9556,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ETIQUETA_LAYOUT` (
   INDEX `FK_PAPEL_ETIQUETA` (`ID_FORMATO_PAPEL` ASC),
   CONSTRAINT `fk_{870DB90A-1372-4E58-B205-C25BB2C7365F}`
     FOREIGN KEY (`ID_FORMATO_PAPEL`)
-    REFERENCES `fenix`.`ETIQUETA_FORMATO_PAPEL` (`ID`)
+    REFERENCES `sollus`.`ETIQUETA_FORMATO_PAPEL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Armazena os layouts das etiquetas que podem ser impressas pelo sistema'
@@ -9565,9 +9565,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ETIQUETA_TEMPLATE`
+-- Table `sollus`.`ETIQUETA_TEMPLATE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ETIQUETA_TEMPLATE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ETIQUETA_TEMPLATE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_ETIQUETA_LAYOUT` INT(11) UNSIGNED NOT NULL,
   `TABELA` VARCHAR(50) NULL,
@@ -9579,7 +9579,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`ETIQUETA_TEMPLATE` (
   INDEX `FK_ETIQUETA_TEMPLATE` (`ID_ETIQUETA_LAYOUT` ASC),
   CONSTRAINT `fk_{433B10D1-3F6E-494B-AD5E-DBF791DFA501}`
     FOREIGN KEY (`ID_ETIQUETA_LAYOUT`)
-    REFERENCES `fenix`.`ETIQUETA_LAYOUT` (`ID`)
+    REFERENCES `sollus`.`ETIQUETA_LAYOUT` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Cadastro dos templates utilizados pela empresa. Por exemplo, a empresa sempre imprime os produtos CANETA e LAPIS em determinada quantidade e modelo de etiquetas. Então o usuário armazena esse template e o recupera quando for necessário realizar a tarefa'
@@ -9588,9 +9588,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AGENDA_CATEGORIA_COMPROMISSO`
+-- Table `sollus`.`AGENDA_CATEGORIA_COMPROMISSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_CATEGORIA_COMPROMISSO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AGENDA_CATEGORIA_COMPROMISSO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL COMMENT 'Nome da categoria',
   `COR` VARCHAR(50) NULL COMMENT 'Cor da categoria, escolhida pelo desenvolvedor de acordo com a estratégia adotada na aplicação.',
@@ -9600,9 +9600,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AGENDA_COMPROMISSO`
+-- Table `sollus`.`AGENDA_COMPROMISSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_COMPROMISSO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AGENDA_COMPROMISSO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_AGENDA_CATEGORIA_COMPROMISSO` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9617,12 +9617,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_COMPROMISSO` (
   INDEX `fk_AGENDA_COMPROMISSO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{FC824681-33D0-4247-BFDF-526A153CD722}`
     FOREIGN KEY (`ID_AGENDA_CATEGORIA_COMPROMISSO`)
-    REFERENCES `fenix`.`AGENDA_CATEGORIA_COMPROMISSO` (`ID`)
+    REFERENCES `sollus`.`AGENDA_CATEGORIA_COMPROMISSO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_AGENDA_COMPROMISSO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'Tabela que armazena os compromissos do colaborador'
@@ -9631,9 +9631,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AGENDA_NOTIFICACAO`
+-- Table `sollus`.`AGENDA_NOTIFICACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_NOTIFICACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AGENDA_NOTIFICACAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_AGENDA_COMPROMISSO` INT(11) UNSIGNED NOT NULL,
   `DATA_NOTIFICACAO` DATE NULL,
@@ -9643,7 +9643,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_NOTIFICACAO` (
   INDEX `FK_COMPROMISSO_NOTIFICACAO` (`ID_AGENDA_COMPROMISSO` ASC),
   CONSTRAINT `fk_{399131FD-404B-48BF-AF89-C823DD44767F}`
     FOREIGN KEY (`ID_AGENDA_COMPROMISSO`)
-    REFERENCES `fenix`.`AGENDA_COMPROMISSO` (`ID`)
+    REFERENCES `sollus`.`AGENDA_COMPROMISSO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9651,9 +9651,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`AGENDA_COMPROMISSO_CONVIDADO`
+-- Table `sollus`.`AGENDA_COMPROMISSO_CONVIDADO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_COMPROMISSO_CONVIDADO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`AGENDA_COMPROMISSO_CONVIDADO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_AGENDA_COMPROMISSO` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9662,12 +9662,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`AGENDA_COMPROMISSO_CONVIDADO` (
   INDEX `fk_AGENDA_COMPROMISSO_CONVIDADO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{4E85396E-52A3-46E0-86BA-E662BE304E59}`
     FOREIGN KEY (`ID_AGENDA_COMPROMISSO`)
-    REFERENCES `fenix`.`AGENDA_COMPROMISSO` (`ID`)
+    REFERENCES `sollus`.`AGENDA_COMPROMISSO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_AGENDA_COMPROMISSO_CONVIDADO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9675,9 +9675,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`REUNIAO_SALA`
+-- Table `sollus`.`REUNIAO_SALA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`REUNIAO_SALA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`REUNIAO_SALA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `PREDIO` VARCHAR(100) NULL,
   `ANDAR` VARCHAR(10) NULL,
@@ -9689,9 +9689,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`REUNIAO_SALA_EVENTO`
+-- Table `sollus`.`REUNIAO_SALA_EVENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`REUNIAO_SALA_EVENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`REUNIAO_SALA_EVENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_AGENDA_COMPROMISSO` INT(11) UNSIGNED NOT NULL,
   `ID_REUNIAO_SALA` INT(11) UNSIGNED NOT NULL,
@@ -9701,12 +9701,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`REUNIAO_SALA_EVENTO` (
   INDEX `FK_COMPROMISSO_SALA` (`ID_AGENDA_COMPROMISSO` ASC),
   CONSTRAINT `fk_{166E3AAB-2DB5-44FC-BCDE-62D0E052AD18}`
     FOREIGN KEY (`ID_REUNIAO_SALA`)
-    REFERENCES `fenix`.`REUNIAO_SALA` (`ID`)
+    REFERENCES `sollus`.`REUNIAO_SALA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{C71E2EDC-9C69-4A00-ABBD-5127B0E9FBA0}`
     FOREIGN KEY (`ID_AGENDA_COMPROMISSO`)
-    REFERENCES `fenix`.`AGENDA_COMPROMISSO` (`ID`)
+    REFERENCES `sollus`.`AGENDA_COMPROMISSO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 COMMENT = 'eventos que ocorrem na sala de reunião'
@@ -9715,9 +9715,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`RECADO_REMETENTE`
+-- Table `sollus`.`RECADO_REMETENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`RECADO_REMETENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`RECADO_REMETENTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_COLABORADOR` INT NOT NULL,
   `DATA_ENVIO` DATE NULL,
@@ -9728,7 +9728,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`RECADO_REMETENTE` (
   INDEX `fk_RECADO_REMETENTE_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_RECADO_REMETENTE_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9736,9 +9736,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`RECADO_DESTINATARIO`
+-- Table `sollus`.`RECADO_DESTINATARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`RECADO_DESTINATARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`RECADO_DESTINATARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_RECADO_REMETENTE` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9747,12 +9747,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`RECADO_DESTINATARIO` (
   INDEX `fk_RECADO_DESTINATARIO_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{0E54BF34-67CE-451E-B4A0-778D89F84D5F}`
     FOREIGN KEY (`ID_RECADO_REMETENTE`)
-    REFERENCES `fenix`.`RECADO_REMETENTE` (`ID`)
+    REFERENCES `sollus`.`RECADO_REMETENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_RECADO_DESTINATARIO_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9760,9 +9760,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESOCIAL_NATUREZA_JURIDICA`
+-- Table `sollus`.`ESOCIAL_NATUREZA_JURIDICA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESOCIAL_NATUREZA_JURIDICA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESOCIAL_NATUREZA_JURIDICA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `GRUPO` INT(11) UNSIGNED NULL,
   `CODIGO` VARCHAR(5) NULL,
@@ -9774,9 +9774,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESOCIAL_CLASSIFICACAO_TRIBUT`
+-- Table `sollus`.`ESOCIAL_CLASSIFICACAO_TRIBUT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESOCIAL_CLASSIFICACAO_TRIBUT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESOCIAL_CLASSIFICACAO_TRIBUT` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `DESCRICAO` VARCHAR(100) NULL,
@@ -9787,9 +9787,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESOCIAL_RUBRICA`
+-- Table `sollus`.`ESOCIAL_RUBRICA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESOCIAL_RUBRICA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESOCIAL_RUBRICA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(4) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -9800,9 +9800,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESOCIAL_TIPO_AFASTAMENTO`
+-- Table `sollus`.`ESOCIAL_TIPO_AFASTAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESOCIAL_TIPO_AFASTAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESOCIAL_TIPO_AFASTAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `DESCRICAO` TEXT NULL,
@@ -9813,9 +9813,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`ESOCIAL_MOTIVO_DESLIGAMENTO`
+-- Table `sollus`.`ESOCIAL_MOTIVO_DESLIGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`ESOCIAL_MOTIVO_DESLIGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`ESOCIAL_MOTIVO_DESLIGAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `DESCRICAO` TEXT NULL,
@@ -9826,9 +9826,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_OP_CABECALHO`
+-- Table `sollus`.`PCP_OP_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_OP_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_OP_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `INICIO` DATE NULL,
   `PREVISAO_ENTREGA` DATE NULL,
@@ -9843,9 +9843,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_OP_DETALHE`
+-- Table `sollus`.`PCP_OP_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_OP_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_OP_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PCP_OP_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `ID_PRODUTO` INT NOT NULL,
@@ -9859,12 +9859,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PCP_OP_DETALHE` (
   INDEX `fk_PCP_OP_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{38BB45EA-9D0E-47DD-A72F-3FA45738D406}`
     FOREIGN KEY (`ID_PCP_OP_CABECALHO`)
-    REFERENCES `fenix`.`PCP_OP_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`PCP_OP_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PCP_OP_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9872,9 +9872,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_SERVICO`
+-- Table `sollus`.`PCP_SERVICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_SERVICO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PCP_OP_DETALHE` INT(11) UNSIGNED NOT NULL,
   `INICIO_REALIZADO` DATE NULL,
@@ -9893,7 +9893,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO` (
   INDEX `FK_PCP_SERVICO_REALIZADO` (`ID_PCP_OP_DETALHE` ASC),
   CONSTRAINT `fk_{8826F024-B03D-4D57-8619-410C8743C47B}`
     FOREIGN KEY (`ID_PCP_OP_DETALHE`)
-    REFERENCES `fenix`.`PCP_OP_DETALHE` (`ID`)
+    REFERENCES `sollus`.`PCP_OP_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9901,9 +9901,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_SERVICO_COLABORADOR`
+-- Table `sollus`.`PCP_SERVICO_COLABORADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO_COLABORADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_SERVICO_COLABORADOR` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PCP_SERVICO` INT(11) UNSIGNED NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -9912,12 +9912,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO_COLABORADOR` (
   INDEX `fk_PCP_SERVICO_COLABORADOR_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_{664764E5-3488-4030-BFB1-15E4D34A5446}`
     FOREIGN KEY (`ID_PCP_SERVICO`)
-    REFERENCES `fenix`.`PCP_SERVICO` (`ID`)
+    REFERENCES `sollus`.`PCP_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PCP_SERVICO_COLABORADOR_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9925,9 +9925,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_INSTRUCAO`
+-- Table `sollus`.`PCP_INSTRUCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_INSTRUCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_INSTRUCAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(3) NULL,
   `DESCRICAO` VARCHAR(100) NULL,
@@ -9937,9 +9937,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_INSTRUCAO_OP`
+-- Table `sollus`.`PCP_INSTRUCAO_OP`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_INSTRUCAO_OP` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_INSTRUCAO_OP` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PCP_INSTRUCAO` INT(11) UNSIGNED NOT NULL,
   `ID_PCP_OP_CABECALHO` INT(11) UNSIGNED NOT NULL,
@@ -9948,12 +9948,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PCP_INSTRUCAO_OP` (
   INDEX `FK_PCP_INSTRUCAO_OP` (`ID_PCP_INSTRUCAO` ASC),
   CONSTRAINT `fk_{7C1E7E45-BEB5-4DE3-AD45-217B1C481440}`
     FOREIGN KEY (`ID_PCP_OP_CABECALHO`)
-    REFERENCES `fenix`.`PCP_OP_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`PCP_OP_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{1711BD28-6B33-449F-8C2F-E6CDBFCEF130}`
     FOREIGN KEY (`ID_PCP_INSTRUCAO`)
-    REFERENCES `fenix`.`PCP_INSTRUCAO` (`ID`)
+    REFERENCES `sollus`.`PCP_INSTRUCAO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9961,9 +9961,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PCP_SERVICO_EQUIPAMENTO`
+-- Table `sollus`.`PCP_SERVICO_EQUIPAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO_EQUIPAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PCP_SERVICO_EQUIPAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_PATRIM_BEM` INT(11) UNSIGNED NOT NULL,
   `ID_PCP_SERVICO` INT(11) UNSIGNED NOT NULL,
@@ -9972,12 +9972,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PCP_SERVICO_EQUIPAMENTO` (
   INDEX `FK_PCP_EQUIP_SERV` (`ID_PATRIM_BEM` ASC),
   CONSTRAINT `fk_{6D48A2C9-2A21-4A7A-B1A5-4882369D9E49}`
     FOREIGN KEY (`ID_PCP_SERVICO`)
-    REFERENCES `fenix`.`PCP_SERVICO` (`ID`)
+    REFERENCES `sollus`.`PCP_SERVICO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{34E8FAB1-88F5-4369-A7E0-0EDFD616F5EB}`
     FOREIGN KEY (`ID_PATRIM_BEM`)
-    REFERENCES `fenix`.`PATRIM_BEM` (`ID`)
+    REFERENCES `sollus`.`PATRIM_BEM` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -9985,9 +9985,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_AGENDAMENTO`
+-- Table `sollus`.`WMS_AGENDAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_AGENDAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_AGENDAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `DATA_OPERACAO` DATE NULL,
   `HORA_OPERACAO` VARCHAR(8) NULL,
@@ -10002,9 +10002,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_PARAMETRO`
+-- Table `sollus`.`WMS_PARAMETRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_PARAMETRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_PARAMETRO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `HORA_POR_VOLUME` INT(11) UNSIGNED NULL COMMENT 'DEFINE A QUANTIDADE DE HORAS NECESSARIAS DE TRABALHO POR VOLUME RECEBIDO',
   `PESSOA_POR_VOLUME` INT(11) UNSIGNED NULL COMMENT 'DEFINE A QUANTIDADE DE PESSOAS NECESSARIAS PARA TRABALHO POR VOLUME RECEBIDO',
@@ -10017,9 +10017,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_RECEBIMENTO_CABECALHO`
+-- Table `sollus`.`WMS_RECEBIMENTO_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_RECEBIMENTO_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_RECEBIMENTO_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_AGENDAMENTO` INT(11) UNSIGNED NOT NULL,
   `DATA_RECEBIMENTO` DATE NULL,
@@ -10033,7 +10033,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_RECEBIMENTO_CABECALHO` (
   INDEX `FK_WMS_AGENDA_RECEBE` (`ID_WMS_AGENDAMENTO` ASC),
   CONSTRAINT `fk_{8B28EFA0-D32C-4AAC-B55C-219A5F910E4B}`
     FOREIGN KEY (`ID_WMS_AGENDAMENTO`)
-    REFERENCES `fenix`.`WMS_AGENDAMENTO` (`ID`)
+    REFERENCES `sollus`.`WMS_AGENDAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10041,9 +10041,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_RECEBIMENTO_DETALHE`
+-- Table `sollus`.`WMS_RECEBIMENTO_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_RECEBIMENTO_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_RECEBIMENTO_DETALHE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_RECEBIMENTO_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `ID_PRODUTO` INT NOT NULL,
@@ -10056,12 +10056,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_RECEBIMENTO_DETALHE` (
   INDEX `fk_WMS_RECEBIMENTO_DETALHE_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{25A6AC1D-7A1E-4F97-AAC7-246CC689D258}`
     FOREIGN KEY (`ID_WMS_RECEBIMENTO_CABECALHO`)
-    REFERENCES `fenix`.`WMS_RECEBIMENTO_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`WMS_RECEBIMENTO_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_WMS_RECEBIMENTO_DETALHE_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10069,9 +10069,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_RUA`
+-- Table `sollus`.`WMS_RUA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_RUA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_RUA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` VARCHAR(10) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -10082,9 +10082,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_ESTANTE`
+-- Table `sollus`.`WMS_ESTANTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ESTANTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_ESTANTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_RUA` INT(11) UNSIGNED NOT NULL,
   `CODIGO` VARCHAR(10) NULL,
@@ -10093,7 +10093,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ESTANTE` (
   INDEX `FK_WMS_RUA_ESTANTE` (`ID_WMS_RUA` ASC),
   CONSTRAINT `fk_{54ED3A4A-0685-4EAD-A483-FB2085C30584}`
     FOREIGN KEY (`ID_WMS_RUA`)
-    REFERENCES `fenix`.`WMS_RUA` (`ID`)
+    REFERENCES `sollus`.`WMS_RUA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10101,9 +10101,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_CAIXA`
+-- Table `sollus`.`WMS_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_CAIXA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_ESTANTE` INT(11) UNSIGNED NOT NULL,
   `CODIGO` VARCHAR(10) NULL,
@@ -10114,7 +10114,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_CAIXA` (
   INDEX `FK_WMS_ESTANTE_CAIXA` (`ID_WMS_ESTANTE` ASC),
   CONSTRAINT `fk_{1716794B-B0D8-4C32-B29A-8322E86A49F3}`
     FOREIGN KEY (`ID_WMS_ESTANTE`)
-    REFERENCES `fenix`.`WMS_ESTANTE` (`ID`)
+    REFERENCES `sollus`.`WMS_ESTANTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10122,9 +10122,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_ARMAZENAMENTO`
+-- Table `sollus`.`WMS_ARMAZENAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ARMAZENAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_ARMAZENAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_CAIXA` INT(11) UNSIGNED NOT NULL,
   `ID_WMS_RECEBIMENTO_DETALHE` INT(11) UNSIGNED NOT NULL,
@@ -10134,12 +10134,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ARMAZENAMENTO` (
   INDEX `FK_RECE_ARMAZENA` (`ID_WMS_RECEBIMENTO_DETALHE` ASC),
   CONSTRAINT `fk_{734FF4E6-A808-433A-AB15-84F96C5547EA}`
     FOREIGN KEY (`ID_WMS_CAIXA`)
-    REFERENCES `fenix`.`WMS_CAIXA` (`ID`)
+    REFERENCES `sollus`.`WMS_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{7BE115CD-47DC-43BC-B71A-9767FBCC9E9D}`
     FOREIGN KEY (`ID_WMS_RECEBIMENTO_DETALHE`)
-    REFERENCES `fenix`.`WMS_RECEBIMENTO_DETALHE` (`ID`)
+    REFERENCES `sollus`.`WMS_RECEBIMENTO_DETALHE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10147,9 +10147,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_ORDEM_SEPARACAO_CAB`
+-- Table `sollus`.`WMS_ORDEM_SEPARACAO_CAB`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ORDEM_SEPARACAO_CAB` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_ORDEM_SEPARACAO_CAB` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ORIGEM` CHAR(1) NULL COMMENT 'P=PRODUCAO | M=MATRIZ | F=FILIAL',
   `DATA_SOLICITACAO` DATE NULL,
@@ -10160,9 +10160,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_ORDEM_SEPARACAO_DET`
+-- Table `sollus`.`WMS_ORDEM_SEPARACAO_DET`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ORDEM_SEPARACAO_DET` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_ORDEM_SEPARACAO_DET` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_ORDEM_SEPARACAO_CAB` INT(11) UNSIGNED NOT NULL,
   `ID_PRODUTO` INT NOT NULL,
@@ -10172,12 +10172,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_ORDEM_SEPARACAO_DET` (
   INDEX `fk_WMS_ORDEM_SEPARACAO_DET_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{9A2509D6-849E-4636-8BD3-A38F16B050B0}`
     FOREIGN KEY (`ID_WMS_ORDEM_SEPARACAO_CAB`)
-    REFERENCES `fenix`.`WMS_ORDEM_SEPARACAO_CAB` (`ID`)
+    REFERENCES `sollus`.`WMS_ORDEM_SEPARACAO_CAB` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_WMS_ORDEM_SEPARACAO_DET_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10185,9 +10185,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`WMS_EXPEDICAO`
+-- Table `sollus`.`WMS_EXPEDICAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`WMS_EXPEDICAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`WMS_EXPEDICAO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_WMS_ORDEM_SEPARACAO_DET` INT(11) UNSIGNED NOT NULL,
   `ID_WMS_ARMAZENAMENTO` INT(11) UNSIGNED NOT NULL,
@@ -10198,12 +10198,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`WMS_EXPEDICAO` (
   INDEX `FK_WMS_OS_DET_EXPED` (`ID_WMS_ORDEM_SEPARACAO_DET` ASC),
   CONSTRAINT `fk_{2ADE2A79-7150-4915-83A1-9D60624AE78A}`
     FOREIGN KEY (`ID_WMS_ARMAZENAMENTO`)
-    REFERENCES `fenix`.`WMS_ARMAZENAMENTO` (`ID`)
+    REFERENCES `sollus`.`WMS_ARMAZENAMENTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_{46626029-1FD9-41A4-99BC-3883E02C29A1}`
     FOREIGN KEY (`ID_WMS_ORDEM_SEPARACAO_DET`)
-    REFERENCES `fenix`.`WMS_ORDEM_SEPARACAO_DET` (`ID`)
+    REFERENCES `sollus`.`WMS_ORDEM_SEPARACAO_DET` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10211,9 +10211,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`IBPT`
+-- Table `sollus`.`IBPT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`IBPT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`IBPT` (
   `ID` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `NCM` VARCHAR(8) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Ncm\",\"labelText\":\"Ncm\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Informe o Ncm\",\"hintText\":\"Informe o Ncm\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
   `EX` CHAR(2) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"campoLookup\":\"\",\"tabelaLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"label\":\"Ex\",\"labelText\":\"Ex\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"desenhaControle\":true,\"tooltip\":\"Informe o Ex\",\"hintText\":\"Informe o Ex\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12\",\"tipoControle\":{\"itens\":[],\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"},\"comentario\":\"\"}',
@@ -10234,9 +10234,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_CABECALHO`
+-- Table `sollus`.`MDFE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_CABECALHO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF` INT(11) UNSIGNED NULL COMMENT 'cUF - Código da UF do emitente do MDF-e',
   `TIPO_AMBIENTE` INT(11) UNSIGNED NULL COMMENT 'tpAmb - Tipo do Ambiente  - 1 - Produção  2 - Homologação',
@@ -10269,9 +10269,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_LACRE`
+-- Table `sollus`.`MDFE_LACRE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_LACRE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_LACRE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `NUMERO_LACRE` VARCHAR(20) NULL COMMENT 'nLacre',
@@ -10279,7 +10279,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_LACRE` (
   INDEX `FK_MDFE_LACRE` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{11DFA71D-CDD9-4355-B607-9EF9FB3034F1}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10287,9 +10287,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_MUNICIPIO_DESCARREGA`
+-- Table `sollus`.`MDFE_MUNICIPIO_DESCARREGA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_MUNICIPIO_DESCARREGA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_MUNICIPIO_DESCARREGA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `NOME_MUNICIPIO` VARCHAR(60) NULL,
@@ -10298,7 +10298,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_MUNICIPIO_DESCARREGA` (
   INDEX `FK_MDFE_MUNICIPIO_DESCARREGAMENTO` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{CC00C956-3DE9-44E1-AA51-17D2000EE6C1}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10306,9 +10306,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_INFORMACAO_CTE`
+-- Table `sollus`.`MDFE_INFORMACAO_CTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_CTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_INFORMACAO_CTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_MUNICIPIO_DESCARREGA` INT(11) UNSIGNED NOT NULL,
   `CHAVE_CTE` VARCHAR(44) NULL COMMENT 'chCTe - informar a Chave de Acesso do CT-e',
@@ -10318,7 +10318,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_CTE` (
   INDEX `FK_MDFE_INFORMACAO_CTE` (`ID_MDFE_MUNICIPIO_DESCARREGA` ASC),
   CONSTRAINT `fk_{433CD8D0-D22E-4E1C-BD4A-4B4EC39A50E3}`
     FOREIGN KEY (`ID_MDFE_MUNICIPIO_DESCARREGA`)
-    REFERENCES `fenix`.`MDFE_MUNICIPIO_DESCARREGA` (`ID`)
+    REFERENCES `sollus`.`MDFE_MUNICIPIO_DESCARREGA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10326,9 +10326,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_INFORMACAO_NFE`
+-- Table `sollus`.`MDFE_INFORMACAO_NFE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_NFE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_INFORMACAO_NFE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_MUNICIPIO_DESCARREGA` INT(11) UNSIGNED NOT NULL,
   `CHAVE_NFE` VARCHAR(44) NULL COMMENT 'chNFe - Chave NFe',
@@ -10338,7 +10338,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_NFE` (
   INDEX `FK_MDFE_INFORMACAO_NFE` (`ID_MDFE_MUNICIPIO_DESCARREGA` ASC),
   CONSTRAINT `fk_{D3B14FCD-37DE-4878-8493-00FCD857A050}`
     FOREIGN KEY (`ID_MDFE_MUNICIPIO_DESCARREGA`)
-    REFERENCES `fenix`.`MDFE_MUNICIPIO_DESCARREGA` (`ID`)
+    REFERENCES `sollus`.`MDFE_MUNICIPIO_DESCARREGA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10346,9 +10346,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_EMITENTE`
+-- Table `sollus`.`MDFE_EMITENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_EMITENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_EMITENTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(60) NULL COMMENT 'xNome - Razão social ou Nome do emitente',
@@ -10369,7 +10369,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_EMITENTE` (
   INDEX `FK_MDFE_CAB_EMIT` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{BC2F7392-73CF-4AEF-A351-4C51F4407448}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10377,9 +10377,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_PERCURSO`
+-- Table `sollus`.`MDFE_PERCURSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_PERCURSO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_PERCURSO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `UF_PERCURSO` CHAR(2) NULL,
@@ -10388,7 +10388,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_PERCURSO` (
   INDEX `FK_MDFE_PERCURSO` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{453DD9E0-0984-40C3-8B61-45D63EC9ED04}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10396,9 +10396,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_MUNICIPIO_CARREGAMENTO`
+-- Table `sollus`.`MDFE_MUNICIPIO_CARREGAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_MUNICIPIO_CARREGAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_MUNICIPIO_CARREGAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `NOME_MUNICIPIO` VARCHAR(60) NULL COMMENT 'cMunCarrega - Código do Município de Carregamento',
@@ -10407,7 +10407,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_MUNICIPIO_CARREGAMENTO` (
   INDEX `FK_MDFE_MUNICIPIO_CARREGAMENTO` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{33283B7A-BB2C-46E3-9C46-58CDE9D5A014}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10415,9 +10415,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_RODOVIARIO`
+-- Table `sollus`.`MDFE_RODOVIARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_RODOVIARIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `RNTRC` VARCHAR(8) NULL COMMENT 'RNTRC - Registro Nacional de Transportadores  Rodoviários de Carga',
@@ -10426,7 +10426,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO` (
   INDEX `FK_MDFE_CAB_RODO` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{D84E9FF2-A5EA-4C9D-B212-0ECE0AA9E7E5}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10434,9 +10434,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_RODOVIARIO_MOTORISTA`
+-- Table `sollus`.`MDFE_RODOVIARIO_MOTORISTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_MOTORISTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_RODOVIARIO_MOTORISTA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_RODOVIARIO` INT(11) UNSIGNED NOT NULL,
   `NOME` VARCHAR(60) NULL COMMENT 'xNome',
@@ -10445,7 +10445,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_MOTORISTA` (
   INDEX `FK_MDFE_RODOVIARIO_MOTORISTA` (`ID_MDFE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{935170E7-7829-4199-9F73-10BAC5597794}`
     FOREIGN KEY (`ID_MDFE_RODOVIARIO`)
-    REFERENCES `fenix`.`MDFE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`MDFE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10453,9 +10453,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_RODOVIARIO_VEICULO`
+-- Table `sollus`.`MDFE_RODOVIARIO_VEICULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_VEICULO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_RODOVIARIO_VEICULO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_RODOVIARIO` INT(11) UNSIGNED NOT NULL,
   `CODIGO_INTERNO` VARCHAR(10) NULL COMMENT 'cInt - Código interno do veículo',
@@ -10477,7 +10477,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_VEICULO` (
   INDEX `FK_MDFE_RODOVIARIO_VEICULO` (`ID_MDFE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{B32E660B-84F3-4833-9495-4A51C0513400}`
     FOREIGN KEY (`ID_MDFE_RODOVIARIO`)
-    REFERENCES `fenix`.`MDFE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`MDFE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10485,9 +10485,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_INFORMACAO_SEGURO`
+-- Table `sollus`.`MDFE_INFORMACAO_SEGURO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_SEGURO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_INFORMACAO_SEGURO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_CABECALHO` INT(11) UNSIGNED NOT NULL,
   `RESPONSAVEL` INT(11) UNSIGNED NULL,
@@ -10500,7 +10500,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_INFORMACAO_SEGURO` (
   INDEX `FK_MDFE_INFORMACAO_SEGURO` (`ID_MDFE_CABECALHO` ASC),
   CONSTRAINT `fk_{A88CA6D6-C161-4CD1-B1DE-A51628EC6CBA}`
     FOREIGN KEY (`ID_MDFE_CABECALHO`)
-    REFERENCES `fenix`.`MDFE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`MDFE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10508,9 +10508,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_RODOVIARIO_PEDAGIO`
+-- Table `sollus`.`MDFE_RODOVIARIO_PEDAGIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_PEDAGIO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_RODOVIARIO_PEDAGIO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_RODOVIARIO` INT(11) UNSIGNED NOT NULL,
   `CNPJ_FORNECEDOR` VARCHAR(14) NULL,
@@ -10522,7 +10522,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_PEDAGIO` (
   INDEX `FK_MDFE_RODOVIARIO_PEDAGIO` (`ID_MDFE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{DFFAAED9-7A4C-4738-A240-CEE1D14B9113}`
     FOREIGN KEY (`ID_MDFE_RODOVIARIO`)
-    REFERENCES `fenix`.`MDFE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`MDFE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10530,9 +10530,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`MDFE_RODOVIARIO_CIOT`
+-- Table `sollus`.`MDFE_RODOVIARIO_CIOT`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_CIOT` (
+CREATE TABLE IF NOT EXISTS `sollus`.`MDFE_RODOVIARIO_CIOT` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_MDFE_RODOVIARIO` INT(11) UNSIGNED NOT NULL,
   `CIOT` VARCHAR(12) NULL,
@@ -10542,7 +10542,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`MDFE_RODOVIARIO_CIOT` (
   INDEX `FK_MDFE_ROD_CIOT` (`ID_MDFE_RODOVIARIO` ASC),
   CONSTRAINT `fk_{072B68BD-2B5C-4B82-BCFE-5E424C22D7BA}`
     FOREIGN KEY (`ID_MDFE_RODOVIARIO`)
-    REFERENCES `fenix`.`MDFE_RODOVIARIO` (`ID`)
+    REFERENCES `sollus`.`MDFE_RODOVIARIO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10550,9 +10550,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO_TIPO`
+-- Table `sollus`.`FROTA_VEICULO_TIPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_TIPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO_TIPO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `NOME` VARCHAR(100) NULL COMMENT 'AUTOMOVEL\nCAMINHÃO\nUTILITARIO\nETC',
@@ -10561,9 +10561,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_COMBUSTIVEL_TIPO`
+-- Table `sollus`.`FROTA_COMBUSTIVEL_TIPO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_COMBUSTIVEL_TIPO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_COMBUSTIVEL_TIPO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -10572,9 +10572,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO`
+-- Table `sollus`.`FROTA_VEICULO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO_TIPO` INT NOT NULL,
   `ID_FROTA_COMBUSTIVEL_TIPO` INT NOT NULL,
@@ -10591,21 +10591,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO` (
   INDEX `fk_FROTA_VEICULO_FROTA_COMBUSTIVEL_TIPO1_idx` (`ID_FROTA_COMBUSTIVEL_TIPO` ASC),
   CONSTRAINT `fk_FROTA_VEICULO_FROTA_VEICULO_TIPO1`
     FOREIGN KEY (`ID_FROTA_VEICULO_TIPO`)
-    REFERENCES `fenix`.`FROTA_VEICULO_TIPO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO_TIPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FROTA_VEICULO_FROTA_COMBUSTIVEL_TIPO1`
     FOREIGN KEY (`ID_FROTA_COMBUSTIVEL_TIPO`)
-    REFERENCES `fenix`.`FROTA_COMBUSTIVEL_TIPO` (`ID`)
+    REFERENCES `sollus`.`FROTA_COMBUSTIVEL_TIPO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_IPVA_CONTROLE`
+-- Table `sollus`.`FROTA_IPVA_CONTROLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_IPVA_CONTROLE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_IPVA_CONTROLE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `PARCELA` CHAR(2) NULL COMMENT 'Número da parcela ou UU para única',
@@ -10616,16 +10616,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_IPVA_CONTROLE` (
   INDEX `fk_FROTA_IPVA_CONTROLE_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_IPVA_CONTROLE_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_DPVAT_CONTROLE`
+-- Table `sollus`.`FROTA_DPVAT_CONTROLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_DPVAT_CONTROLE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_DPVAT_CONTROLE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `PARCELA` CHAR(2) NULL COMMENT 'Número da parcela ou UU para única',
@@ -10636,16 +10636,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_DPVAT_CONTROLE` (
   INDEX `fk_FROTA_IPVA_CONTROLE_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_IPVA_CONTROLE_FROTA_VEICULO10`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_MOTORISTA`
+-- Table `sollus`.`FROTA_MOTORISTA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_MOTORISTA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_MOTORISTA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PESSOA_FISICA` INT NOT NULL,
   `NUMERO_CNH` VARCHAR(11) NULL,
@@ -10654,16 +10654,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_MOTORISTA` (
   INDEX `fk_FROTA_MOTORISTA_PESSOA_FISICA1_idx` (`ID_PESSOA_FISICA` ASC),
   CONSTRAINT `fk_FROTA_MOTORISTA_PESSOA_FISICA1`
     FOREIGN KEY (`ID_PESSOA_FISICA`)
-    REFERENCES `fenix`.`PESSOA_FISICA` (`ID`)
+    REFERENCES `sollus`.`PESSOA_FISICA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO_SINISTRO`
+-- Table `sollus`.`FROTA_VEICULO_SINISTRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_SINISTRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO_SINISTRO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `DATA_SINISTRO` DATE NULL,
@@ -10672,16 +10672,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_SINISTRO` (
   INDEX `fk_FROTA_SINISTRO_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_SINISTRO_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO_MOVIMENTACAO`
+-- Table `sollus`.`FROTA_VEICULO_MOVIMENTACAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_MOVIMENTACAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO_MOVIMENTACAO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_MOTORISTA` INT NOT NULL,
   `ID_FROTA_VEICULO` INT NOT NULL,
@@ -10695,21 +10695,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_MOVIMENTACAO` (
   INDEX `fk_FROTA_VEICULO_MOVIMENTACAO_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_VEICULO_MOVIMENTACAO_FROTA_MOTORISTA1`
     FOREIGN KEY (`ID_FROTA_MOTORISTA`)
-    REFERENCES `fenix`.`FROTA_MOTORISTA` (`ID`)
+    REFERENCES `sollus`.`FROTA_MOTORISTA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_FROTA_VEICULO_MOVIMENTACAO_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO_PNEU`
+-- Table `sollus`.`FROTA_VEICULO_PNEU`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_PNEU` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO_PNEU` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `DATA_TROCA` DATE NULL,
   `VALOR_TROCA` DECIMAL(18,6) NULL,
@@ -10720,16 +10720,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_PNEU` (
   INDEX `fk_FROTA_VEICULO_PNEU_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_VEICULO_PNEU_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_VEICULO_MANUTENCAO`
+-- Table `sollus`.`FROTA_VEICULO_MANUTENCAO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_MANUTENCAO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_VEICULO_MANUTENCAO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `TIPO` CHAR(1) NULL COMMENT 'P-PREVENTIVA\nC-CORRETIVA',
@@ -10740,16 +10740,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_VEICULO_MANUTENCAO` (
   INDEX `fk_FROTA_VEICULO_MANUTENCAO_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_VEICULO_MANUTENCAO_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_MULTA_CONTROLE`
+-- Table `sollus`.`FROTA_MULTA_CONTROLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_MULTA_CONTROLE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_MULTA_CONTROLE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `DATA_MULTA` DATE NULL,
@@ -10760,16 +10760,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_MULTA_CONTROLE` (
   INDEX `fk_FROTA_MULTA_CONTROLE_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_MULTA_CONTROLE_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`FROTA_COMBUSTIVEL_CONTROLE`
+-- Table `sollus`.`FROTA_COMBUSTIVEL_CONTROLE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_COMBUSTIVEL_CONTROLE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`FROTA_COMBUSTIVEL_CONTROLE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_FROTA_VEICULO` INT NOT NULL,
   `DATA_ABASTECIMENTO` DATE NULL,
@@ -10779,16 +10779,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`FROTA_COMBUSTIVEL_CONTROLE` (
   INDEX `fk_FROTA_COMBUSTIVEL_CONTROLE_FROTA_VEICULO1_idx` (`ID_FROTA_VEICULO` ASC),
   CONSTRAINT `fk_FROTA_COMBUSTIVEL_CONTROLE_FROTA_VEICULO1`
     FOREIGN KEY (`ID_FROTA_VEICULO`)
-    REFERENCES `fenix`.`FROTA_VEICULO` (`ID`)
+    REFERENCES `sollus`.`FROTA_VEICULO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GONDOLA_RUA`
+-- Table `sollus`.`GONDOLA_RUA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_RUA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GONDOLA_RUA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `CODIGO` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `NOME` VARCHAR(100) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome\",\"labelText\":\"Nome\",\"tooltip\":\"Nome\",\"hintText\":\"Informe o Nome\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -10799,9 +10799,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GONDOLA_ESTANTE`
+-- Table `sollus`.`GONDOLA_ESTANTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_ESTANTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GONDOLA_ESTANTE` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_GONDOLA_RUA` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Rua\",\"labelText\":\"Rua\",\"tooltip\":\"Rua\",\"hintText\":\"Importe a Rua Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"wms_rua\",\"campoLookup\":\"nome\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `CODIGO` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -10810,7 +10810,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_ESTANTE` (
   INDEX `FK_WMS_RUA_ESTANTE` (`ID_GONDOLA_RUA` ASC),
   CONSTRAINT `fk_{54ED3A4A-0685-4EAD-A483-FB2085C30584}0`
     FOREIGN KEY (`ID_GONDOLA_RUA`)
-    REFERENCES `fenix`.`GONDOLA_RUA` (`ID`)
+    REFERENCES `sollus`.`GONDOLA_RUA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10818,9 +10818,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GONDOLA_CAIXA`
+-- Table `sollus`.`GONDOLA_CAIXA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_CAIXA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GONDOLA_CAIXA` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_GONDOLA_ESTANTE` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Estante\",\"labelText\":\"Estante\",\"tooltip\":\"Estante\",\"hintText\":\"Importe a Estante Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"wms_estante\",\"campoLookup\":\"codigo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `CODIGO` VARCHAR(10) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Código\",\"labelText\":\"Código\",\"tooltip\":\"Código\",\"hintText\":\"Informe o Código\",\"validacao\":\"\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":2,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -10831,7 +10831,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_CAIXA` (
   INDEX `FK_WMS_ESTANTE_CAIXA` (`ID_GONDOLA_ESTANTE` ASC),
   CONSTRAINT `fk_{1716794B-B0D8-4C32-B29A-8322E86A49F3}0`
     FOREIGN KEY (`ID_GONDOLA_ESTANTE`)
-    REFERENCES `fenix`.`GONDOLA_ESTANTE` (`ID`)
+    REFERENCES `sollus`.`GONDOLA_ESTANTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10839,9 +10839,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`GONDOLA_ARMAZENAMENTO`
+-- Table `sollus`.`GONDOLA_ARMAZENAMENTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_ARMAZENAMENTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`GONDOLA_ARMAZENAMENTO` (
   `ID` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_GONDOLA_CAIXA` INT(11) UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"R\",\"side\":\"Local\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Caixa\",\"labelText\":\"Caixa\",\"tooltip\":\"Caixa\",\"hintText\":\"Importe a Caixa Vinculada\",\"validacao\":\"\",\"obrigatorio\":true,\"readOnly\":true,\"tabelaLookup\":\"wms_caixa\",\"campoLookup\":\"codigo\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-8\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
   `ID_PRODUTO` INT NOT NULL,
@@ -10851,12 +10851,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`GONDOLA_ARMAZENAMENTO` (
   INDEX `fk_GONDOLA_ARMAZENAMENTO_PRODUTO1_idx` (`ID_PRODUTO` ASC),
   CONSTRAINT `fk_{734FF4E6-A808-433A-AB15-84F96C5547EA}0`
     FOREIGN KEY (`ID_GONDOLA_CAIXA`)
-    REFERENCES `fenix`.`GONDOLA_CAIXA` (`ID`)
+    REFERENCES `sollus`.`GONDOLA_CAIXA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_GONDOLA_ARMAZENAMENTO_PRODUTO1`
     FOREIGN KEY (`ID_PRODUTO`)
-    REFERENCES `fenix`.`PRODUTO` (`ID`)
+    REFERENCES `sollus`.`PRODUTO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -10864,9 +10864,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PROJETO_PRINCIPAL`
+-- Table `sollus`.`PROJETO_PRINCIPAL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_PRINCIPAL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PROJETO_PRINCIPAL` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `NOME` VARCHAR(100) NULL,
   `DATA_INICIO` DATE NULL,
@@ -10880,9 +10880,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PROJETO_CRONOGRAMA`
+-- Table `sollus`.`PROJETO_CRONOGRAMA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_CRONOGRAMA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PROJETO_CRONOGRAMA` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PROJETO_PRINCIPAL` INT NOT NULL,
   `TAREFA` VARCHAR(100) NULL,
@@ -10892,16 +10892,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_CRONOGRAMA` (
   INDEX `fk_PROJETO_CRONOGRAMA_PROJETO_DADOS1_idx` (`ID_PROJETO_PRINCIPAL` ASC),
   CONSTRAINT `fk_PROJETO_CRONOGRAMA_PROJETO_DADOS1`
     FOREIGN KEY (`ID_PROJETO_PRINCIPAL`)
-    REFERENCES `fenix`.`PROJETO_PRINCIPAL` (`ID`)
+    REFERENCES `sollus`.`PROJETO_PRINCIPAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PROJETO_STAKEHOLDERS`
+-- Table `sollus`.`PROJETO_STAKEHOLDERS`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_STAKEHOLDERS` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PROJETO_STAKEHOLDERS` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PROJETO_DADOS` INT NOT NULL,
   `ID_COLABORADOR` INT NOT NULL,
@@ -10910,21 +10910,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_STAKEHOLDERS` (
   INDEX `fk_PROJETO_STAKEHOLDERS_COLABORADOR1_idx` (`ID_COLABORADOR` ASC),
   CONSTRAINT `fk_PROJETO_STAKEHOLDERS_PROJETO_DADOS1`
     FOREIGN KEY (`ID_PROJETO_DADOS`)
-    REFERENCES `fenix`.`PROJETO_PRINCIPAL` (`ID`)
+    REFERENCES `sollus`.`PROJETO_PRINCIPAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PROJETO_STAKEHOLDERS_COLABORADOR1`
     FOREIGN KEY (`ID_COLABORADOR`)
-    REFERENCES `fenix`.`COLABORADOR` (`ID`)
+    REFERENCES `sollus`.`COLABORADOR` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PROJETO_RISCO`
+-- Table `sollus`.`PROJETO_RISCO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_RISCO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PROJETO_RISCO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PROJETO_PRINCIPAL` INT NOT NULL,
   `NOME` VARCHAR(100) NULL,
@@ -10935,16 +10935,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_RISCO` (
   INDEX `fk_PROJETO_RISCO_PROJETO_PRINCIPAL1_idx` (`ID_PROJETO_PRINCIPAL` ASC),
   CONSTRAINT `fk_PROJETO_RISCO_PROJETO_PRINCIPAL1`
     FOREIGN KEY (`ID_PROJETO_PRINCIPAL`)
-    REFERENCES `fenix`.`PROJETO_PRINCIPAL` (`ID`)
+    REFERENCES `sollus`.`PROJETO_PRINCIPAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`PROJETO_CUSTO`
+-- Table `sollus`.`PROJETO_CUSTO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_CUSTO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`PROJETO_CUSTO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_PROJETO_PRINCIPAL` INT NOT NULL,
   `ID_FIN_NATUREZA_FINANCEIRA` INT UNSIGNED NOT NULL,
@@ -10957,21 +10957,21 @@ CREATE TABLE IF NOT EXISTS `fenix`.`PROJETO_CUSTO` (
   INDEX `fk_PROJETO_CUSTO_FIN_NATUREZA_FINANCEIRA1_idx` (`ID_FIN_NATUREZA_FINANCEIRA` ASC),
   CONSTRAINT `fk_PROJETO_CUSTO_PROJETO_PRINCIPAL1`
     FOREIGN KEY (`ID_PROJETO_PRINCIPAL`)
-    REFERENCES `fenix`.`PROJETO_PRINCIPAL` (`ID`)
+    REFERENCES `sollus`.`PROJETO_PRINCIPAL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_PROJETO_CUSTO_FIN_NATUREZA_FINANCEIRA1`
     FOREIGN KEY (`ID_FIN_NATUREZA_FINANCEIRA`)
-    REFERENCES `fenix`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
+    REFERENCES `sollus`.`FIN_NATUREZA_FINANCEIRA` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_CABECALHO`
+-- Table `sollus`.`BPE_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_CABECALHO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `UF_EMITENTE` INT UNSIGNED NULL COMMENT 'cUF - Código da UF do emitente do BP-e - Utilizar a Tabela do IBGE',
   `AMBIENTE` CHAR(1) NULL COMMENT 'tpAmb - 1-Produção/ 2-Homologação',
@@ -11013,9 +11013,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_EMITENTE`
+-- Table `sollus`.`BPE_EMITENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_EMITENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_EMITENTE` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL,
   `CNPJ` VARCHAR(14) NULL,
@@ -11039,7 +11039,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_EMITENTE` (
   INDEX `FK_CTE_CAB_EMITENTE` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{8E0EA66C-EA89-4C1F-8CF4-778365C7AE3B}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11047,9 +11047,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_PASSAGEIRO`
+-- Table `sollus`.`BPE_PASSAGEIRO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_PASSAGEIRO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_PASSAGEIRO` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `NOME` VARCHAR(60) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"Nome/Razão Social\",\"labelText\":\"Nome/Razão Social\",\"tooltip\":\"Nome/Razão Social\",\"hintText\":\"Informe o Nome/Razão Social\",\"validacao\":\"Alfanumerico\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"\",\"linhaBootstrap\":2,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-6\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"\",\"mascara\":\"\"}}',
@@ -11064,7 +11064,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_PASSAGEIRO` (
   INDEX `FK_CTE_CAB_TOMADOR` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{FB54EDC5-F918-4617-A828-70539984BB46}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11072,9 +11072,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_COMPRADOR`
+-- Table `sollus`.`BPE_COMPRADOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_COMPRADOR` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_COMPRADOR` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -11098,7 +11098,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_COMPRADOR` (
   INDEX `FK_CTE_CAB_REMETENTE` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{44C5AE01-875B-414A-B141-210DE88D5716}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11106,9 +11106,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_VIAGEM`
+-- Table `sollus`.`BPE_VIAGEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_VIAGEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_VIAGEM` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL,
   `CODIGO_PERCURSO` VARCHAR(20) NULL COMMENT 'cPercurso',
@@ -11126,7 +11126,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_VIAGEM` (
   INDEX `FK_CTE_CAB_EXPEDIDOR` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{B49F680D-20F5-4D89-945B-ED7A99C5EBFF}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11134,9 +11134,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_AGENCIA`
+-- Table `sollus`.`BPE_AGENCIA`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_AGENCIA` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_AGENCIA` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToOne\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CNPJ` VARCHAR(14) NULL COMMENT '{\"cardinalidade\":\"\",\"crud\":\"\",\"side\":\"\",\"cascade\":false,\"orphanRemoval\":false,\"label\":\"CNPJ\",\"labelText\":\"CNPJ\",\"tooltip\":\"CNPJ\",\"hintText\":\"Informe o CNPJ\",\"validacao\":\"CNPJ\",\"obrigatorio\":false,\"readOnly\":false,\"tabelaLookup\":\"\",\"campoLookup\":\"\",\"campoLookupTipoDado\":\"\",\"valorPadraoLookup\":\"\",\"desenhaControle\":true,\"comentario\":\"Em caso de empresa não estabelecida  no Brasil, será informado o CNPJ com  zeros.  Informar os zeros não significativos.\",\"linhaBootstrap\":1,\"colunaBootstrap\":1,\"sizesBootstrap\":\"col-12 col-md-4\",\"tipoControle\":{\"tipo\":\"textFormField\",\"keyboardType\":\"number\",\"mascara\":\"CNPJ\"}}',
@@ -11157,7 +11157,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_AGENCIA` (
   INDEX `FK_CTE_CAB_DESTINATARIO` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{BE7E7FC1-4115-40C2-AB9E-A9B2B1B52D98}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11165,9 +11165,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`BPE_PASSAGEM`
+-- Table `sollus`.`BPE_PASSAGEM`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`BPE_PASSAGEM` (
+CREATE TABLE IF NOT EXISTS `sollus`.`BPE_PASSAGEM` (
   `ID` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `ID_BPE_CABECALHO` INT UNSIGNED NOT NULL COMMENT '{\"cardinalidade\":\"@OneToMany\",\"crud\":\"CRUD\",\"side\":\"Inverse\",\"cascade\":true,\"orphanRemoval\":true,\"label\":\"\",\"labelText\":\"\",\"tooltip\":\"\",\"hintText\":\"\",\"validacao\":\"\",\"campoLookup\":\"\",\"obrigatorio\":false,\"tipoControle\":null}',
   `CODIGO_LOCALIDADE_ORIGEM` VARCHAR(7) NULL COMMENT 'cLocOrig',
@@ -11180,7 +11180,7 @@ CREATE TABLE IF NOT EXISTS `fenix`.`BPE_PASSAGEM` (
   INDEX `FK_CTE_CAB_CARGA` (`ID_BPE_CABECALHO` ASC),
   CONSTRAINT `fk_{9B8A42CB-E13A-475F-81FE-5E7C48ED6E2F}0`
     FOREIGN KEY (`ID_BPE_CABECALHO`)
-    REFERENCES `fenix`.`BPE_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`BPE_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 PACK_KEYS = 0
@@ -11188,9 +11188,9 @@ ROW_FORMAT = DEFAULT;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CRM_SAC_CABECALHO`
+-- Table `sollus`.`CRM_SAC_CABECALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CRM_SAC_CABECALHO` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CRM_SAC_CABECALHO` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `DATA_ABERTURA` DATE NULL,
   `HORA_ABERTURA` VARCHAR(8) NULL,
@@ -11201,16 +11201,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CRM_SAC_CABECALHO` (
   INDEX `fk_CRM_SAC_CABECALHO_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_CRM_SAC_CABECALHO_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CRM_SAC_DETALHE`
+-- Table `sollus`.`CRM_SAC_DETALHE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CRM_SAC_DETALHE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CRM_SAC_DETALHE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_CRM_SAC_CABECALHO` INT NOT NULL,
   `DATA_REGISTRO` DATE NULL,
@@ -11220,16 +11220,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CRM_SAC_DETALHE` (
   INDEX `fk_CRM_SAC_DETALHE_CRM_SAC_CABECALHO1_idx` (`ID_CRM_SAC_CABECALHO` ASC),
   CONSTRAINT `fk_CRM_SAC_DETALHE_CRM_SAC_CABECALHO1`
     FOREIGN KEY (`ID_CRM_SAC_CABECALHO`)
-    REFERENCES `fenix`.`CRM_SAC_CABECALHO` (`ID`)
+    REFERENCES `sollus`.`CRM_SAC_CABECALHO` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CRM_BUSCAS_CLIENTE`
+-- Table `sollus`.`CRM_BUSCAS_CLIENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CRM_BUSCAS_CLIENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CRM_BUSCAS_CLIENTE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `DATA_BUSCA` DATE NULL,
   `HORA_BUSCA` VARCHAR(8) NULL,
@@ -11239,16 +11239,16 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CRM_BUSCAS_CLIENTE` (
   INDEX `fk_CRM_BUSCAS_CLIENTE_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_CRM_BUSCAS_CLIENTE_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CRM_CARTEIRA_CLIENTE_PERFIL`
+-- Table `sollus`.`CRM_CARTEIRA_CLIENTE_PERFIL`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CRM_CARTEIRA_CLIENTE_PERFIL` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CRM_CARTEIRA_CLIENTE_PERFIL` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `CODIGO` CHAR(2) NULL,
   `NOME` VARCHAR(100) NULL,
@@ -11257,9 +11257,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `fenix`.`CRM_CARTEIRA_CLIENTE`
+-- Table `sollus`.`CRM_CARTEIRA_CLIENTE`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `fenix`.`CRM_CARTEIRA_CLIENTE` (
+CREATE TABLE IF NOT EXISTS `sollus`.`CRM_CARTEIRA_CLIENTE` (
   `ID` INT NOT NULL AUTO_INCREMENT,
   `ID_CRM_CARTEIRA_CLIENTE_PERFIL` INT NOT NULL,
   `ID_CLIENTE` INT NOT NULL,
@@ -11268,12 +11268,12 @@ CREATE TABLE IF NOT EXISTS `fenix`.`CRM_CARTEIRA_CLIENTE` (
   INDEX `fk_CRM_CARTEIRA_CLIENTE_CLIENTE1_idx` (`ID_CLIENTE` ASC),
   CONSTRAINT `fk_CRM_CARTEIRA_CLIENTE_CRM_CARTEIRA_CLIENTE_PERFIL1`
     FOREIGN KEY (`ID_CRM_CARTEIRA_CLIENTE_PERFIL`)
-    REFERENCES `fenix`.`CRM_CARTEIRA_CLIENTE_PERFIL` (`ID`)
+    REFERENCES `sollus`.`CRM_CARTEIRA_CLIENTE_PERFIL` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_CRM_CARTEIRA_CLIENTE_CLIENTE1`
     FOREIGN KEY (`ID_CLIENTE`)
-    REFERENCES `fenix`.`CLIENTE` (`ID`)
+    REFERENCES `sollus`.`CLIENTE` (`ID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

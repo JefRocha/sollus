@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo MDF-e
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { MdfeCabecalhoModule } from '../mdfe/mdfe-cabecalho/mdfe-cabecalho.module';
 
 @Module({
-    imports: [
-		MdfeCabecalhoModule,
-    ],
+  imports: [
+    MdfeCabecalhoModule,
+  ],
 })
 export class MdfeModule { }

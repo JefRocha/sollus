@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_FIN_LANCAMENTO_RECEBER] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewFinLancamentoReceber } from './view-fin-lancamento-receber.entity';
 export class ViewFinLancamentoReceberController implements CrudController<ViewFinLancamentoReceber> {
   constructor(public service: ViewFinLancamentoReceberService) { }
 
-  
+
 
 
 }

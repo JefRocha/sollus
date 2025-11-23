@@ -1,5 +1,5 @@
 /********************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Biblioteca de funções.
 
 The MIT License
@@ -43,7 +43,7 @@ export class Biblioteca {
     /**
       * Salva o arquivo no disco
       */
-     static async gravarArquivo(caminho: string, conteudo: any) {
+    static async gravarArquivo(caminho: string, conteudo: any) {
         fs.writeFile(caminho, conteudo, function (erro: any) {
             if (erro) {
                 return erro;
@@ -61,256 +61,195 @@ export class Biblioteca {
      * @param chave - chave desejada para a seção
      * @param valor - valor desejado para a chave
      */
-    static iniWriteString(secao: string, chave:string, valor:string, arquivoIni: any) {
+    static iniWriteString(secao: string, chave: string, valor: string, arquivoIni: any) {
         arquivoIni.putStringInSection(chave + '=' + valor, '[' + secao + ']');
     }
 
-    static arredondaTruncaValor(pOperacao: string, pValor: number, pCasas: number)
-    {
+    static arredondaTruncaValor(pOperacao: string, pValor: number, pCasas: number) {
         return pValor;
     }
 
-    static tirarNuloDeString(pValor: string)
-    {
+    static tirarNuloDeString(pValor: string) {
         if (pValor == null) {
             return "";
         }
     }
 
-    static formatarDataNfe(pData: any)
-    {
+    static formatarDataNfe(pData: any) {
         let data = new Date(pData);
         return dayjs().format('DD/MM/YYYY HH:mm:ss')
     }
 
-    static uFToInt(pUF: string)
-    {
-        if (pUF == "RO")
-        {
+    static uFToInt(pUF: string) {
+        if (pUF == "RO") {
             return 11;
         }
-        else if (pUF == "AC")
-        {
+        else if (pUF == "AC") {
             return 12;
         }
-        else if (pUF == "AM")
-        {
+        else if (pUF == "AM") {
             return 13;
         }
-        else if (pUF == "RR")
-        {
+        else if (pUF == "RR") {
             return 14;
         }
-        else if (pUF == "PA")
-        {
+        else if (pUF == "PA") {
             return 15;
         }
-        else if (pUF == "AP")
-        {
+        else if (pUF == "AP") {
             return 16;
         }
-        else if (pUF == "TO")
-        {
+        else if (pUF == "TO") {
             return 17;
         }
-        else if (pUF == "MA")
-        {
+        else if (pUF == "MA") {
             return 21;
         }
-        else if (pUF == "PI")
-        {
+        else if (pUF == "PI") {
             return 22;
         }
-        else if (pUF == "CE")
-        {
+        else if (pUF == "CE") {
             return 23;
         }
-        else if (pUF == "RN")
-        {
+        else if (pUF == "RN") {
             return 24;
         }
-        else if (pUF == "PB")
-        {
+        else if (pUF == "PB") {
             return 25;
         }
-        else if (pUF == "PE")
-        {
+        else if (pUF == "PE") {
             return 26;
         }
-        else if (pUF == "AL")
-        {
+        else if (pUF == "AL") {
             return 27;
         }
-        else if (pUF == "SE")
-        {
+        else if (pUF == "SE") {
             return 28;
         }
-        else if (pUF == "BA")
-        {
+        else if (pUF == "BA") {
             return 29;
         }
-        else if (pUF == "MG")
-        {
+        else if (pUF == "MG") {
             return 31;
         }
-        else if (pUF == "ES")
-        {
+        else if (pUF == "ES") {
             return 32;
         }
-        else if (pUF == "RJ")
-        {
+        else if (pUF == "RJ") {
             return 33;
         }
-        else if (pUF == "SP")
-        {
+        else if (pUF == "SP") {
             return 35;
         }
-        else if (pUF == "PR")
-        {
+        else if (pUF == "PR") {
             return 41;
         }
-        else if (pUF == "SC")
-        {
+        else if (pUF == "SC") {
             return 42;
         }
-        else if (pUF == "RS")
-        {
+        else if (pUF == "RS") {
             return 43;
         }
-        else if (pUF == "MS")
-        {
+        else if (pUF == "MS") {
             return 50;
         }
-        else if (pUF == "MT")
-        {
+        else if (pUF == "MT") {
             return 51;
         }
-        else if (pUF == "GO")
-        {
+        else if (pUF == "GO") {
             return 52;
         }
-        else if (pUF == "DF")
-        {
+        else if (pUF == "DF") {
             return 53;
         }
-        else
-        {
+        else {
             return 0;
         }
     }
 
-    static intToUF(pUF: number)
-    {
-        if (pUF == 11)
-        {
+    static intToUF(pUF: number) {
+        if (pUF == 11) {
             return "RO";
         }
-        else if (pUF == 12)
-        {
+        else if (pUF == 12) {
             return "AC";
         }
-        else if (pUF == 13)
-        {
+        else if (pUF == 13) {
             return "AM";
         }
-        else if (pUF == 14)
-        {
+        else if (pUF == 14) {
             return "RR";
         }
-        else if (pUF == 15)
-        {
+        else if (pUF == 15) {
             return "PA";
         }
-        else if (pUF == 16)
-        {
+        else if (pUF == 16) {
             return "AP";
         }
-        else if (pUF == 17)
-        {
+        else if (pUF == 17) {
             return "TO";
         }
-        else if (pUF == 21)
-        {
+        else if (pUF == 21) {
             return "MA";
         }
-        else if (pUF == 22)
-        {
+        else if (pUF == 22) {
             return "PI";
         }
-        else if (pUF == 23)
-        {
+        else if (pUF == 23) {
             return "CE";
         }
-        else if (pUF == 24)
-        {
+        else if (pUF == 24) {
             return "RN";
         }
-        else if (pUF == 25)
-        {
+        else if (pUF == 25) {
             return "PB";
         }
-        else if (pUF == 26)
-        {
+        else if (pUF == 26) {
             return "PE";
         }
-        else if (pUF == 27)
-        {
+        else if (pUF == 27) {
             return "AL";
         }
-        else if (pUF == 28)
-        {
+        else if (pUF == 28) {
             return "SE";
         }
-        else if (pUF == 29)
-        {
+        else if (pUF == 29) {
             return "BA";
         }
-        else if (pUF == 31)
-        {
+        else if (pUF == 31) {
             return "MG";
         }
-        else if (pUF == 32)
-        {
+        else if (pUF == 32) {
             return "ES";
         }
-        else if (pUF == 33)
-        {
+        else if (pUF == 33) {
             return "RJ";
         }
-        else if (pUF == 35)
-        {
+        else if (pUF == 35) {
             return "SP";
         }
-        else if (pUF == 41)
-        {
+        else if (pUF == 41) {
             return "PR";
         }
-        else if (pUF == 42)
-        {
+        else if (pUF == 42) {
             return "SC";
         }
-        else if (pUF == 43)
-        {
+        else if (pUF == 43) {
             return "RS";
         }
-        else if (pUF == 50)
-        {
+        else if (pUF == 50) {
             return "MS";
         }
-        else if (pUF == 51)
-        {
+        else if (pUF == 51) {
             return "MT";
         }
-        else if (pUF == 52)
-        {
+        else if (pUF == 52) {
             return "GO";
         }
-        else if (pUF == 53)
-        {
+        else if (pUF == 53) {
             return "DF";
         }
-        else
-        {
+        else {
             return "";
         }
     }

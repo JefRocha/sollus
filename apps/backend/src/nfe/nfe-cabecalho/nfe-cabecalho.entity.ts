@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [NFE_CABECALHO] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -58,7 +58,7 @@ import { TributOperacaoFiscal } from '../../entities-export';
 import { VendaCabecalho } from '../../entities-export';
 
 @Entity({ name: 'NFE_CABECALHO' })
-export class NfeCabecalho { 
+export class NfeCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -295,76 +295,76 @@ export class NfeCabecalho {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => NfeCana, nfeCana => nfeCana.nfeCabecalho, { cascade: true })
-    nfeCana: NfeCana;
+	@OneToOne(() => NfeCana, nfeCana => nfeCana.nfeCabecalho, { cascade: true })
+	nfeCana: NfeCana;
 
-    @OneToOne(() => NfeDestinatario, nfeDestinatario => nfeDestinatario.nfeCabecalho, { cascade: true })
-    nfeDestinatario: NfeDestinatario;
+	@OneToOne(() => NfeDestinatario, nfeDestinatario => nfeDestinatario.nfeCabecalho, { cascade: true })
+	nfeDestinatario: NfeDestinatario;
 
-    @OneToOne(() => NfeEmitente, nfeEmitente => nfeEmitente.nfeCabecalho, { cascade: true })
-    nfeEmitente: NfeEmitente;
+	@OneToOne(() => NfeEmitente, nfeEmitente => nfeEmitente.nfeCabecalho, { cascade: true })
+	nfeEmitente: NfeEmitente;
 
-    @OneToOne(() => NfeFatura, nfeFatura => nfeFatura.nfeCabecalho, { cascade: true })
-    nfeFatura: NfeFatura;
+	@OneToOne(() => NfeFatura, nfeFatura => nfeFatura.nfeCabecalho, { cascade: true })
+	nfeFatura: NfeFatura;
 
-    @OneToOne(() => NfeInformacaoPagamento, nfeInformacaoPagamento => nfeInformacaoPagamento.nfeCabecalho, { cascade: true })
-    nfeInformacaoPagamento: NfeInformacaoPagamento;
+	@OneToOne(() => NfeInformacaoPagamento, nfeInformacaoPagamento => nfeInformacaoPagamento.nfeCabecalho, { cascade: true })
+	nfeInformacaoPagamento: NfeInformacaoPagamento;
 
-    @OneToOne(() => NfeLocalEntrega, nfeLocalEntrega => nfeLocalEntrega.nfeCabecalho, { cascade: true })
-    nfeLocalEntrega: NfeLocalEntrega;
+	@OneToOne(() => NfeLocalEntrega, nfeLocalEntrega => nfeLocalEntrega.nfeCabecalho, { cascade: true })
+	nfeLocalEntrega: NfeLocalEntrega;
 
-    @OneToOne(() => NfeLocalRetirada, nfeLocalRetirada => nfeLocalRetirada.nfeCabecalho, { cascade: true })
-    nfeLocalRetirada: NfeLocalRetirada;
+	@OneToOne(() => NfeLocalRetirada, nfeLocalRetirada => nfeLocalRetirada.nfeCabecalho, { cascade: true })
+	nfeLocalRetirada: NfeLocalRetirada;
 
-    @OneToOne(() => NfeResponsavelTecnico, nfeResponsavelTecnico => nfeResponsavelTecnico.nfeCabecalho, { cascade: true })
-    nfeResponsavelTecnico: NfeResponsavelTecnico;
+	@OneToOne(() => NfeResponsavelTecnico, nfeResponsavelTecnico => nfeResponsavelTecnico.nfeCabecalho, { cascade: true })
+	nfeResponsavelTecnico: NfeResponsavelTecnico;
 
-    @OneToOne(() => NfeTransporte, nfeTransporte => nfeTransporte.nfeCabecalho, { cascade: true })
-    nfeTransporte: NfeTransporte;
+	@OneToOne(() => NfeTransporte, nfeTransporte => nfeTransporte.nfeCabecalho, { cascade: true })
+	nfeTransporte: NfeTransporte;
 
-    @OneToOne(() => Vendedor)
-    @JoinColumn({ name: "ID_VENDEDOR" })
-    vendedor: Vendedor;
+	@OneToOne(() => Vendedor)
+	@JoinColumn({ name: "ID_VENDEDOR" })
+	vendedor: Vendedor;
 
-    @OneToOne(() => Fornecedor)
-    @JoinColumn({ name: "ID_FORNECEDOR" })
-    fornecedor: Fornecedor;
+	@OneToOne(() => Fornecedor)
+	@JoinColumn({ name: "ID_FORNECEDOR" })
+	fornecedor: Fornecedor;
 
-    @OneToOne(() => Cliente)
-    @JoinColumn({ name: "ID_CLIENTE" })
-    cliente: Cliente;
+	@OneToOne(() => Cliente)
+	@JoinColumn({ name: "ID_CLIENTE" })
+	cliente: Cliente;
 
-    @OneToOne(() => TributOperacaoFiscal)
-    @JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
-    tributOperacaoFiscal: TributOperacaoFiscal;
+	@OneToOne(() => TributOperacaoFiscal)
+	@JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
+	tributOperacaoFiscal: TributOperacaoFiscal;
 
-    @OneToOne(() => VendaCabecalho)
-    @JoinColumn({ name: "ID_VENDA_CABECALHO" })
-    vendaCabecalho: VendaCabecalho;
+	@OneToOne(() => VendaCabecalho)
+	@JoinColumn({ name: "ID_VENDA_CABECALHO" })
+	vendaCabecalho: VendaCabecalho;
 
-    @OneToMany(() => NfeAcessoXml, nfeAcessoXml => nfeAcessoXml.nfeCabecalho, { cascade: true })
-    listaNfeAcessoXml: NfeAcessoXml[];
+	@OneToMany(() => NfeAcessoXml, nfeAcessoXml => nfeAcessoXml.nfeCabecalho, { cascade: true })
+	listaNfeAcessoXml: NfeAcessoXml[];
 
-    @OneToMany(() => NfeCteReferenciado, nfeCteReferenciado => nfeCteReferenciado.nfeCabecalho, { cascade: true })
-    listaNfeCteReferenciado: NfeCteReferenciado[];
+	@OneToMany(() => NfeCteReferenciado, nfeCteReferenciado => nfeCteReferenciado.nfeCabecalho, { cascade: true })
+	listaNfeCteReferenciado: NfeCteReferenciado[];
 
-    @OneToMany(() => NfeCupomFiscalReferenciado, nfeCupomFiscalReferenciado => nfeCupomFiscalReferenciado.nfeCabecalho, { cascade: true })
-    listaNfeCupomFiscalReferenciado: NfeCupomFiscalReferenciado[];
+	@OneToMany(() => NfeCupomFiscalReferenciado, nfeCupomFiscalReferenciado => nfeCupomFiscalReferenciado.nfeCabecalho, { cascade: true })
+	listaNfeCupomFiscalReferenciado: NfeCupomFiscalReferenciado[];
 
-    @OneToMany(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeCabecalho, { cascade: true })
-    listaNfeDetalhe: NfeDetalhe[];
+	@OneToMany(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeCabecalho, { cascade: true })
+	listaNfeDetalhe: NfeDetalhe[];
 
-    @OneToMany(() => NfeNfReferenciada, nfeNfReferenciada => nfeNfReferenciada.nfeCabecalho, { cascade: true })
-    listaNfeNfReferenciada: NfeNfReferenciada[];
+	@OneToMany(() => NfeNfReferenciada, nfeNfReferenciada => nfeNfReferenciada.nfeCabecalho, { cascade: true })
+	listaNfeNfReferenciada: NfeNfReferenciada[];
 
-    @OneToMany(() => NfeProcessoReferenciado, nfeProcessoReferenciado => nfeProcessoReferenciado.nfeCabecalho, { cascade: true })
-    listaNfeProcessoReferenciado: NfeProcessoReferenciado[];
+	@OneToMany(() => NfeProcessoReferenciado, nfeProcessoReferenciado => nfeProcessoReferenciado.nfeCabecalho, { cascade: true })
+	listaNfeProcessoReferenciado: NfeProcessoReferenciado[];
 
-    @OneToMany(() => NfeProdRuralReferenciada, nfeProdRuralReferenciada => nfeProdRuralReferenciada.nfeCabecalho, { cascade: true })
-    listaNfeProdRuralReferenciada: NfeProdRuralReferenciada[];
+	@OneToMany(() => NfeProdRuralReferenciada, nfeProdRuralReferenciada => nfeProdRuralReferenciada.nfeCabecalho, { cascade: true })
+	listaNfeProdRuralReferenciada: NfeProdRuralReferenciada[];
 
-    @OneToMany(() => NfeReferenciada, nfeReferenciada => nfeReferenciada.nfeCabecalho, { cascade: true })
-    listaNfeReferenciada: NfeReferenciada[];
+	@OneToMany(() => NfeReferenciada, nfeReferenciada => nfeReferenciada.nfeCabecalho, { cascade: true })
+	listaNfeReferenciada: NfeReferenciada[];
 
 
 	/**
@@ -449,7 +449,7 @@ export class NfeCabecalho {
 			this.qrcode = objetoJson['qrcode'];
 			this.urlChave = objetoJson['urlChave'];
 			this.statusNota = objetoJson['statusNota'];
-			
+
 			if (objetoJson['nfeCana'] != null) {
 				this.nfeCana = new NfeCana(objetoJson['nfeCana']);
 			}
@@ -506,7 +506,7 @@ export class NfeCabecalho {
 				this.vendaCabecalho = new VendaCabecalho(objetoJson['vendaCabecalho']);
 			}
 
-			
+
 			this.listaNfeAcessoXml = [];
 			let listaNfeAcessoXmlJson = objetoJson['listaNfeAcessoXml'];
 			if (listaNfeAcessoXmlJson != null) {

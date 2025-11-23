@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TRIBUT_GRUPO_TRIBUTARIO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { TributGrupoTributario } from './tribut-grupo-tributario.entity';
 export class TributGrupoTributarioController implements CrudController<TributGrupoTributario> {
   constructor(public service: TributGrupoTributarioService) { }
 
-  
+
 
 
 }

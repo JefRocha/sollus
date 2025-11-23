@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_EXTRATO_CONTA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinExtratoContaBancoService extends TypeOrmCrudService<FinExtratoCo
   constructor(
     @InjectRepository(FinExtratoContaBanco) repository) { super(repository); }
 
-  
 
-	
+
+
 }

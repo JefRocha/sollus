@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -39,7 +39,7 @@ export class RegistroI150 {
     dtFin: Date;	 /// Data de fim do período.
     registroi151List: RegistroI151[];	 /// BLOCO I - Lista de RegistroI151 (FILHO)
     registroi155List: RegistroI155[];	 /// BLOCO I - Lista de RegistroI155 (FILHO)
-    
+
     constructor() {
         this.registroi151List = [];
         this.registroi155List = [];

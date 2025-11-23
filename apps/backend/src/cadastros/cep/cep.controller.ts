@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CEP] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Cep } from './cep.entity';
 export class CepController implements CrudController<Cep> {
   constructor(public service: CepService) { }
 
-  
+
 
 
 }

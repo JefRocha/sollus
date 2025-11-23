@@ -18,7 +18,7 @@ class App {
 
         // adicionar uma rota simples padrão
         this.app.get('/', (req, res) => {
-            res.json({ mensagem: "Olá, você está no Gerador de Código do T2Ti ERP Fenix!" });
+            res.json({ mensagem: "Olá, você está no Gerador de Código do T2Ti ERP sollus!" });
         });
 
         // rotas

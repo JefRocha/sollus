@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CFOP] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Cfop } from './cfop.entity';
 export class CfopController implements CrudController<Cfop> {
   constructor(public service: CfopService) { }
 
-  
+
 
 
 }

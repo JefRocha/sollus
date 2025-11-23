@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [USUARIO] 
                                                                                 
 The MIT License                                                                 
@@ -44,5 +44,5 @@ export class UsuarioService extends TypeOrmCrudService<Usuario> {
   constructor(
     @InjectRepository(Usuario) repository) { super(repository); }
 
-	
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [SINDICATO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Sindicato } from './sindicato.entity';
 export class SindicatoController implements CrudController<Sindicato> {
   constructor(public service: SindicatoService) { }
 
-  
+
 
 
 }

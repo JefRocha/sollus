@@ -62,7 +62,7 @@ export class FlutterModel {
             this.campoModel.nomeCampo = this.campoModel.Field;
             this.campoModel.nomeCampoTabela = this.campoModel.nomeCampo.toUpperCase();
             this.campoModel.nomeCampoAtributo = lodash.camelCase(this.campoModel.nomeCampo);
-            this.campoModel.nomeCampoGetSet = lodash.upperFirst(this.campoModel.nomeCampoAtributo);  
+            this.campoModel.nomeCampoGetSet = lodash.upperFirst(this.campoModel.nomeCampoAtributo);
 
             // pega o objeto JSON de comentário
             if (this.campoModel.Comment != '') {
@@ -186,7 +186,7 @@ export class FlutterModel {
             } else {
                 atributo = this.campoModel.nomeCampoAtributo + " = jsonDados['" + this.campoModel.nomeCampoAtributo + "']";
             }
-            
+
             if (this.campoModel.tipoCampo == 'DateTime') {
                 atributo = atributo + " != null ? DateTime.tryParse(jsonDados['" + this.campoModel.nomeCampoAtributo + "']) : null;";
             } else if (this.campoModel.tipoCampo == 'double') {
@@ -194,7 +194,7 @@ export class FlutterModel {
             } else {
                 atributo = atributo + ';';
             }
-            
+
             this.atributFromJson.push(atributo);
 
             // define o ToJson - atributos normais
@@ -232,10 +232,10 @@ export class FlutterModel {
             this.imports.push("import 'package:intl/intl.dart';")
         }
         if (this.importBiblioteca) {
-            this.imports.push("import 'package:fenix/src/infra/biblioteca.dart';")
+            this.imports.push("import 'package:sollus/src/infra/biblioteca.dart';")
         }
         if (this.importModels) {
-            this.imports.push("import 'package:fenix/src/model/model.dart';")
+            this.imports.push("import 'package:sollus/src/model/model.dart';")
         }
 
     }

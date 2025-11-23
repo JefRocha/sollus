@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  sollus-backend:
+    container_name: sollus-backend
+    image: sollus-backend:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_TYPE=postgres
+      - DB_HOST=host.docker.internal # Ajuste conforme sua rede (ex: nome do container do banco)
+      - DB_PORT=5432
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=password
+      - DB_DATABASE=solluserp
+      - PORT=3000
+    restart: always
+    networks:
+      - sollus-network
+
+networks:
+  sollus-network:
+    driver: bridge

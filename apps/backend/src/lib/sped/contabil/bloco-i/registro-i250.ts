@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -40,5 +40,5 @@ export class RegistroI250 {
     codHistPad: string;
     hist: string;
     codPart: string;
-    
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Controle de Orçamentos
                                                                                 
 The MIT License                                                                 
@@ -40,11 +40,11 @@ import { OrcamentoFluxoCaixaPeriodoModule } from '../orcamentos/orcamento-fluxo-
 import { OrcamentoPeriodoModule } from '../orcamentos/orcamento-periodo/orcamento-periodo.module';
 
 @Module({
-    imports: [
-		OrcamentoEmpresarialModule,
-		OrcamentoFluxoCaixaModule,
-		OrcamentoFluxoCaixaPeriodoModule,
-		OrcamentoPeriodoModule,
-    ],
+  imports: [
+    OrcamentoEmpresarialModule,
+    OrcamentoFluxoCaixaModule,
+    OrcamentoFluxoCaixaPeriodoModule,
+    OrcamentoPeriodoModule,
+  ],
 })
 export class OrcamentosModule { }

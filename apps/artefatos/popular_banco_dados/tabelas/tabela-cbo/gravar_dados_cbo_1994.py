@@ -7,7 +7,7 @@ conn = mysql.connector.connect(
     host='localhost',
     user='root',
     password='root',
-    database='fenix'
+    database='sollus'
 )
 cursor = conn.cursor()
 

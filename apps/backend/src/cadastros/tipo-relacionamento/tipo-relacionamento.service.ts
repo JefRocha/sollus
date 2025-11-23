@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [TIPO_RELACIONAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class TipoRelacionamentoService extends TypeOrmCrudService<TipoRelacionam
   constructor(
     @InjectRepository(TipoRelacionamento) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -22,18 +22,18 @@ export class FlutterExportsRotas {
             nomeClasse = lodash.upperFirst(nomeObjeto);
 
             // exportViewModel
-            this.exportViewModel.push("export 'package:fenix/src/view_model/" + modulo + "/" + nomeTabela + "_view_model.dart';");
+            this.exportViewModel.push("export 'package:sollus/src/view_model/" + modulo + "/" + nomeTabela + "_view_model.dart';");
 
             // exportModel
-            this.exportModel.push("export 'package:fenix/src/model/" + modulo + "/" + nomeTabela + ".dart';");
+            this.exportModel.push("export 'package:sollus/src/model/" + modulo + "/" + nomeTabela + ".dart';");
 
             // exportService
-            this.exportService.push("export 'package:fenix/src/service/" + modulo + "/" + nomeTabela + "_service.dart';");
+            this.exportService.push("export 'package:sollus/src/service/" + modulo + "/" + nomeTabela + "_service.dart';");
 
             // exportPage
-            this.exportPage.push("//export 'package:fenix/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_detalhe_page.dart';");
-            this.exportPage.push("export 'package:fenix/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_lista_page.dart';");
-            this.exportPage.push("export 'package:fenix/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_persiste_page.dart';");
+            this.exportPage.push("//export 'package:sollus/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_detalhe_page.dart';");
+            this.exportPage.push("export 'package:sollus/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_lista_page.dart';");
+            this.exportPage.push("export 'package:sollus/src/view/page/" + modulo + "/" + nomeTabela + "/" + nomeTabela + "_persiste_page.dart';");
             this.exportPage.push("");
 
             // locators

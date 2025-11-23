@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_FECHAMENTO_CAIXA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinFechamentoCaixaBancoService extends TypeOrmCrudService<FinFecham
   constructor(
     @InjectRepository(FinFechamentoCaixaBanco) repository) { super(repository); }
 
-  
 
-	
+
+
 }

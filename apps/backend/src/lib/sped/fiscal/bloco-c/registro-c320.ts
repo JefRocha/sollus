@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -34,16 +34,16 @@ import { RegistroC321 } from "./registro-c321";
 
 export class RegistroC320 {
 
-    cstIcms:  string;	 // Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1
-    cfop:  string;	 // Código Fiscal de Operação e Prestação
-    aliqIcms:  number;	 // Alíquota do ICMS
-    vlOpr:  number;	 // Valor total acumulado das operações correspondentes à combinação de CST_ICMS, CFOP e alíquota do ICMS, incluídas as despesas acessórias e acréscimos.
-    vlBcIcms:  number;	 // Valor acumulado da base de cálculo do ICMS, referente à combinação de CST_ICMS, CFOP, e alíquota do ICMS.
-    vlIcms:  number;	 // Valor acumulado do ICMS, referente à combinação de CST_ICMS, CFOP e alíquota do ICMS.
-    vlRedBc:  number;	 // Valor não tributado em função da redução da base de cálculo do ICMS, referente à combinação de CST_ICMS, CFOP, e alíquota do ICMS.
-    codObs:  string;	 // Código da observação do lançamento fiscal (campo 02 do Registro 0460)
-    registroC321List:  RegistroC321[];	
-    
+    cstIcms: string;	 // Código da Situação Tributária, conforme a Tabela indicada no item 4.3.1
+    cfop: string;	 // Código Fiscal de Operação e Prestação
+    aliqIcms: number;	 // Alíquota do ICMS
+    vlOpr: number;	 // Valor total acumulado das operações correspondentes à combinação de CST_ICMS, CFOP e alíquota do ICMS, incluídas as despesas acessórias e acréscimos.
+    vlBcIcms: number;	 // Valor acumulado da base de cálculo do ICMS, referente à combinação de CST_ICMS, CFOP, e alíquota do ICMS.
+    vlIcms: number;	 // Valor acumulado do ICMS, referente à combinação de CST_ICMS, CFOP e alíquota do ICMS.
+    vlRedBc: number;	 // Valor não tributado em função da redução da base de cálculo do ICMS, referente à combinação de CST_ICMS, CFOP, e alíquota do ICMS.
+    codObs: string;	 // Código da observação do lançamento fiscal (campo 02 do Registro 0460)
+    registroC321List: RegistroC321[];
+
     constructor() {
         this.registroC321List = [];
     }

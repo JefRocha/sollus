@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_PARCELA_PAGAR] 
                                                                                 
 The MIT License                                                                 
@@ -45,10 +45,10 @@ import { Request } from 'express';
   },
   query: {
     join: {
-		finStatusParcela: { eager: true },
-		finTipoPagamento: { eager: true },
-		finChequeEmitido: { eager: true },
-		finLancamentoPagar: { eager: true },
+      finStatusParcela: { eager: true },
+      finTipoPagamento: { eager: true },
+      finChequeEmitido: { eager: true },
+      finLancamentoPagar: { eager: true },
     },
   },
 })
@@ -56,7 +56,7 @@ import { Request } from 'express';
 export class FinParcelaPagarController implements CrudController<FinParcelaPagar> {
   constructor(public service: FinParcelaPagarService) { }
 
-  
+
 
 
 }

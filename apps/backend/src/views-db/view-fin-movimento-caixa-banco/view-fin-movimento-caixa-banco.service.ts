@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_FIN_MOVIMENTO_CAIXA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewFinMovimentoCaixaBancoService extends TypeOrmCrudService<ViewFi
   constructor(
     @InjectRepository(ViewFinMovimentoCaixaBanco) repository) { super(repository); }
 
-  
 
-	
+
+
 }

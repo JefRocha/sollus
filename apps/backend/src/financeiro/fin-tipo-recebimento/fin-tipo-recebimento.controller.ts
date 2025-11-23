@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_TIPO_RECEBIMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { FinTipoRecebimento } from './fin-tipo-recebimento.entity';
 export class FinTipoRecebimentoController implements CrudController<FinTipoRecebimento> {
   constructor(public service: FinTipoRecebimentoService) { }
 
-  
+
 
 
 }

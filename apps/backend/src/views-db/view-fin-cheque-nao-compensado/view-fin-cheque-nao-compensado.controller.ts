@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_FIN_CHEQUE_NAO_COMPENSADO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewFinChequeNaoCompensado } from './view-fin-cheque-nao-compensado.ent
 export class ViewFinChequeNaoCompensadoController implements CrudController<ViewFinChequeNaoCompensado> {
   constructor(public service: ViewFinChequeNaoCompensadoService) { }
 
-  
+
 
 
 }

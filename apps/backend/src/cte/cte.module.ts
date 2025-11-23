@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo CT-e
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { CteCabecalhoModule } from '../cte/cte-cabecalho/cte-cabecalho.module';
 
 @Module({
-    imports: [
-		CteCabecalhoModule,
-    ],
+  imports: [
+    CteCabecalhoModule,
+  ],
 })
 export class CteModule { }

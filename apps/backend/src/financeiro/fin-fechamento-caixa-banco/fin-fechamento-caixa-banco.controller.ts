@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_FECHAMENTO_CAIXA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { FinFechamentoCaixaBanco } from './fin-fechamento-caixa-banco.entity';
   },
   query: {
     join: {
-		bancoContaCaixa: { eager: true },
+      bancoContaCaixa: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { FinFechamentoCaixaBanco } from './fin-fechamento-caixa-banco.entity';
 export class FinFechamentoCaixaBancoController implements CrudController<FinFechamentoCaixaBanco> {
   constructor(public service: FinFechamentoCaixaBancoService) { }
 
-  
+
 
 
 }

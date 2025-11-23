@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [OS_EQUIPAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { OsEquipamento } from './os-equipamento.entity';
 export class OsEquipamentoController implements CrudController<OsEquipamento> {
   constructor(public service: OsEquipamentoService) { }
 
-  
+
 
 
 }

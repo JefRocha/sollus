@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CARGO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CargoService extends TypeOrmCrudService<Cargo> {
   constructor(
     @InjectRepository(Cargo) repository) { super(repository); }
 
-  
 
-	
+
+
 }

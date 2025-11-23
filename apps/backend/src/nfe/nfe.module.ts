@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo NF-e
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { NfeNumeroModule } from '../nfe/nfe-numero/nfe-numero.module';
 import { NfeNumeroInutilizadoModule } from '../nfe/nfe-numero-inutilizado/nfe-numero-inutilizado.module';
 
 @Module({
-    imports: [
-		NfeCabecalhoModule,
-		NfeNumeroModule,
-		NfeNumeroInutilizadoModule,
-    ],
+  imports: [
+    NfeCabecalhoModule,
+    NfeNumeroModule,
+    NfeNumeroInutilizadoModule,
+  ],
 })
 export class NfeModule { }

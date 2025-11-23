@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Auditoria
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { AuditoriaModule } from '../auditoria/auditoria/auditoria.module';
 
 @Module({
-    imports: [
-		AuditoriaModule,
-    ],
+  imports: [
+    AuditoriaModule,
+  ],
 })
 export class AuditoriaSistemaModule { }

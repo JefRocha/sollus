@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [NFE_DETALHE] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -54,7 +54,7 @@ import { NfeCabecalho } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
 @Entity({ name: 'NFE_DETALHE' })
-export class NfeDetalhe { 
+export class NfeDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -168,61 +168,61 @@ export class NfeDetalhe {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => NfeDetEspecificoCombustivel, nfeDetEspecificoCombustivel => nfeDetEspecificoCombustivel.nfeDetalhe, { cascade: true })
-    nfeDetEspecificoCombustivel: NfeDetEspecificoCombustivel;
+	@OneToOne(() => NfeDetEspecificoCombustivel, nfeDetEspecificoCombustivel => nfeDetEspecificoCombustivel.nfeDetalhe, { cascade: true })
+	nfeDetEspecificoCombustivel: NfeDetEspecificoCombustivel;
 
-    @OneToOne(() => NfeDetEspecificoMedicamento, nfeDetEspecificoMedicamento => nfeDetEspecificoMedicamento.nfeDetalhe, { cascade: true })
-    nfeDetEspecificoMedicamento: NfeDetEspecificoMedicamento;
+	@OneToOne(() => NfeDetEspecificoMedicamento, nfeDetEspecificoMedicamento => nfeDetEspecificoMedicamento.nfeDetalhe, { cascade: true })
+	nfeDetEspecificoMedicamento: NfeDetEspecificoMedicamento;
 
-    @OneToOne(() => NfeDetEspecificoVeiculo, nfeDetEspecificoVeiculo => nfeDetEspecificoVeiculo.nfeDetalhe, { cascade: true })
-    nfeDetEspecificoVeiculo: NfeDetEspecificoVeiculo;
+	@OneToOne(() => NfeDetEspecificoVeiculo, nfeDetEspecificoVeiculo => nfeDetEspecificoVeiculo.nfeDetalhe, { cascade: true })
+	nfeDetEspecificoVeiculo: NfeDetEspecificoVeiculo;
 
-    @OneToOne(() => NfeDetalheImpostoCofins, nfeDetalheImpostoCofins => nfeDetalheImpostoCofins.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoCofins: NfeDetalheImpostoCofins;
+	@OneToOne(() => NfeDetalheImpostoCofins, nfeDetalheImpostoCofins => nfeDetalheImpostoCofins.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoCofins: NfeDetalheImpostoCofins;
 
-    @OneToOne(() => NfeDetalheImpostoCofinsSt, nfeDetalheImpostoCofinsSt => nfeDetalheImpostoCofinsSt.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoCofinsSt: NfeDetalheImpostoCofinsSt;
+	@OneToOne(() => NfeDetalheImpostoCofinsSt, nfeDetalheImpostoCofinsSt => nfeDetalheImpostoCofinsSt.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoCofinsSt: NfeDetalheImpostoCofinsSt;
 
-    @OneToOne(() => NfeDetalheImpostoIcms, nfeDetalheImpostoIcms => nfeDetalheImpostoIcms.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoIcms: NfeDetalheImpostoIcms;
+	@OneToOne(() => NfeDetalheImpostoIcms, nfeDetalheImpostoIcms => nfeDetalheImpostoIcms.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoIcms: NfeDetalheImpostoIcms;
 
-    @OneToOne(() => NfeDetalheImpostoIcmsUfdest, nfeDetalheImpostoIcmsUfdest => nfeDetalheImpostoIcmsUfdest.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoIcmsUfdest: NfeDetalheImpostoIcmsUfdest;
+	@OneToOne(() => NfeDetalheImpostoIcmsUfdest, nfeDetalheImpostoIcmsUfdest => nfeDetalheImpostoIcmsUfdest.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoIcmsUfdest: NfeDetalheImpostoIcmsUfdest;
 
-    @OneToOne(() => NfeDetalheImpostoIi, nfeDetalheImpostoIi => nfeDetalheImpostoIi.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoIi: NfeDetalheImpostoIi;
+	@OneToOne(() => NfeDetalheImpostoIi, nfeDetalheImpostoIi => nfeDetalheImpostoIi.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoIi: NfeDetalheImpostoIi;
 
-    @OneToOne(() => NfeDetalheImpostoIpi, nfeDetalheImpostoIpi => nfeDetalheImpostoIpi.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoIpi: NfeDetalheImpostoIpi;
+	@OneToOne(() => NfeDetalheImpostoIpi, nfeDetalheImpostoIpi => nfeDetalheImpostoIpi.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoIpi: NfeDetalheImpostoIpi;
 
-    @OneToOne(() => NfeDetalheImpostoIssqn, nfeDetalheImpostoIssqn => nfeDetalheImpostoIssqn.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoIssqn: NfeDetalheImpostoIssqn;
+	@OneToOne(() => NfeDetalheImpostoIssqn, nfeDetalheImpostoIssqn => nfeDetalheImpostoIssqn.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoIssqn: NfeDetalheImpostoIssqn;
 
-    @OneToOne(() => NfeDetalheImpostoPis, nfeDetalheImpostoPis => nfeDetalheImpostoPis.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoPis: NfeDetalheImpostoPis;
+	@OneToOne(() => NfeDetalheImpostoPis, nfeDetalheImpostoPis => nfeDetalheImpostoPis.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoPis: NfeDetalheImpostoPis;
 
-    @OneToOne(() => NfeDetalheImpostoPisSt, nfeDetalheImpostoPisSt => nfeDetalheImpostoPisSt.nfeDetalhe, { cascade: true })
-    nfeDetalheImpostoPisSt: NfeDetalheImpostoPisSt;
+	@OneToOne(() => NfeDetalheImpostoPisSt, nfeDetalheImpostoPisSt => nfeDetalheImpostoPisSt.nfeDetalhe, { cascade: true })
+	nfeDetalheImpostoPisSt: NfeDetalheImpostoPisSt;
 
-    // @OneToOne(type => Produto, {cascade: true, nullable: true} )
-    // @JoinColumn({ name: "ID_PRODUTO" })
-    produto: Produto;
+	// @OneToOne(type => Produto, {cascade: true, nullable: true} )
+	// @JoinColumn({ name: "ID_PRODUTO" })
+	produto: Produto;
 
-    @OneToMany(() => NfeDeclaracaoImportacao, nfeDeclaracaoImportacao => nfeDeclaracaoImportacao.nfeDetalhe, { cascade: true })
-    listaNfeDeclaracaoImportacao: NfeDeclaracaoImportacao[];
+	@OneToMany(() => NfeDeclaracaoImportacao, nfeDeclaracaoImportacao => nfeDeclaracaoImportacao.nfeDetalhe, { cascade: true })
+	listaNfeDeclaracaoImportacao: NfeDeclaracaoImportacao[];
 
-    @OneToMany(() => NfeDetEspecificoArmamento, nfeDetEspecificoArmamento => nfeDetEspecificoArmamento.nfeDetalhe, { cascade: true })
-    listaNfeDetEspecificoArmamento: NfeDetEspecificoArmamento[];
+	@OneToMany(() => NfeDetEspecificoArmamento, nfeDetEspecificoArmamento => nfeDetEspecificoArmamento.nfeDetalhe, { cascade: true })
+	listaNfeDetEspecificoArmamento: NfeDetEspecificoArmamento[];
 
-    @OneToMany(() => NfeExportacao, nfeExportacao => nfeExportacao.nfeDetalhe, { cascade: true })
-    listaNfeExportacao: NfeExportacao[];
+	@OneToMany(() => NfeExportacao, nfeExportacao => nfeExportacao.nfeDetalhe, { cascade: true })
+	listaNfeExportacao: NfeExportacao[];
 
-    @OneToMany(() => NfeItemRastreado, nfeItemRastreado => nfeItemRastreado.nfeDetalhe, { cascade: true })
-    listaNfeItemRastreado: NfeItemRastreado[];
+	@OneToMany(() => NfeItemRastreado, nfeItemRastreado => nfeItemRastreado.nfeDetalhe, { cascade: true })
+	listaNfeItemRastreado: NfeItemRastreado[];
 
-    @ManyToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.listaNfeDetalhe)
-    @JoinColumn({ name: "ID_NFE_CABECALHO" })
-    nfeCabecalho: NfeCabecalho;
+	@ManyToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.listaNfeDetalhe)
+	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	nfeCabecalho: NfeCabecalho;
 
 
 	/**
@@ -266,7 +266,7 @@ export class NfeDetalhe {
 			this.informacoesAdicionais = objetoJson['informacoesAdicionais'];
 			this.valorSubtotal = objetoJson['valorSubtotal'];
 			this.valorTotal = objetoJson['valorTotal'];
-			
+
 			if (objetoJson['nfeDetEspecificoCombustivel'] != null) {
 				this.nfeDetEspecificoCombustivel = new NfeDetEspecificoCombustivel(objetoJson['nfeDetEspecificoCombustivel']);
 			}
@@ -319,7 +319,7 @@ export class NfeDetalhe {
 				this.produto = new Produto(objetoJson['produto']);
 			}
 
-			
+
 			this.listaNfeDeclaracaoImportacao = [];
 			let listaNfeDeclaracaoImportacaoJson = objetoJson['listaNfeDeclaracaoImportacao'];
 			if (listaNfeDeclaracaoImportacaoJson != null) {

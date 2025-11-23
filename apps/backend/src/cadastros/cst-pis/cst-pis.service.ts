@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CST_PIS] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CstPisService extends TypeOrmCrudService<CstPis> {
   constructor(
     @InjectRepository(CstPis) repository) { super(repository); }
 
-  
 
-	
+
+
 }

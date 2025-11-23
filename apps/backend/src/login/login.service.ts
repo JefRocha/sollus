@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service responsável por validar os dados do usuário, gerar o token 
 e validar o token.
                                                                                 

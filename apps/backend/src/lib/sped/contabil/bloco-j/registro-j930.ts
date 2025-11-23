@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -37,5 +37,5 @@ export class RegistroJ930 {
     identQualif: string;	 /// Qualificação do assinante, conforme tabela do Departamento Nacional de Registro do Comércio - DNRC.
     codAssin: string;	 /// Código de qualificação do assinante, conforme tabela do Departamento Nacional de Registro do Comércio - DNRC.
     indCrc: string;	 /// Número de inscrição do contabilista no Conselho Regional de Contabilidade.
-    
+
 }

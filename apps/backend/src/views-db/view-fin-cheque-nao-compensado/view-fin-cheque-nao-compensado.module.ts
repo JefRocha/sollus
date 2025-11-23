@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado à tabela [VIEW_FIN_CHEQUE_NAO_COMPENSADO] 
                                                                                 
 The MIT License                                                                 

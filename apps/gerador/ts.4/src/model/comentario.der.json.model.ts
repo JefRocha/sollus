@@ -4,7 +4,7 @@ export class ComentarioDerJsonModel {
 
     /**
      * Mais informações sobre essa classe podem ser encontradas no repositório, no documento
-     * T2Ti ERP Fenix - Estrutura Objeto JSON Comentario DER.doc
+     * T2Ti ERP sollus - Estrutura Objeto JSON Comentario DER.doc
      */
     cardinalidade: string;
     crud: string;
@@ -26,7 +26,7 @@ export class ComentarioDerJsonModel {
     tooltip: string;
     hintText: string;
     campoLookup: string;
-    tabelaLookup: string; 
+    tabelaLookup: string;
     campoLookupTipoDado: string;
     valorPadraoLookup: string;
     readOnly: boolean;
@@ -34,7 +34,7 @@ export class ComentarioDerJsonModel {
     linhaBootstrap: number;
     colunaBootstrap: number;
     sizesBootstrap: string;
-    tipoControle: TipoControle; 
+    tipoControle: TipoControle;
 
     // os dados abaixo não vem do DER, são gerados pelo Gerador
     tabela: string; // ex: BANCO_AGENCIA
@@ -59,7 +59,7 @@ export class ComentarioDerJsonModel {
         this.read = this.crud.includes('R') ? true : false;
         this.update = this.crud.includes('U') ? true : false;
         this.delete = this.crud.includes('D') ? true : false;
-        
+
         this.side = objeto["side"];
         this.cascade = objeto["cascade"];
         this.obrigatorio = objeto["obrigatorio"];
@@ -85,8 +85,8 @@ export class ComentarioDerJsonModel {
 
 class TipoControle {
     tipo: string;
-    persiste: string; 
-    valorPadrao: string; 
+    persiste: string;
+    valorPadrao: string;
     keyboardType: string;
     mascara: string;
     firstDate: string;

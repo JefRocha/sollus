@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [PRODUTO_GRUPO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ProdutoGrupo } from './produto-grupo.entity';
 export class ProdutoGrupoController implements CrudController<ProdutoGrupo> {
   constructor(public service: ProdutoGrupoService) { }
 
-  
+
 
 
 }

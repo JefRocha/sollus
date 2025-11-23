@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Classe de calculo da NFE - Lado Servidor
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.cOM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,9 +26,9 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
 													 
 Versão de Cálculo feita para o T2Ti ERP 1.0 (Delphi) e adaptada para versões posteriores.
 Autor original da primeira versão: Claudio Roberto de Souza (desenvcrs@hotmail.com)
@@ -41,21 +41,20 @@ import { CalculoNfeModel } from '../../util/calculoNfe.model';
 import { Biblioteca } from '../../util/biblioteca';
 
 @Injectable()
-export class NfeCalculoService  {
+export class NfeCalculoService {
 
-  constructor() {}
+	constructor() { }
 
 	static async calcular(pCalculoNFe: CalculoNfeModel, result: (pCalculoNFe: CalculoNfeModel) => void) {
 		// empresa emissora do simples
 		//#region 'Empresa do Simples'
-		if (pCalculoNFe.crtEmissor == 1)
-		{
+		if (pCalculoNFe.crtEmissor == 1) {
 			// calculos do simples nacional
 			//#region 'CSOSN 101'
 			if (pCalculoNFe.csosn == "101") // 101 Tributada pelo Simples Nacional com permissão de crédito
 			{
 				pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorCreditoIcmsSn = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaCreditoIcmsSn) / 100);
 				pCalculoNFe.valorCreditoIcmsSn = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorCreditoIcmsSn, 2);
 			}
@@ -77,7 +76,7 @@ export class NfeCalculoService  {
 			{
 				// pCalculoNFe icms proprio
 				pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 				if (pCalculoNFe.ufClienteCod == pCalculoNFe.ufEmissor)// se for uf diferente entre emissor e destinatario usar aliquota de transferencia
 					pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);
 				else
@@ -109,7 +108,7 @@ export class NfeCalculoService  {
 				else if (pCalculoNFe.modalidadeBcIcmsSt == "4")// Margem valor Agregado(%)
 				{
 					pCalculoNFe.baseCalculoIcmsSt = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-													pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+						pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 					pCalculoNFe.baseCalculoIcmsSt = (pCalculoNFe.baseCalculoIcmsSt - ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.percentualMvaIcmsSt) / 100));
 					pCalculoNFe.baseCalculoIcmsSt = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.baseCalculoIcmsSt, 2);
 					pCalculoNFe.valorReducaoBcIcmsSt = ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.aliquotaIcmsSt) / 100);
@@ -127,7 +126,7 @@ export class NfeCalculoService  {
 			{
 				// pCalculoNFe icms proprio
 				pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 				if (pCalculoNFe.ufClienteCod == pCalculoNFe.ufEmissor)// se for uf diferente entre emissor e destinatario usar aliquota de transferencia
 					pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);
 				else
@@ -156,7 +155,7 @@ export class NfeCalculoService  {
 				else if (pCalculoNFe.modalidadeBcIcmsSt == "4")// Margem valor Agregado(%)
 				{
 					pCalculoNFe.baseCalculoIcmsSt = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+						pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 					pCalculoNFe.baseCalculoIcmsSt = (pCalculoNFe.baseCalculoIcmsSt - ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.percentualMvaIcmsSt) / 100));
 					pCalculoNFe.baseCalculoIcmsSt = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.baseCalculoIcmsSt, 2);
 					pCalculoNFe.valorReducaoBcIcmsSt = ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.aliquotaIcmsSt) / 100);
@@ -174,7 +173,7 @@ export class NfeCalculoService  {
 			{
 				// pCalculoNFe icms proprio
 				pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 				if (pCalculoNFe.ufClienteCod == pCalculoNFe.ufEmissor)// se for uf diferente entre emissor e destinatario usar aliquota de transferencia
 					pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);
 				else
@@ -203,7 +202,7 @@ export class NfeCalculoService  {
 				else if (pCalculoNFe.modalidadeBcIcmsSt == "4")// Margem valor Agregado(%)
 				{
 					pCalculoNFe.baseCalculoIcmsSt = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-													pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
+						pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 					pCalculoNFe.baseCalculoIcmsSt = (pCalculoNFe.baseCalculoIcmsSt - ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.percentualMvaIcmsSt) / 100));
 					pCalculoNFe.baseCalculoIcmsSt = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.baseCalculoIcmsSt, 2);
 					pCalculoNFe.valorReducaoBcIcmsSt = ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.aliquotaIcmsSt) / 100);
@@ -245,8 +244,7 @@ export class NfeCalculoService  {
 
 		// empresas do regime normal e excesso de receita
 		//#region 'Empresa do Regime normal e execesso de receita'
-		if ((pCalculoNFe.crtEmissor == 2) || (pCalculoNFe.crtEmissor == 3))
-		{
+		if ((pCalculoNFe.crtEmissor == 2) || (pCalculoNFe.crtEmissor == 3)) {
 			// convert UF do cliente para codigo para comparar com cod uf emitente
 			pCalculoNFe.ufClienteCod = Biblioteca.uFToInt(pCalculoNFe.ufCliente);
 			// aqui definir a aliquota do icms proprio ou inter estatual
@@ -256,14 +254,12 @@ export class NfeCalculoService  {
 			if ((pCalculoNFe.cstIpi == "00") ||
 				(pCalculoNFe.cstIpi == "49") ||
 				(pCalculoNFe.cstIpi == "50") ||
-				(pCalculoNFe.cstIpi == "99"))
-			{
+				(pCalculoNFe.cstIpi == "99")) {
 				pCalculoNFe.baseCalculoIpi = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro + pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorIpi = ((pCalculoNFe.baseCalculoIpi * pCalculoNFe.aliquotaIpi) / 100);
 				pCalculoNFe.valorIpi = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorIpi, 2);
 			}
-			else
-			{
+			else {
 				pCalculoNFe.baseCalculoIpi = 0;
 				pCalculoNFe.valorIpi = 0;
 			}
@@ -291,13 +287,13 @@ export class NfeCalculoService  {
 					if (pCalculoNFe.tipoCliente == "F") // pessoa fisica inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+							pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 						pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);// pessoa fisica sempre usa a aliquota normal da UF emissao
 					}
 					if (pCalculoNFe.tipoCliente == "J") // pessoa juridica não inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
+							pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
 						if (pCalculoNFe.ufClienteCod == pCalculoNFe.ufEmissor)// se for uf diferente entre emissor e destinatario usar aliquota de transferencia
 							pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);
 						else
@@ -328,13 +324,13 @@ export class NfeCalculoService  {
 					if (pCalculoNFe.tipoCliente == "F") // pessoa fisica inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+							pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 						pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);// pessoa fisica sempre usa a aliquota normal da UF emissao
 					}
 					if (pCalculoNFe.tipoCliente == "J") // pessoa juridica não inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
+							pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
 						if (pCalculoNFe.ufClienteCod == pCalculoNFe.ufEmissor)// se for uf diferente entre emissor e destinatario usar aliquota de transferencia
 							pCalculoNFe.valorIcms = ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.aliquotaIcms) / 100);
 						else
@@ -363,7 +359,7 @@ export class NfeCalculoService  {
 				else if (pCalculoNFe.modalidadeBcIcmsSt == "4")// Margem valor Agregado(%)
 				{
 					pCalculoNFe.baseCalculoIcmsSt = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-														pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+						pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 					pCalculoNFe.baseCalculoIcmsSt = (pCalculoNFe.baseCalculoIcmsSt - ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.percentualMvaIcmsSt) / 100));
 					pCalculoNFe.baseCalculoIcmsSt = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.baseCalculoIcmsSt, 2);
 					pCalculoNFe.valorReducaoBcIcmsSt = ((pCalculoNFe.baseCalculoIcmsSt * pCalculoNFe.aliquotaIcmsSt) / 100);
@@ -397,7 +393,7 @@ export class NfeCalculoService  {
 					if (pCalculoNFe.tipoCliente == "F") // pessoa fisica inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-													pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+							pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 						pCalculoNFe.valorReducaoBcIcms = (pCalculoNFe.baseCalculoIcms - ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.taxaReducaoBcIcms) / 100));
 						pCalculoNFe.valorReducaoBcIcms = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorReducaoBcIcmsSt, 2);
 						pCalculoNFe.baseCalculoIcms = pCalculoNFe.baseCalculoIcms - pCalculoNFe.valorReducaoBcIcms;
@@ -407,7 +403,7 @@ export class NfeCalculoService  {
 					if (pCalculoNFe.tipoCliente == "J") // pessoa juridica não inclui ipi na base de pCalculoNFe do icms
 					{
 						pCalculoNFe.baseCalculoIcms = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-													pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
+							pCalculoNFe.valorOutrasDespesas) - pCalculoNFe.valorDesconto);// pessoa juridica nao inclui ipi na base de pCalculoNFe
 						pCalculoNFe.valorReducaoBcIcms = (pCalculoNFe.baseCalculoIcms - ((pCalculoNFe.baseCalculoIcms * pCalculoNFe.taxaReducaoBcIcms) / 100));
 						pCalculoNFe.valorReducaoBcIcms = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorReducaoBcIcmsSt, 2);
 						pCalculoNFe.baseCalculoIcms = pCalculoNFe.baseCalculoIcms - pCalculoNFe.valorReducaoBcIcms;
@@ -475,7 +471,7 @@ export class NfeCalculoService  {
 			if (pCalculoNFe.cstPis == "01") // tributável por aliquota Normal
 			{
 				pCalculoNFe.baseCalculoPis = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-											pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorPis = ((pCalculoNFe.baseCalculoPis * pCalculoNFe.aliquotaPis) / 100);
 				pCalculoNFe.valorPis = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorPis, 2);
 			}
@@ -483,7 +479,7 @@ export class NfeCalculoService  {
 			if (pCalculoNFe.cstPis == "02") // tributável por aliquota diferenciada
 			{
 				pCalculoNFe.baseCalculoPis = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorPis = (pCalculoNFe.baseCalculoPis * pCalculoNFe.aliquotaPisReais);// ver formula 02
 				pCalculoNFe.valorPis = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorPis, 2);
 			}
@@ -491,7 +487,7 @@ export class NfeCalculoService  {
 			if (pCalculoNFe.cstCofins == "01") // tributável por aliquota Normal
 			{
 				pCalculoNFe.baseCalculoCofins = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorCofins = ((pCalculoNFe.baseCalculoCofins * pCalculoNFe.aliquotaCofins) / 100);
 				pCalculoNFe.valorCofins = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorCofins, 2);
 			}
@@ -499,7 +495,7 @@ export class NfeCalculoService  {
 			if (pCalculoNFe.cstCofins == "02") // tributável por aliquota diferenciada
 			{
 				pCalculoNFe.baseCalculoCofins = ((pCalculoNFe.valorBrutoProdutos + pCalculoNFe.valorFrete + pCalculoNFe.valorSeguro +
-												pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
+					pCalculoNFe.valorOutrasDespesas + pCalculoNFe.valorIcms + pCalculoNFe.valorIpi) - pCalculoNFe.valorDesconto);
 				pCalculoNFe.valorCofins = (pCalculoNFe.baseCalculoCofins * pCalculoNFe.aliquotaCofinsReais);// ver formula 02
 				pCalculoNFe.valorCofins = Biblioteca.arredondaTruncaValor("A", pCalculoNFe.valorCofins, 2);
 			}
@@ -508,6 +504,6 @@ export class NfeCalculoService  {
 		//#endregion
 
 		return result(pCalculoNFe);
-	}  
-	
+	}
+
 }

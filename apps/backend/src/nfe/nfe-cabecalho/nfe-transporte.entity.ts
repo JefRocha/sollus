@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [NFE_TRANSPORTE] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -40,7 +40,7 @@ import { NfeCabecalho } from '../../entities-export';
 import { Transportadora } from '../../entities-export';
 
 @Entity({ name: 'NFE_TRANSPORTE' })
-export class NfeTransporte { 
+export class NfeTransporte {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -100,19 +100,19 @@ export class NfeTransporte {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeTransporte)
-    @JoinColumn({ name: "ID_NFE_CABECALHO" })
-    nfeCabecalho: NfeCabecalho;
+	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeTransporte)
+	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	nfeCabecalho: NfeCabecalho;
 
-    @OneToOne(() => Transportadora)
-    @JoinColumn({ name: "ID_TRANSPORTADORA" })
-    transportadora: Transportadora;
+	@OneToOne(() => Transportadora)
+	@JoinColumn({ name: "ID_TRANSPORTADORA" })
+	transportadora: Transportadora;
 
-    @OneToMany(() => NfeTransporteReboque, nfeTransporteReboque => nfeTransporteReboque.nfeTransporte, { cascade: true })
-    listaNfeTransporteReboque: NfeTransporteReboque[];
+	@OneToMany(() => NfeTransporteReboque, nfeTransporteReboque => nfeTransporteReboque.nfeTransporte, { cascade: true })
+	listaNfeTransporteReboque: NfeTransporteReboque[];
 
-    @OneToMany(() => NfeTransporteVolume, nfeTransporteVolume => nfeTransporteVolume.nfeTransporte, { cascade: true })
-    listaNfeTransporteVolume: NfeTransporteVolume[];
+	@OneToMany(() => NfeTransporteVolume, nfeTransporteVolume => nfeTransporteVolume.nfeTransporte, { cascade: true })
+	listaNfeTransporteVolume: NfeTransporteVolume[];
 
 
 	/**
@@ -138,12 +138,12 @@ export class NfeTransporte {
 			this.placaVeiculo = objetoJson['placaVeiculo'];
 			this.ufVeiculo = objetoJson['ufVeiculo'];
 			this.rntcVeiculo = objetoJson['rntcVeiculo'];
-			
+
 			if (objetoJson['transportadora'] != null) {
 				this.transportadora = new Transportadora(objetoJson['transportadora']);
 			}
 
-			
+
 			this.listaNfeTransporteReboque = [];
 			let listaNfeTransporteReboqueJson = objetoJson['listaNfeTransporteReboque'];
 			if (listaNfeTransporteReboqueJson != null) {

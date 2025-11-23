@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VENDEDOR] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class VendedorService extends TypeOrmCrudService<Vendedor> {
   constructor(
     @InjectRepository(Vendedor) repository) { super(repository); }
 
-  
 
-	
+
+
 }

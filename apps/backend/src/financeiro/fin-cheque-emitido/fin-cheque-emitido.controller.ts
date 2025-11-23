@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_CHEQUE_EMITIDO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { FinChequeEmitido } from './fin-cheque-emitido.entity';
   },
   query: {
     join: {
-		cheque: { eager: true },
+      cheque: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { FinChequeEmitido } from './fin-cheque-emitido.entity';
 export class FinChequeEmitidoController implements CrudController<FinChequeEmitido> {
   constructor(public service: FinChequeEmitidoService) { }
 
-  
+
 
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Ordem de Serviço
                                                                                 
 The MIT License                                                                 
@@ -38,9 +38,9 @@ import { GedDocumentoCabecalhoModule } from '../ged/ged-documento-cabecalho/ged-
 import { GedTipoDocumentoModule } from '../ged/ged-tipo-documento/ged-tipo-documento.module';
 
 @Module({
-    imports: [
-		GedDocumentoCabecalhoModule,
-		GedTipoDocumentoModule,
-    ],
+  imports: [
+    GedDocumentoCabecalhoModule,
+    GedTipoDocumentoModule,
+  ],
 })
 export class GedModule { }

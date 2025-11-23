@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [PRODUTO_GRUPO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ProdutoGrupoService extends TypeOrmCrudService<ProdutoGrupo> {
   constructor(
     @InjectRepository(ProdutoGrupo) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_STATUS_PARCELA] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { FinStatusParcela } from './fin-status-parcela.entity';
 export class FinStatusParcelaController implements CrudController<FinStatusParcela> {
   constructor(public service: FinStatusParcelaService) { }
 
-  
+
 
 
 }

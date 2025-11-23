@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TRIBUT_ISS] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { TributIss } from './tribut-iss.entity';
   },
   query: {
     join: {
-		tributOperacaoFiscal: { eager: true },
+      tributOperacaoFiscal: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { TributIss } from './tribut-iss.entity';
 export class TributIssController implements CrudController<TributIss> {
   constructor(public service: TributIssService) { }
 
-  
+
 
 
 }

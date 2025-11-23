@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CARGO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Cargo } from './cargo.entity';
 export class CargoController implements CrudController<Cargo> {
   constructor(public service: CargoService) { }
 
-  
+
 
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_TIPO_PAGAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinTipoPagamentoService extends TypeOrmCrudService<FinTipoPagamento
   constructor(
     @InjectRepository(FinTipoPagamento) repository) { super(repository); }
 
-  
 
-	
+
+
 }

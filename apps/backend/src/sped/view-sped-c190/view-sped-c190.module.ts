@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado à tabela [VIEW_SPED_C190] 
                                                                                 
 The MIT License                                                                 

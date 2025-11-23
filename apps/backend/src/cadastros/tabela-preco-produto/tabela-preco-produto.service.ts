@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [TABELA_PRECO_PRODUTO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class TabelaPrecoProdutoService extends TypeOrmCrudService<TabelaPrecoPro
   constructor(
     @InjectRepository(TabelaPrecoProduto) repository) { super(repository); }
 
-  
 
-	
+
+
 }

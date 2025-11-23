@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_EXTRATO_CONTA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { FinExtratoContaBanco } from './fin-extrato-conta-banco.entity';
   },
   query: {
     join: {
-		bancoContaCaixa: { eager: true },
+      bancoContaCaixa: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { FinExtratoContaBanco } from './fin-extrato-conta-banco.entity';
 export class FinExtratoContaBancoController implements CrudController<FinExtratoContaBanco> {
   constructor(public service: FinExtratoContaBancoService) { }
 
-  
+
 
 
 }

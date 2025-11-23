@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CEP] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CepService extends TypeOrmCrudService<Cep> {
   constructor(
     @InjectRepository(Cep) repository) { super(repository); }
 
-  
 
-	
+
+
 }

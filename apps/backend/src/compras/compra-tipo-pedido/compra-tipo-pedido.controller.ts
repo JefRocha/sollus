@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [COMPRA_TIPO_PEDIDO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { CompraTipoPedido } from './compra-tipo-pedido.entity';
 export class CompraTipoPedidoController implements CrudController<CompraTipoPedido> {
   constructor(public service: CompraTipoPedidoService) { }
 
-  
+
 
 
 }

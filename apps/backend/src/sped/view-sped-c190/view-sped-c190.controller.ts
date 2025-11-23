@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_SPED_C190] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewSpedC190 } from './view-sped-c190.entity';
 export class ViewSpedC190Controller implements CrudController<ViewSpedC190> {
   constructor(public service: ViewSpedC190Service) { }
 
-  
+
 
 
 }

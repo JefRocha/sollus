@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_NATUREZA_FINANCEIRA] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { FinNaturezaFinanceira } from './fin-natureza-financeira.entity';
 export class FinNaturezaFinanceiraController implements CrudController<FinNaturezaFinanceira> {
   constructor(public service: FinNaturezaFinanceiraService) { }
 
-  
+
 
 
 }

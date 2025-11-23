@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [GED_TIPO_DOCUMENTO] 
 																			    
 The MIT License                                                                 

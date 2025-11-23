@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TIPO_ADMISSAO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { TipoAdmissao } from './tipo-admissao.entity';
 export class TipoAdmissaoController implements CrudController<TipoAdmissao> {
   constructor(public service: TipoAdmissaoService) { }
 
-  
+
 
 
 }

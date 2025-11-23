@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [BANCO_CONTA_CAIXA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { BancoContaCaixa } from './banco-conta-caixa.entity';
   },
   query: {
     join: {
-		bancoAgencia: { eager: true },
+      bancoAgencia: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { BancoContaCaixa } from './banco-conta-caixa.entity';
 export class BancoContaCaixaController implements CrudController<BancoContaCaixa> {
   constructor(public service: BancoContaCaixaService) { }
 
-  
+
 
 
 }

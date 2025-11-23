@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_CONFIGURACAO_BOLETO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ import { FinConfiguracaoBoleto } from './fin-configuracao-boleto.entity';
   },
   query: {
     join: {
-		bancoContaCaixa: { eager: true },
+      bancoContaCaixa: { eager: true },
     },
   },
 })
@@ -52,7 +52,7 @@ import { FinConfiguracaoBoleto } from './fin-configuracao-boleto.entity';
 export class FinConfiguracaoBoletoController implements CrudController<FinConfiguracaoBoleto> {
   constructor(public service: FinConfiguracaoBoletoService) { }
 
-  
+
 
 
 }

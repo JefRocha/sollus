@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_DOCUMENTO_ORIGEM] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { FinDocumentoOrigem } from './fin-documento-origem.entity';
 export class FinDocumentoOrigemController implements CrudController<FinDocumentoOrigem> {
   constructor(public service: FinDocumentoOrigemService) { }
 
-  
+
 
 
 }

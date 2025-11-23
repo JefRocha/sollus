@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Gerador de Etiquetas
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { EtiquetaLayoutModule } from '../etiquetas/etiqueta-layout/etiqueta-layo
 import { EtiquetaTemplateModule } from '../etiquetas/etiqueta-template/etiqueta-template.module';
 
 @Module({
-    imports: [
-		EtiquetaFormatoPapelModule,
-		EtiquetaLayoutModule,
-		EtiquetaTemplateModule,
-    ],
+  imports: [
+    EtiquetaFormatoPapelModule,
+    EtiquetaLayoutModule,
+    EtiquetaTemplateModule,
+  ],
 })
 export class EtiquetasModule { }

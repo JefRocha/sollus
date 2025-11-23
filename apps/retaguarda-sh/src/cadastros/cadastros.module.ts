@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado ao módulo Cadastros Base
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { AcbrMonitorPortaModule } from '../cadastros/acbr-monitor-porta/acbr-mon
 import { ErpTipoPlanoModule } from '../cadastros/erp-tipo-plano/erp-tipo-plano.module';
 
 @Module({
-    imports: [
-      EmpresaModule,
-			AcbrMonitorPortaModule,
-			ErpTipoPlanoModule,
-    ],
+  imports: [
+    EmpresaModule,
+    AcbrMonitorPortaModule,
+    ErpTipoPlanoModule,
+  ],
 })
 export class CadastrosModule { }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_FIN_FLUXO_CAIXA] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewFinFluxoCaixa } from './view-fin-fluxo-caixa.entity';
 export class ViewFinFluxoCaixaController implements CrudController<ViewFinFluxoCaixa> {
   constructor(public service: ViewFinFluxoCaixaService) { }
 
-  
+
 
 
 }

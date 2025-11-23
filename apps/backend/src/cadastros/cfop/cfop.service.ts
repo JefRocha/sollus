@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CFOP] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CfopService extends TypeOrmCrudService<Cfop> {
   constructor(
     @InjectRepository(Cfop) repository) { super(repository); }
 
-  
 
-	
+
+
 }

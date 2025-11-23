@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados aos arquivos do Sped
                                                                                 
 The MIT License                                                                 
@@ -39,8 +39,8 @@ import { SpedContabilModule } from '../sped/sped-contabil/sped-contabil.module';
 
 @Module({
     imports: [
-		  SpedFiscalModule,
-		  SpedContabilModule,
+        SpedFiscalModule,
+        SpedContabilModule,
     ],
 })
 export class SpedModule { }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [TRIBUT_CONFIGURA_OF_GT] 
 																			    
 The MIT License                                                                 

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_NATUREZA_FINANCEIRA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinNaturezaFinanceiraService extends TypeOrmCrudService<FinNatureza
   constructor(
     @InjectRepository(FinNaturezaFinanceira) repository) { super(repository); }
 
-  
 
-	
+
+
 }

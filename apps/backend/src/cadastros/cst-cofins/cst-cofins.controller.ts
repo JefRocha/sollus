@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CST_COFINS] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { CstCofins } from './cst-cofins.entity';
 export class CstCofinsController implements CrudController<CstCofins> {
   constructor(public service: CstCofinsService) { }
 
-  
+
 
 
 }

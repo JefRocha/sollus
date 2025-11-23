@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [COMISSAO_OBJETIVO] 
                                                                                 
 The MIT License                                                                 
@@ -45,8 +45,8 @@ import { Request } from 'express';
   },
   query: {
     join: {
-		produto: { eager: true },
-		listaComissaoPerfil: { eager: true },
+      produto: { eager: true },
+      listaComissaoPerfil: { eager: true },
     },
   },
 })

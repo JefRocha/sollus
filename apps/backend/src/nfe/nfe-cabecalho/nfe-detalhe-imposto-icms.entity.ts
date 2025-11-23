@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Model relacionado à tabela [NFE_DETALHE_IMPOSTO_ICMS] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -37,7 +37,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { NfeDetalhe } from '../../entities-export';
 
 @Entity({ name: 'NFE_DETALHE_IMPOSTO_ICMS' })
-export class NfeDetalheImpostoIcms { 
+export class NfeDetalheImpostoIcms {
 
 	@PrimaryGeneratedColumn()
 	id: number;
@@ -172,9 +172,9 @@ export class NfeDetalheImpostoIcms {
 	/**
 	* Relations
 	*/
-    @OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIcms)
-    @JoinColumn({ name: "ID_NFE_DETALHE" })
-    nfeDetalhe: NfeDetalhe;
+	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIcms)
+	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	nfeDetalhe: NfeDetalhe;
 
 
 	/**
@@ -225,12 +225,12 @@ export class NfeDetalheImpostoIcms {
 			this.valorBcEfetivo = objetoJson['valorBcEfetivo'];
 			this.aliquotaIcmsEfetivo = objetoJson['aliquotaIcmsEfetivo'];
 			this.valorIcmsEfetivo = objetoJson['valorIcmsEfetivo'];
-			
-			
+
+
 		}
 	}
 
-	zerarNulos() {		
+	zerarNulos() {
 		this.percentualReducaoBcIcms = this.percentualReducaoBcIcms == null ? 0 : this.percentualReducaoBcIcms;
 		this.valorBcIcms = this.valorBcIcms == null ? 0 : this.valorBcIcms;
 		this.aliquotaIcms = this.aliquotaIcms == null ? 0 : this.aliquotaIcms;
@@ -265,6 +265,6 @@ export class NfeDetalheImpostoIcms {
 		this.percentualReducaoBcEfetivo = this.percentualReducaoBcEfetivo == null ? 0 : this.percentualReducaoBcEfetivo;
 		this.valorBcEfetivo = this.valorBcEfetivo == null ? 0 : this.valorBcEfetivo;
 		this.aliquotaIcmsEfetivo = this.aliquotaIcmsEfetivo == null ? 0 : this.aliquotaIcmsEfetivo;
-		this.valorIcmsEfetivo = this.valorIcmsEfetivo == null ? 0 : this.valorIcmsEfetivo;		
+		this.valorIcmsEfetivo = this.valorIcmsEfetivo == null ? 0 : this.valorIcmsEfetivo;
 	}
 }

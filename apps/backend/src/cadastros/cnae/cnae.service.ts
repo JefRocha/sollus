@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CNAE] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CnaeService extends TypeOrmCrudService<Cnae> {
   constructor(
     @InjectRepository(Cnae) repository) { super(repository); }
 
-  
 
-	
+
+
 }

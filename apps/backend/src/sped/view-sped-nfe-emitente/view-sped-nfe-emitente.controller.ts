@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_SPED_NFE_EMITENTE] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewSpedNfeEmitente } from './view-sped-nfe-emitente.entity';
 export class ViewSpedNfeEmitenteController implements CrudController<ViewSpedNfeEmitente> {
   constructor(public service: ViewSpedNfeEmitenteService) { }
 
-  
+
 
 
 }

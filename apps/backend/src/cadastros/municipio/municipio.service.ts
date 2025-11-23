@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [MUNICIPIO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class MunicipioService extends TypeOrmCrudService<Municipio> {
   constructor(
     @InjectRepository(Municipio) repository) { super(repository); }
 
-  
 
-	
+
+
 }

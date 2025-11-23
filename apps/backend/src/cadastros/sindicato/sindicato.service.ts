@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [SINDICATO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class SindicatoService extends TypeOrmCrudService<Sindicato> {
   constructor(
     @InjectRepository(Sindicato) repository) { super(repository); }
 
-  
 
-	
+
+
 }

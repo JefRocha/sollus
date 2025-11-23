@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VIEW_FIN_MOVIMENTO_CAIXA_BANCO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ViewFinMovimentoCaixaBanco } from './view-fin-movimento-caixa-banco.ent
 export class ViewFinMovimentoCaixaBancoController implements CrudController<ViewFinMovimentoCaixaBanco> {
   constructor(public service: ViewFinMovimentoCaixaBancoService) { }
 
-  
+
 
 
 }

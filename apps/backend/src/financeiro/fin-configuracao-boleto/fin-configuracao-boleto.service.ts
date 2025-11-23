@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [FIN_CONFIGURACAO_BOLETO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class FinConfiguracaoBoletoService extends TypeOrmCrudService<FinConfigur
   constructor(
     @InjectRepository(FinConfiguracaoBoleto) repository) { super(repository); }
 
-  
 
-	
+
+
 }

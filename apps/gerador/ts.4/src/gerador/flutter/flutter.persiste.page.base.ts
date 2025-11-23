@@ -38,7 +38,7 @@ export class FlutterPersistePageBase {
         this.importLookup = false;
         this.importMascara = false;
         this.importDropdownLista = false;
-    
+
         // nome da classe
         this.class = lodash.camelCase(tabela);
         this.objetoPrincipal = this.class;
@@ -60,9 +60,9 @@ export class FlutterPersistePageBase {
 
         // começa colocando o ID na matriz apenas para que o laço que testa se a linha anterior é direrente da atual funcione
         this.matrizBootstrap.push({
-            campo: 'ID', 
-            linha: 0, 
-            coluna: 0, 
+            campo: 'ID',
+            linha: 0,
+            coluna: 0,
             juncao: 0,
         });
 
@@ -73,9 +73,9 @@ export class FlutterPersistePageBase {
                 try {
                     this.objetoJsonComentario = new ComentarioDerJsonModel(this.table, dataPacket[i].Comment);
                     this.matrizBootstrap.push({
-                        campo: this.campoModel.nomeCampoTabela, 
-                        linha: this.objetoJsonComentario.linhaBootstrap, 
-                        coluna: this.objetoJsonComentario.colunaBootstrap, 
+                        campo: this.campoModel.nomeCampoTabela,
+                        linha: this.objetoJsonComentario.linhaBootstrap,
+                        coluna: this.objetoJsonComentario.colunaBootstrap,
                         juncao: this.objetoJsonComentario.linhaBootstrap?.toString() + this.objetoJsonComentario.colunaBootstrap?.toString(),
                     });
                 } catch (erro) {
@@ -88,7 +88,7 @@ export class FlutterPersistePageBase {
 
         // monta a tela de acordo com a matriz
         for (var i = 0; i < this.matrizBootstrap.length; i++) {
-            if (i>0) {
+            if (i > 0) {
                 // pega o campo do datapacket de acordo com o campo da matriz que já está devidamente ordenado
                 const colunaBancoDados = dataPacket.find(campo => campo.Field === this.matrizBootstrap[i].campo);
 
@@ -101,12 +101,12 @@ export class FlutterPersistePageBase {
 
                         // se o objeto não contém o campo desenhaControle, o controle será desenhado mesmo assim, pois o padrão é 'true'
                         // se o objeto contém o campo desenhaControle e estiver marcado como true, desenha o widget
-                        
+
                         // Caso o objeto não tenha os dados do bootstrap então o controle não será desenhado.
                         if (this.objetoJsonComentario.linhaBootstrap == null) {
                             this.objetoJsonComentario.desenhaControle = false;
                         }
-                        
+
                         if (this.objetoJsonComentario.desenhaControle == null || this.objetoJsonComentario.desenhaControle == true) {
                             // define o campo de lookup
                             this.objetoJsonComentario.campoLookupComTabela = '';
@@ -114,7 +114,7 @@ export class FlutterPersistePageBase {
                                 this.definirDadosDeLookup();
                                 // variáveis Controller vinculadas aos inputs de lookup
                                 this.inputController.push("final importa" + this.objetoJsonComentario.classeMestre + "Controller = TextEditingController();");
-                                if (this.campoModel.nomeCampoTabela.includes('ID_')) {                                    
+                                if (this.campoModel.nomeCampoTabela.includes('ID_')) {
                                     this.inputController.push("importa" + this.objetoJsonComentario.classeMestre + "Controller.text = widget." + this.objetoPrincipal + "?." + this.objetoJsonComentario.objetoMestre + "?." + this.objetoJsonComentario.campoLookup + " ?? '';");
                                 } else { // se é um campo de lookup para simples consulta, não precisa vincular ao objeto mestre, pois o dado será persistido no campo da própria tabela
                                     this.inputController.push("importa" + this.objetoJsonComentario.classeMestre + "Controller.text = widget." + this.objetoPrincipal + "?." + this.campoModel.nomeCampoAtributo + " ?? '';");
@@ -122,7 +122,7 @@ export class FlutterPersistePageBase {
                             }
 
                             // se a linha atual é diferente da linha anterior, deve-se abrir uma nova linha no bootstrap
-                            if (this.matrizBootstrap[i].linha != this.matrizBootstrap[i-1].linha) {
+                            if (this.matrizBootstrap[i].linha != this.matrizBootstrap[i - 1].linha) {
                                 // abrir linha bootstrap 
                                 this.abrirLinhaBootstrap(this.matrizBootstrap[i].linha);
                             }
@@ -163,7 +163,7 @@ export class FlutterPersistePageBase {
                         console.log(erro);
                         this.objetoJsonComentario = null;
                     }
-                }                
+                }
             }
         }
 
@@ -191,7 +191,7 @@ export class FlutterPersistePageBase {
         if (this.campoModel.tipoCampo == "text") {
             this.campoModel.tamanhoCampo = 1000;
         } else {
-            this.campoModel.tamanhoCampo = parseInt(this.campoModel.tipoCampo.substring(posicaoAbreParentese+1, posicaoFechaParentese));
+            this.campoModel.tamanhoCampo = parseInt(this.campoModel.tipoCampo.substring(posicaoAbreParentese + 1, posicaoFechaParentese));
         }
 
         // quantidade de linhas do widget
@@ -210,12 +210,12 @@ export class FlutterPersistePageBase {
             this.inputLookup.push("const Divider(color: Colors.white,),");
             this.inputLookup.push("BootstrapRow(");
             this.inputLookup.push("  height: 60,");
-            this.inputLookup.push("  children: <BootstrapCol>[");    
+            this.inputLookup.push("  children: <BootstrapCol>[");
         } else {
             this.inputNormal.push("const Divider(color: Colors.white,),");
             this.inputNormal.push("BootstrapRow(");
             this.inputNormal.push("  height: 60,");
-            this.inputNormal.push("  children: <BootstrapCol>[");    
+            this.inputNormal.push("  children: <BootstrapCol>[");
         }
     }
 
@@ -224,8 +224,8 @@ export class FlutterPersistePageBase {
         //    this.inputLookup.push("  ],");
         //    this.inputLookup.push("),");
         //} else {
-            this.inputNormal.push("  ],");
-            this.inputNormal.push("),");
+        this.inputNormal.push("  ],");
+        this.inputNormal.push("),");
         //}
     }
 
@@ -281,7 +281,7 @@ export class FlutterPersistePageBase {
         this.objetoJsonComentario.classeMestre = lodash.upperFirst(lodash.camelCase(tabelaMestre)); // ex: Banco
         this.objetoJsonComentario.campoLookupComTabela = this.objetoJsonComentario.objetoMestre + "?." + this.objetoJsonComentario.campoLookup; // ex: "banco.nome"
     }
-    
+
     montarCampoComLookup(paginaDeAba: boolean, controlaFormAlteradoLocal: boolean) {
         this.abrirCampoDeLookup();
 
@@ -300,8 +300,8 @@ export class FlutterPersistePageBase {
         }
         if (paginaDeAba) {
             this.inputLookup.push("            paginaMestreDetalheFoiAlterada = true;");
-        } 
-        if (controlaFormAlteradoLocal) {                                
+        }
+        if (controlaFormAlteradoLocal) {
             this.inputLookup.push("                  _formFoiAlterado = true;");
         }
 
@@ -396,7 +396,7 @@ export class FlutterPersistePageBase {
         if (this.colunaBootstrapPossuiMaisDeUmSize) {
             this.completaEspacosFilhoPadding = "  ";
         }
-        
+
         this.abrirTextFormFieldPadrao();
 
         if (this.objetoJsonComentario.tipoControle.mascara != '' && this.objetoJsonComentario.tipoControle.mascara != null) {
@@ -404,7 +404,7 @@ export class FlutterPersistePageBase {
 
             // variável Controller
             if (this.campoModel.tipoCampo.includes('decimal')) {
-                let casasDecimais = lodash.camelCase("decimais" + this.objetoJsonComentario.tipoControle.mascara);                
+                let casasDecimais = lodash.camelCase("decimais" + this.objetoJsonComentario.tipoControle.mascara);
                 this.inputController.push("final " + this.campoModel.nomeCampoAtributo + "Controller = MoneyMaskedTextController(precision: Constantes." + casasDecimais + ", initialValue: widget." + this.objetoPrincipal + "?." + this.campoModel.nomeCampoAtributo + " ?? 0);");
             } else {
                 this.inputController.push("final " + this.campoModel.nomeCampoAtributo + "Controller = MaskedTextController(")
@@ -427,7 +427,7 @@ export class FlutterPersistePageBase {
             } else {
                 this.inputNormal.push(this.completaEspacosFilhoPadding + "        maxLength: 10,");
             }
-            
+
             this.inputNormal.push(this.completaEspacosFilhoPadding + "        maxLines: " + this.campoModel.quantidadeLinhas + ",");
             if (this.campoModel.tipoCampo.includes('int')) {
                 this.inputNormal.push(this.completaEspacosFilhoPadding + "        initialValue: widget." + this.objetoPrincipal + "?." + this.campoModel.nomeCampoAtributo + "?.toString() ?? '',");
@@ -447,8 +447,8 @@ export class FlutterPersistePageBase {
         }
         if (paginaDeAba) {
             this.inputNormal.push(this.completaEspacosFilhoPadding + "          paginaMestreDetalheFoiAlterada = true;");
-        } 
-        if (controlaFormAlteradoLocal) {                                
+        }
+        if (controlaFormAlteradoLocal) {
             this.inputNormal.push(this.completaEspacosFilhoPadding + "          _formFoiAlterado = true;");
         }
 
@@ -548,7 +548,7 @@ export class FlutterPersistePageBase {
             for (let i = 0; i < this.objetoJsonComentario.tipoControle.itens.length; i++) {
                 this.inputNormal.push(this.completaEspacosFilhoPadding + "          '" + this.objetoJsonComentario.tipoControle.itens[i].dropDownButtonItem + "',");
             }
-            this.inputNormal.push(this.completaEspacosFilhoPadding + "      ])),");    
+            this.inputNormal.push(this.completaEspacosFilhoPadding + "      ])),");
         }
     }
 
@@ -579,7 +579,7 @@ export class FlutterPersistePageBase {
 
     abrirDatePickerItem() {
         this.inputNormal.push(this.completaEspacosFilhoPadding + "      child: InputDecorator(");
-        if (this.defineFocoNaAbaFilha) { 
+        if (this.defineFocoNaAbaFilha) {
             /* 
             OBS: esse controle não recebe foco, então quando ocorrer de o formulário ser aberto com esse tipo de controle, 
             vai aparecer um erro em tempo de projeto. O objetivo é chamar atenção do desenvolvedor para que o mesmo mova o 
@@ -621,22 +621,22 @@ export class FlutterPersistePageBase {
 
     arrumarImports() {
         if (this.importLookup) {
-            this.imports.push("import 'package:fenix/src/view/shared/page/lookup_page.dart';")
+            this.imports.push("import 'package:sollus/src/view/shared/page/lookup_page.dart';")
         }
         if (this.importMascara) {
             this.imports.push("import 'package:extended_masked_text/extended_masked_text.dart';")
         }
         if (this.importDropdownLista) {
-            this.imports.push("import 'package:fenix/src/view/shared/dropdown_lista.dart';")
+            this.imports.push("import 'package:sollus/src/view/shared/dropdown_lista.dart';")
         }
     }
 
     compararItensMatriz(a: any, b: any) {
         if (a.juncao > b.juncao) {
-          return 1;
+            return 1;
         }
         if (a.juncao < b.juncao) {
-          return -1;
+            return -1;
         }
         // a = b
         return 0;

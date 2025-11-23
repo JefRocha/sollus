@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_LANCAMENTO_RECEBER] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -41,22 +41,22 @@ import { Request, Response } from 'express';
 import { createReadStream } from 'fs';
 
 @Crud({
-  model: {
-    type: FinLancamentoReceber,
-  },
-  query: {
-    join: {
-		finDocumentoOrigem: { eager: true },
-		finNaturezaFinanceira: { eager: true },
-		cliente: { eager: true },
-		bancoContaCaixa: { eager: true },
-		listaFinParcelaReceber: { eager: true },
-    },
-  },
+	model: {
+		type: FinLancamentoReceber,
+	},
+	query: {
+		join: {
+			finDocumentoOrigem: { eager: true },
+			finNaturezaFinanceira: { eager: true },
+			cliente: { eager: true },
+			bancoContaCaixa: { eager: true },
+			listaFinParcelaReceber: { eager: true },
+		},
+	},
 })
 @Controller('fin-lancamento-receber')
 export class FinLancamentoReceberController implements CrudController<FinLancamentoReceber> {
-  constructor(public service: FinLancamentoReceberService) { }
+	constructor(public service: FinLancamentoReceberService) { }
 
 	@Post()
 	async inserir(@Req() request: Request) {
@@ -78,15 +78,15 @@ export class FinLancamentoReceberController implements CrudController<FinLancame
 	async excluir(@Param('id') id: number) {
 		return this.service.excluirMestreDetalhe(id);
 	}
-  
+
 	@Post('gera-boleto')
 	@Header('Content-Type', 'application/pdf')
 	async gerarBoleto(@Req() request: Request, @Res() response: Response) {
 		let objetoJson = request.body;
 		let lancamento = new FinLancamentoReceber(objetoJson);
-		const retorno = await this.service.gerarBoleto(lancamento);		
-	    const data = createReadStream(retorno);
-	    data.pipe(response);
+		const retorno = await this.service.gerarBoleto(lancamento);
+		const data = createReadStream(retorno);
+		data.pipe(response);
 	}
 
 

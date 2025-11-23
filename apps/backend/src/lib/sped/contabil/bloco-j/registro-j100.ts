@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -38,5 +38,5 @@ export class RegistroJ100 {
     descrCodAgl: string;	 /// Descrição do Código de aglutinação.
     vlCta: number;	 /// Valor total do Código de aglutinação no Balanço Patrimonial no exercício informado, ou de período definido em norma específica.
     indDcBal: string;	 /// Indicador da situação do saldo informado no campo anterior
-    
+
 }

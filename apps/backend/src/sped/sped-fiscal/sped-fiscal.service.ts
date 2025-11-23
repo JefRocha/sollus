@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado ao Sped Fiscal - EFD
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -75,16 +75,16 @@ export class SpedFiscalService {
 
 	async gerarSpedFiscal(filter: string) {
 		let conteudoFiltro: any[] = filter.split('|');
-        /*
-        0 - Periodo Inicial
-        1 - Periodo Final
-        2 - Versao Leiaute
-        3 - Finalidade Arquivo
-        4 - Perfil
-        5 - IdEmpresa
-        6 - Inventario
-        7 - IdContador
-        */
+		/*
+		0 - Periodo Inicial
+		1 - Periodo Final
+		2 - Versao Leiaute
+		3 - Finalidade Arquivo
+		4 - Perfil
+		5 - IdEmpresa
+		6 - Inventario
+		7 - IdContador
+		*/
 		this.dataInicial = conteudoFiltro[0];
 		this.dataFinal = conteudoFiltro[1];
 		this.versaoLeiaute = conteudoFiltro[2];
@@ -127,7 +127,7 @@ export class SpedFiscalService {
 		let contador: Contador;
 		// contador = await this.dataSource.manager.findOne(Contador, 1);
 
-//		empresa.setEnderecoPrincipal(await this.dataSource.manager.findOne(EmpresaEndereco, 1));
+		//		empresa.setEnderecoPrincipal(await this.dataSource.manager.findOne(EmpresaEndereco, 1));
 		empresa.setEnderecoPrincipal(new EmpresaEndereco({}));
 
 		let listaNfeCabecalho: NfeCabecalho[];
@@ -187,7 +187,7 @@ export class SpedFiscalService {
 		this.spedT2Ti.bloco0.registro0100.fax = "contador.fax";
 		this.spedT2Ti.bloco0.registro0100.email = "contador.email";
 		this.spedT2Ti.bloco0.registro0100.codMun = 123;
-				
+
 		// REGISTRO 0150: TABELA DE CADASTRO DO PARTICIPANTE
 		/*
 			* Deverão ser informados somente os participantes que tiveram
@@ -203,8 +203,7 @@ export class SpedFiscalService {
 			registro0150 = new Registro0150();
 			emitente = c.nfeEmitente;
 
-			if (emitente != null)
-			{
+			if (emitente != null) {
 				registro0150.codPart = "F" + emitente.nfeCabecalho.fornecedor.id;
 				registro0150.nome = emitente.nome;
 				registro0150.codPais = "01058";
@@ -223,8 +222,7 @@ export class SpedFiscalService {
 			registro0150 = new Registro0150();
 			destinatario = c.nfeDestinatario;
 
-			if (destinatario != null)
-			{
+			if (destinatario != null) {
 				registro0150.codPart = "C" + destinatario.nfeCabecalho.cliente.id;
 				registro0150.nome = destinatario.nome;
 				registro0150.codPais = "01058";
@@ -345,8 +343,7 @@ export class SpedFiscalService {
 		// TODO: List<EcfNotaFiscalCabecalho> listaNf2Cancelada = nf2Dao.beans(EcfNotaFiscalCabecalho.class, "cancelada", "S", "dataEmissao", dataInicio, dataFim);
 
 		// PERFIL A
-		if (this.perfilApresentacao == "A")
-		{
+		if (this.perfilApresentacao == "A") {
 			// REGISTRO C100: NOTA FISCAL (CÓDIGO 01), NOTA FISCAL AVULSA
 			// (CÓDIGO 1B), NOTA FISCAL DE PRODUTOR (CÓDIGO 04), NF-e (CÓDIGO
 			// 55) e NFC-e (CÓDIGO 65)
@@ -355,12 +352,10 @@ export class SpedFiscalService {
 
 				registroC100.indOper = nfe.tipoOperacao;
 				registroC100.indEmit = "0"; // 0 - Emissao Propria
-				if (nfe.cliente != null)
-				{
+				if (nfe.cliente != null) {
 					registroC100.codPart = "C" + nfe.cliente.id.toString();
 				}
-				else if (nfe.fornecedor != null)
-				{
+				else if (nfe.fornecedor != null) {
 					registroC100.codPart = "F" + nfe.fornecedor.id.toString();
 				}
 				registroC100.codMod = nfe.codigoModelo;
@@ -374,12 +369,10 @@ export class SpedFiscalService {
 				 * extemporâneo. 08 Documento Fiscal emitido com base em Regime
 				 * Especial ou Norma Específica
 				 */
-				if (nfe.statusNota == "5")
-				{
+				if (nfe.statusNota == "5") {
 					registroC100.codSit = "00";
 				}
-				else if (nfe.statusNota == "6")
-				{
+				else if (nfe.statusNota == "6") {
 					registroC100.codSit = "02";
 				}
 				registroC100.ser = nfe.serie;
@@ -394,8 +387,7 @@ export class SpedFiscalService {
 				registroC100.vlMerc = nfe.valorTotalProdutos;
 
 				let transporte = nfe.nfeTransporte;
-				if (transporte != null)
-				{
+				if (transporte != null) {
 					registroC100.indFrt = transporte.modalidadeFrete;
 				}
 
@@ -615,8 +607,7 @@ export class SpedFiscalService {
 		}
 
 		// PERFIL B
-		if (this.perfilApresentacao == "B")
-		{
+		if (this.perfilApresentacao == "B") {
 			/* TODO
 			// REGISTRO C300: RESUMO DIÁRIO DAS NOTAS FISCAIS DE VENDA A
 			// CONSUMIDOR (CÓDIGO 02)
@@ -959,7 +950,7 @@ export class SpedFiscalService {
 
 		this.spedT2Ti.blocoH.registroH001.indMov = 0;// com dados
 
-		let listaProduto: Produto[]; 
+		let listaProduto: Produto[];
 		listaProduto = [];// await this.dataSource.manager.find(Produto);
 
 		let totalGeral = 0;

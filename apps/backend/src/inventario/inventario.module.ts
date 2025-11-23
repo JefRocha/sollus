@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Inventário
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { InventarioContagemCabModule } from '../inventario/inventario-contagem-cab/inventario-contagem-cab.module';
 
 @Module({
-    imports: [
-		InventarioContagemCabModule,
-    ],
+  imports: [
+    InventarioContagemCabModule,
+  ],
 })
 export class InventarioModule { }

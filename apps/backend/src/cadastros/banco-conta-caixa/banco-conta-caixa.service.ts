@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [BANCO_CONTA_CAIXA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class BancoContaCaixaService extends TypeOrmCrudService<BancoContaCaixa> 
   constructor(
     @InjectRepository(BancoContaCaixa) repository) { super(repository); }
 
-  
 
-	
+
+
 }

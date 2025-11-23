@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Ordem de Serviço
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { OsEquipamentoModule } from '../os/os-equipamento/os-equipamento.module'
 import { OsStatusModule } from '../os/os-status/os-status.module';
 
 @Module({
-    imports: [
-		OsAberturaModule,
-		OsEquipamentoModule,
-		OsStatusModule,
-    ],
+  imports: [
+    OsAberturaModule,
+    OsEquipamentoModule,
+    OsStatusModule,
+  ],
 })
 export class OsModule { }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [NCM] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class NcmService extends TypeOrmCrudService<Ncm> {
   constructor(
     @InjectRepository(Ncm) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [COLABORADOR_RELACIONAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -44,8 +44,8 @@ import { ColaboradorRelacionamento } from './colaborador-relacionamento.entity';
   },
   query: {
     join: {
-		tipoRelacionamento: { eager: true },
-		colaborador: { eager: true },
+      tipoRelacionamento: { eager: true },
+      colaborador: { eager: true },
     },
   },
 })
@@ -53,7 +53,7 @@ import { ColaboradorRelacionamento } from './colaborador-relacionamento.entity';
 export class ColaboradorRelacionamentoController implements CrudController<ColaboradorRelacionamento> {
   constructor(public service: ColaboradorRelacionamentoService) { }
 
-  
+
 
 
 }

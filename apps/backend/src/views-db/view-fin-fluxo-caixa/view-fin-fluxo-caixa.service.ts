@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_FIN_FLUXO_CAIXA] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewFinFluxoCaixaService extends TypeOrmCrudService<ViewFinFluxoCai
   constructor(
     @InjectRepository(ViewFinFluxoCaixa) repository) { super(repository); }
 
-  
 
-	
+
+
 }

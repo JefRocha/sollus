@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CNAE] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Cnae } from './cnae.entity';
 export class CnaeController implements CrudController<Cnae> {
   constructor(public service: CnaeService) { }
 
-  
+
 
 
 }

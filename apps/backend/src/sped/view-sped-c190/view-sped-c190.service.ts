@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_SPED_C190] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewSpedC190Service extends TypeOrmCrudService<ViewSpedC190> {
   constructor(
     @InjectRepository(ViewSpedC190) repository) { super(repository); }
 
-  
 
-	
+
+
 }

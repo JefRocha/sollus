@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao ACBr
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { AcbrMonitorModule } from '../acbr/acbr-monitor/acbr-monitor.module';
 
 @Module({
-    imports: [
-		AcbrMonitorModule,
-    ],
+  imports: [
+    AcbrMonitorModule,
+  ],
 })
 export class AcbrModule { }

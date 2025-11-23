@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_FIN_LANCAMENTO_PAGAR] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewFinLancamentoPagarService extends TypeOrmCrudService<ViewFinLan
   constructor(
     @InjectRepository(ViewFinLancamentoPagar) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [VIEW_PESSOA_FORNECEDOR] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class ViewPessoaFornecedorService extends TypeOrmCrudService<ViewPessoaFo
   constructor(
     @InjectRepository(ViewPessoaFornecedor) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VENDEDOR_META] 
                                                                                 
 The MIT License                                                                 
@@ -44,8 +44,8 @@ import { VendedorMeta } from './vendedor-meta.entity';
   },
   query: {
     join: {
-		vendedor: { eager: true },
-		cliente: { eager: true },
+      vendedor: { eager: true },
+      cliente: { eager: true },
     },
   },
 })
@@ -53,7 +53,7 @@ import { VendedorMeta } from './vendedor-meta.entity';
 export class VendedorMetaController implements CrudController<VendedorMeta> {
   constructor(public service: VendedorMetaService) { }
 
-  
+
 
 
 }

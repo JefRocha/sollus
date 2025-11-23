@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [COLABORADOR_TIPO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ColaboradorTipo } from './colaborador-tipo.entity';
 export class ColaboradorTipoController implements CrudController<ColaboradorTipo> {
   constructor(public service: ColaboradorTipoService) { }
 
-  
+
 
 
 }

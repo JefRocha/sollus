@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /********************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Biblioteca de funções.
 
 The MIT License
@@ -45,7 +45,7 @@ export class Biblioteca {
     /**
       * Salva o arquivo no disco
       */
-     static async gravarArquivo(caminho: string, conteudo: any) {
+    static async gravarArquivo(caminho: string, conteudo: any) {
         fs.writeFile(caminho, conteudo, function (erro: any) {
             if (erro) {
                 return erro;
@@ -63,306 +63,247 @@ export class Biblioteca {
      * @param chave - chave desejada para a seção
      * @param valor - valor desejado para a chave
      */
-    static iniWriteString(secao: string, chave:string, valor:string, arquivoIni: any) {
+    static iniWriteString(secao: string, chave: string, valor: string, arquivoIni: any) {
         arquivoIni.putStringInSection(chave + '=' + valor, '[' + secao + ']');
     }
 
-    static arredondaTruncaValor(pOperacao: string, pValor: number, pCasas: number)
-    {
-        return pValor*pCasas;
+    static arredondaTruncaValor(pOperacao: string, pValor: number, pCasas: number) {
+        return pValor * pCasas;
         // TODO: implementar arredondamento e truncamento
     }
 
-    static uFToInt(pUF: string)
-    {
-        if (pUF == "RO")
-        {
+    static uFToInt(pUF: string) {
+        if (pUF == "RO") {
             return 11;
         }
-        else if (pUF == "AC")
-        {
+        else if (pUF == "AC") {
             return 12;
         }
-        else if (pUF == "AM")
-        {
+        else if (pUF == "AM") {
             return 13;
         }
-        else if (pUF == "RR")
-        {
+        else if (pUF == "RR") {
             return 14;
         }
-        else if (pUF == "PA")
-        {
+        else if (pUF == "PA") {
             return 15;
         }
-        else if (pUF == "AP")
-        {
+        else if (pUF == "AP") {
             return 16;
         }
-        else if (pUF == "TO")
-        {
+        else if (pUF == "TO") {
             return 17;
         }
-        else if (pUF == "MA")
-        {
+        else if (pUF == "MA") {
             return 21;
         }
-        else if (pUF == "PI")
-        {
+        else if (pUF == "PI") {
             return 22;
         }
-        else if (pUF == "CE")
-        {
+        else if (pUF == "CE") {
             return 23;
         }
-        else if (pUF == "RN")
-        {
+        else if (pUF == "RN") {
             return 24;
         }
-        else if (pUF == "PB")
-        {
+        else if (pUF == "PB") {
             return 25;
         }
-        else if (pUF == "PE")
-        {
+        else if (pUF == "PE") {
             return 26;
         }
-        else if (pUF == "AL")
-        {
+        else if (pUF == "AL") {
             return 27;
         }
-        else if (pUF == "SE")
-        {
+        else if (pUF == "SE") {
             return 28;
         }
-        else if (pUF == "BA")
-        {
+        else if (pUF == "BA") {
             return 29;
         }
-        else if (pUF == "MG")
-        {
+        else if (pUF == "MG") {
             return 31;
         }
-        else if (pUF == "ES")
-        {
+        else if (pUF == "ES") {
             return 32;
         }
-        else if (pUF == "RJ")
-        {
+        else if (pUF == "RJ") {
             return 33;
         }
-        else if (pUF == "SP")
-        {
+        else if (pUF == "SP") {
             return 35;
         }
-        else if (pUF == "PR")
-        {
+        else if (pUF == "PR") {
             return 41;
         }
-        else if (pUF == "SC")
-        {
+        else if (pUF == "SC") {
             return 42;
         }
-        else if (pUF == "RS")
-        {
+        else if (pUF == "RS") {
             return 43;
         }
-        else if (pUF == "MS")
-        {
+        else if (pUF == "MS") {
             return 50;
         }
-        else if (pUF == "MT")
-        {
+        else if (pUF == "MT") {
             return 51;
         }
-        else if (pUF == "GO")
-        {
+        else if (pUF == "GO") {
             return 52;
         }
-        else if (pUF == "DF")
-        {
+        else if (pUF == "DF") {
             return 53;
         }
-        else
-        {
+        else {
             return 0;
         }
     }
 
-    static intToUF(pUF: number)
-    {
-        if (pUF == 11)
-        {
+    static intToUF(pUF: number) {
+        if (pUF == 11) {
             return "RO";
         }
-        else if (pUF == 12)
-        {
+        else if (pUF == 12) {
             return "AC";
         }
-        else if (pUF == 13)
-        {
+        else if (pUF == 13) {
             return "AM";
         }
-        else if (pUF == 14)
-        {
+        else if (pUF == 14) {
             return "RR";
         }
-        else if (pUF == 15)
-        {
+        else if (pUF == 15) {
             return "PA";
         }
-        else if (pUF == 16)
-        {
+        else if (pUF == 16) {
             return "AP";
         }
-        else if (pUF == 17)
-        {
+        else if (pUF == 17) {
             return "TO";
         }
-        else if (pUF == 21)
-        {
+        else if (pUF == 21) {
             return "MA";
         }
-        else if (pUF == 22)
-        {
+        else if (pUF == 22) {
             return "PI";
         }
-        else if (pUF == 23)
-        {
+        else if (pUF == 23) {
             return "CE";
         }
-        else if (pUF == 24)
-        {
+        else if (pUF == 24) {
             return "RN";
         }
-        else if (pUF == 25)
-        {
+        else if (pUF == 25) {
             return "PB";
         }
-        else if (pUF == 26)
-        {
+        else if (pUF == 26) {
             return "PE";
         }
-        else if (pUF == 27)
-        {
+        else if (pUF == 27) {
             return "AL";
         }
-        else if (pUF == 28)
-        {
+        else if (pUF == 28) {
             return "SE";
         }
-        else if (pUF == 29)
-        {
+        else if (pUF == 29) {
             return "BA";
         }
-        else if (pUF == 31)
-        {
+        else if (pUF == 31) {
             return "MG";
         }
-        else if (pUF == 32)
-        {
+        else if (pUF == 32) {
             return "ES";
         }
-        else if (pUF == 33)
-        {
+        else if (pUF == 33) {
             return "RJ";
         }
-        else if (pUF == 35)
-        {
+        else if (pUF == 35) {
             return "SP";
         }
-        else if (pUF == 41)
-        {
+        else if (pUF == 41) {
             return "PR";
         }
-        else if (pUF == 42)
-        {
+        else if (pUF == 42) {
             return "SC";
         }
-        else if (pUF == 43)
-        {
+        else if (pUF == 43) {
             return "RS";
         }
-        else if (pUF == 50)
-        {
+        else if (pUF == 50) {
             return "MS";
         }
-        else if (pUF == 51)
-        {
+        else if (pUF == 51) {
             return "MT";
         }
-        else if (pUF == 52)
-        {
+        else if (pUF == 52) {
             return "GO";
         }
-        else if (pUF == 53)
-        {
+        else if (pUF == 53) {
             return "DF";
         }
-        else
-        {
+        else {
             return "";
         }
     }
 
-	static pegarPlanoPdv(descricaoProduto: string): string {
-	  if (descricaoProduto.includes("Mensal")) {
-		  return "M";
-	  } else if (descricaoProduto.includes("Semestral")) {
-		  return "S";
-	  } else if (descricaoProduto.includes("Anual")) {
-		  return "A";
-	  } else {
-		  return "";		  
-	  }
-	}
+    static pegarPlanoPdv(descricaoProduto: string): string {
+        if (descricaoProduto.includes("Mensal")) {
+            return "M";
+        } else if (descricaoProduto.includes("Semestral")) {
+            return "S";
+        } else if (descricaoProduto.includes("Anual")) {
+            return "A";
+        } else {
+            return "";
+        }
+    }
 
-	static pegarModuloFiscalPdv(descricaoProduto: string): string {
-	  if (descricaoProduto.includes("NFC")) {
-		  return "NFC";
-	  } else if (descricaoProduto.includes("SAT")) {
-		  return "SAT";
-	  } else if (descricaoProduto.includes("MFE")) {
-		  return "MFE";
-	  } else {
-		  return "";		  
-	  }
-	}
+    static pegarModuloFiscalPdv(descricaoProduto: string): string {
+        if (descricaoProduto.includes("NFC")) {
+            return "NFC";
+        } else if (descricaoProduto.includes("SAT")) {
+            return "SAT";
+        } else if (descricaoProduto.includes("MFE")) {
+            return "MFE";
+        } else {
+            return "";
+        }
+    }
 
     static killTask(appName: string) {
         exec(`taskkill /im ${appName} /t`, (err) => {
             if (err) {
-              throw err
-            }        
-          })                
-    }
-	
-    static md5String(texto: string): string {
-        const crypto = require('crypto');
-        return crypto.createHash('md5').update(texto).digest("hex");    
+                throw err
+            }
+        })
     }
 
-	// fonte: https://morioh.com/p/ca75996654d1
+    static md5String(texto: string): string {
+        const crypto = require('crypto');
+        return crypto.createHash('md5').update(texto).digest("hex");
+    }
+
+    // fonte: https://morioh.com/p/ca75996654d1
     static enviarEmail(assunto: string, destino: string, corpo: string): boolean {
         const nomeArquivoIni = "c:\\t2ti\\config-email.ini";
-        const iniFile = new Ini(fs.readFileSync(nomeArquivoIni, {encoding: 'utf8'}));
-        
-		// const host = iniFile.getKeyIfExists('Host') == null ? '' : iniFile.getKeyIfExists('Host').val;
-		// const port = iniFile.getKeyIfExists('Port') == null ? '' : iniFile.getKeyIfExists('Port').val;
-		const from = iniFile.getKeyIfExists('From') == null ? '' : iniFile.getKeyIfExists('From').val;
-		//let bccList = iniFile.getKeyIfExists('BccList').val;
-		const userName = iniFile.getKeyIfExists('Username') == null ? '' : iniFile.getKeyIfExists('Username').val;
-		const password = iniFile.getKeyIfExists('Password') == null ? '' : iniFile.getKeyIfExists('Password').val;
+        const iniFile = new Ini(fs.readFileSync(nomeArquivoIni, { encoding: 'utf8' }));
+
+        // const host = iniFile.getKeyIfExists('Host') == null ? '' : iniFile.getKeyIfExists('Host').val;
+        // const port = iniFile.getKeyIfExists('Port') == null ? '' : iniFile.getKeyIfExists('Port').val;
+        const from = iniFile.getKeyIfExists('From') == null ? '' : iniFile.getKeyIfExists('From').val;
+        //let bccList = iniFile.getKeyIfExists('BccList').val;
+        const userName = iniFile.getKeyIfExists('Username') == null ? '' : iniFile.getKeyIfExists('Username').val;
+        const password = iniFile.getKeyIfExists('Password') == null ? '' : iniFile.getKeyIfExists('Password').val;
 
         const nodemailer = require('nodemailer');
         const mail = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-              user: userName,
-              pass: password
+                user: userName,
+                pass: password
             }
-          }
-        );        
+        }
+        );
 
         const mailOptions = {
             from: from,
@@ -371,13 +312,13 @@ export class Biblioteca {
             text: corpo
         };
 
-        mail.sendMail(mailOptions, function(error, info){
+        mail.sendMail(mailOptions, function (error, info) {
             if (error) {
-              console.log(error);
+                console.log(error);
             } else {
-              console.log('Email sent: ' + info.response);
+                console.log('Email sent: ' + info.response);
             }
-          }
+        }
         );
 
         return true
@@ -388,7 +329,7 @@ export class Biblioteca {
         const cipher = crypto.createCipheriv(algorithm, Constantes.CHAVE, Constantes.VETOR);
         const valor_cifrado = cipher.update(valor);
         const valor_cifrado_base64 = valor_cifrado.toString('base64');
-        return valor_cifrado_base64;        
+        return valor_cifrado_base64;
     }
 
     static decifrar(valor: string): string {
@@ -396,7 +337,7 @@ export class Biblioteca {
         const decipher = crypto.createDecipheriv(algorithm, Constantes.CHAVE, Constantes.VETOR);
         const valor_decifrado_base64 = Buffer.from(valor, 'base64');
         const valor_decifrado = decipher.update(valor_decifrado_base64);
-        return valor_decifrado.toString();        
+        return valor_decifrado.toString();
     }
 
     static dateToSQL(data: Date): string {

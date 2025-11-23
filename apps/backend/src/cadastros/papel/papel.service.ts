@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [PAPEL] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class PapelService extends TypeOrmCrudService<Papel> {
   constructor(
     @InjectRepository(Papel) repository) { super(repository); }
 
-  
 
-	
+
+
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [PRODUTO_UNIDADE] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { ProdutoUnidade } from './produto-unidade.entity';
 export class ProdutoUnidadeController implements CrudController<ProdutoUnidade> {
   constructor(public service: ProdutoUnidadeService) { }
 
-  
+
 
 
 }

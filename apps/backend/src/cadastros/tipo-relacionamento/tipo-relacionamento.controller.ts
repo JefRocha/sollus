@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TIPO_RELACIONAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { TipoRelacionamento } from './tipo-relacionamento.entity';
 export class TipoRelacionamentoController implements CrudController<TipoRelacionamento> {
   constructor(public service: TipoRelacionamentoService) { }
 
-  
+
 
 
 }

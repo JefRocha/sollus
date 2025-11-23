@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /********************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Manipula arquivo INI
 
 The MIT License
@@ -36,14 +36,14 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 Original: https://github.com/galangel/easy-ini
 ********************************************************************************/
-const   _EMPTY_LINE = 0,
-        _HASH_COMMENT = 1,
-        _BREAK_COMMENT = 2,
-        _SECTION = 3,
-        _PAIR = 4
-        // _GARBAGE = 5,
-        // _ACBR_OK = 6,
-        // _ACBR_ERRO = 7
+const _EMPTY_LINE = 0,
+    _HASH_COMMENT = 1,
+    _BREAK_COMMENT = 2,
+    _SECTION = 3,
+    _PAIR = 4
+// _GARBAGE = 5,
+// _ACBR_OK = 6,
+// _ACBR_ERRO = 7
 
 export class Ini {
 
@@ -56,30 +56,30 @@ export class Ini {
     _types = [];
     iniData = [];
 
-    constructor(str, {defaultSectionName = 'DEFAULT_SECTION!', eol = require('os').EOL, autoTrim = true} =  {defaultSectionName: 'DEFAULT_SECTION!', eol: require('os').EOL, autoTrim: true}) {
+    constructor(str, { defaultSectionName = 'DEFAULT_SECTION!', eol = require('os').EOL, autoTrim = true } = { defaultSectionName: 'DEFAULT_SECTION!', eol: require('os').EOL, autoTrim: true }) {
         this.origin = str
         this.autoTrim = autoTrim
         this.eol = eol
         this._defSecName = defaultSectionName
         this._typeScheme = [
-            {'key': () => '', 'val': () => null},
-            {'key': l => l, 'val': () => null},
-            {'key': l => l, 'val': () => null},
-            {'key': l => l, 'val': () => null},
-            {'key': l => l.split('=')[0], 'val': l => l.split(/=(.*)/)[1]},
-            {'key': l => l, 'val': () => null},
-            {'key': () => 'OK', 'val': l => l},
-            {'key': () => 'ERRO', 'val': l => l}
+            { 'key': () => '', 'val': () => null },
+            { 'key': l => l, 'val': () => null },
+            { 'key': l => l, 'val': () => null },
+            { 'key': l => l, 'val': () => null },
+            { 'key': l => l.split('=')[0], 'val': l => l.split(/=(.*)/)[1] },
+            { 'key': l => l, 'val': () => null },
+            { 'key': () => 'OK', 'val': l => l },
+            { 'key': () => 'ERRO', 'val': l => l }
         ]
         this._lineGens = [   //line, trim ,clean(comment garbage)
             () => '',
-            (l,t) => t ? l.key.trim() : l.key,
-            (l,t) => t ? l.key.trim() : l.key,
-            (l,t) => t ? l.key.trim() : l.key,
-            (l,t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`,
-            (l,t,c) => c ? `;${t ? l.key.trim() : l.key}` : `${t ? l.key.trim() : l.key}`,
-            (l,t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`,
-            (l,t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`
+            (l, t) => t ? l.key.trim() : l.key,
+            (l, t) => t ? l.key.trim() : l.key,
+            (l, t) => t ? l.key.trim() : l.key,
+            (l, t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`,
+            (l, t, c) => c ? `;${t ? l.key.trim() : l.key}` : `${t ? l.key.trim() : l.key}`,
+            (l, t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`,
+            (l, t) => t ? `${l.key.trim()}=${l.val.trim()}` : `${l.key}=${l.val}`
         ]
         this._types = [
             v => v.match(/^\s*$/) != null,              //     0: 'emptyLine',
@@ -102,8 +102,8 @@ export class Ini {
     }
 
     _addByType(obj, type, key = '', val = '') {
-        if (type == _SECTION) {obj.push({name: key, content: []})} else {
-            obj[obj.length -1].content.push({type, key, val})
+        if (type == _SECTION) { obj.push({ name: key, content: [] }) } else {
+            obj[obj.length - 1].content.push({ type, key, val })
         }
     }
 
@@ -111,23 +111,23 @@ export class Ini {
         const iniData = []
         const lines = string.split(this.eol)
         if (this._findType(lines[0]) != _SECTION) {
-            iniData.push({name: this._defSecName, content: []})
+            iniData.push({ name: this._defSecName, content: [] })
         }
         for (let l of lines) {
-            if (this.autoTrim) {l = l.trim()}
+            if (this.autoTrim) { l = l.trim() }
             const lineType = this._findType(l)
-            try{
+            try {
                 this._addByType(iniData, lineType, this._typeScheme[lineType].key(l), this._typeScheme[lineType].val(l))
             } catch (e) {
-                console.log(l,e)
+                console.log(l, e)
                 throw e
             }
         }
         return iniData
     }
 
-    createINIString({shouldTrim = false, shouldFix = false, cleanHashComments = false, cleanBreakComment = false, cleanEmptyLines = false, noEmptySections = false, noSections = false} =
-        {shouldTrim: false, shouldFix: false, cleanHashComments: false, cleanBreakComment: false, cleanEmptyLines: false, noEmptySections: false, noSections: false}) {
+    createINIString({ shouldTrim = false, shouldFix = false, cleanHashComments = false, cleanBreakComment = false, cleanEmptyLines = false, noEmptySections = false, noSections = false } =
+        { shouldTrim: false, shouldFix: false, cleanHashComments: false, cleanBreakComment: false, cleanEmptyLines: false, noEmptySections: false, noSections: false }) {
         let output = '', curLine = ''
         for (const section of this.iniData) {
             let sectionString = '', contentString = ''
@@ -137,12 +137,12 @@ export class Ini {
             }
             for (const l of section.content) {
                 curLine = this._lineGens[l.type](l, shouldTrim, shouldFix)
-                if (cleanEmptyLines && this._findType(curLine) == _EMPTY_LINE) {continue}
-                if (cleanHashComments && this._findType(curLine) == _HASH_COMMENT) {continue}
-                if (cleanBreakComment && this._findType(curLine) == _BREAK_COMMENT) {continue}
+                if (cleanEmptyLines && this._findType(curLine) == _EMPTY_LINE) { continue }
+                if (cleanHashComments && this._findType(curLine) == _HASH_COMMENT) { continue }
+                if (cleanBreakComment && this._findType(curLine) == _BREAK_COMMENT) { continue }
                 contentString += `${curLine}${this.eol}`
             }
-            if (noEmptySections && contentString == '') {continue}
+            if (noEmptySections && contentString == '') { continue }
             output += sectionString + contentString
         }
         return output
@@ -153,7 +153,7 @@ export class Ini {
         for (const sec of this.iniData) {
             const ref = includeTypes.includes(3) && sec.name != this._defSecName ? result[sec.name] = {} : result
             for (const line of sec.content) {
-                if(includeTypes.includes(line.type)) {
+                if (includeTypes.includes(line.type)) {
                     ref[line.key] = line.val
                 }
             }
@@ -196,7 +196,7 @@ export class Ini {
     removeEverythingButSections(sections = [], partialMatch = false) {
         for (const [index, section] of this.iniData.entries()) {
             if (sections.includes(section.name)
-            || (partialMatch && sections.filter(a => section.name.indexOf(a) >= 0).length > 0)) {
+                || (partialMatch && sections.filter(a => section.name.indexOf(a) >= 0).length > 0)) {
                 continue
             } else {
                 this.iniData.splice(index, 1)
@@ -243,9 +243,9 @@ export class Ini {
         }
         if (!existingSec && !valueAdded) {
             if (sectionName == this._defSecName) {
-                this.iniData.unshift({name: sectionName, content: []})
+                this.iniData.unshift({ name: sectionName, content: [] })
             } else {
-                this.iniData.push({name: sectionName, content: []})
+                this.iniData.push({ name: sectionName, content: [] })
             }
             return this.putStringInSection(string, sectionName)
         }
@@ -277,14 +277,14 @@ export class Ini {
                 if (line.type == _PAIR) {
                     if (line.val.indexOf(token) >= 0 || line.key.indexOf(token) >= 0) {
                         sec.content.splice(index, 1)
-                        if (global) {return this.removeLineByMatch(token, global, true)}
-                        else {_done = true; break}
+                        if (global) { return this.removeLineByMatch(token, global, true) }
+                        else { _done = true; break }
                     }
                 }
                 if (line.key.indexOf(token) >= 0) {
                     sec.content.splice(index, 1)
-                    if (global) {return this.removeLineByMatch(token, global, true)}
-                    else {_done = true; break}
+                    if (global) { return this.removeLineByMatch(token, global, true) }
+                    else { _done = true; break }
                 }
             }
         }
@@ -297,14 +297,14 @@ export class Ini {
                 if (line.type == _PAIR) {
                     if (line.val.indexOf(token) >= 0) {
                         line.val = line.val.replace(token, value)
-                        if (global) {return this.findAndReplace(token, value, global, true)}
-                        else {_done = true; break}
+                        if (global) { return this.findAndReplace(token, value, global, true) }
+                        else { _done = true; break }
                     }
                 }
                 if (line.key.indexOf(token) >= 0) {
                     line.key = line.key.replace(token, value)
-                    if (global) {return this.findAndReplace(token, value, global, true)}
-                    else {_done = true; break}
+                    if (global) { return this.findAndReplace(token, value, global, true) }
+                    else { _done = true; break }
                 }
             }
         }
@@ -318,7 +318,7 @@ export class Ini {
                     if (preferFirstOccurrence) {
                         const tempKey = line.key
                         line.key = 'TeMpKeY'
-                        while (this.findAndRemoveKeyIfExists(tempKey)) {}
+                        while (this.findAndRemoveKeyIfExists(tempKey)) { }
                         line.key = tempKey
                     } else {
                         const tempKey = line.key
@@ -377,8 +377,8 @@ export class Ini {
             sectionFound = false
             for (const s of this.iniData) {
                 if (s2.name == s.name) {
-                    if (before) {s.content.unshift(...s2.content.map(a => ({...a})))}
-                    else {s.content.push(...s2.content.map(a => ({...a})))}
+                    if (before) { s.content.unshift(...s2.content.map(a => ({ ...a }))) }
+                    else { s.content.push(...s2.content.map(a => ({ ...a }))) }
                     sectionFound = true
                     break
                 }
@@ -386,11 +386,11 @@ export class Ini {
             if (!sectionFound) {
                 if (before) {
                     const index = this.iniData[0].name == this._defSecName ? 1 : 0
-                    this.iniData.splice(index, 0, {name: s2.name, content: []});
-                    this.iniData[index].content.push(...s2.content.map(a => ({...a})))
+                    this.iniData.splice(index, 0, { name: s2.name, content: [] });
+                    this.iniData[index].content.push(...s2.content.map(a => ({ ...a })))
                 } else {
-                    this.iniData.push({name: s2.name, content: []})
-                    this.iniData[this.iniData.length -1].content.push(...s2.content.map(a => ({...a})))
+                    this.iniData.push({ name: s2.name, content: [] })
+                    this.iniData[this.iniData.length - 1].content.push(...s2.content.map(a => ({ ...a })))
                 }
             }
         }

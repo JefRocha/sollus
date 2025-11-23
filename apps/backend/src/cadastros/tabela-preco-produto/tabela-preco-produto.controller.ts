@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TABELA_PRECO_PRODUTO] 
                                                                                 
 The MIT License                                                                 
@@ -45,8 +45,8 @@ import { Request } from 'express';
   },
   query: {
     join: {
-		produto: { eager: true },
-		listaTabelaPreco: { eager: true },
+      produto: { eager: true },
+      listaTabelaPreco: { eager: true },
     },
   },
 })

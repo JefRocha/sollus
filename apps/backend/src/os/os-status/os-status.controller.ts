@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [OS_STATUS] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { OsStatus } from './os-status.entity';
 export class OsStatusController implements CrudController<OsStatus> {
   constructor(public service: OsStatusService) { }
 
-  
+
 
 
 }

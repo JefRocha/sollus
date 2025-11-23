@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CST_ICMS] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { CstIcms } from './cst-icms.entity';
 export class CstIcmsController implements CrudController<CstIcms> {
   constructor(public service: CstIcmsService) { }
 
-  
+
 
 
 }

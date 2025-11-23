@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados aos arquivos administrativos
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { EmpresaModule } from '../administrativo/empresa/empresa.module';
 
 @Module({
-    imports: [
-		EmpresaModule,
-    ],
+  imports: [
+    EmpresaModule,
+  ],
 })
 export class AdministrativoModule { }

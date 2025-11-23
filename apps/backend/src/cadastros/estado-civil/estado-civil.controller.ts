@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [ESTADO_CIVIL] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { EstadoCivil } from './estado-civil.entity';
 export class EstadoCivilController implements CrudController<EstadoCivil> {
   constructor(public service: EstadoCivilService) { }
 
-  
+
 
 
 }

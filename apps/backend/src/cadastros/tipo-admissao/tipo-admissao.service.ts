@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [TIPO_ADMISSAO] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class TipoAdmissaoService extends TypeOrmCrudService<TipoAdmissao> {
   constructor(
     @InjectRepository(TipoAdmissao) repository) { super(repository); }
 
-  
 
-	
+
+
 }

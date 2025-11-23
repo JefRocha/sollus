@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [CSOSN] 
                                                                                 
 The MIT License                                                                 
@@ -44,7 +44,7 @@ export class CsosnService extends TypeOrmCrudService<Csosn> {
   constructor(
     @InjectRepository(Csosn) repository) { super(repository); }
 
-  
 
-	
+
+
 }

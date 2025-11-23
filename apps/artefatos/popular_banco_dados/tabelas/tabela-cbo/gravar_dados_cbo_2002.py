@@ -6,7 +6,7 @@ db_config = {
     'user': 'root',
     'password': 'root',
     'host': 'localhost',
-    'database': 'fenix',
+    'database': 'sollus',
 }
 
 # Conexão com o banco de dados MySQL

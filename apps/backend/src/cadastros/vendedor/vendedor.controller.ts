@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VENDEDOR] 
                                                                                 
 The MIT License                                                                 
@@ -44,8 +44,8 @@ import { Vendedor } from './vendedor.entity';
   },
   query: {
     join: {
-		colaborador: { eager: true },
-		'colaborador.pessoa': { eager: true },
+      colaborador: { eager: true },
+      'colaborador.pessoa': { eager: true },
     },
   },
 })
@@ -53,7 +53,7 @@ import { Vendedor } from './vendedor.entity';
 export class VendedorController implements CrudController<Vendedor> {
   constructor(public service: VendedorService) { }
 
-  
+
 
 
 }

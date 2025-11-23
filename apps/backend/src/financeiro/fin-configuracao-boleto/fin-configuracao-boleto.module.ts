@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Module relacionado à tabela [FIN_CONFIGURACAO_BOLETO] 
                                                                                 
 The MIT License                                                                 

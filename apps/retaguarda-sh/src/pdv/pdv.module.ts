@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados aos arquivos administrativos
                                                                                 
 The MIT License                                                                 
@@ -38,9 +38,9 @@ import { PdvTipoPlanoModule } from '../pdv/pdv-tipo-plano/pdv-tipo-plano.module'
 import { PdvPlanoPagamentoModule } from '../pdv/pdv-plano-pagamento/pdv-plano-pagamento.module';
 
 @Module({
-    imports: [
-		PdvTipoPlanoModule,
-		PdvPlanoPagamentoModule,
-    ],
+  imports: [
+    PdvTipoPlanoModule,
+    PdvPlanoPagamentoModule,
+  ],
 })
 export class PdvModule { }

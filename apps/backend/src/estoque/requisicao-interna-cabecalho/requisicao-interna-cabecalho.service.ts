@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [REQUISICAO_INTERNA_CABECALHO] 
 																			    
 The MIT License                                                                 

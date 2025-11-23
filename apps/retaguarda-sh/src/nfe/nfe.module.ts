@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo NF-e
                                                                                 
 The MIT License                                                                 
@@ -37,8 +37,8 @@ import { Module } from '@nestjs/common';
 import { NfeConfiguracaoModule } from '../nfe/nfe-configuracao/nfe-configuracao.module';
 
 @Module({
-    imports: [
-		NfeConfiguracaoModule,
-    ],
+  imports: [
+    NfeConfiguracaoModule,
+  ],
 })
 export class NfeModule { }

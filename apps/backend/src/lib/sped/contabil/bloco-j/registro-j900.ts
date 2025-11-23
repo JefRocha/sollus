@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -38,5 +38,5 @@ export class RegistroJ900 {
     qtdLin: number;	 /// Quantidade total de linhas do arquivo digital.
     dtIniEscr: Date;	 /// Data de inicio da escrituração.
     dtFinEscr: Date;	 /// Data de término da escrituração.
-    
+
 }

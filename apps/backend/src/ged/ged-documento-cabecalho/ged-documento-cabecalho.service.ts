@@ -1,11 +1,11 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [GED_DOCUMENTO_CABECALHO] 
-                                                                                
+																			    
 The MIT License                                                                 
-                                                                                
+																			    
 Copyright: Copyright (C) 2020 T2Ti.COM                                          
-                                                                                
+																			    
 Permission is hereby granted, free of charge, to any person                     
 obtaining a copy of this software and associated documentation                  
 files (the "Software"), to deal in the Software without                         
@@ -14,10 +14,10 @@ copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the                       
 Software is furnished to do so, subject to the following                        
 conditions:                                                                     
-                                                                                
+																			    
 The above copyright notice and this permission notice shall be                  
 included in all copies or substantial portions of the Software.                 
-                                                                                
+																			    
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,                 
 EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES                 
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND                        
@@ -26,10 +26,10 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING                    
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
-                                                                                
-       The author may be contacted at:                                          
-           t2ti.com@gmail.com                                                   
-                                                                                
+																			    
+	   The author may be contacted at:                                          
+		   t2ti.com@gmail.com                                                   
+																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
@@ -45,57 +45,57 @@ import * as fs from "fs";
 @Injectable({ scope: Scope.REQUEST })
 export class GedDocumentoCabecalhoService extends TypeOrmCrudService<GedDocumentoCabecalho> {
 
-  constructor(
-	private dataSource: DataSource,
-    @InjectRepository(GedDocumentoCabecalho) repository) { super(repository); }
+	constructor(
+		private dataSource: DataSource,
+		@InjectRepository(GedDocumentoCabecalho) repository) { super(repository); }
 
 	async persistir(gedDocumentoCabecalho: GedDocumentoCabecalho, operacao: string): Promise<GedDocumentoCabecalho> {
-	  let objetoRetorno: GedDocumentoCabecalho;
-	
+		let objetoRetorno: GedDocumentoCabecalho;
+
 		const queryRunner = this.dataSource.createQueryRunner();
-	
-	  await queryRunner.connect();
-	  await queryRunner.startTransaction();
-	  try {
-	    if (operacao == 'A') {
-	      await this.excluirFilhos(queryRunner, gedDocumentoCabecalho.id);
-	    }
-	    objetoRetorno = await queryRunner.manager.save(gedDocumentoCabecalho);
-	    await queryRunner.commitTransaction();
-	  } catch (erro) {
-	    await queryRunner.rollbackTransaction();
-	    throw (erro);
-	  } finally {
-	    await queryRunner.release();
-	  }
-	  return objetoRetorno;
+
+		await queryRunner.connect();
+		await queryRunner.startTransaction();
+		try {
+			if (operacao == 'A') {
+				await this.excluirFilhos(queryRunner, gedDocumentoCabecalho.id);
+			}
+			objetoRetorno = await queryRunner.manager.save(gedDocumentoCabecalho);
+			await queryRunner.commitTransaction();
+		} catch (erro) {
+			await queryRunner.rollbackTransaction();
+			throw (erro);
+		} finally {
+			await queryRunner.release();
+		}
+		return objetoRetorno;
 	}
-  
+
 	async excluirMestreDetalhe(id: number) {
 		const queryRunner = this.dataSource.createQueryRunner();
-	
-	  await queryRunner.connect();
-	  await queryRunner.startTransaction();
-	  try {
-	    await this.excluirFilhos(queryRunner, id);
-	    await queryRunner.query('delete from gedDocumentoCabecalho where id=' + id);
-	    await queryRunner.commitTransaction();
-	  } catch (erro) {
-	    await queryRunner.rollbackTransaction();
-	    throw (erro);
-	  } finally {
-	    await queryRunner.release();
-	  }
+
+		await queryRunner.connect();
+		await queryRunner.startTransaction();
+		try {
+			await this.excluirFilhos(queryRunner, id);
+			await queryRunner.query('delete from gedDocumentoCabecalho where id=' + id);
+			await queryRunner.commitTransaction();
+		} catch (erro) {
+			await queryRunner.rollbackTransaction();
+			throw (erro);
+		} finally {
+			await queryRunner.release();
+		}
 	}
 
 	async excluirFilhos(queryRunner: QueryRunner, id: number) {
 		await queryRunner.query('delete from GED_DOCUMENTO_DETALHE where ID_GED_DOCUMENTO_CABECALHO=' + id);
-		
+
 	}
 
 	async atualizarDetalhe(arquivo: any) {
 		let nomeArquivoCompleto = "c:\\T2Ti\\GED\\" + arquivo.originalname;
-		const writeStream = fs.createWriteStream(nomeArquivoCompleto);  
+		const writeStream = fs.createWriteStream(nomeArquivoCompleto);
 		writeStream.write(arquivo.buffer);
 		writeStream.end();
 
@@ -123,5 +123,5 @@ export class GedDocumentoCabecalhoService extends TypeOrmCrudService<GedDocument
 
 		return "OK";
 	}
-	
+
 }

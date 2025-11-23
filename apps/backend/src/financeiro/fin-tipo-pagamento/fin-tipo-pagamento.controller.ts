@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [FIN_TIPO_PAGAMENTO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { FinTipoPagamento } from './fin-tipo-pagamento.entity';
 export class FinTipoPagamentoController implements CrudController<FinTipoPagamento> {
   constructor(public service: FinTipoPagamentoService) { }
 
-  
+
 
 
 }

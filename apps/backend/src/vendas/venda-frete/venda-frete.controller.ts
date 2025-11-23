@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [VENDA_FRETE] 
                                                                                 
 The MIT License                                                                 
@@ -44,8 +44,8 @@ import { VendaFrete } from './venda-frete.entity';
   },
   query: {
     join: {
-		vendaCabecalho: { eager: true },
-		transportadora: { eager: true },
+      vendaCabecalho: { eager: true },
+      transportadora: { eager: true },
     },
   },
 })
@@ -53,7 +53,7 @@ import { VendaFrete } from './venda-frete.entity';
 export class VendaFreteController implements CrudController<VendaFrete> {
   constructor(public service: VendaFreteService) { }
 
-  
+
 
 
 }

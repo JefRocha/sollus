@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [UF] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Uf } from './uf.entity';
 export class UfController implements CrudController<Uf> {
   constructor(public service: UfService) { }
 
-  
+
 
 
 }

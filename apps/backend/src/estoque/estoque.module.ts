@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo Controle de Estoque
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { RequisicaoInternaCabecalhoModule } from '../estoque/requisicao-interna-
 import { ControleEstoqueModule } from '../estoque/controle-estoque/controle-estoque.module';
 
 @Module({
-    imports: [
-		EstoqueReajusteCabecalhoModule,
-		RequisicaoInternaCabecalhoModule,
-		ControleEstoqueModule,
-    ],
+  imports: [
+    EstoqueReajusteCabecalhoModule,
+    RequisicaoInternaCabecalhoModule,
+    ControleEstoqueModule,
+  ],
 })
 export class EstoqueModule { }

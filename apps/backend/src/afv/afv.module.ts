@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Modules relacionados ao módulo AFV
                                                                                 
 The MIT License                                                                 
@@ -39,10 +39,10 @@ import { VendedorRotaModule } from '../afv/vendedor-rota/vendedor-rota.module';
 import { TabelaPrecoModule } from '../afv/tabela-preco/tabela-preco.module';
 
 @Module({
-    imports: [
-		VendedorMetaModule,
-		VendedorRotaModule,
-		TabelaPrecoModule,
-    ],
+  imports: [
+    VendedorMetaModule,
+    VendedorRotaModule,
+    TabelaPrecoModule,
+  ],
 })
 export class AfvModule { }

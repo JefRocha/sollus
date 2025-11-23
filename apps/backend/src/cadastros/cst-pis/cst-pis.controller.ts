@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CST_PIS] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { CstPis } from './cst-pis.entity';
 export class CstPisController implements CrudController<CstPis> {
   constructor(public service: CstPisService) { }
 
-  
+
 
 
 }

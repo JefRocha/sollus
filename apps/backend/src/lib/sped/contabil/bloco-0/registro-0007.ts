@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix
+Title: T2Ti ERP sollus
 Description: Model relacionado ào SPED
 
 The MIT License
@@ -32,7 +32,7 @@ Copyright: Copyright (C) 2020 T2Ti.COM
 *******************************************************************************/
 export class Registro0007 {
 
-    codEntRef: string ;	 /// Código da instituição responsável pela administração do cadastro (conforme tabela publicada pelo Sped).
-    codInscr: string ;	 /// Código cadastral do empresário ou sociedade empresária na instituição identificada no campo 02.
-    
+    codEntRef: string;	 /// Código da instituição responsável pela administração do cadastro (conforme tabela publicada pelo Sped).
+    codInscr: string;	 /// Código cadastral do empresário ou sociedade empresária na instituição identificada no campo 02.
+
 }

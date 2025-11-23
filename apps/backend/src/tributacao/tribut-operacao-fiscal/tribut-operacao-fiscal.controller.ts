@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [TRIBUT_OPERACAO_FISCAL] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { TributOperacaoFiscal } from './tribut-operacao-fiscal.entity';
 export class TributOperacaoFiscalController implements CrudController<TributOperacaoFiscal> {
   constructor(public service: TributOperacaoFiscalService) { }
 
-  
+
 
 
 }

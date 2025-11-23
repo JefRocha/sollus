@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Service relacionado à tabela [OS_STATUS] 
                                                                                 
 The MIT License                                                                 
@@ -46,10 +46,11 @@ export class OsStatusService extends TypeOrmCrudService<OsStatus> {
   constructor(
     @InjectRepository(OsStatus) repository,
     private readonly tenantService: TenantService
-  ) { 
-    super(new BaseRepository(repository, tenantService)); }
+  ) {
+    super(new BaseRepository(repository, tenantService));
+  }
 
-  
 
-	
+
+
 }

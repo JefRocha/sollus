@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [NIVEL_FORMACAO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { NivelFormacao } from './nivel-formacao.entity';
 export class NivelFormacaoController implements CrudController<NivelFormacao> {
   constructor(public service: NivelFormacaoService) { }
 
-  
+
 
 
 }

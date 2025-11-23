@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [PAPEL] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Papel } from './papel.entity';
 export class PapelController implements CrudController<Papel> {
   constructor(public service: PapelService) { }
 
-  
+
 
 
 }

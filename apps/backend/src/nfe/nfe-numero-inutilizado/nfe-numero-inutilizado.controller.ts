@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [NFE_NUMERO_INUTILIZADO] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { NfeNumeroInutilizado } from './nfe-numero-inutilizado.entity';
 export class NfeNumeroInutilizadoController implements CrudController<NfeNumeroInutilizado> {
   constructor(public service: NfeNumeroInutilizadoService) { }
 
-  
+
 
 
 }

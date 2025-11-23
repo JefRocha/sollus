@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [NCM] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Ncm } from './ncm.entity';
 export class NcmController implements CrudController<Ncm> {
   constructor(public service: NcmService) { }
 
-  
+
 
 
 }

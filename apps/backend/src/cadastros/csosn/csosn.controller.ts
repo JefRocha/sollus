@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [CSOSN] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Csosn } from './csosn.entity';
 export class CsosnController implements CrudController<Csosn> {
   constructor(public service: CsosnService) { }
 
-  
+
 
 
 }

@@ -1,5 +1,5 @@
 /*******************************************************************************
-Title: T2Ti ERP Fenix                                                                
+Title: T2Ti ERP sollus                                                                
 Description: Controller relacionado à tabela [SETOR] 
                                                                                 
 The MIT License                                                                 
@@ -51,7 +51,7 @@ import { Setor } from './setor.entity';
 export class SetorController implements CrudController<Setor> {
   constructor(public service: SetorService) { }
 
-  
+
 
 
 }
