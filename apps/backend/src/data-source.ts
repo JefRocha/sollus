@@ -1,9 +1,17 @@
 import { DataSource } from 'typeorm';
-import { dbConfig } from './orm.config';
+import * as dotenv from 'dotenv';
 
-// DataSource para migrations
-export const AppDataSource = new DataSource({
-    ...dbConfig,
-    migrations: ['src/migrations/*.ts'],
-    migrationsTableName: 'migrations_history',
-} as any);
+dotenv.config();
+
+export default new DataSource({
+    type: 'postgres',
+    host: process.env.DB_HOST || 'localhost',
+    port: parseInt(process.env.DB_PORT || '5432'),
+    username: process.env.DB_USERNAME || 'postgres',
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE || 'solluserp',
+    entities: ['dist/**/*.entity.js'],
+    migrations: ['dist/migrations/*.js'],
+    synchronize: false,
+    logging: true,
+});
