@@ -48,4 +48,5 @@ volumes:
 
 networks:
   sollus-network:
-    driver: overlay # Necessário para Swarm
+    driver: overlay
+    attachable: true # Permite que containers standalone também se conectem, se necessário
