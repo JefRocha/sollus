@@ -40,5 +40,15 @@ COPY --from=builder /app/scripts ./scripts
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["node", "dist/main"]
+# Create startup script that runs migrations before starting the app
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'set -e' >> /app/start.sh && \
+    echo 'echo "🔄 Verificando migrations pendentes..."' >> /app/start.sh && \
+    echo 'npx typeorm-ts-node-commonjs migration:run -d src/orm.config.ts || echo "⚠️ Nenhuma migration pendente ou erro (continuando...)"' >> /app/start.sh && \
+    echo 'echo "✅ Migrations concluídas"' >> /app/start.sh && \
+    echo 'echo "🚀 Iniciando aplicação..."' >> /app/start.sh && \
+    echo 'node dist/main' >> /app/start.sh && \
+    chmod +x /app/start.sh
+
+# Start the application using the startup script
+CMD ["/app/start.sh"]
