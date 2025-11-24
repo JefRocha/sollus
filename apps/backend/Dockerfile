@@ -59,7 +59,7 @@ RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'if [ -f "/app/scripts/Script_Dados_Postgresql.sql" ]; then' >> /app/start.sh && \
     echo '  echo "📦 Verificando se o banco precisa de dados iniciais..."' >> /app/start.sh && \
     echo '  # Script inline otimizado para verificar contagem' >> /app/start.sh && \
-    echo '  node -e "const { Client } = require('\''pg'\''); const client = new Client({ host: process.env.DB_HOST, port: parseInt(process.env.DB_PORT || '\''5432'\''), user: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE }); client.connect().then(async () => { try { const res = await client.query('\''SELECT COUNT(*) as count FROM \\\"NCM\\\"'\''); const count = parseInt(res.rows[0].count); process.exit(count > 0 ? 1 : 0); } catch (e) { process.exit(0); } finally { client.end(); } });" && NEEDS_IMPORT=0 || NEEDS_IMPORT=1' >> /app/start.sh && \
+    echo '  node -e "const { Client } = require('\''pg'\''); const client = new Client({ host: process.env.DB_HOST, port: parseInt(process.env.DB_PORT || '\''5432'\''), user: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DB_DATABASE }); client.connect().then(async () => { try { const res = await client.query('\''SELECT COUNT(*) as count FROM \\\"NCM\\\"'\''); const count = parseInt(res.rows[0].count); process.exit(count > 0 ? 1 : 0); } catch (e) { process.exit(0); } finally { client.end(); } });" && NEEDS_IMPORT=1 || NEEDS_IMPORT=0' >> /app/start.sh && \
     echo '  if [ $NEEDS_IMPORT -eq 1 ]; then' >> /app/start.sh && \
     echo '    echo "📥 Importando dados iniciais..."' >> /app/start.sh && \
     echo '    node dist/scripts/import-sql-stream.js' >> /app/start.sh && \
