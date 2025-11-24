@@ -52,7 +52,7 @@ EXPOSE 3000
 RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'set -e' >> /app/start.sh && \
     echo 'echo "🔄 Verificando migrations pendentes..."' >> /app/start.sh && \
-    echo 'npx typeorm migration:run -d src/data-source.ts || echo "⚠️ Nenhuma migration pendente ou erro (continuando...)"' >> /app/start.sh && \
+    echo 'npx typeorm migration:run -d dist/data-source.js || echo "⚠️ Nenhuma migration pendente ou erro (continuando...)"' >> /app/start.sh && \
     echo 'echo "✅ Migrations concluídas"' >> /app/start.sh && \
     echo '' >> /app/start.sh && \
     echo '# Verificar se precisa importar dados' >> /app/start.sh && \
