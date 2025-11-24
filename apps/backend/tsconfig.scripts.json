@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "scripts/**/*.ts"
+    ],
+    "compilerOptions": {
+        "outDir": "./dist/scripts",
+        "module": "commonjs",
+        "target": "es2019",
+        "noEmit": false
+    }
+}

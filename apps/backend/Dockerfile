@@ -19,7 +19,7 @@ COPY . .
 RUN pnpm build
 
 # Compile scripts
-RUN pnpm tsc scripts/*.ts --outDir dist/scripts --esModuleInterop
+RUN pnpm tsc -p tsconfig.scripts.json
 
 # Stage 2: Production
 FROM node:20-alpine
