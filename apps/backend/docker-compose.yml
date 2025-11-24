@@ -38,7 +38,7 @@ services:
       start_period: 120s # Tempo generoso para startup e importação de dados
     networks:
       - sollus-prod-net
-      - minha_rede # IMPORTANTE: O Proxy (Traefik ou NPM) DEVE estar nesta rede!
+      - network_public # IMPORTANTE: O Proxy (Traefik ou NPM) DEVE estar nesta rede!
 
   # O Banco de Dados (PostgreSQL)
   sollus-db:
@@ -65,5 +65,5 @@ networks:
   sollus-prod-net:
     driver: overlay
     attachable: true
-  minha_rede:
+  network_public:
     external: true # Usa a rede existente do Traefik
