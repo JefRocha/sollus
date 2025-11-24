@@ -31,7 +31,7 @@ services:
         - "traefik.http.routers.sollus-backend-http.entrypoints=web"
         - "traefik.http.routers.sollus-backend-http.middlewares=redirect-https@docker"
     healthcheck:
-      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/health" ]
+      test: [ "CMD-SHELL", "node -e \"require('http').get('http://127.0.0.1:3000/health', (res) => { if (res.statusCode === 200) process.exit(0); else process.exit(1); })\"" ]
       interval: 30s
       timeout: 10s
       retries: 5
