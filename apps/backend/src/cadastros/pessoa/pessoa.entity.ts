@@ -78,6 +78,9 @@ export class Pessoa {
 	@Column({ name: 'EH_CONTADOR' })
 	ehContador: string;
 
+	@Column({ name: 'ID_EMPRESA' })
+	empresaId: number;
+
 
 	/**
 	* Relations

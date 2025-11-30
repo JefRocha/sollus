@@ -36,7 +36,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
-import { getConnection } from 'typeorm';
+import { getConnection , DataSource} from 'typeorm';
 
 import { Empresa } from '../../entities-export';
 import { CsSolutionsSpedContabil } from '../../lib/sped/cs-solutions-sped-contabil';
@@ -44,7 +44,9 @@ import { CsSolutionsSpedContabil } from '../../lib/sped/cs-solutions-sped-contab
 @Injectable()
 export class SpedContabilService {
 
-	constructor() { }
+	constructor(
+    private dataSource: DataSource,
+    ) { }
 
 	dataInicial: Date;
 	dataFinal: Date;

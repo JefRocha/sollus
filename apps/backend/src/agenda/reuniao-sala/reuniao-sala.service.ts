@@ -33,16 +33,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { ReuniaoSala } from './reuniao-sala.entity';
 
-@Injectable()
+import { TenantService } from '../../tenant/tenant.service';
+import { BaseRepository } from '../../common/base.repository';
+@Injectable({ scope: Scope.REQUEST })
 export class ReuniaoSalaService extends TypeOrmCrudService<ReuniaoSala> {
 
   constructor(
-    @InjectRepository(ReuniaoSala) repository) { super(repository); }
+    @InjectRepository(ReuniaoSala) repository,
+    private readonly tenantService: TenantService
+  ) {
+    super(new BaseRepository(repository, tenantService));
+  }
 
 
 

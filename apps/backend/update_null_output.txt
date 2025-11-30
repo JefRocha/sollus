@@ -1,0 +1,22 @@
+[
+  {
+    "id": 3,
+    "NOME": "OUTRA PESSOA FISICA",
+    "ID_EMPRESA": 1
+  },
+  {
+    "id": 1,
+    "NOME": "TESTE PESSOA FISICA",
+    "ID_EMPRESA": 1
+  },
+  {
+    "id": 5,
+    "NOME": "Usuário 2",
+    "ID_EMPRESA": 1
+  },
+  {
+    "id": 2,
+    "NOME": "TESTE PESSOA JURIDICA",
+    "ID_EMPRESA": null
+  }
+]

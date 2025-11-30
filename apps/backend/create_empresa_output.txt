@@ -1,0 +1,1 @@
+Error: o valor nulo na coluna "DATA_INSC_JUNTA_COMERCIAL" da relação "EMPRESA" viola a restrição de não-nulo

@@ -22,6 +22,12 @@ export class BaseRepository<T> extends Repository<T> {
         if (tenantId && (hasEmpresaColumn || hasEmpresaRelation)) {
             // Usa o alias fornecido ou o nome da tabela/target
             const entityAlias = alias || this.metadata.targetName;
+
+            // Validação de segurança do alias
+            if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(entityAlias)) {
+                throw new Error(`Invalid query builder alias: ${entityAlias}`);
+            }
+
             builder.andWhere(`${entityAlias}.empresa = :tenantId`, { tenantId });
         }
 

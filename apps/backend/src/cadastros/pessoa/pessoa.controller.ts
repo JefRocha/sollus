@@ -33,11 +33,12 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Delete, Param, Post, Put, Req } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, Delete, Param, Post, Put, Req, Get } from '@nestjs/common';
+import { Crud, CrudController, Override, ParsedRequest, CrudRequest } from '@nestjsx/crud';
 import { PessoaService } from './pessoa.service';
 import { Pessoa } from './pessoa.entity';
 import { Request } from 'express';
+import { TenantService } from '../../tenant/tenant.service';
 
 @Crud({
 	model: {
@@ -62,7 +63,42 @@ import { Request } from 'express';
 })
 @Controller('pessoa')
 export class PessoaController implements CrudController<Pessoa> {
-	constructor(public service: PessoaService) { }
+	constructor(
+		public service: PessoaService,
+		private readonly tenantService: TenantService
+	) { }
+
+	get base(): CrudController<Pessoa> {
+		return this;
+	}
+
+	@Override()
+	async getMany(@ParsedRequest() req: CrudRequest) {
+		const tenantId = this.tenantService.tenantId;
+		console.log('🔍 DEBUG PessoaController:');
+		console.log('   Tenant ID:', tenantId);
+
+		// Adiciona filtro de tenant
+		if (tenantId) {
+			if (!req.parsed.search) {
+				req.parsed.search = { $and: [] };
+			}
+			if (!req.parsed.search.$and) {
+				req.parsed.search.$and = [];
+			}
+
+			// Adiciona filtro por ID_EMPRESA (coluna direta)
+			req.parsed.search.$and.push({
+				'empresaId': { $eq: tenantId }
+			});
+
+			console.log('   Filter applied:', JSON.stringify(req.parsed.search));
+		} else {
+			console.log('   ⚠️ NO TENANT ID FOUND');
+		}
+
+		return this.service.getMany(req);
+	}
 
 	@Post()
 	async inserir(@Req() request: Request) {

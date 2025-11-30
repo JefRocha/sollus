@@ -1,3 +1,4 @@
+import { DataSource } from 'typeorm';
 /*******************************************************************************
 Title: CS Solutions ERP sollus                                                                
 Description: Service relacionado ao Sped Fiscal - EFD
@@ -61,7 +62,9 @@ import { RegistroH010 } from '../../lib/sped/fiscal/bloco-h/registro-h010';
 @Injectable()
 export class SpedFiscalService {
 
-	constructor() { }
+	constructor(
+    private dataSource: DataSource,
+    ) { }
 
 	dataInicial: Date;
 	dataFinal: Date;

@@ -34,18 +34,27 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Scope, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Usuario } from './../cadastros/usuario/usuario.entity';
+import { RefreshToken } from './refresh-token.entity';
+import { Repository } from 'typeorm';
 
-@Injectable()
+import { TenantService } from '../tenant/tenant.service';
+import { BaseRepository } from '../common/base.repository';
+@Injectable({ scope: Scope.REQUEST })
 export class LoginService extends TypeOrmCrudService<Usuario> {
 
     private key: string = "#Sua-chave-de-32-caracteres-aqui";
 
     constructor(
-        @InjectRepository(Usuario) repository) { super(repository); }
+        @InjectRepository(Usuario) repository,
+        @InjectRepository(RefreshToken) private refreshTokenRepo: Repository<RefreshToken>,
+        private readonly tenantService: TenantService
+    ) {
+        super(new BaseRepository(repository, tenantService));
+    }
 
     async login(usuario: Usuario) {
         const crypto = require('crypto');
@@ -58,17 +67,77 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
         });
 
         if (user != null) {
-            // Extrai o ID da empresa (Tenant)
-            // Se não tiver colaborador ou empresa vinculada, pode ser um admin global ou erro de cadastro
-            // Por enquanto, vamos assumir que sempre tem, ou passar null se não tiver
             const tenantId = user.colaborador?.empresa?.id || null;
 
-            return this.gerarJwt(usuario.login, tenantId);
+            // Gera Access Token (15 min)
+            const accessToken = this.gerarJwt(usuario.login, tenantId, '15m');
+
+            // Gera Refresh Token (7 dias)
+            const refreshToken = await this.createRefreshToken(user.id);
+
+            return { accessToken, refreshToken };
         }
         throw new UnauthorizedException();
     }
 
-    async gerarJwt(login: string, tenantId: number | null) {
+    async createRefreshToken(userId: number): Promise<string> {
+        const crypto = require('crypto');
+        const token = crypto.randomBytes(64).toString('hex');
+
+        const refreshToken = this.refreshTokenRepo.create({
+            userId,
+            token,
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 dias
+            isRevoked: false,
+            lastActivityAt: new Date() // Define atividade inicial
+        });
+
+        await this.refreshTokenRepo.save(refreshToken);
+        return token;
+    }
+
+    async refresh(oldRefreshToken: string) {
+        const tokenDoc = await this.refreshTokenRepo.findOne({
+            where: { token: oldRefreshToken }
+        });
+
+        if (!tokenDoc || tokenDoc.isRevoked || tokenDoc.expiresAt < new Date()) {
+            throw new UnauthorizedException('Invalid or expired refresh token');
+        }
+
+        // Verifica inatividade (2 horas sem requisições)
+        const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+        if (tokenDoc.lastActivityAt < twoHoursAgo) {
+            // Revoga token por inatividade
+            tokenDoc.isRevoked = true;
+            await this.refreshTokenRepo.save(tokenDoc);
+            throw new UnauthorizedException('Session expired due to inactivity');
+        }
+
+        // Revoga o token antigo (Rotação de Token)
+        tokenDoc.isRevoked = true;
+        await this.refreshTokenRepo.save(tokenDoc);
+
+        // Busca o usuário separadamente
+        const user = await this.findOne({
+            where: { id: tokenDoc.userId },
+            relations: ['colaborador', 'colaborador.empresa']
+        });
+
+        if (!user) {
+            throw new UnauthorizedException('User not found');
+        }
+
+        // Gera novos tokens
+        const tenantId = user.colaborador?.empresa?.id || null;
+
+        const newAccessToken = this.gerarJwt(user.login, tenantId, '15m');
+        const newRefreshToken = await this.createRefreshToken(user.id);
+
+        return { accessToken: newAccessToken, refreshToken: newRefreshToken };
+    }
+
+    gerarJwt(login: string, tenantId: number | null, expiresIn: string = '7d') {
         const jwt = require('jsonwebtoken');
 
         const payload = {
@@ -76,7 +145,7 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
             tenant: tenantId
         };
 
-        return jwt.sign(payload, this.key);
+        return jwt.sign(payload, this.key, { expiresIn });
     }
 
     verificarToken(token: string): boolean {

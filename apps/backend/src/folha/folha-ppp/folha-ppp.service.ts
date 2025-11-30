@@ -33,18 +33,24 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable } from '@nestjs/common';
+import { Injectable, Scope } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { FolhaPpp } from './folha-ppp.entity';
 import { DataSource, QueryRunner } from 'typeorm';
 
-@Injectable()
+import { TenantService } from '../../tenant/tenant.service';
+import { BaseRepository } from '../../common/base.repository';
+@Injectable({ scope: Scope.REQUEST })
 export class FolhaPppService extends TypeOrmCrudService<FolhaPpp> {
 
 	constructor(
-		private dataSource: DataSource,
-		@InjectRepository(FolhaPpp) repository) { super(repository); }
+    private dataSource: DataSource,
+    @InjectRepository(FolhaPpp) repository,
+    private readonly tenantService: TenantService
+  ) {
+    super(new BaseRepository(repository, tenantService));
+  }
 
 	async persistir(folhaPpp: FolhaPpp, operacao: string): Promise<FolhaPpp> {
 		let objetoRetorno: FolhaPpp;
