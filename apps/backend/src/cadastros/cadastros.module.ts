@@ -67,12 +67,14 @@ import { UfModule } from '../cadastros/uf/uf.module';
 import { VendedorModule } from '../cadastros/vendedor/vendedor.module';
 import { IbptModule } from './ibpt/ibpt.module';
 import { NfseListaServicoModule } from './nfse-lista-servico/nfse-lista-servico.module';
+import { CboModule } from './cbo/cbo.module';
 
 @Module({
 	imports: [
 		BancoModule,
 		BancoAgenciaModule,
 		BancoContaCaixaModule,
+		CboModule,
 		PessoaModule,
 		ProdutoModule,
 		ProdutoGrupoModule,

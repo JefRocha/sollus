@@ -33,23 +33,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { VendaCabecalho } from './venda-cabecalho.entity';
 import { DataSource, QueryRunner } from 'typeorm';
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class VendaCabecalhoService extends TypeOrmCrudService<VendaCabecalho> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(VendaCabecalho) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(VendaCabecalho) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(vendaCabecalho: VendaCabecalho, operacao: string): Promise<VendaCabecalho> {
@@ -61,7 +60,7 @@ export class VendaCabecalhoService extends TypeOrmCrudService<VendaCabecalho> {
 		await queryRunner.startTransaction();
 		try {
 			// Injeta o Tenant ID manualmente pois estamos usando queryRunner direto
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				vendaCabecalho.empresa = { id: tenantId } as any;
 			}

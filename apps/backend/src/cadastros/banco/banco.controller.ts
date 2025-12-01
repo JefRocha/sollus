@@ -34,7 +34,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 @version 1.0.0
 *******************************************************************************/
 import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Crud, CrudController, Override, ParsedRequest, CrudRequest, ParsedBody } from '@nestjsx/crud'; // Added ParsedBody
 import { BancoService } from './banco.service';
 import { Banco } from './banco.entity';
 
@@ -51,4 +51,52 @@ import { Banco } from './banco.entity';
 export class BancoController implements CrudController<Banco> {
   constructor(public service: BancoService) { }
 
+  get base(): CrudController<Banco> {
+    return this;
+  }
+
+  @Override()
+  getMany(
+    @ParsedRequest() req: CrudRequest,
+  ) {
+    return this.base.getManyBase(req);
+  }
+
+  @Override()
+  getOne(
+    @ParsedRequest() req: CrudRequest,
+  ) {
+    return this.base.getOneBase(req);
+  }
+
+  @Override()
+  createOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: Banco, // Added ParsedBody
+  ) {
+    return this.service.createOne(req, dto);
+  }
+
+  @Override()
+  updateOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: Banco, // Added ParsedBody
+  ) {
+    return this.service.updateOne(req, dto);
+  }
+
+  @Override()
+  replaceOne(
+    @ParsedRequest() req: CrudRequest,
+    @ParsedBody() dto: Banco, // Added ParsedBody
+  ) {
+    return this.service.replaceOne(req, dto);
+  }
+
+  @Override()
+  deleteOne(
+    @ParsedRequest() req: CrudRequest,
+  ) {
+    return this.base.deleteOneBase(req);
+  }
 }

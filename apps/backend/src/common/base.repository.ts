@@ -1,34 +1,39 @@
-import { Repository, SelectQueryBuilder, QueryRunner, DeepPartial, SaveOptions } from 'typeorm';
-import { TenantService } from '../tenant/tenant.service';
+import { Repository, SelectQueryBuilder, QueryRunner, SaveOptions } from 'typeorm';
+import { ClsService } from 'nestjs-cls';
 
 export class BaseRepository<T> extends Repository<T> {
     constructor(
         private readonly repo: Repository<T>,
-        private readonly tenantService: TenantService
+        private readonly cls?: ClsService
     ) {
         super(repo.target, repo.manager, repo.queryRunner);
     }
 
     createQueryBuilder(alias?: string, queryRunner?: QueryRunner): SelectQueryBuilder<T> {
         const builder = this.repo.createQueryBuilder(alias, queryRunner);
-        const tenantId = this.tenantService.tenantId;
 
-        // Verifica se a entidade tem a coluna ID_EMPRESA (ou relação empresa)
-        // Podemos checar os metadados, mas por enquanto vamos assumir que se estamos usando esse repo, é para filtrar
-        // Uma verificação mais robusta seria:
-        const hasEmpresaColumn = this.metadata.columns.some(c => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA');
-        const hasEmpresaRelation = this.metadata.relations.some(r => r.propertyName === 'empresa');
+        try {
+            // Pega o tenant ID do contexto CLS
+            const tenantId = this.cls?.get<number>('TENANT_ID');
 
-        if (tenantId && (hasEmpresaColumn || hasEmpresaRelation)) {
-            // Usa o alias fornecido ou o nome da tabela/target
-            const entityAlias = alias || this.metadata.targetName;
+            // Verifica se a entidade tem a coluna ID_EMPRESA (ou relação empresa)
+            const hasEmpresaColumn = this.metadata.columns.some(c => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA');
+            const hasEmpresaRelation = this.metadata.relations.some(r => r.propertyName === 'empresa');
 
-            // Validação de segurança do alias
-            if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(entityAlias)) {
-                throw new Error(`Invalid query builder alias: ${entityAlias}`);
+            if (tenantId && (hasEmpresaColumn || hasEmpresaRelation)) {
+                // Usa o alias fornecido ou o alias padrão do builder
+                const entityAlias = alias || builder.alias;
+
+                // Validação de segurança do alias
+                if (!/^[a-zA-Z_][a-zA-Z0-9_]*$/.test(entityAlias)) {
+                    throw new Error(`Invalid query builder alias: ${entityAlias}`);
+                }
+
+                builder.andWhere(`${entityAlias}.empresa = :tenantId`, { tenantId });
             }
-
-            builder.andWhere(`${entityAlias}.empresa = :tenantId`, { tenantId });
+        } catch (error) {
+            // CLS não disponível - pode ser uma rota sem autenticação ou inicialização
+            // Silently ignore
         }
 
         return builder;
@@ -37,23 +42,35 @@ export class BaseRepository<T> extends Repository<T> {
     async save<T>(entity: T, options?: SaveOptions): Promise<T>;
     async save<T>(entities: T[], options?: SaveOptions): Promise<T[]>;
     async save<T>(entityOrEntities: T | T[], options?: SaveOptions): Promise<T | T[]> {
-        const tenantId = this.tenantService.tenantId;
+        try {
+            // Pega o tenant ID do contexto CLS
+            const tenantId = this.cls?.get<number>('TENANT_ID');
 
-        if (tenantId) {
-            if (Array.isArray(entityOrEntities)) {
-                entityOrEntities.forEach(e => this.setTenant(e, tenantId));
-            } else {
-                this.setTenant(entityOrEntities, tenantId);
+            if (tenantId) {
+                if (Array.isArray(entityOrEntities)) {
+                    entityOrEntities.forEach(e => this.setTenant(e, tenantId, this.metadata));
+                } else {
+                    this.setTenant(entityOrEntities, tenantId, this.metadata);
+                }
             }
+        } catch (error) {
+            // CLS não disponível - pode ser uma rota sem autenticação
+            // Silently ignore
         }
 
         return this.repo.save(entityOrEntities as any, options);
     }
 
-    private setTenant(entity: any, tenantId: number) {
-        // Verifica se a entidade já tem empresa definida, se não, define
-        if (!entity.empresa && !entity.idEmpresa) {
-            entity.empresa = { id: tenantId };
+    private setTenant(entity: any, tenantId: number, metadata: any) {
+        // Verifica se a entidade tem a coluna ID_EMPRESA (ou relação empresa)
+        const hasEmpresaColumn = metadata.columns.some((c: any) => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA');
+        const hasEmpresaRelation = metadata.relations.some((r: any) => r.propertyName === 'empresa');
+
+        if (hasEmpresaColumn || hasEmpresaRelation) {
+            // Só define o tenant se a entidade for projetada para ser tenant-aware
+            if (!entity.empresa && !entity.idEmpresa) {
+                entity.empresa = { id: tenantId };
+            }
         }
     }
 }

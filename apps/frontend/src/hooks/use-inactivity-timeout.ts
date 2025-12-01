@@ -43,8 +43,8 @@ export function useInactivityTimeout({
         }
     }, []);
 
-    const startWarningCountdown = useCallback(() => {
-        setSecondsRemaining(Math.floor(warningTimeout / 1000));
+    const startWarningCountdown = useCallback((initialSeconds?: number) => {
+        setSecondsRemaining(initialSeconds ?? Math.floor(warningTimeout / 1000));
 
         countdownIntervalRef.current = setInterval(() => {
             setSecondsRemaining((prev) => {
@@ -55,13 +55,15 @@ export function useInactivityTimeout({
             });
         }, 1000);
 
+        const timeoutMs = (initialSeconds ?? Math.floor(warningTimeout / 1000)) * 1000;
+
         warningTimerRef.current = setTimeout(() => {
             if (countdownIntervalRef.current) {
                 clearInterval(countdownIntervalRef.current);
                 countdownIntervalRef.current = null;
             }
             onLogout();
-        }, warningTimeout);
+        }, timeoutMs);
     }, [warningTimeout, onLogout, clearAllTimers]);
 
     const resetTimer = useCallback(() => {
@@ -84,13 +86,23 @@ export function useInactivityTimeout({
             isPageVisibleRef.current = isVisible;
 
             if (isVisible) {
-                const timeHidden = Date.now() - lastActivityTimeRef.current;
+                const currentTime = Date.now();
+                const timeSinceLastActivity = currentTime - lastActivityTimeRef.current;
 
-                if (timeHidden >= inactivityTimeout && !showWarning) {
-                    setShowWarning(true);
-                    startWarningCountdown();
+                if (timeSinceLastActivity >= inactivityTimeout + warningTimeout) {
+                    // Tempo total expirou (inatividade + aviso)
+                    onLogout();
+                } else if (timeSinceLastActivity >= inactivityTimeout) {
+                    // Entrou na zona de aviso enquanto estava em background
+                    if (!showWarning) {
+                        setShowWarning(true);
+                        const timeInWarning = timeSinceLastActivity - inactivityTimeout;
+                        const remainingWarningSeconds = Math.max(0, Math.floor((warningTimeout - timeInWarning) / 1000));
+                        startWarningCountdown(remainingWarningSeconds);
+                    }
                 } else if (!showWarning) {
-                    const remainingTime = inactivityTimeout - timeHidden;
+                    // Ainda dentro do tempo de atividade permitido
+                    const remainingTime = inactivityTimeout - timeSinceLastActivity;
                     if (remainingTime > 0) {
                         inactivityTimerRef.current = setTimeout(() => {
                             setShowWarning(true);
@@ -111,7 +123,7 @@ export function useInactivityTimeout({
         return () => {
             document.removeEventListener('visibilitychange', handleVisibilityChange);
         };
-    }, [showWarning, inactivityTimeout, startWarningCountdown]);
+    }, [showWarning, inactivityTimeout, warningTimeout, startWarningCountdown, onLogout]);
 
     // Activity listeners - ONLY ONCE
     useEffect(() => {

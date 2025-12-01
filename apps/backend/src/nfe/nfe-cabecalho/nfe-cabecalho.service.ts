@@ -33,7 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Empresa, EmpresaEndereco, NfeCabecalho, NfeNumero } from '../../entities-export';
@@ -46,9 +46,9 @@ import * as INI from "easy-ini";
 import { Ini } from '../../util/ini';
 import { ControleEstoqueService } from 'estoque/controle-estoque/controle-estoque.service';
 
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
-@Injectable({ scope: Scope.REQUEST })
+import { ClsService } from 'nestjs-cls';
+@Injectable()
 export class NfeCabecalhoService extends TypeOrmCrudService<NfeCabecalho> {
 
 	caminhoComCnpj: string = "C:\\ACBrMonitor\\10793118000178\\";
@@ -56,10 +56,9 @@ export class NfeCabecalhoService extends TypeOrmCrudService<NfeCabecalho> {
 	constructor(
 		private dataSource: DataSource,
 		@InjectRepository(NfeCabecalho) repository,
-		private readonly tenantService: TenantService,
 		private readonly controleEstoqueService: ControleEstoqueService
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(nfeCabecalho: NfeCabecalho, operacao: string): Promise<NfeCabecalho> {

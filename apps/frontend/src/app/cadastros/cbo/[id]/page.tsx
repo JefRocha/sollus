@@ -7,7 +7,8 @@ export default async function CboPersistePage({
 }: {
   params: { id: string };
 }) {
-  const id = params.id;
+  const resolvedParams = await params; // Await the params object
+  const id = resolvedParams.id;
   const isEditing = id !== "novo";
   const data = isEditing ? await getCboById(Number(id)) : undefined;
 

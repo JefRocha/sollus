@@ -35,7 +35,7 @@ export const columns: ColumnDef<Cbo>[] = [
     cell: ({ row }) => (
       <DataTableRowActions
         row={row}
-        resource="/cbo"
+        resource="/cadastros/cbo"
         resourceName="Cbo"
       />
     ),

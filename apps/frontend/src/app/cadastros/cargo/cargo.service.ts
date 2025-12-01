@@ -1,5 +1,4 @@
-// A base da URL da API deve vir de uma variável de ambiente
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+import { apiFetch } from '@/lib/api';
 
 const ENDPOINT = `/cargo`;
 
@@ -16,11 +15,12 @@ export type Cargo = {
  * Busca uma lista de Cargo.
  */
 export async function getCargos(): Promise<Cargo[]> {
-    const response = await fetch(`${API_URL}${ENDPOINT}`);
-    if (!response.ok) {
-        throw new Error('Falha ao buscar os dados de Cargo.');
+    try {
+        return await apiFetch<Cargo[]>(ENDPOINT);
+    } catch (error) {
+        console.error('Failed to fetch Cargos:', error);
+        return [];
     }
-    return response.json();
 }
 
 /**
@@ -28,11 +28,7 @@ export async function getCargos(): Promise<Cargo[]> {
  * @param id O ID do(a) Cargo.
  */
 export async function getCargoById(id: number): Promise<Cargo> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`);
-    if (!response.ok) {
-        throw new Error('Falha ao buscar o dado de Cargo.');
-    }
-    return response.json();
+    return apiFetch<Cargo>(`${ENDPOINT}/${id}`);
 }
 
 /**
@@ -40,18 +36,10 @@ export async function getCargoById(id: number): Promise<Cargo> {
  * @param data Os dados para o(a) novo(a) Cargo.
  */
 export async function createCargo(data: Omit<Cargo, 'id'>): Promise<Cargo> {
-    const response = await fetch(`${API_URL}${ENDPOINT}`, {
+    return apiFetch<Cargo>(ENDPOINT, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify(data),
     });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao criar o dado de Cargo.');
-    }
-    return response.json();
 }
 
 /**
@@ -60,18 +48,10 @@ export async function createCargo(data: Omit<Cargo, 'id'>): Promise<Cargo> {
  * @param data Os dados a serem atualizados.
  */
 export async function updateCargo(id: number, data: Partial<Omit<Cargo, 'id'>>): Promise<Cargo> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`, {
+    return apiFetch<Cargo>(`${ENDPOINT}/${id}`, {
         method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify(data),
     });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao atualizar o dado de Cargo.');
-    }
-    return response.json();
 }
 
 /**
@@ -79,11 +59,7 @@ export async function updateCargo(id: number, data: Partial<Omit<Cargo, 'id'>>):
  * @param id O ID do(a) Cargo a ser deletado(a).
  */
 export async function deleteCargo(id: number): Promise<void> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`, {
+    await apiFetch<void>(`${ENDPOINT}/${id}`, {
         method: 'DELETE',
     });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao deletar o dado de Cargo.');
-    }
 }

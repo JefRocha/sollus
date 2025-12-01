@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { CboSchema, cboSchema } from "../cbo.zod.schema";
-import { createCbo, updateCbo, Cbo } from "../cbo.service";
+import { Cbo } from "../cbo.service"; // Keep Cbo type import
+import { createCboAction, updateCboAction } from '@/actions/cbo'; // Import Server Actions
 
 import {
   Form,
@@ -37,16 +38,24 @@ export function CboForm({ data }: CboFormProps) {
   const onSubmit = async (formData: CboSchema) => {
     try {
       if (isEditing) {
-        await updateCbo(data.id, formData);
-        toast.success("Cbo atualizado com sucesso!");
+        const result = await updateCboAction({ id: data.id, ...formData });
+        if (result?.data?.success) {
+          toast.success("Cbo atualizado com sucesso!");
+        } else {
+          toast.error(result?.data?.error || result?.serverError || "Erro ao atualizar Cbo.");
+        }
       } else {
-        await createCbo(formData);
-        toast.success("Cbo criado com sucesso!");
+        const result = await createCboAction(formData);
+        if (result?.data?.success) {
+          toast.success("Cbo criado com sucesso!");
+        } else {
+          toast.error(result?.data?.error || result?.serverError || "Erro ao criar Cbo.");
+        }
       }
-      router.push("/cbo");
-      router.refresh(); // Garante que os dados na página de listagem sejam atualizados
-    } catch (error) {
-      toast.error("Ocorreu um erro ao salvar. Tente novamente.");
+      router.push("/cadastros/cbo");
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error.message || "Ocorreu um erro ao salvar. Tente novamente.");
       console.error(error);
     }
   };
@@ -59,7 +68,7 @@ export function CboForm({ data }: CboFormProps) {
             <CardTitle>Informações Básicas</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-12 gap-4">
-            
+
             <FormField
               control={form.control}
               name="codigo"

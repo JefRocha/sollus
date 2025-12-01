@@ -37,6 +37,7 @@ import { Injectable, Scope } from '@nestjs/common';
 import { Produto } from '../../entities-export';
 import { DataSource, QueryRunner } from 'typeorm';
 import { TenantService } from '../../tenant/tenant.service';
+import { ClsServiceManager } from 'nestjs-cls';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ControleEstoqueService {
@@ -56,7 +57,7 @@ export class ControleEstoqueService {
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 
-		const tenantId = this.tenantService.tenantId;
+		const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 		let produto = await queryRunner.manager.findOne(Produto, { where: { gtin: pProduto.gtin, empresa: { id: tenantId } } });
 		if (produto == null) {
 			pProduto.empresa = { id: tenantId } as any;

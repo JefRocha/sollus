@@ -33,24 +33,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { TributConfiguraOfGt } from './tribut-configura-of-gt.entity';
 import { DataSource, QueryRunner } from 'typeorm';
 import { Empresa, TributGrupoTributario, TributOperacaoFiscal } from 'entities-export';
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class TributConfiguraOfGtService extends TypeOrmCrudService<TributConfiguraOfGt> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(TributConfiguraOfGt) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(TributConfiguraOfGt) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(tributConfiguraOfGt: TributConfiguraOfGt, operacao: string): Promise<TributConfiguraOfGt> {
@@ -61,7 +60,7 @@ export class TributConfiguraOfGtService extends TypeOrmCrudService<TributConfigu
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 		try {
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				tributConfiguraOfGt.empresa = { id: tenantId } as any;
 			}
@@ -108,7 +107,7 @@ export class TributConfiguraOfGtService extends TypeOrmCrudService<TributConfigu
 	async consultarTributacao(idTributGrupoTributario: string, idTributOperacaoFiscal: string): Promise<TributConfiguraOfGt> {
 		let objetoRetorno: TributConfiguraOfGt;
 		try {
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			const grupoTributario = await this.dataSource.manager.findOneBy(TributGrupoTributario, { id: parseInt(idTributGrupoTributario), empresa: { id: tenantId } });
 			const operacaoFiscal = await this.dataSource.manager.findOneBy(TributOperacaoFiscal, { id: parseInt(idTributOperacaoFiscal), empresa: { id: tenantId } });
 			objetoRetorno = await this.dataSource.manager.findOne(TributConfiguraOfGt, { where: { tributGrupoTributario: grupoTributario, tributOperacaoFiscal: operacaoFiscal, empresa: { id: tenantId } }, relations: ['tributCofins', 'tributIpi', 'tributPis', 'tributGrupoTributario', 'tributOperacaoFiscal', 'listaTributIcmsUf'] });

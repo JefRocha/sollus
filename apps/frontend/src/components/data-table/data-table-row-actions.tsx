@@ -64,7 +64,7 @@ export function DataTableRowActions<TData>({
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                    <Link href={`${resource}/${data.id}/editar`} className="cursor-pointer">
+                    <Link href={`${resource}/${data.id}`} className="cursor-pointer">
                         <Pencil className="mr-2 h-4 w-4" />
                         Editar
                     </Link>

@@ -34,26 +34,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope, UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Usuario } from './../cadastros/usuario/usuario.entity';
 import { RefreshToken } from './refresh-token.entity';
 import { Repository } from 'typeorm';
 
-import { TenantService } from '../tenant/tenant.service';
 import { BaseRepository } from '../common/base.repository';
-@Injectable({ scope: Scope.REQUEST })
+import { ClsService } from 'nestjs-cls';
+@Injectable()
 export class LoginService extends TypeOrmCrudService<Usuario> {
 
     private key: string = "#Sua-chave-de-32-caracteres-aqui";
 
     constructor(
         @InjectRepository(Usuario) repository,
-        @InjectRepository(RefreshToken) private refreshTokenRepo: Repository<RefreshToken>,
-        private readonly tenantService: TenantService
+        @InjectRepository(RefreshToken) private refreshTokenRepo: Repository<RefreshToken>
     ) {
-        super(new BaseRepository(repository, tenantService));
+        super(new BaseRepository(repository));
     }
 
     async login(usuario: Usuario) {

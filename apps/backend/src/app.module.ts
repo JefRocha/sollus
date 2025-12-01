@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ClsModule } from 'nestjs-cls';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
@@ -19,42 +20,46 @@ import { SpedModule } from './sped/sped.module';
 import { GedModule } from './ged/ged.module';
 import { InventarioModule } from './inventario/inventario.module';
 import { ViewsDBModule } from './views-db/views-db.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { AppInterceptor } from './app.interceptor';
 import { LoginModule } from './login/login.module';
 import { TenantModule } from './tenant/tenant.module';
-
 import { HealthController } from './health/health.controller';
+import { APP_INTERCEPTOR } from '@nestjs/core';
+import { ClsInterceptor } from './common/cls.interceptor';
 
-@Module(
-  {
-    imports: [
-      TypeOrmModule.forRoot(dbConfig),
-      CadastrosModule,
-      FinanceiroModule,
-      EstoqueModule,
-      TributacaoModule,
-      VendasModule,
-      ComprasModule,
-      NfeModule,
-      AdministrativoModule,
-      ComissoesModule,
-      OsModule,
-      AfvModule,
-      SpedModule,
-      GedModule,
-      InventarioModule,
-      ViewsDBModule,
-      LoginModule,
-      TenantModule,
-    ],
-    controllers: [AppController, HealthController],
-    providers: [AppService],//, {
-    //   provide: APP_INTERCEPTOR,
-    //   useClass: AppInterceptor,
-    // }],
-  }
-)
+@Module({
+  imports: [
+    TypeOrmModule.forRoot(dbConfig),
+    ClsModule.forRoot({
+      global: true,
+      middleware: { mount: false }, // Desabilitar middleware automático
+    }),
+    CadastrosModule,
+    FinanceiroModule,
+    EstoqueModule,
+    TributacaoModule,
+    VendasModule,
+    ComprasModule,
+    NfeModule,
+    AdministrativoModule,
+    ComissoesModule,
+    OsModule,
+    AfvModule,
+    SpedModule,
+    GedModule,
+    InventarioModule,
+    ViewsDBModule,
+    LoginModule,
+    TenantModule,
+  ],
+  controllers: [AppController, HealthController],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ClsInterceptor,
+    },
+  ],
+})
 export class AppModule {
   constructor(private dataSource: DataSource) { }
 }

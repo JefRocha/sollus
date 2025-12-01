@@ -15,7 +15,7 @@ export default async function CboPage() {
         columns={columns}
         data={data}
         filterBy="nome"
-        createHref="/cbo/novo"
+        createHref="/cadastros/cbo/novo"
         createText="Novo Cbo"
       />
     </PageContainer>

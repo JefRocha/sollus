@@ -33,7 +33,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { FinLancamentoReceber } from './fin-lancamento-receber.entity';
@@ -45,18 +45,17 @@ import { FinConfiguracaoBoleto } from '../../entities-export';
 import { Biblioteca } from '../../util/biblioteca';
 import * as fs from "fs";
 import * as INI from "easy-ini";
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancamentoReceber> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(FinLancamentoReceber) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(FinLancamentoReceber) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(finLancamentoReceber: FinLancamentoReceber, operacao: string): Promise<FinLancamentoReceber> {
@@ -68,7 +67,7 @@ export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancament
 		await queryRunner.startTransaction();
 		try {
 			// Injeta o Tenant ID manualmente pois estamos usando queryRunner direto
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				finLancamentoReceber.empresa = { id: tenantId } as any;
 			}
@@ -127,7 +126,7 @@ export class FinLancamentoReceberService extends TypeOrmCrudService<FinLancament
 		//  Pega a empresa
 		let empresa: Empresa;
 		//const connection = getConnection();
-		const tenantId = this.tenantService.tenantId;
+		const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 		empresa = await this.dataSource.manager.findOneBy(Empresa, { id: tenantId || 1, });
 		empresa.setEnderecoPrincipal(await this.dataSource.manager.findOneBy(EmpresaEndereco, { id: tenantId || 1, }));
 		// Pega a configuração do boleto

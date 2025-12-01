@@ -34,7 +34,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 @version 1.0.0
 *******************************************************************************/
 import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Crud, CrudController, Override, ParsedRequest, CrudRequest } from '@nestjsx/crud';
 import { CargoService } from './cargo.service';
 import { Cargo } from './cargo.entity';
 
@@ -51,7 +51,14 @@ import { Cargo } from './cargo.entity';
 export class CargoController implements CrudController<Cargo> {
   constructor(public service: CargoService) { }
 
+  get base(): CrudController<Cargo> {
+    return this;
+  }
 
-
-
+  @Override()
+  getMany(
+    @ParsedRequest() req: CrudRequest,
+  ) {
+    return this.base.getManyBase(req);
+  }
 }

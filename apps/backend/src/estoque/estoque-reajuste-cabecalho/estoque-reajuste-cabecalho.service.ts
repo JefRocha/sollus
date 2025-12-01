@@ -33,24 +33,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { EstoqueReajusteCabecalho } from './estoque-reajuste-cabecalho.entity';
 import { DataSource, QueryRunner } from 'typeorm';
 import { Produto } from '../../entities-export';
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class EstoqueReajusteCabecalhoService extends TypeOrmCrudService<EstoqueReajusteCabecalho> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(EstoqueReajusteCabecalho) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(EstoqueReajusteCabecalho) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(estoqueReajusteCabecalho: EstoqueReajusteCabecalho, operacao: string): Promise<EstoqueReajusteCabecalho> {
@@ -61,7 +60,7 @@ export class EstoqueReajusteCabecalhoService extends TypeOrmCrudService<EstoqueR
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 		try {
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				estoqueReajusteCabecalho.empresa = { id: tenantId } as any;
 			}
@@ -112,7 +111,7 @@ export class EstoqueReajusteCabecalhoService extends TypeOrmCrudService<EstoqueR
 
 	async formarPreco(estoqueReajusteCabecalho: EstoqueReajusteCabecalho) {
 		const queryRunner = this.dataSource.createQueryRunner();
-		const tenantId = this.tenantService.tenantId;
+		const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 
 		// reajusta o preço do produto
 		for (let i = 0; i < estoqueReajusteCabecalho.listaEstoqueReajusteDetalhe.length; i++) {

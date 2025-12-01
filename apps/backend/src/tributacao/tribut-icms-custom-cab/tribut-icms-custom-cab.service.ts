@@ -33,23 +33,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { TributIcmsCustomCab } from './tribut-icms-custom-cab.entity';
 import { DataSource, QueryRunner } from 'typeorm';
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class TributIcmsCustomCabService extends TypeOrmCrudService<TributIcmsCustomCab> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(TributIcmsCustomCab) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(TributIcmsCustomCab) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(tributIcmsCustomCab: TributIcmsCustomCab, operacao: string): Promise<TributIcmsCustomCab> {
@@ -60,7 +59,7 @@ export class TributIcmsCustomCabService extends TypeOrmCrudService<TributIcmsCus
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 		try {
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				tributIcmsCustomCab.empresa = { id: tenantId } as any;
 			}

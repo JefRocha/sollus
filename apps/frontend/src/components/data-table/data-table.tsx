@@ -15,6 +15,8 @@ import {
 } from '@tanstack/react-table';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { PaginationState, Updater, OnChangeFn } from '@tanstack/react-table';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -42,52 +44,89 @@ export function DataTable<TData, TValue>({
     createHref,
     createText = 'Criar Novo',
 }: DataTableProps<TData, TValue>) {
-    const [sorting, setSorting] = React.useState<SortingState>([]);
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
-    const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-    const [rowSelection, setRowSelection] = React.useState({});
+    const pathname = usePathname();
+    const storageKey = `dataTable-state-${pathname}`;
 
-    // Carregar pageSize do localStorage ou usar 15 como padrão
-    const [pageSize, setPageSize] = React.useState<number>(() => {
+    // Helper to load state safely
+    const loadState = React.useCallback(() => {
         if (typeof window !== 'undefined') {
-            const saved = localStorage.getItem('dataTablePageSize');
-            return saved ? parseInt(saved, 10) : 15;
+            try {
+                const saved = localStorage.getItem(storageKey);
+                if (saved) return JSON.parse(saved);
+            } catch (e) {
+                console.error('Failed to load data table state', e);
+            }
         }
-        return 15;
+        return null;
+    }, [storageKey]);
+
+    const initialState = React.useMemo(() => loadState(), [loadState]);
+
+    const [sorting, setSorting] = React.useState<SortingState>(initialState?.sorting || []);
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(initialState?.columnFilters || []);
+    const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>(initialState?.columnVisibility || {});
+    const [rowSelection, setRowSelection] = React.useState(initialState?.rowSelection || {});
+
+    // Initialize pagination with saved state or global default
+    const [pagination, setPagination] = React.useState<PaginationState>({
+        pageIndex: initialState?.pagination?.pageIndex || 0,
+        pageSize: initialState?.pagination?.pageSize || (() => {
+            if (typeof window !== 'undefined') {
+                const saved = localStorage.getItem('dataTablePageSize');
+                return saved ? parseInt(saved, 10) : 15;
+            }
+            return 15;
+        })(),
     });
 
-    // Salvar pageSize no localStorage quando mudar
+    // Save state changes to localStorage
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
-            localStorage.setItem('dataTablePageSize', pageSize.toString());
+            const state = {
+                sorting,
+                columnFilters,
+                columnVisibility,
+                rowSelection,
+                pagination,
+            };
+            localStorage.setItem(storageKey, JSON.stringify(state));
+
+            // Also update global page size preference
+            localStorage.setItem('dataTablePageSize', pagination.pageSize.toString());
         }
-    }, [pageSize]);
+    }, [sorting, columnFilters, columnVisibility, rowSelection, pagination, storageKey]);
+
+    // Wrap setColumnFilters to reset pagination when filters change
+    const handleColumnFiltersChange: OnChangeFn<ColumnFiltersState> = React.useCallback(
+        (updaterOrValue) => {
+            setColumnFilters((old) => {
+                const next = typeof updaterOrValue === 'function' ? updaterOrValue(old) : updaterOrValue;
+                return next;
+            });
+            setPagination((old) => ({ ...old, pageIndex: 0 }));
+        },
+        []
+    );
 
     const table = useReactTable({
         data,
         columns,
         onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
+        onColumnFiltersChange: handleColumnFiltersChange,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         getSortedRowModel: getSortedRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
         onColumnVisibilityChange: setColumnVisibility,
         onRowSelectionChange: setRowSelection,
-        initialState: {
-            pagination: {
-                pageSize: pageSize,
-            },
-        },
+        onPaginationChange: setPagination,
+        autoResetPageIndex: false, // Prevent page reset on data update (e.g. returning from edit)
         state: {
             sorting,
             columnFilters,
             columnVisibility,
             rowSelection,
-            pagination: {
-                pageIndex: 0,
-                pageSize: pageSize,
-            },
+            pagination,
         },
     });
 
@@ -173,9 +212,7 @@ export function DataTable<TData, TValue>({
                         <select
                             value={table.getState().pagination.pageSize}
                             onChange={(e) => {
-                                const newSize = Number(e.target.value);
-                                table.setPageSize(newSize);
-                                setPageSize(newSize);
+                                table.setPageSize(Number(e.target.value));
                             }}
                             className="h-8 w-[70px] rounded-md border border-input bg-transparent px-2 py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >

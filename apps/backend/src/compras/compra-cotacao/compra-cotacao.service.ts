@@ -33,23 +33,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Injectable, Scope } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { CompraCotacao } from './compra-cotacao.entity';
 import { DataSource, QueryRunner } from 'typeorm';
-import { TenantService } from '../../tenant/tenant.service';
 import { BaseRepository } from '../../common/base.repository';
+import { ClsServiceManager } from 'nestjs-cls';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CompraCotacaoService extends TypeOrmCrudService<CompraCotacao> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(CompraCotacao) repository,
-		private readonly tenantService: TenantService
+		@InjectRepository(CompraCotacao) repository
 	) {
-		super(new BaseRepository(repository, tenantService));
+		super(new BaseRepository(repository));
 	}
 
 	async persistir(compraCotacao: CompraCotacao, operacao: string): Promise<CompraCotacao> {
@@ -60,7 +59,7 @@ export class CompraCotacaoService extends TypeOrmCrudService<CompraCotacao> {
 		await queryRunner.connect();
 		await queryRunner.startTransaction();
 		try {
-			const tenantId = this.tenantService.tenantId;
+			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
 			if (tenantId) {
 				compraCotacao.empresa = { id: tenantId } as any;
 			}
