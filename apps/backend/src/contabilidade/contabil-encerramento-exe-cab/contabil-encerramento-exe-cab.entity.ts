@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_ENCERRAMENTO_EXE_CAB' })
+@Entity()
 export class ContabilEncerramentoExeCab {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'DATA_INCLUSAO' })
+	@Column()
 	dataInclusao: Date;
 
-	@Column({ name: 'MOTIVO' })
+	@Column()
 	motivo: string;
 
 

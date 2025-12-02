@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_ESCALA' })
+@Entity()
 export class PontoEscala {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCONTO_HORA_DIA' })
+	@Column()
 	descontoHoraDia: string;
 
-	@Column({ name: 'DESCONTO_DSR' })
+	@Column()
 	descontoDsr: string;
 
-	@Column({ name: 'CODIGO_HORARIO_DOMINGO' })
+	@Column()
 	codigoHorarioDomingo: string;
 
-	@Column({ name: 'CODIGO_HORARIO_SEGUNDA' })
+	@Column()
 	codigoHorarioSegunda: string;
 
-	@Column({ name: 'CODIGO_HORARIO_TERCA' })
+	@Column()
 	codigoHorarioTerca: string;
 
-	@Column({ name: 'CODIGO_HORARIO_QUARTA' })
+	@Column()
 	codigoHorarioQuarta: string;
 
-	@Column({ name: 'CODIGO_HORARIO_QUINTA' })
+	@Column()
 	codigoHorarioQuinta: string;
 
-	@Column({ name: 'CODIGO_HORARIO_SEXTA' })
+	@Column()
 	codigoHorarioSexta: string;
 
-	@Column({ name: 'CODIGO_HORARIO_SABADO' })
+	@Column()
 	codigoHorarioSabado: string;
 
 

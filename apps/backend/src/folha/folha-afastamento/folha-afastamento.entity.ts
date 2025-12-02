@@ -37,19 +37,19 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { FolhaTipoAfastamento } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_AFASTAMENTO' })
+@Entity()
 export class FolhaAfastamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'DIAS_AFASTADO' })
+	@Column()
 	diasAfastado: number;
 
 
@@ -57,11 +57,11 @@ export class FolhaAfastamento {
 	* Relations
 	*/
 	@OneToOne(() => FolhaTipoAfastamento)
-	@JoinColumn({ name: "ID_FOLHA_TIPO_AFASTAMENTO" })
+	@JoinColumn()
 	folhaTipoAfastamento: FolhaTipoAfastamento;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 

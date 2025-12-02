@@ -35,52 +35,52 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTRATO' })
+@Entity()
 export class Contrato {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_SOLICITACAO_SERVICO' })
+	@Column()
 	idSolicitacaoServico: number;
 
-	@Column({ name: 'ID_TIPO_CONTRATO' })
+	@Column()
 	idTipoContrato: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'DATA_INICIO_VIGENCIA' })
+	@Column()
 	dataInicioVigencia: Date;
 
-	@Column({ name: 'DATA_FIM_VIGENCIA' })
+	@Column()
 	dataFimVigencia: Date;
 
-	@Column({ name: 'DIA_FATURAMENTO' })
+	@Column()
 	diaFaturamento: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'QUANTIDADE_PARCELAS' })
+	@Column()
 	quantidadeParcelas: number;
 
-	@Column({ name: 'INTERVALO_ENTRE_PARCELAS' })
+	@Column()
 	intervaloEntreParcelas: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'CLASSIFICACAO_CONTABIL_CONTA' })
+	@Column()
 	classificacaoContabilConta: string;
 
 

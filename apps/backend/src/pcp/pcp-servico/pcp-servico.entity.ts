@@ -35,49 +35,49 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PCP_SERVICO' })
+@Entity()
 export class PcpServico {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PCP_OP_DETALHE' })
+	@Column()
 	idPcpOpDetalhe: number;
 
-	@Column({ name: 'INICIO_REALIZADO' })
+	@Column()
 	inicioRealizado: Date;
 
-	@Column({ name: 'TERMINO_REALIZADO' })
+	@Column()
 	terminoRealizado: Date;
 
-	@Column({ name: 'HORAS_REALIZADO' })
+	@Column()
 	horasRealizado: number;
 
-	@Column({ name: 'MINUTOS_REALIZADO' })
+	@Column()
 	minutosRealizado: number;
 
-	@Column({ name: 'SEGUNDOS_REALIZADO' })
+	@Column()
 	segundosRealizado: number;
 
-	@Column({ name: 'CUSTO_REALIZADO' })
+	@Column()
 	custoRealizado: number;
 
-	@Column({ name: 'INICIO_PREVISTO' })
+	@Column()
 	inicioPrevisto: Date;
 
-	@Column({ name: 'TERMINO_PREVISTO' })
+	@Column()
 	terminoPrevisto: Date;
 
-	@Column({ name: 'HORAS_PREVISTO' })
+	@Column()
 	horasPrevisto: number;
 
-	@Column({ name: 'MINUTOS_PREVISTO' })
+	@Column()
 	minutosPrevisto: number;
 
-	@Column({ name: 'SEGUNDOS_PREVISTO' })
+	@Column()
 	segundosPrevisto: number;
 
-	@Column({ name: 'CUSTO_PREVISTO' })
+	@Column()
 	custoPrevisto: number;
 
 

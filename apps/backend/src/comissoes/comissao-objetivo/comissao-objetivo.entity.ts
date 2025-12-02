@@ -38,34 +38,34 @@ import { ComissaoPerfil } from '../../entities-export';
 import { Produto } from '../../entities-export';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'COMISSAO_OBJETIVO' })
+@Entity()
 export class ComissaoObjetivo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'FORMA_PAGAMENTO' })
+	@Column()
 	formaPagamento: string;
 
-	@Column({ name: 'TAXA_PAGAMENTO' })
+	@Column()
 	taxaPagamento: number;
 
-	@Column({ name: 'VALOR_PAGAMENTO' })
+	@Column()
 	valorPagamento: number;
 
-	@Column({ name: 'VALOR_META' })
+	@Column()
 	valorMeta: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 
@@ -73,15 +73,15 @@ export class ComissaoObjetivo {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => ComissaoPerfil, comissaoPerfil => comissaoPerfil.listaComissaoObjetivo)
-	@JoinColumn({ name: "ID_COMISSAO_PERFIL" })
+	@JoinColumn()
 	comissaoPerfil: ComissaoPerfil;
 
 

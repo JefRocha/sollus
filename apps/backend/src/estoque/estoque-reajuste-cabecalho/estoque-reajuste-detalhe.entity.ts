@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { EstoqueReajusteCabecalho } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'ESTOQUE_REAJUSTE_DETALHE' })
+@Entity()
 export class EstoqueReajusteDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VALOR_ORIGINAL' })
+	@Column()
 	valorOriginal: number;
 
-	@Column({ name: 'VALOR_REAJUSTE' })
+	@Column()
 	valorReajuste: number;
 
 
@@ -54,11 +54,11 @@ export class EstoqueReajusteDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => EstoqueReajusteCabecalho, estoqueReajusteCabecalho => estoqueReajusteCabecalho.listaEstoqueReajusteDetalhe)
-	@JoinColumn({ name: "ID_ESTOQUE_REAJUSTE_CABECALHO" })
+	@JoinColumn()
 	estoqueReajusteCabecalho: EstoqueReajusteCabecalho;
 
 

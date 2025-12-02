@@ -35,58 +35,58 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FOLHA_EVENTO' })
+@Entity()
 export class FolhaEvento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'UNIDADE' })
+	@Column()
 	unidade: string;
 
-	@Column({ name: 'BASE_CALCULO' })
+	@Column()
 	baseCalculo: string;
 
-	@Column({ name: 'TAXA' })
+	@Column()
 	taxa: number;
 
-	@Column({ name: 'RUBRICA_ESOCIAL' })
+	@Column()
 	rubricaEsocial: string;
 
-	@Column({ name: 'COD_INCIDENCIA_PREVIDENCIA' })
+	@Column()
 	codIncidenciaPrevidencia: string;
 
-	@Column({ name: 'COD_INCIDENCIA_IRRF' })
+	@Column()
 	codIncidenciaIrrf: string;
 
-	@Column({ name: 'COD_INCIDENCIA_FGTS' })
+	@Column()
 	codIncidenciaFgts: string;
 
-	@Column({ name: 'COD_INCIDENCIA_SINDICATO' })
+	@Column()
 	codIncidenciaSindicato: string;
 
-	@Column({ name: 'REPERCUTE_DSR' })
+	@Column()
 	repercuteDsr: string;
 
-	@Column({ name: 'REPERCUTE_13' })
+	@Column()
 	repercute13: string;
 
-	@Column({ name: 'REPERCUTE_FERIAS' })
+	@Column()
 	repercuteFerias: string;
 
-	@Column({ name: 'REPERCUTE_AVISO' })
+	@Column()
 	repercuteAviso: string;
 
 

@@ -35,16 +35,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'COLABORADOR_TIPO' })
+@Entity()
 export class ColaboradorTipo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 

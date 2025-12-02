@@ -36,29 +36,29 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { NotaFiscalModelo, Empresa } from '../../entities-export';
 
-@Entity({ name: 'NOTA_FISCAL_TIPO' })
+@Entity()
 export class NotaFiscalTipo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'SERIE' })
+	@Column()
 	serie: string;
 
-	@Column({ name: 'SERIE_SCAN' })
+	@Column()
 	serieScan: string;
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
-	@Column({ name: 'ULTIMO_NUMERO' })
+	@Column()
 	ultimoNumero: number;
 
 
@@ -66,7 +66,7 @@ export class NotaFiscalTipo {
 	* Relations
 	*/
 	@OneToOne(() => NotaFiscalModelo)
-	@JoinColumn({ name: "ID_NOTA_FISCAL_MODELO" })
+	@JoinColumn()
 	notaFiscalModelo: NotaFiscalModelo;
 
 

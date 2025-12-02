@@ -36,46 +36,46 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Pessoa } from '../../entities-export';
 
-@Entity({ name: 'PESSOA_ENDERECO' })
+@Entity()
 export class PessoaEndereco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'MUNICIPIO_IBGE' })
+	@Column()
 	municipioIbge: number;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'CIDADE' })
+	@Column()
 	cidade: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'PRINCIPAL' })
+	@Column()
 	principal: string;
 
-	@Column({ name: 'ENTREGA' })
+	@Column()
 	entrega: string;
 
-	@Column({ name: 'COBRANCA' })
+	@Column()
 	cobranca: string;
 
-	@Column({ name: 'CORRESPONDENCIA' })
+	@Column()
 	correspondencia: string;
 
 
@@ -83,7 +83,7 @@ export class PessoaEndereco {
 	* Relations
 	*/
 	@ManyToOne(() => Pessoa, pessoa => pessoa.listaPessoaEndereco)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 

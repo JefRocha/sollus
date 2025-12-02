@@ -41,226 +41,226 @@ import { CteRemetente } from '../../entities-export';
 import { CteRodoviario } from '../../entities-export';
 import { CteTomador } from '../../entities-export';
 
-@Entity({ name: 'CTE_CABECALHO' })
+@Entity()
 export class CteCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'UF_EMITENTE' })
+	@Column()
 	ufEmitente: number;
 
-	@Column({ name: 'CODIGO_NUMERICO' })
+	@Column()
 	codigoNumerico: string;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'NATUREZA_OPERACAO' })
+	@Column()
 	naturezaOperacao: string;
 
-	@Column({ name: 'FORMA_PAGAMENTO' })
+	@Column()
 	formaPagamento: string;
 
-	@Column({ name: 'MODELO' })
+	@Column()
 	modelo: string;
 
-	@Column({ name: 'SERIE' })
+	@Column()
 	serie: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_HORA_EMISSAO' })
+	@Column()
 	dataHoraEmissao: Date;
 
-	@Column({ name: 'FORMATO_IMPRESSAO_DACTE' })
+	@Column()
 	formatoImpressaoDacte: string;
 
-	@Column({ name: 'TIPO_EMISSAO' })
+	@Column()
 	tipoEmissao: string;
 
-	@Column({ name: 'CHAVE_ACESSO' })
+	@Column()
 	chaveAcesso: string;
 
-	@Column({ name: 'DIGITO_CHAVE_ACESSO' })
+	@Column()
 	digitoChaveAcesso: string;
 
-	@Column({ name: 'AMBIENTE' })
+	@Column()
 	ambiente: string;
 
-	@Column({ name: 'TIPO_CTE' })
+	@Column()
 	tipoCte: string;
 
-	@Column({ name: 'PROCESSO_EMISSAO' })
+	@Column()
 	processoEmissao: string;
 
-	@Column({ name: 'VERSAO_PROCESSO_EMISSAO' })
+	@Column()
 	versaoProcessoEmissao: string;
 
-	@Column({ name: 'CHAVE_REFERENCIADO' })
+	@Column()
 	chaveReferenciado: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO_ENVIO' })
+	@Column()
 	codigoMunicipioEnvio: number;
 
-	@Column({ name: 'NOME_MUNICIPIO_ENVIO' })
+	@Column()
 	nomeMunicipioEnvio: string;
 
-	@Column({ name: 'UF_ENVIO' })
+	@Column()
 	ufEnvio: string;
 
-	@Column({ name: 'MODAL' })
+	@Column()
 	modal: string;
 
-	@Column({ name: 'TIPO_SERVICO' })
+	@Column()
 	tipoServico: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO_INI_PRESTACAO' })
+	@Column()
 	codigoMunicipioIniPrestacao: number;
 
-	@Column({ name: 'NOME_MUNICIPIO_INI_PRESTACAO' })
+	@Column()
 	nomeMunicipioIniPrestacao: string;
 
-	@Column({ name: 'UF_INI_PRESTACAO' })
+	@Column()
 	ufIniPrestacao: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO_FIM_PRESTACAO' })
+	@Column()
 	codigoMunicipioFimPrestacao: number;
 
-	@Column({ name: 'NOME_MUNICIPIO_FIM_PRESTACAO' })
+	@Column()
 	nomeMunicipioFimPrestacao: string;
 
-	@Column({ name: 'UF_FIM_PRESTACAO' })
+	@Column()
 	ufFimPrestacao: string;
 
-	@Column({ name: 'RETIRA' })
+	@Column()
 	retira: string;
 
-	@Column({ name: 'RETIRA_DETALHE' })
+	@Column()
 	retiraDetalhe: string;
 
-	@Column({ name: 'TOMADOR' })
+	@Column()
 	tomador: string;
 
-	@Column({ name: 'DATA_ENTRADA_CONTINGENCIA' })
+	@Column()
 	dataEntradaContingencia: Date;
 
-	@Column({ name: 'JUSTIFICATIVA_CONTINGENCIA' })
+	@Column()
 	justificativaContingencia: string;
 
-	@Column({ name: 'CARAC_ADICIONAL_TRANSPORTE' })
+	@Column()
 	caracAdicionalTransporte: string;
 
-	@Column({ name: 'CARAC_ADICIONAL_SERVICO' })
+	@Column()
 	caracAdicionalServico: string;
 
-	@Column({ name: 'FUNCIONARIO_EMISSOR' })
+	@Column()
 	funcionarioEmissor: string;
 
-	@Column({ name: 'FLUXO_ORIGEM' })
+	@Column()
 	fluxoOrigem: string;
 
-	@Column({ name: 'ENTREGA_TIPO_PERIODO' })
+	@Column()
 	entregaTipoPeriodo: string;
 
-	@Column({ name: 'ENTREGA_DATA_PROGRAMADA' })
+	@Column()
 	entregaDataProgramada: Date;
 
-	@Column({ name: 'ENTREGA_DATA_INICIAL' })
+	@Column()
 	entregaDataInicial: Date;
 
-	@Column({ name: 'ENTREGA_DATA_FINAL' })
+	@Column()
 	entregaDataFinal: Date;
 
-	@Column({ name: 'ENTREGA_TIPO_HORA' })
+	@Column()
 	entregaTipoHora: string;
 
-	@Column({ name: 'ENTREGA_HORA_PROGRAMADA' })
+	@Column()
 	entregaHoraProgramada: string;
 
-	@Column({ name: 'ENTREGA_HORA_INICIAL' })
+	@Column()
 	entregaHoraInicial: string;
 
-	@Column({ name: 'ENTREGA_HORA_FINAL' })
+	@Column()
 	entregaHoraFinal: string;
 
-	@Column({ name: 'MUNICIPIO_ORIGEM_CALCULO' })
+	@Column()
 	municipioOrigemCalculo: string;
 
-	@Column({ name: 'MUNICIPIO_DESTINO_CALCULO' })
+	@Column()
 	municipioDestinoCalculo: string;
 
-	@Column({ name: 'OBSERVACOES_GERAIS' })
+	@Column()
 	observacoesGerais: string;
 
-	@Column({ name: 'VALOR_TOTAL_SERVICO' })
+	@Column()
 	valorTotalServico: number;
 
-	@Column({ name: 'VALOR_RECEBER' })
+	@Column()
 	valorReceber: number;
 
-	@Column({ name: 'CST' })
+	@Column()
 	cst: string;
 
-	@Column({ name: 'BASE_CALCULO_ICMS' })
+	@Column()
 	baseCalculoIcms: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS' })
+	@Column()
 	aliquotaIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_ICMS' })
+	@Column()
 	percentualReducaoBcIcms: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ST_RETIDO' })
+	@Column()
 	valorBcIcmsStRetido: number;
 
-	@Column({ name: 'VALOR_ICMS_ST_RETIDO' })
+	@Column()
 	valorIcmsStRetido: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_ST_RETIDO' })
+	@Column()
 	aliquotaIcmsStRetido: number;
 
-	@Column({ name: 'VALOR_CREDITO_PRESUMIDO_ICMS' })
+	@Column()
 	valorCreditoPresumidoIcms: number;
 
-	@Column({ name: 'PERCENTUAL_BC_ICMS_OUTRA_UF' })
+	@Column()
 	percentualBcIcmsOutraUf: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_OUTRA_UF' })
+	@Column()
 	valorBcIcmsOutraUf: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_OUTRA_UF' })
+	@Column()
 	aliquotaIcmsOutraUf: number;
 
-	@Column({ name: 'VALOR_ICMS_OUTRA_UF' })
+	@Column()
 	valorIcmsOutraUf: number;
 
-	@Column({ name: 'SIMPLES_NACIONAL_INDICADOR' })
+	@Column()
 	simplesNacionalIndicador: string;
 
-	@Column({ name: 'SIMPLES_NACIONAL_TOTAL' })
+	@Column()
 	simplesNacionalTotal: number;
 
-	@Column({ name: 'INFORMACOES_ADD_FISCO' })
+	@Column()
 	informacoesAddFisco: string;
 
-	@Column({ name: 'VALOR_TOTAL_CARGA' })
+	@Column()
 	valorTotalCarga: number;
 
-	@Column({ name: 'PRODUTO_PREDOMINANTE' })
+	@Column()
 	produtoPredominante: string;
 
-	@Column({ name: 'CARGA_OUTRAS_CARACTERISTICAS' })
+	@Column()
 	cargaOutrasCaracteristicas: string;
 
-	@Column({ name: 'MODAL_VERSAO_LAYOUT' })
+	@Column()
 	modalVersaoLayout: number;
 
-	@Column({ name: 'CHAVE_CTE_SUBSTITUIDO' })
+	@Column()
 	chaveCteSubstituido: string;
 
 

@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { Empresa } from '../../entities-export';
-@Entity({ name: 'TRIBUT_OPERACAO_FISCAL' })
+@Entity()
 export class TributOperacaoFiscal {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'DESCRICAO_NA_NF' })
+	@Column()
 	descricaoNaNf: string;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -58,7 +58,7 @@ export class TributOperacaoFiscal {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	/**

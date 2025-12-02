@@ -36,40 +36,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { BancoContaCaixa } from '../../entities-export';
 
-@Entity({ name: 'FIN_FECHAMENTO_CAIXA_BANCO' })
+@Entity()
 export class FinFechamentoCaixaBanco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_FECHAMENTO' })
+	@Column()
 	dataFechamento: Date;
 
-	@Column({ name: 'MES_ANO' })
+	@Column()
 	mesAno: string;
 
-	@Column({ name: 'MES' })
+	@Column()
 	mes: string;
 
-	@Column({ name: 'ANO' })
+	@Column()
 	ano: string;
 
-	@Column({ name: 'SALDO_ANTERIOR' })
+	@Column()
 	saldoAnterior: number;
 
-	@Column({ name: 'RECEBIMENTOS' })
+	@Column()
 	recebimentos: number;
 
-	@Column({ name: 'PAGAMENTOS' })
+	@Column()
 	pagamentos: number;
 
-	@Column({ name: 'SALDO_CONTA' })
+	@Column()
 	saldoConta: number;
 
-	@Column({ name: 'CHEQUE_NAO_COMPENSADO' })
+	@Column()
 	chequeNaoCompensado: number;
 
-	@Column({ name: 'SALDO_DISPONIVEL' })
+	@Column()
 	saldoDisponivel: number;
 
 
@@ -77,7 +77,7 @@ export class FinFechamentoCaixaBanco {
 	* Relations
 	*/
 	@OneToOne(() => BancoContaCaixa)
-	@JoinColumn({ name: "ID_BANCO_CONTA_CAIXA" })
+	@JoinColumn()
 	bancoContaCaixa: BancoContaCaixa;
 
 

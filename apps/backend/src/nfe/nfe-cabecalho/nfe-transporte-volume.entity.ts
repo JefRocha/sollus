@@ -37,28 +37,28 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColum
 import { NfeTransporteVolumeLacre } from '../../entities-export';
 import { NfeTransporte } from '../../entities-export';
 
-@Entity({ name: 'NFE_TRANSPORTE_VOLUME' })
+@Entity()
 export class NfeTransporteVolume {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'ESPECIE' })
+	@Column()
 	especie: string;
 
-	@Column({ name: 'MARCA' })
+	@Column()
 	marca: string;
 
-	@Column({ name: 'NUMERACAO' })
+	@Column()
 	numeracao: string;
 
-	@Column({ name: 'PESO_LIQUIDO' })
+	@Column()
 	pesoLiquido: number;
 
-	@Column({ name: 'PESO_BRUTO' })
+	@Column()
 	pesoBruto: number;
 
 
@@ -69,7 +69,7 @@ export class NfeTransporteVolume {
 	listaNfeTransporteVolumeLacre: NfeTransporteVolumeLacre[];
 
 	@ManyToOne(() => NfeTransporte, nfeTransporte => nfeTransporte.listaNfeTransporteVolume)
-	@JoinColumn({ name: "ID_NFE_TRANSPORTE" })
+	@JoinColumn()
 	nfeTransporte: NfeTransporte;
 
 

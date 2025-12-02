@@ -35,28 +35,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_LANCAMENTO_CABECALHO' })
+@Entity()
 export class ContabilLancamentoCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTABIL_LOTE' })
+	@Column()
 	idContabilLote: number;
 
-	@Column({ name: 'DATA_LANCAMENTO' })
+	@Column()
 	dataLancamento: Date;
 
-	@Column({ name: 'DATA_INCLUSAO' })
+	@Column()
 	dataInclusao: Date;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'LIBERADO' })
+	@Column()
 	liberado: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
 

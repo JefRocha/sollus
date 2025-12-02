@@ -36,40 +36,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { CteCabecalho } from '../../entities-export';
 
-@Entity({ name: 'CTE_LOCAL_ENTREGA' })
+@Entity()
 export class CteLocalEntrega {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: number;
 
-	@Column({ name: 'NOME_MUNICIPIO' })
+	@Column()
 	nomeMunicipio: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
 
@@ -77,7 +77,7 @@ export class CteLocalEntrega {
 	* Relations
 	*/
 	@OneToOne(() => CteCabecalho, cteCabecalho => cteCabecalho.cteLocalEntrega)
-	@JoinColumn({ name: "ID_CTE_CABECALHO" })
+	@JoinColumn()
 	cteCabecalho: CteCabecalho;
 
 

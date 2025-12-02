@@ -35,23 +35,23 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import { Empresa } from '../../entities-export';
-@Entity({ name: 'COMPRA_TIPO_REQUISICAO' })
+@Entity()
 export class CompraTipoRequisicao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

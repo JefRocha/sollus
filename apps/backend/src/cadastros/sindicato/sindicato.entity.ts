@@ -35,64 +35,64 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'SINDICATO' })
+@Entity()
 export class Sindicato {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'CODIGO_BANCO' })
+	@Column()
 	codigoBanco: number;
 
-	@Column({ name: 'CODIGO_AGENCIA' })
+	@Column()
 	codigoAgencia: number;
 
-	@Column({ name: 'CONTA_BANCO' })
+	@Column()
 	contaBanco: string;
 
-	@Column({ name: 'CODIGO_CEDENTE' })
+	@Column()
 	codigoCedente: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'MUNICIPIO_IBGE' })
+	@Column()
 	municipioIbge: number;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'FONE1' })
+	@Column()
 	fone1: string;
 
-	@Column({ name: 'FONE2' })
+	@Column()
 	fone2: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'TIPO_SINDICATO' })
+	@Column()
 	tipoSindicato: string;
 
-	@Column({ name: 'DATA_BASE' })
+	@Column()
 	dataBase: Date;
 
-	@Column({ name: 'PISO_SALARIAL' })
+	@Column()
 	pisoSalarial: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CLASSIFICACAO_CONTABIL_CONTA' })
+	@Column()
 	classificacaoContabilConta: string;
 
 

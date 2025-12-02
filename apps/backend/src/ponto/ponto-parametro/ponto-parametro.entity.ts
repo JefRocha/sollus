@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_PARAMETRO' })
+@Entity()
 export class PontoParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MES_ANO' })
+	@Column()
 	mesAno: string;
 
-	@Column({ name: 'DIA_INICIAL_APURACAO' })
+	@Column()
 	diaInicialApuracao: number;
 
-	@Column({ name: 'HORA_NOTURNA_INICIO' })
+	@Column()
 	horaNoturnaInicio: string;
 
-	@Column({ name: 'HORA_NOTURNA_FIM' })
+	@Column()
 	horaNoturnaFim: string;
 
-	@Column({ name: 'PERIODO_MINIMO_INTERJORNADA' })
+	@Column()
 	periodoMinimoInterjornada: string;
 
-	@Column({ name: 'PERCENTUAL_HE_DIURNA' })
+	@Column()
 	percentualHeDiurna: number;
 
-	@Column({ name: 'PERCENTUAL_HE_NOTURNA' })
+	@Column()
 	percentualHeNoturna: number;
 
-	@Column({ name: 'DURACAO_HORA_NOTURNA' })
+	@Column()
 	duracaoHoraNoturna: string;
 
-	@Column({ name: 'TRATAMENTO_HORA_MAIS' })
+	@Column()
 	tratamentoHoraMais: string;
 
-	@Column({ name: 'TRATAMENTO_HORA_MENOS' })
+	@Column()
 	tratamentoHoraMenos: string;
 
 

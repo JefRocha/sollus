@@ -39,277 +39,277 @@ import { Produto } from '../../entities-export';
 import { TributOperacaoFiscal } from '../../entities-export';
 import { ProdutoUnidade } from '../../entities-export';
 
-@Entity({ name: 'VIEW_SPED_NFE_DETALHE' })
+@Entity()
 export class ViewSpedNfeDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_ITEM' })
+	@Column()
 	numeroItem: number;
 
-	@Column({ name: 'CODIGO_PRODUTO' })
+	@Column()
 	codigoProduto: string;
 
-	@Column({ name: 'GTIN' })
+	@Column()
 	gtin: string;
 
-	@Column({ name: 'NOME_PRODUTO' })
+	@Column()
 	nomeProduto: string;
 
-	@Column({ name: 'NCM' })
+	@Column()
 	ncm: string;
 
-	@Column({ name: 'NVE' })
+	@Column()
 	nve: string;
 
-	@Column({ name: 'CEST' })
+	@Column()
 	cest: string;
 
-	@Column({ name: 'INDICADOR_ESCALA_RELEVANTE' })
+	@Column()
 	indicadorEscalaRelevante: string;
 
-	@Column({ name: 'CNPJ_FABRICANTE' })
+	@Column()
 	cnpjFabricante: string;
 
-	@Column({ name: 'CODIGO_BENEFICIO_FISCAL' })
+	@Column()
 	codigoBeneficioFiscal: string;
 
-	@Column({ name: 'EX_TIPI' })
+	@Column()
 	exTipi: number;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'UNIDADE_COMERCIAL' })
+	@Column()
 	unidadeComercial: string;
 
-	@Column({ name: 'QUANTIDADE_COMERCIAL' })
+	@Column()
 	quantidadeComercial: number;
 
-	@Column({ name: 'NUMERO_PEDIDO_COMPRA' })
+	@Column()
 	numeroPedidoCompra: string;
 
-	@Column({ name: 'ITEM_PEDIDO_COMPRA' })
+	@Column()
 	itemPedidoCompra: number;
 
-	@Column({ name: 'NUMERO_FCI' })
+	@Column()
 	numeroFci: string;
 
-	@Column({ name: 'NUMERO_RECOPI' })
+	@Column()
 	numeroRecopi: string;
 
-	@Column({ name: 'VALOR_UNITARIO_COMERCIAL' })
+	@Column()
 	valorUnitarioComercial: number;
 
-	@Column({ name: 'VALOR_BRUTO_PRODUTO' })
+	@Column()
 	valorBrutoProduto: number;
 
-	@Column({ name: 'GTIN_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	gtinUnidadeTributavel: string;
 
-	@Column({ name: 'UNIDADE_TRIBUTAVEL' })
+	@Column()
 	unidadeTributavel: string;
 
-	@Column({ name: 'QUANTIDADE_TRIBUTAVEL' })
+	@Column()
 	quantidadeTributavel: number;
 
-	@Column({ name: 'VALOR_UNITARIO_TRIBUTAVEL' })
+	@Column()
 	valorUnitarioTributavel: number;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'VALOR_SEGURO' })
+	@Column()
 	valorSeguro: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_OUTRAS_DESPESAS' })
+	@Column()
 	valorOutrasDespesas: number;
 
-	@Column({ name: 'ENTRA_TOTAL' })
+	@Column()
 	entraTotal: string;
 
-	@Column({ name: 'VALOR_TOTAL_TRIBUTOS' })
+	@Column()
 	valorTotalTributos: number;
 
-	@Column({ name: 'PERCENTUAL_DEVOLVIDO' })
+	@Column()
 	percentualDevolvido: number;
 
-	@Column({ name: 'VALOR_IPI_DEVOLVIDO' })
+	@Column()
 	valorIpiDevolvido: number;
 
-	@Column({ name: 'INFORMACOES_ADICIONAIS' })
+	@Column()
 	informacoesAdicionais: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'CST_COFINS' })
+	@Column()
 	cstCofins: string;
 
-	@Column({ name: 'QUANTIDADE_VENDIDA_COFINS' })
+	@Column()
 	quantidadeVendidaCofins: number;
 
-	@Column({ name: 'BASE_CALCULO_COFINS' })
+	@Column()
 	baseCalculoCofins: number;
 
-	@Column({ name: 'ALIQUOTA_COFINS_PERCENTUAL' })
+	@Column()
 	aliquotaCofinsPercentual: number;
 
-	@Column({ name: 'ALIQUOTA_COFINS_REAIS' })
+	@Column()
 	aliquotaCofinsReais: number;
 
-	@Column({ name: 'VALOR_COFINS' })
+	@Column()
 	valorCofins: number;
 
-	@Column({ name: 'ORIGEM_MERCADORIA' })
+	@Column()
 	origemMercadoria: string;
 
-	@Column({ name: 'CST_ICMS' })
+	@Column()
 	cstIcms: string;
 
-	@Column({ name: 'CSOSN' })
+	@Column()
 	csosn: string;
 
-	@Column({ name: 'MODALIDADE_BC_ICMS' })
+	@Column()
 	modalidadeBcIcms: string;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_ICMS' })
+	@Column()
 	percentualReducaoBcIcms: number;
 
-	@Column({ name: 'VALOR_BC_ICMS' })
+	@Column()
 	valorBcIcms: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS' })
+	@Column()
 	aliquotaIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'MOTIVO_DESONERACAO_ICMS' })
+	@Column()
 	motivoDesoneracaoIcms: string;
 
-	@Column({ name: 'MODALIDADE_BC_ICMS_ST' })
+	@Column()
 	modalidadeBcIcmsSt: string;
 
-	@Column({ name: 'PERCENTUAL_MVA_ICMS_ST' })
+	@Column()
 	percentualMvaIcmsSt: number;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_ICMS_ST' })
+	@Column()
 	percentualReducaoBcIcmsSt: number;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_ICMS_ST' })
+	@Column()
 	valorBaseCalculoIcmsSt: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_ST' })
+	@Column()
 	aliquotaIcmsSt: number;
 
-	@Column({ name: 'VALOR_ICMS_ST' })
+	@Column()
 	valorIcmsSt: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ST_RETIDO' })
+	@Column()
 	valorBcIcmsStRetido: number;
 
-	@Column({ name: 'VALOR_ICMS_ST_RETIDO' })
+	@Column()
 	valorIcmsStRetido: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ST_DESTINO' })
+	@Column()
 	valorBcIcmsStDestino: number;
 
-	@Column({ name: 'VALOR_ICMS_ST_DESTINO' })
+	@Column()
 	valorIcmsStDestino: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_ICMS_SN' })
+	@Column()
 	aliquotaCreditoIcmsSn: number;
 
-	@Column({ name: 'VALOR_CREDITO_ICMS_SN' })
+	@Column()
 	valorCreditoIcmsSn: number;
 
-	@Column({ name: 'PERCENTUAL_BC_OPERACAO_PROPRIA' })
+	@Column()
 	percentualBcOperacaoPropria: number;
 
-	@Column({ name: 'UF_ST' })
+	@Column()
 	ufSt: string;
 
-	@Column({ name: 'VALOR_BC_II' })
+	@Column()
 	valorBcIi: number;
 
-	@Column({ name: 'VALOR_DESPESAS_ADUANEIRAS' })
+	@Column()
 	valorDespesasAduaneiras: number;
 
-	@Column({ name: 'VALOR_IMPOSTO_IMPORTACAO' })
+	@Column()
 	valorImpostoImportacao: number;
 
-	@Column({ name: 'VALOR_IOF' })
+	@Column()
 	valorIof: number;
 
-	@Column({ name: 'CNPJ_PRODUTOR' })
+	@Column()
 	cnpjProdutor: string;
 
-	@Column({ name: 'CODIGO_SELO_IPI' })
+	@Column()
 	codigoSeloIpi: string;
 
-	@Column({ name: 'QUANTIDADE_SELO_IPI' })
+	@Column()
 	quantidadeSeloIpi: number;
 
-	@Column({ name: 'ENQUADRAMENTO_LEGAL_IPI' })
+	@Column()
 	enquadramentoLegalIpi: string;
 
-	@Column({ name: 'CST_IPI' })
+	@Column()
 	cstIpi: string;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_IPI' })
+	@Column()
 	valorBaseCalculoIpi: number;
 
-	@Column({ name: 'ALIQUOTA_IPI' })
+	@Column()
 	aliquotaIpi: number;
 
-	@Column({ name: 'QUANTIDADE_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	quantidadeUnidadeTributavel: number;
 
-	@Column({ name: 'VALOR_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	valorUnidadeTributavel: number;
 
-	@Column({ name: 'VALOR_IPI' })
+	@Column()
 	valorIpi: number;
 
-	@Column({ name: 'BASE_CALCULO_ISSQN' })
+	@Column()
 	baseCalculoIssqn: number;
 
-	@Column({ name: 'ALIQUOTA_ISSQN' })
+	@Column()
 	aliquotaIssqn: number;
 
-	@Column({ name: 'VALOR_ISSQN' })
+	@Column()
 	valorIssqn: number;
 
-	@Column({ name: 'MUNICIPIO_ISSQN' })
+	@Column()
 	municipioIssqn: number;
 
-	@Column({ name: 'ITEM_LISTA_SERVICOS' })
+	@Column()
 	itemListaServicos: number;
 
-	@Column({ name: 'CST_PIS' })
+	@Column()
 	cstPis: string;
 
-	@Column({ name: 'QUANTIDADE_VENDIDA_PIS' })
+	@Column()
 	quantidadeVendidaPis: number;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_PIS' })
+	@Column()
 	valorBaseCalculoPis: number;
 
-	@Column({ name: 'ALIQUOTA_PIS_PERCENTUAL' })
+	@Column()
 	aliquotaPisPercentual: number;
 
-	@Column({ name: 'ALIQUOTA_PIS_REAIS' })
+	@Column()
 	aliquotaPisReais: number;
 
-	@Column({ name: 'VALOR_PIS' })
+	@Column()
 	valorPis: number;
 
 
@@ -317,15 +317,15 @@ export class ViewSpedNfeDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@OneToOne(() => TributOperacaoFiscal)
-	@JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
+	@JoinColumn()
 	tributOperacaoFiscal: TributOperacaoFiscal;
 
 	@OneToOne(() => ProdutoUnidade)
-	@JoinColumn({ name: "ID_PRODUTO_UNIDADE" })
+	@JoinColumn()
 	produtoUnidade: ProdutoUnidade;
 
 	/**

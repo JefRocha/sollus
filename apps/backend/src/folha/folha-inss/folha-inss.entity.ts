@@ -36,13 +36,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { FolhaInssRetencao } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_INSS' })
+@Entity()
 export class FolhaInss {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
 

@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_AEREO' })
+@Entity()
 export class CteAereo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'NUMERO_MINUTA' })
+	@Column()
 	numeroMinuta: number;
 
-	@Column({ name: 'NUMERO_CONHECIMENTO' })
+	@Column()
 	numeroConhecimento: number;
 
-	@Column({ name: 'DATA_PREVISTA_ENTREGA' })
+	@Column()
 	dataPrevistaEntrega: Date;
 
-	@Column({ name: 'TARIFA_CLASSE' })
+	@Column()
 	tarifaClasse: string;
 
-	@Column({ name: 'TARIFA_CODIGO' })
+	@Column()
 	tarifaCodigo: string;
 
-	@Column({ name: 'TARIFA_VALOR' })
+	@Column()
 	tarifaValor: number;
 
-	@Column({ name: 'CARGA_DIMENSAO' })
+	@Column()
 	cargaDimensao: string;
 
-	@Column({ name: 'CARGA_INFORMACAO_MANUSEIO' })
+	@Column()
 	cargaInformacaoManuseio: string;
 
-	@Column({ name: 'CARGA_ESPECIAL' })
+	@Column()
 	cargaEspecial: string;
 
 

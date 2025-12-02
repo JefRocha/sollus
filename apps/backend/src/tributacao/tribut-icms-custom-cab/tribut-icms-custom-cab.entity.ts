@@ -36,16 +36,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { TributIcmsCustomDet, Empresa } from '../../entities-export';
 
-@Entity({ name: 'TRIBUT_ICMS_CUSTOM_CAB' })
+@Entity()
 export class TributIcmsCustomCab {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'ORIGEM_MERCADORIA' })
+	@Column()
 	origemMercadoria: string;
 
 
@@ -53,7 +53,7 @@ export class TributIcmsCustomCab {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToMany(() => TributIcmsCustomDet, tributIcmsCustomDet => tributIcmsCustomDet.tributIcmsCustomCab, { cascade: true })

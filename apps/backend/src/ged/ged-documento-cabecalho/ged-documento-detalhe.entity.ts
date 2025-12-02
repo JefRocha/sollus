@@ -37,34 +37,34 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { GedDocumentoCabecalho } from '../../entities-export';
 import { GedTipoDocumento } from '../../entities-export';
 
-@Entity({ name: 'GED_DOCUMENTO_DETALHE' })
+@Entity()
 export class GedDocumentoDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'PALAVRAS_CHAVE' })
+	@Column()
 	palavrasChave: string;
 
-	@Column({ name: 'PODE_EXCLUIR' })
+	@Column()
 	podeExcluir: string;
 
-	@Column({ name: 'PODE_ALTERAR' })
+	@Column()
 	podeAlterar: string;
 
-	@Column({ name: 'ASSINADO' })
+	@Column()
 	assinado: string;
 
-	@Column({ name: 'DATA_FIM_VIGENCIA' })
+	@Column()
 	dataFimVigencia: Date;
 
-	@Column({ name: 'DATA_EXCLUSAO' })
+	@Column()
 	dataExclusao: Date;
 
 
@@ -72,11 +72,11 @@ export class GedDocumentoDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => GedTipoDocumento)
-	@JoinColumn({ name: "ID_GED_TIPO_DOCUMENTO" })
+	@JoinColumn()
 	gedTipoDocumento: GedTipoDocumento;
 
 	@ManyToOne(() => GedDocumentoCabecalho, gedDocumentoCabecalho => gedDocumentoCabecalho.listaGedDocumentoDetalhe)
-	@JoinColumn({ name: "ID_GED_DOCUMENTO_CABECALHO" })
+	@JoinColumn()
 	gedDocumentoCabecalho: GedDocumentoCabecalho;
 
 

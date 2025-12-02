@@ -37,25 +37,25 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { VendaCabecalho } from '../../entities-export';
 import { Vendedor } from '../../entities-export';
 
-@Entity({ name: 'VENDA_COMISSAO' })
+@Entity()
 export class VendaComissao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VALOR_VENDA' })
+	@Column()
 	valorVenda: number;
 
-	@Column({ name: 'TIPO_CONTABIL' })
+	@Column()
 	tipoContabil: string;
 
-	@Column({ name: 'VALOR_COMISSAO' })
+	@Column()
 	valorComissao: number;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
-	@Column({ name: 'DATA_LANCAMENTO' })
+	@Column()
 	dataLancamento: Date;
 
 
@@ -63,11 +63,11 @@ export class VendaComissao {
 	* Relations
 	*/
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@ManyToOne(() => VendaCabecalho, vendaCabecalho => vendaCabecalho.listaVendaComissao)
-	@JoinColumn({ name: "ID_VENDA_CABECALHO" })
+	@JoinColumn()
 	vendaCabecalho: VendaCabecalho;
 
 

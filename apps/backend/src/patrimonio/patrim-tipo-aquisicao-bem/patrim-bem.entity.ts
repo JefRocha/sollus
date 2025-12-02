@@ -35,115 +35,115 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PATRIM_BEM' })
+@Entity()
 export class PatrimBem {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CENTRO_RESULTADO' })
+	@Column()
 	idCentroResultado: number;
 
-	@Column({ name: 'ID_PATRIM_TIPO_AQUISICAO_BEM' })
+	@Column()
 	idPatrimTipoAquisicaoBem: number;
 
-	@Column({ name: 'ID_PATRIM_ESTADO_CONSERVACAO' })
+	@Column()
 	idPatrimEstadoConservacao: number;
 
-	@Column({ name: 'ID_PATRIM_GRUPO_BEM' })
+	@Column()
 	idPatrimGrupoBem: number;
 
-	@Column({ name: 'ID_FORNECEDOR' })
+	@Column()
 	idFornecedor: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'ID_SETOR' })
+	@Column()
 	idSetor: number;
 
-	@Column({ name: 'NUMERO_NB' })
+	@Column()
 	numeroNb: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'NUMERO_SERIE' })
+	@Column()
 	numeroSerie: string;
 
-	@Column({ name: 'DATA_AQUISICAO' })
+	@Column()
 	dataAquisicao: Date;
 
-	@Column({ name: 'DATA_ACEITE' })
+	@Column()
 	dataAceite: Date;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'DATA_CONTABILIZADO' })
+	@Column()
 	dataContabilizado: Date;
 
-	@Column({ name: 'DATA_VISTORIA' })
+	@Column()
 	dataVistoria: Date;
 
-	@Column({ name: 'DATA_MARCACAO' })
+	@Column()
 	dataMarcacao: Date;
 
-	@Column({ name: 'DATA_BAIXA' })
+	@Column()
 	dataBaixa: Date;
 
-	@Column({ name: 'VENCIMENTO_GARANTIA' })
+	@Column()
 	vencimentoGarantia: Date;
 
-	@Column({ name: 'NUMERO_NOTA_FISCAL' })
+	@Column()
 	numeroNotaFiscal: string;
 
-	@Column({ name: 'CHAVE_NFE' })
+	@Column()
 	chaveNfe: string;
 
-	@Column({ name: 'VALOR_ORIGINAL' })
+	@Column()
 	valorOriginal: number;
 
-	@Column({ name: 'VALOR_COMPRA' })
+	@Column()
 	valorCompra: number;
 
-	@Column({ name: 'VALOR_ATUALIZADO' })
+	@Column()
 	valorAtualizado: number;
 
-	@Column({ name: 'VALOR_BAIXA' })
+	@Column()
 	valorBaixa: number;
 
-	@Column({ name: 'DEPRECIA' })
+	@Column()
 	deprecia: string;
 
-	@Column({ name: 'METODO_DEPRECIACAO' })
+	@Column()
 	metodoDepreciacao: string;
 
-	@Column({ name: 'INICIO_DEPRECIACAO' })
+	@Column()
 	inicioDepreciacao: Date;
 
-	@Column({ name: 'ULTIMA_DEPRECIACAO' })
+	@Column()
 	ultimaDepreciacao: Date;
 
-	@Column({ name: 'TIPO_DEPRECIACAO' })
+	@Column()
 	tipoDepreciacao: string;
 
-	@Column({ name: 'TAXA_ANUAL_DEPRECIACAO' })
+	@Column()
 	taxaAnualDepreciacao: number;
 
-	@Column({ name: 'TAXA_MENSAL_DEPRECIACAO' })
+	@Column()
 	taxaMensalDepreciacao: number;
 
-	@Column({ name: 'TAXA_DEPRECIACAO_ACELERADA' })
+	@Column()
 	taxaDepreciacaoAcelerada: number;
 
-	@Column({ name: 'TAXA_DEPRECIACAO_INCENTIVADA' })
+	@Column()
 	taxaDepreciacaoIncentivada: number;
 
-	@Column({ name: 'FUNCAO' })
+	@Column()
 	funcao: string;
 
 

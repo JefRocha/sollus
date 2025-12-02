@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'SIMPLES_NACIONAL_CABECALHO' })
+@Entity()
 export class SimplesNacionalCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VIGENCIA_INICIAL' })
+	@Column()
 	vigenciaInicial: Date;
 
-	@Column({ name: 'VIGENCIA_FINAL' })
+	@Column()
 	vigenciaFinal: Date;
 
-	@Column({ name: 'ANEXO' })
+	@Column()
 	anexo: string;
 
-	@Column({ name: 'TABELA' })
+	@Column()
 	tabela: string;
 
 

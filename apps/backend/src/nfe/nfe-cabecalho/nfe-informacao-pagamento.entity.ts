@@ -36,34 +36,34 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_INFORMACAO_PAGAMENTO' })
+@Entity()
 export class NfeInformacaoPagamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'INDICADOR_PAGAMENTO' })
+	@Column()
 	indicadorPagamento: string;
 
-	@Column({ name: 'MEIO_PAGAMENTO' })
+	@Column()
 	meioPagamento: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'TIPO_INTEGRACAO' })
+	@Column()
 	tipoIntegracao: string;
 
-	@Column({ name: 'CNPJ_OPERADORA_CARTAO' })
+	@Column()
 	cnpjOperadoraCartao: string;
 
-	@Column({ name: 'BANDEIRA' })
+	@Column()
 	bandeira: string;
 
-	@Column({ name: 'NUMERO_AUTORIZACAO' })
+	@Column()
 	numeroAutorizacao: string;
 
-	@Column({ name: 'TROCO' })
+	@Column()
 	troco: number;
 
 
@@ -71,7 +71,7 @@ export class NfeInformacaoPagamento {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeInformacaoPagamento)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

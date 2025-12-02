@@ -35,43 +35,43 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'ETIQUETA_LAYOUT' })
+@Entity()
 export class EtiquetaLayout {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_FORMATO_PAPEL' })
+	@Column()
 	idFormatoPapel: number;
 
-	@Column({ name: 'CODIGO_FABRICANTE' })
+	@Column()
 	codigoFabricante: string;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'QUANTIDADE_HORIZONTAL' })
+	@Column()
 	quantidadeHorizontal: number;
 
-	@Column({ name: 'QUANTIDADE_VERTICAL' })
+	@Column()
 	quantidadeVertical: number;
 
-	@Column({ name: 'MARGEM_SUPERIOR' })
+	@Column()
 	margemSuperior: number;
 
-	@Column({ name: 'MARGEM_INFERIOR' })
+	@Column()
 	margemInferior: number;
 
-	@Column({ name: 'MARGEM_ESQUERDA' })
+	@Column()
 	margemEsquerda: number;
 
-	@Column({ name: 'MARGEM_DIREITA' })
+	@Column()
 	margemDireita: number;
 
-	@Column({ name: 'ESPACAMENTO_HORIZONTAL' })
+	@Column()
 	espacamentoHorizontal: number;
 
-	@Column({ name: 'ESPACAMENTO_VERTICAL' })
+	@Column()
 	espacamentoVertical: number;
 
 

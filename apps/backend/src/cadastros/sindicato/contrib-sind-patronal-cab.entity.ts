@@ -36,13 +36,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Sindicato } from '../../entities-export';
 
-@Entity({ name: 'CONTRIB_SIND_PATRONAL_CAB' })
+@Entity()
 export class ContribSindPatronalCab {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VIGENCIA_ANO' })
+	@Column()
 	vigenciaAno: string;
 
 
@@ -50,7 +50,7 @@ export class ContribSindPatronalCab {
 	* Relations
 	*/
 	@OneToOne(() => Sindicato)
-	@JoinColumn({ name: "ID_SINDICATO" })
+	@JoinColumn()
 	sindicato: Sindicato;
 
 

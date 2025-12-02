@@ -36,34 +36,34 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { TributOperacaoFiscal, Empresa } from '../../entities-export';
 
-@Entity({ name: 'TRIBUT_ISS' })
+@Entity()
 export class TributIss {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MODALIDADE_BASE_CALCULO' })
+	@Column()
 	modalidadeBaseCalculo: string;
 
-	@Column({ name: 'PORCENTO_BASE_CALCULO' })
+	@Column()
 	porcentoBaseCalculo: number;
 
-	@Column({ name: 'ALIQUOTA_PORCENTO' })
+	@Column()
 	aliquotaPorcento: number;
 
-	@Column({ name: 'ALIQUOTA_UNIDADE' })
+	@Column()
 	aliquotaUnidade: number;
 
-	@Column({ name: 'VALOR_PRECO_MAXIMO' })
+	@Column()
 	valorPrecoMaximo: number;
 
-	@Column({ name: 'VALOR_PAUTA_FISCAL' })
+	@Column()
 	valorPautaFiscal: number;
 
-	@Column({ name: 'ITEM_LISTA_SERVICO' })
+	@Column()
 	itemListaServico: number;
 
-	@Column({ name: 'CODIGO_TRIBUTACAO' })
+	@Column()
 	codigoTributacao: string;
 
 
@@ -71,11 +71,11 @@ export class TributIss {
 	* Relations
 	*/
 	@OneToOne(() => TributOperacaoFiscal)
-	@JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
+	@JoinColumn()
 	tributOperacaoFiscal: TributOperacaoFiscal;
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

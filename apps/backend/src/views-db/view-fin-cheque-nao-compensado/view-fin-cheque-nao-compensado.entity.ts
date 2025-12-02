@@ -35,34 +35,34 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_FIN_CHEQUE_NAO_COMPENSADO' })
+@Entity()
 export class ViewFinChequeNaoCompensado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTA_CAIXA' })
+	@Column()
 	idContaCaixa: number;
 
-	@Column({ name: 'NOME_CONTA_CAIXA' })
+	@Column()
 	nomeContaCaixa: string;
 
-	@Column({ name: 'TALAO' })
+	@Column()
 	talao: string;
 
-	@Column({ name: 'NUMERO_TALAO' })
+	@Column()
 	numeroTalao: number;
 
-	@Column({ name: 'NUMERO_CHEQUE' })
+	@Column()
 	numeroCheque: number;
 
-	@Column({ name: 'STATUS_CHEQUE' })
+	@Column()
 	statusCheque: string;
 
-	@Column({ name: 'DATA_STATUS' })
+	@Column()
 	dataStatus: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
 

@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_ORDEM_SEPARACAO_CAB' })
+@Entity()
 export class WmsOrdemSeparacaoCab {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ORIGEM' })
+	@Column()
 	origem: string;
 
-	@Column({ name: 'DATA_SOLICITACAO' })
+	@Column()
 	dataSolicitacao: Date;
 
-	@Column({ name: 'DATA_LIMITE' })
+	@Column()
 	dataLimite: Date;
 
 

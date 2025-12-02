@@ -39,61 +39,61 @@ import { NfeTransporteVolume } from '../../entities-export';
 import { NfeCabecalho } from '../../entities-export';
 import { Transportadora } from '../../entities-export';
 
-@Entity({ name: 'NFE_TRANSPORTE' })
+@Entity()
 export class NfeTransporte {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MODALIDADE_FRETE' })
+	@Column()
 	modalidadeFrete: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
-	@Column({ name: 'ENDERECO' })
+	@Column()
 	endereco: string;
 
-	@Column({ name: 'NOME_MUNICIPIO' })
+	@Column()
 	nomeMunicipio: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'VALOR_SERVICO' })
+	@Column()
 	valorServico: number;
 
-	@Column({ name: 'VALOR_BC_RETENCAO_ICMS' })
+	@Column()
 	valorBcRetencaoIcms: number;
 
-	@Column({ name: 'ALIQUOTA_RETENCAO_ICMS' })
+	@Column()
 	aliquotaRetencaoIcms: number;
 
-	@Column({ name: 'VALOR_ICMS_RETIDO' })
+	@Column()
 	valorIcmsRetido: number;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'MUNICIPIO' })
+	@Column()
 	municipio: number;
 
-	@Column({ name: 'PLACA_VEICULO' })
+	@Column()
 	placaVeiculo: string;
 
-	@Column({ name: 'UF_VEICULO' })
+	@Column()
 	ufVeiculo: string;
 
-	@Column({ name: 'RNTC_VEICULO' })
+	@Column()
 	rntcVeiculo: string;
 
 
@@ -101,11 +101,11 @@ export class NfeTransporte {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeTransporte)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 	@OneToOne(() => Transportadora)
-	@JoinColumn({ name: "ID_TRANSPORTADORA" })
+	@JoinColumn()
 	transportadora: Transportadora;
 
 	@OneToMany(() => NfeTransporteReboque, nfeTransporteReboque => nfeTransporteReboque.nfeTransporte, { cascade: true })

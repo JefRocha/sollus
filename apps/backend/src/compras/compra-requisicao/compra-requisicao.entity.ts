@@ -38,19 +38,19 @@ import { CompraRequisicaoDetalhe, Empresa } from '../../entities-export';
 import { CompraTipoRequisicao } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_REQUISICAO' })
+@Entity()
 export class CompraRequisicao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'DATA_REQUISICAO' })
+	@Column()
 	dataRequisicao: Date;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -58,15 +58,15 @@ export class CompraRequisicao {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => CompraTipoRequisicao)
-	@JoinColumn({ name: "ID_COMPRA_TIPO_REQUISICAO" })
+	@JoinColumn()
 	compraTipoRequisicao: CompraTipoRequisicao;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => CompraRequisicaoDetalhe, compraRequisicaoDetalhe => compraRequisicaoDetalhe.compraRequisicao, { cascade: true })

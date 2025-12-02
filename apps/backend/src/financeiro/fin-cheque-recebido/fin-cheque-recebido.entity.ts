@@ -36,64 +36,64 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Pessoa } from '../../entities-export';
 
-@Entity({ name: 'FIN_CHEQUE_RECEBIDO' })
+@Entity()
 export class FinChequeRecebido {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'CODIGO_BANCO' })
+	@Column()
 	codigoBanco: string;
 
-	@Column({ name: 'CODIGO_AGENCIA' })
+	@Column()
 	codigoAgencia: string;
 
-	@Column({ name: 'CONTA' })
+	@Column()
 	conta: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: number;
 
-	@Column({ name: 'DATA_EMISSAO' })
+	@Column()
 	dataEmissao: Date;
 
-	@Column({ name: 'BOM_PARA' })
+	@Column()
 	bomPara: Date;
 
-	@Column({ name: 'DATA_COMPENSACAO' })
+	@Column()
 	dataCompensacao: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'CUSTODIA_DATA' })
+	@Column()
 	custodiaData: Date;
 
-	@Column({ name: 'CUSTODIA_TARIFA' })
+	@Column()
 	custodiaTarifa: number;
 
-	@Column({ name: 'CUSTODIA_COMISSAO' })
+	@Column()
 	custodiaComissao: number;
 
-	@Column({ name: 'DESCONTO_DATA' })
+	@Column()
 	descontoData: Date;
 
-	@Column({ name: 'DESCONTO_TARIFA' })
+	@Column()
 	descontoTarifa: number;
 
-	@Column({ name: 'DESCONTO_COMISSAO' })
+	@Column()
 	descontoComissao: number;
 
-	@Column({ name: 'VALOR_RECEBIDO' })
+	@Column()
 	valorRecebido: number;
 
 
@@ -101,7 +101,7 @@ export class FinChequeRecebido {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 

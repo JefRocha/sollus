@@ -35,34 +35,34 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'AGENDA_COMPROMISSO' })
+@Entity()
 export class AgendaCompromisso {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_AGENDA_CATEGORIA_COMPROMISSO' })
+	@Column()
 	idAgendaCategoriaCompromisso: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_COMPROMISSO' })
+	@Column()
 	dataCompromisso: Date;
 
-	@Column({ name: 'HORA' })
+	@Column()
 	hora: string;
 
-	@Column({ name: 'DURACAO' })
+	@Column()
 	duracao: number;
 
-	@Column({ name: 'ONDE' })
+	@Column()
 	onde: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
 

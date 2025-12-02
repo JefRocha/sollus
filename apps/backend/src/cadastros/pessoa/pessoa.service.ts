@@ -39,16 +39,17 @@ import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { Pessoa } from './pessoa.entity';
 import { DataSource, QueryRunner } from 'typeorm';
 import { BaseRepository } from '../../common/base.repository';
-import { ClsServiceManager } from 'nestjs-cls';
+import { ClsService, ClsServiceManager } from 'nestjs-cls';
 
 @Injectable()
 export class PessoaService extends TypeOrmCrudService<Pessoa> {
 
 	constructor(
 		private dataSource: DataSource,
-		@InjectRepository(Pessoa) repository
+		@InjectRepository(Pessoa) repository,
+		private readonly cls: ClsService
 	) {
-		super(new BaseRepository(repository));
+		super(new BaseRepository(repository, cls));
 	}
 
 	async persistir(pessoa: Pessoa, operacao: string): Promise<Pessoa> {
@@ -60,7 +61,7 @@ export class PessoaService extends TypeOrmCrudService<Pessoa> {
 		await queryRunner.startTransaction();
 		try {
 			// Injeta o Tenant ID manualmente pois estamos usando queryRunner direto
-			const tenantId = ClsServiceManager.getClsService().get<number>('TENANT_ID');
+			const tenantId = this.cls.get<number>('TENANT_ID');
 			if (tenantId) {
 				pessoa.empresa = { id: tenantId } as any;
 			}

@@ -38,64 +38,64 @@ import { EmpresaContato } from '../../entities-export';
 import { EmpresaEndereco } from '../../entities-export';
 import { EmpresaTelefone } from '../../entities-export';
 
-@Entity({ name: 'EMPRESA' })
+@Entity()
 export class Empresa {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'RAZAO_SOCIAL' })
+	@Column()
 	razaoSocial: string;
 
-	@Column({ name: 'NOME_FANTASIA' })
+	@Column()
 	nomeFantasia: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
-	@Column({ name: 'INSCRICAO_MUNICIPAL' })
+	@Column()
 	inscricaoMunicipal: string;
 
-	@Column({ name: 'TIPO_REGIME' })
+	@Column()
 	tipoRegime: string;
 
-	@Column({ name: 'CRT' })
+	@Column()
 	crt: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'SITE' })
+	@Column()
 	site: string;
 
-	@Column({ name: 'CONTATO' })
+	@Column()
 	contato: string;
 
-	@Column({ name: 'DATA_CONSTITUICAO' })
+	@Column()
 	dataConstituicao: Date;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'INSCRICAO_JUNTA_COMERCIAL' })
+	@Column()
 	inscricaoJuntaComercial: string;
 
-	@Column({ name: 'DATA_INSC_JUNTA_COMERCIAL' })
+	@Column()
 	dataInscJuntaComercial: Date;
 
-	@Column({ name: 'CODIGO_IBGE_CIDADE' })
+	@Column()
 	codigoIbgeCidade: number;
 
-	@Column({ name: 'CODIGO_IBGE_UF' })
+	@Column()
 	codigoIbgeUf: number;
 
-	@Column({ name: 'CEI' })
+	@Column()
 	cei: string;
 
-	@Column({ name: 'CODIGO_CNAE_PRINCIPAL' })
+	@Column()
 	codigoCnaePrincipal: string;
 
 	enderecoPrincipal: EmpresaEndereco;
@@ -107,6 +107,9 @@ export class Empresa {
 	setEnderecoPrincipal(endereco: EmpresaEndereco) {
 		this.enderecoPrincipal = endereco;
 	}
+
+	@Column({ type: 'text', nullable: true })
+	imagemLogotipo: string;
 
 	/**
 	 * Relations

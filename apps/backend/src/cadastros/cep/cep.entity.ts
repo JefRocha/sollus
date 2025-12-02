@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CEP' })
+@Entity()
 export class Cep {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'MUNICIPIO' })
+	@Column()
 	municipio: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'CODIGO_IBGE_MUNICIPIO' })
+	@Column()
 	codigoIbgeMunicipio: number;
 
 

@@ -35,49 +35,49 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_TERMO' })
+@Entity()
 export class ContabilTermo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTABIL_LIVRO' })
+	@Column()
 	idContabilLivro: number;
 
-	@Column({ name: 'ABERTURA_ENCERRAMENTO' })
+	@Column()
 	aberturaEncerramento: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: number;
 
-	@Column({ name: 'PAGINA_INICIAL' })
+	@Column()
 	paginaInicial: number;
 
-	@Column({ name: 'PAGINA_FINAL' })
+	@Column()
 	paginaFinal: number;
 
-	@Column({ name: 'REGISTRADO' })
+	@Column()
 	registrado: string;
 
-	@Column({ name: 'NUMERO_REGISTRO' })
+	@Column()
 	numeroRegistro: string;
 
-	@Column({ name: 'DATA_DESPACHO' })
+	@Column()
 	dataDespacho: Date;
 
-	@Column({ name: 'DATA_ABERTURA' })
+	@Column()
 	dataAbertura: Date;
 
-	@Column({ name: 'DATA_ENCERRAMENTO' })
+	@Column()
 	dataEncerramento: Date;
 
-	@Column({ name: 'ESCRITURACAO_INICIO' })
+	@Column()
 	escrituracaoInicio: Date;
 
-	@Column({ name: 'ESCRITURACAO_FIM' })
+	@Column()
 	escrituracaoFim: Date;
 
-	@Column({ name: 'TEXTO' })
+	@Column()
 	texto: string;
 
 

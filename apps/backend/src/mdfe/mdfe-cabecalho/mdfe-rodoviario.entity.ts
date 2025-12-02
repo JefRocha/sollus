@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'MDFE_RODOVIARIO' })
+@Entity()
 export class MdfeRodoviario {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_MDFE_CABECALHO' })
+	@Column()
 	idMdfeCabecalho: number;
 
-	@Column({ name: 'RNTRC' })
+	@Column()
 	rntrc: string;
 
-	@Column({ name: 'CODIGO_AGENDAMENTO' })
+	@Column()
 	codigoAgendamento: string;
 
 

@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PATRIM_DEPRECIACAO_BEM' })
+@Entity()
 export class PatrimDepreciacaoBem {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PATRIM_BEM' })
+	@Column()
 	idPatrimBem: number;
 
-	@Column({ name: 'DATA_DEPRECIACAO' })
+	@Column()
 	dataDepreciacao: Date;
 
-	@Column({ name: 'DIAS' })
+	@Column()
 	dias: number;
 
-	@Column({ name: 'TAXA' })
+	@Column()
 	taxa: number;
 
-	@Column({ name: 'INDICE' })
+	@Column()
 	indice: number;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'DEPRECIACAO_ACUMULADA' })
+	@Column()
 	depreciacaoAcumulada: number;
 
 

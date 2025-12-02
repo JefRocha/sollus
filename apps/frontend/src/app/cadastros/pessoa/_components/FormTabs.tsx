@@ -15,9 +15,9 @@ export function FormTabs({ value, onChange }: { value: Pessoa; onChange: (v: Pes
   const [ecOptions, setEcOptions] = useState<OptionItem[]>([]);
   const showFisica = value.tipo === "F";
   const showJuridica = value.tipo === "J";
-  const showCliente = value.ehCliente === "S";
-  const showFornecedor = value.ehFornecedor === "S";
-  const showTransportadora = value.ehTransportadora === "S";
+  const showCliente = value.eh_cliente === "S";
+  const showFornecedor = value.eh_fornecedor === "S";
+  const showTransportadora = value.eh_transportadora === "S";
   const allowedTabs = [
     "pessoa",
     ...(showJuridica ? ["juridica"] : []),
@@ -89,35 +89,35 @@ export function FormTabs({ value, onChange }: { value: Pessoa; onChange: (v: Pes
           </div>
           <div className="space-y-2">
             <Label>É Cliente</Label>
-            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.ehCliente ?? "N"} onChange={(e) => onChange({ ...value, ehCliente: e.target.value as Pessoa["ehCliente"] })}>
+            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.eh_cliente ?? "N"} onChange={(e) => onChange({ ...value, eh_cliente: e.target.value as Pessoa["eh_cliente"] })}>
               <option value="S">Sim</option>
               <option value="N">Não</option>
             </select>
           </div>
           <div className="space-y-2">
             <Label>É Fornecedor</Label>
-            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.ehFornecedor ?? "N"} onChange={(e) => onChange({ ...value, ehFornecedor: e.target.value as Pessoa["ehFornecedor"] })}>
+            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.eh_fornecedor ?? "N"} onChange={(e) => onChange({ ...value, eh_fornecedor: e.target.value as Pessoa["eh_fornecedor"] })}>
               <option value="S">Sim</option>
               <option value="N">Não</option>
             </select>
           </div>
           <div className="space-y-2">
             <Label>É Transportadora</Label>
-            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.ehTransportadora ?? "N"} onChange={(e) => onChange({ ...value, ehTransportadora: e.target.value as Pessoa["ehTransportadora"] })}>
+            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.eh_transportadora ?? "N"} onChange={(e) => onChange({ ...value, eh_transportadora: e.target.value as Pessoa["eh_transportadora"] })}>
               <option value="S">Sim</option>
               <option value="N">Não</option>
             </select>
           </div>
           <div className="space-y-2">
             <Label>É Colaborador</Label>
-            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.ehColaborador ?? "N"} onChange={(e) => onChange({ ...value, ehColaborador: e.target.value as Pessoa["ehColaborador"] })}>
+            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.eh_colaborador ?? "N"} onChange={(e) => onChange({ ...value, eh_colaborador: e.target.value as Pessoa["eh_colaborador"] })}>
               <option value="S">Sim</option>
               <option value="N">Não</option>
             </select>
           </div>
           <div className="space-y-2">
             <Label>É Contador</Label>
-            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.ehContador ?? "N"} onChange={(e) => onChange({ ...value, ehContador: e.target.value as Pessoa["ehContador"] })}>
+            <select className="h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={value.eh_contador ?? "N"} onChange={(e) => onChange({ ...value, eh_contador: e.target.value as Pessoa["eh_contador"] })}>
               <option value="S">Sim</option>
               <option value="N">Não</option>
             </select>

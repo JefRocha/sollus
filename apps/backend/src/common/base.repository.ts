@@ -17,7 +17,7 @@ export class BaseRepository<T> extends Repository<T> {
             const tenantId = this.cls?.get<number>('TENANT_ID');
 
             // Verifica se a entidade tem a coluna ID_EMPRESA (ou relação empresa)
-            const hasEmpresaColumn = this.metadata.columns.some(c => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA');
+            const hasEmpresaColumn = this.metadata.columns.some(c => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA' || c.databaseName === 'id_empresa');
             const hasEmpresaRelation = this.metadata.relations.some(r => r.propertyName === 'empresa');
 
             if (tenantId && (hasEmpresaColumn || hasEmpresaRelation)) {
@@ -63,7 +63,7 @@ export class BaseRepository<T> extends Repository<T> {
 
     private setTenant(entity: any, tenantId: number, metadata: any) {
         // Verifica se a entidade tem a coluna ID_EMPRESA (ou relação empresa)
-        const hasEmpresaColumn = metadata.columns.some((c: any) => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA');
+        const hasEmpresaColumn = metadata.columns.some((c: any) => c.propertyName === 'empresa' || c.databaseName === 'ID_EMPRESA' || c.databaseName === 'id_empresa');
         const hasEmpresaRelation = metadata.relations.some((r: any) => r.propertyName === 'empresa');
 
         if (hasEmpresaColumn || hasEmpresaRelation) {

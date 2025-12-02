@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { NfeFatura } from '../../entities-export';
 
-@Entity({ name: 'NFE_DUPLICATA' })
+@Entity()
 export class NfeDuplicata {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
 
@@ -56,7 +56,7 @@ export class NfeDuplicata {
 	* Relations
 	*/
 	@ManyToOne(() => NfeFatura, nfeFatura => nfeFatura.listaNfeDuplicata)
-	@JoinColumn({ name: "ID_NFE_FATURA" })
+	@JoinColumn()
 	nfeFatura: NfeFatura;
 
 

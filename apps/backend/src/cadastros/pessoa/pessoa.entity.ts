@@ -45,48 +45,44 @@ import { PessoaJuridica } from '../../entities-export';
 import { PessoaTelefone } from '../../entities-export';
 import { Transportadora } from '../../entities-export';
 
-@Entity({ name: 'PESSOA' })
+@Entity()
 export class Pessoa {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'SITE' })
+	@Column({ nullable: true })
 	site: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'EH_CLIENTE' })
-	ehCliente: string;
+	@Column({ nullable: true })
+	eh_cliente: string;
 
-	@Column({ name: 'EH_FORNECEDOR' })
-	ehFornecedor: string;
+	@Column({ nullable: true })
+	eh_fornecedor: string;
 
-	@Column({ name: 'EH_TRANSPORTADORA' })
-	ehTransportadora: string;
+	@Column({ nullable: true })
+	eh_transportadora: string;
 
-	@Column({ name: 'EH_COLABORADOR' })
-	ehColaborador: string;
+	@Column({ nullable: true })
+	eh_colaborador: string;
 
-	@Column({ name: 'EH_CONTADOR' })
-	ehContador: string;
-
-	@Column({ name: 'ID_EMPRESA' })
-	empresaId: number;
-
+	@Column({ nullable: true })
+	eh_contador: string;
 
 	/**
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Cliente, cliente => cliente.pessoa, { cascade: true })
@@ -130,11 +126,11 @@ export class Pessoa {
 			this.tipo = objetoJson['tipo'];
 			this.site = objetoJson['site'];
 			this.email = objetoJson['email'];
-			this.ehCliente = objetoJson['ehCliente'];
-			this.ehFornecedor = objetoJson['ehFornecedor'];
-			this.ehTransportadora = objetoJson['ehTransportadora'];
-			this.ehColaborador = objetoJson['ehColaborador'];
-			this.ehContador = objetoJson['ehContador'];
+			this.eh_cliente = objetoJson['eh_cliente'];
+			this.eh_fornecedor = objetoJson['eh_fornecedor'];
+			this.eh_transportadora = objetoJson['eh_transportadora'];
+			this.eh_colaborador = objetoJson['eh_colaborador'];
+			this.eh_contador = objetoJson['eh_contador'];
 
 			if (objetoJson['cliente'] != null) {
 				this.cliente = new Cliente(objetoJson['cliente']);

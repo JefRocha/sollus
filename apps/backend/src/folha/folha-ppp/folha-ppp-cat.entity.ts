@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { FolhaPpp } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_PPP_CAT' })
+@Entity()
 export class FolhaPppCat {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_CAT' })
+	@Column()
 	numeroCat: number;
 
-	@Column({ name: 'DATA_AFASTAMENTO' })
+	@Column()
 	dataAfastamento: Date;
 
-	@Column({ name: 'DATA_REGISTRO' })
+	@Column()
 	dataRegistro: Date;
 
 
@@ -56,7 +56,7 @@ export class FolhaPppCat {
 	* Relations
 	*/
 	@ManyToOne(() => FolhaPpp, folhaPpp => folhaPpp.listaFolhaPppCat)
-	@JoinColumn({ name: "ID_FOLHA_PPP" })
+	@JoinColumn()
 	folhaPpp: FolhaPpp;
 
 

@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_EXPEDICAO' })
+@Entity()
 export class WmsExpedicao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_WMS_ORDEM_SEPARACAO_DET' })
+	@Column()
 	idWmsOrdemSeparacaoDet: number;
 
-	@Column({ name: 'ID_WMS_ARMAZENAMENTO' })
+	@Column()
 	idWmsArmazenamento: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'DATA_SAIDA' })
+	@Column()
 	dataSaida: Date;
 
 

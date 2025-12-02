@@ -35,37 +35,37 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_PESSOA_TRANSPORTADORA' })
+@Entity()
 export class ViewPessoaTransportadora {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'SITE' })
+	@Column()
 	site: string;
 
-	@Column({ name: 'CPF_CNPJ' })
+	@Column()
 	cpfCnpj: string;
 
-	@Column({ name: 'RG_IE' })
+	@Column()
 	rgIe: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'ID_PESSOA' })
+	@Column()
 	idPessoa: number;
 
 

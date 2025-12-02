@@ -38,25 +38,25 @@ import { Vendedor } from '../../entities-export';
 import { Cliente } from '../../entities-export';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'VENDEDOR_META' })
+@Entity()
 export class VendedorMeta {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'PERIODO_META' })
+	@Column()
 	periodoMeta: string;
 
-	@Column({ name: 'META_ORCADA' })
+	@Column()
 	metaOrcada: number;
 
-	@Column({ name: 'META_REALIZADA' })
+	@Column()
 	metaRealizada: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
 
@@ -64,15 +64,15 @@ export class VendedorMeta {
 	* Relations
 	*/
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

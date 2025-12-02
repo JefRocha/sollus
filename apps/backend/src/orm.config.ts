@@ -4,6 +4,8 @@ import * as dotenv from 'dotenv';
 // Load environment variables
 dotenv.config();
 
+import { CustomNamingStrategy } from './common/custom-naming-strategy';
+
 export const dbConfig: TypeOrmModuleOptions = {
   type: (process.env.DB_TYPE as any) || 'postgres',
   host: process.env.DB_HOST || 'localhost',
@@ -17,4 +19,5 @@ export const dbConfig: TypeOrmModuleOptions = {
   logging: process.env.DB_LOGGING === 'true' || true,
   migrations: ["dist/migrations/*{.ts,.js}"],
   migrationsTableName: "migrations_history",
+  namingStrategy: new CustomNamingStrategy(),
 };

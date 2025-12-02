@@ -35,16 +35,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FOLHA_FECHAMENTO' })
+@Entity()
 export class FolhaFechamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'FECHAMENTO_ATUAL' })
+	@Column()
 	fechamentoAtual: string;
 
-	@Column({ name: 'PROXIMO_FECHAMENTO' })
+	@Column()
 	proximoFechamento: string;
 
 

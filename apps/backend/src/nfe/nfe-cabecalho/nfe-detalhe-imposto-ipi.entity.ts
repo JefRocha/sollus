@@ -36,40 +36,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE_IMPOSTO_IPI' })
+@Entity()
 export class NfeDetalheImpostoIpi {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CNPJ_PRODUTOR' })
+	@Column()
 	cnpjProdutor: string;
 
-	@Column({ name: 'CODIGO_SELO_IPI' })
+	@Column()
 	codigoSeloIpi: string;
 
-	@Column({ name: 'QUANTIDADE_SELO_IPI' })
+	@Column()
 	quantidadeSeloIpi: number;
 
-	@Column({ name: 'ENQUADRAMENTO_LEGAL_IPI' })
+	@Column()
 	enquadramentoLegalIpi: string;
 
-	@Column({ name: 'CST_IPI' })
+	@Column()
 	cstIpi: string;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_IPI' })
+	@Column()
 	valorBaseCalculoIpi: number;
 
-	@Column({ name: 'QUANTIDADE_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	quantidadeUnidadeTributavel: number;
 
-	@Column({ name: 'VALOR_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	valorUnidadeTributavel: number;
 
-	@Column({ name: 'ALIQUOTA_IPI' })
+	@Column()
 	aliquotaIpi: number;
 
-	@Column({ name: 'VALOR_IPI' })
+	@Column()
 	valorIpi: number;
 
 
@@ -77,7 +77,7 @@ export class NfeDetalheImpostoIpi {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIpi)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

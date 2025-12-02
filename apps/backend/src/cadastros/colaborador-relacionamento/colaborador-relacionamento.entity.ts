@@ -37,52 +37,52 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { TipoRelacionamento } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'COLABORADOR_RELACIONAMENTO' })
+@Entity()
 export class ColaboradorRelacionamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DATA_NASCIMENTO' })
+	@Column()
 	dataNascimento: Date;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'REGISTRO_MATRICULA' })
+	@Column()
 	registroMatricula: string;
 
-	@Column({ name: 'REGISTRO_CARTORIO' })
+	@Column()
 	registroCartorio: string;
 
-	@Column({ name: 'REGISTRO_CARTORIO_NUMERO' })
+	@Column()
 	registroCartorioNumero: string;
 
-	@Column({ name: 'REGISTRO_NUMERO_LIVRO' })
+	@Column()
 	registroNumeroLivro: string;
 
-	@Column({ name: 'REGISTRO_NUMERO_FOLHA' })
+	@Column()
 	registroNumeroFolha: string;
 
-	@Column({ name: 'DATA_ENTREGA_DOCUMENTO' })
+	@Column()
 	dataEntregaDocumento: Date;
 
-	@Column({ name: 'SALARIO_FAMILIA' })
+	@Column()
 	salarioFamilia: string;
 
-	@Column({ name: 'SALARIO_FAMILIA_IDADE_LIMITE' })
+	@Column()
 	salarioFamiliaIdadeLimite: number;
 
-	@Column({ name: 'SALARIO_FAMILIA_DATA_FIM' })
+	@Column()
 	salarioFamiliaDataFim: Date;
 
-	@Column({ name: 'IMPOSTO_RENDA_IDADE_LIMITE' })
+	@Column()
 	impostoRendaIdadeLimite: number;
 
-	@Column({ name: 'IMPOSTO_RENDA_DATA_FIM' })
+	@Column()
 	impostoRendaDataFim: number;
 
 
@@ -90,11 +90,11 @@ export class ColaboradorRelacionamento {
 	* Relations
 	*/
 	@OneToOne(() => TipoRelacionamento)
-	@JoinColumn({ name: "ID_TIPO_RELACIONAMENTO" })
+	@JoinColumn()
 	tipoRelacionamento: TipoRelacionamento;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 

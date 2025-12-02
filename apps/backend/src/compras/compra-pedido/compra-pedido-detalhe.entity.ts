@@ -37,52 +37,52 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { CompraPedido } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_PEDIDO_DETALHE' })
+@Entity()
 export class CompraPedidoDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'VALOR_UNITARIO' })
+	@Column()
 	valorUnitario: number;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'CST' })
+	@Column()
 	cst: string;
 
-	@Column({ name: 'CSOSN' })
+	@Column()
 	csosn: string;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'BASE_CALCULO_ICMS' })
+	@Column()
 	baseCalculoIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'VALOR_IPI' })
+	@Column()
 	valorIpi: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS' })
+	@Column()
 	aliquotaIcms: number;
 
-	@Column({ name: 'ALIQUOTA_IPI' })
+	@Column()
 	aliquotaIpi: number;
 
 
@@ -90,11 +90,11 @@ export class CompraPedidoDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => CompraPedido, compraPedido => compraPedido.listaCompraPedidoDetalhe)
-	@JoinColumn({ name: "ID_COMPRA_PEDIDO" })
+	@JoinColumn()
 	compraPedido: CompraPedido;
 
 

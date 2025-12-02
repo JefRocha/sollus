@@ -36,25 +36,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'AUDITORIA' })
+@Entity()
 export class Auditoria {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_REGISTRO' })
+	@Column()
 	dataRegistro: Date;
 
-	@Column({ name: 'HORA_REGISTRO' })
+	@Column()
 	horaRegistro: string;
 
-	@Column({ name: 'JANELA_CONTROLLER' })
+	@Column()
 	janelaController: string;
 
-	@Column({ name: 'ACAO' })
+	@Column()
 	acao: string;
 
-	@Column({ name: 'CONTEUDO' })
+	@Column()
 	conteudo: string;
 
 
@@ -62,7 +62,7 @@ export class Auditoria {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	/**

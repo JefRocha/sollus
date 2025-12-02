@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PATRIM_INDICE_ATUALIZACAO' })
+@Entity()
 export class PatrimIndiceAtualizacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_INDICE' })
+	@Column()
 	dataIndice: Date;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'VALOR_ALTERNATIVO' })
+	@Column()
 	valorAlternativo: number;
 
 

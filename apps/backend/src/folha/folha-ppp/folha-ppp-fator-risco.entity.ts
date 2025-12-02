@@ -36,52 +36,52 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { FolhaPpp } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_PPP_FATOR_RISCO' })
+@Entity()
 export class FolhaPppFatorRisco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'FATOR_RISCO' })
+	@Column()
 	fatorRisco: string;
 
-	@Column({ name: 'INTENSIDADE' })
+	@Column()
 	intensidade: string;
 
-	@Column({ name: 'TECNICA_UTILIZADA' })
+	@Column()
 	tecnicaUtilizada: string;
 
-	@Column({ name: 'EPC_EFICAZ' })
+	@Column()
 	epcEficaz: string;
 
-	@Column({ name: 'EPI_EFICAZ' })
+	@Column()
 	epiEficaz: string;
 
-	@Column({ name: 'CA_EPI' })
+	@Column()
 	caEpi: number;
 
-	@Column({ name: 'ATENDIMENTO_NR06_1' })
+	@Column()
 	atendimentoNr061: string;
 
-	@Column({ name: 'ATENDIMENTO_NR06_2' })
+	@Column()
 	atendimentoNr062: string;
 
-	@Column({ name: 'ATENDIMENTO_NR06_3' })
+	@Column()
 	atendimentoNr063: string;
 
-	@Column({ name: 'ATENDIMENTO_NR06_4' })
+	@Column()
 	atendimentoNr064: string;
 
-	@Column({ name: 'ATENDIMENTO_NR06_5' })
+	@Column()
 	atendimentoNr065: string;
 
 
@@ -89,7 +89,7 @@ export class FolhaPppFatorRisco {
 	* Relations
 	*/
 	@ManyToOne(() => FolhaPpp, folhaPpp => folhaPpp.listaFolhaPppFatorRisco)
-	@JoinColumn({ name: "ID_FOLHA_PPP" })
+	@JoinColumn()
 	folhaPpp: FolhaPpp;
 
 

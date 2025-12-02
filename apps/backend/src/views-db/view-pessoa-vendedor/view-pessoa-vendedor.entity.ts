@@ -35,94 +35,94 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_PESSOA_VENDEDOR' })
+@Entity()
 export class ViewPessoaVendedor {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'SITE' })
+	@Column()
 	site: string;
 
-	@Column({ name: 'CPF_CNPJ' })
+	@Column()
 	cpfCnpj: string;
 
-	@Column({ name: 'RG_IE' })
+	@Column()
 	rgIe: string;
 
-	@Column({ name: 'MATRICULA' })
+	@Column()
 	matricula: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'DATA_ADMISSAO' })
+	@Column()
 	dataAdmissao: Date;
 
-	@Column({ name: 'DATA_DEMISSAO' })
+	@Column()
 	dataDemissao: Date;
 
-	@Column({ name: 'CTPS_NUMERO' })
+	@Column()
 	ctpsNumero: string;
 
-	@Column({ name: 'CTPS_SERIE' })
+	@Column()
 	ctpsSerie: string;
 
-	@Column({ name: 'CTPS_DATA_EXPEDICAO' })
+	@Column()
 	ctpsDataExpedicao: Date;
 
-	@Column({ name: 'CTPS_UF' })
+	@Column()
 	ctpsUf: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CIDADE' })
+	@Column()
 	cidade: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'MUNICIPIO_IBGE' })
+	@Column()
 	municipioIbge: number;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'ID_PESSOA' })
+	@Column()
 	idPessoa: number;
 
-	@Column({ name: 'ID_CARGO' })
+	@Column()
 	idCargo: number;
 
-	@Column({ name: 'ID_SETOR' })
+	@Column()
 	idSetor: number;
 
-	@Column({ name: 'COMISSAO' })
+	@Column()
 	comissao: number;
 
-	@Column({ name: 'META_VENDA' })
+	@Column()
 	metaVenda: number;
 
 

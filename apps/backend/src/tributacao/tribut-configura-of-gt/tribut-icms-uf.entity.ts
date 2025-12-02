@@ -36,61 +36,61 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { TributConfiguraOfGt } from '../../entities-export';
 
-@Entity({ name: 'TRIBUT_ICMS_UF' })
+@Entity()
 export class TributIcmsUf {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'UF_DESTINO' })
+	@Column()
 	ufDestino: string;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'CSOSN' })
+	@Column()
 	csosn: string;
 
-	@Column({ name: 'CST' })
+	@Column()
 	cst: string;
 
-	@Column({ name: 'MODALIDADE_BC' })
+	@Column()
 	modalidadeBc: string;
 
-	@Column({ name: 'ALIQUOTA' })
+	@Column()
 	aliquota: number;
 
-	@Column({ name: 'VALOR_PAUTA' })
+	@Column()
 	valorPauta: number;
 
-	@Column({ name: 'VALOR_PRECO_MAXIMO' })
+	@Column()
 	valorPrecoMaximo: number;
 
-	@Column({ name: 'MVA' })
+	@Column()
 	mva: number;
 
-	@Column({ name: 'PORCENTO_BC' })
+	@Column()
 	porcentoBc: number;
 
-	@Column({ name: 'MODALIDADE_BC_ST' })
+	@Column()
 	modalidadeBcSt: string;
 
-	@Column({ name: 'ALIQUOTA_INTERNA_ST' })
+	@Column()
 	aliquotaInternaSt: number;
 
-	@Column({ name: 'ALIQUOTA_INTERESTADUAL_ST' })
+	@Column()
 	aliquotaInterestadualSt: number;
 
-	@Column({ name: 'PORCENTO_BC_ST' })
+	@Column()
 	porcentoBcSt: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_ST' })
+	@Column()
 	aliquotaIcmsSt: number;
 
-	@Column({ name: 'VALOR_PAUTA_ST' })
+	@Column()
 	valorPautaSt: number;
 
-	@Column({ name: 'VALOR_PRECO_MAXIMO_ST' })
+	@Column()
 	valorPrecoMaximoSt: number;
 
 
@@ -98,7 +98,7 @@ export class TributIcmsUf {
 	* Relations
 	*/
 	@ManyToOne(() => TributConfiguraOfGt, tributConfiguraOfGt => tributConfiguraOfGt.listaTributIcmsUf)
-	@JoinColumn({ name: "ID_TRIBUT_CONFIGURA_OF_GT" })
+	@JoinColumn()
 	tributConfiguraOfGt: TributConfiguraOfGt;
 
 

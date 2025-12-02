@@ -38,43 +38,43 @@ import { Pessoa } from '../../entities-export';
 import { NivelFormacao } from '../../entities-export';
 import { EstadoCivil } from '../../entities-export';
 
-@Entity({ name: 'PESSOA_FISICA' })
+@Entity()
 export class PessoaFisica {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'RG' })
+	@Column()
 	rg: string;
 
-	@Column({ name: 'ORGAO_RG' })
+	@Column()
 	orgaoRg: string;
 
-	@Column({ name: 'DATA_EMISSAO_RG' })
+	@Column()
 	dataEmissaoRg: Date;
 
-	@Column({ name: 'DATA_NASCIMENTO' })
+	@Column()
 	dataNascimento: Date;
 
-	@Column({ name: 'SEXO' })
+	@Column()
 	sexo: string;
 
-	@Column({ name: 'RACA' })
+	@Column()
 	raca: string;
 
-	@Column({ name: 'NACIONALIDADE' })
+	@Column()
 	nacionalidade: string;
 
-	@Column({ name: 'NATURALIDADE' })
+	@Column()
 	naturalidade: string;
 
-	@Column({ name: 'NOME_PAI' })
+	@Column()
 	nomePai: string;
 
-	@Column({ name: 'NOME_MAE' })
+	@Column()
 	nomeMae: string;
 
 
@@ -82,15 +82,15 @@ export class PessoaFisica {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa, pessoa => pessoa.pessoaFisica)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 	@OneToOne(() => NivelFormacao)
-	@JoinColumn({ name: "ID_NIVEL_FORMACAO" })
+	@JoinColumn()
 	nivelFormacao: NivelFormacao;
 
 	@OneToOne(() => EstadoCivil)
-	@JoinColumn({ name: "ID_ESTADO_CIVIL" })
+	@JoinColumn()
 	estadoCivil: EstadoCivil;
 
 

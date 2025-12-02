@@ -40,37 +40,37 @@ import { FinNaturezaFinanceira } from '../../entities-export';
 import { Cliente } from '../../entities-export';
 import { BancoContaCaixa } from '../../entities-export';
 
-@Entity({ name: 'FIN_LANCAMENTO_RECEBER' })
+@Entity()
 export class FinLancamentoReceber {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE_PARCELA' })
+	@Column()
 	quantidadeParcela: number;
 
-	@Column({ name: 'VALOR_A_RECEBER' })
+	@Column()
 	valorAReceber: number;
 
-	@Column({ name: 'DATA_LANCAMENTO' })
+	@Column()
 	dataLancamento: Date;
 
-	@Column({ name: 'NUMERO_DOCUMENTO' })
+	@Column()
 	numeroDocumento: string;
 
-	@Column({ name: 'PRIMEIRO_VENCIMENTO' })
+	@Column()
 	primeiroVencimento: Date;
 
-	@Column({ name: 'TAXA_COMISSAO' })
+	@Column()
 	taxaComissao: number;
 
-	@Column({ name: 'VALOR_COMISSAO' })
+	@Column()
 	valorComissao: number;
 
-	@Column({ name: 'INTERVALO_ENTRE_PARCELAS' })
+	@Column()
 	intervaloEntreParcelas: number;
 
-	@Column({ name: 'DIA_FIXO' })
+	@Column()
 	diaFixo: string;
 
 
@@ -78,23 +78,23 @@ export class FinLancamentoReceber {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => FinDocumentoOrigem)
-	@JoinColumn({ name: "ID_FIN_DOCUMENTO_ORIGEM" })
+	@JoinColumn()
 	finDocumentoOrigem: FinDocumentoOrigem;
 
 	@OneToOne(() => FinNaturezaFinanceira)
-	@JoinColumn({ name: "ID_FIN_NATUREZA_FINANCEIRA" })
+	@JoinColumn()
 	finNaturezaFinanceira: FinNaturezaFinanceira;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@OneToOne(() => BancoContaCaixa)
-	@JoinColumn({ name: "ID_BANCO_CONTA_CAIXA" })
+	@JoinColumn()
 	bancoContaCaixa: BancoContaCaixa;
 
 	@OneToMany(() => FinParcelaReceber, finParcelaReceber => finParcelaReceber.finLancamentoReceber, { cascade: true })

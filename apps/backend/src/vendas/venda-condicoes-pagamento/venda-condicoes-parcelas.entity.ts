@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { VendaCondicoesPagamento } from '../../entities-export';
 
-@Entity({ name: 'VENDA_CONDICOES_PARCELAS' })
+@Entity()
 export class VendaCondicoesParcelas {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'PARCELA' })
+	@Column()
 	parcela: number;
 
-	@Column({ name: 'DIAS' })
+	@Column()
 	dias: number;
 
-	@Column({ name: 'TAXA' })
+	@Column()
 	taxa: number;
 
 
@@ -56,7 +56,7 @@ export class VendaCondicoesParcelas {
 	* Relations
 	*/
 	@ManyToOne(() => VendaCondicoesPagamento, vendaCondicoesPagamento => vendaCondicoesPagamento.listaVendaCondicoesParcelas)
-	@JoinColumn({ name: "ID_VENDA_CONDICOES_PAGAMENTO" })
+	@JoinColumn()
 	vendaCondicoesPagamento: VendaCondicoesPagamento;
 
 

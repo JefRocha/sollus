@@ -10,8 +10,8 @@ export default new DataSource({
     username: process.env.DB_USERNAME || 'postgres',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE || 'solluserp',
-    entities: ['dist/**/*.entity.js'],
+    entities: [__dirname + '/**/*.entity{.ts,.js}'],
     migrations: ['dist/migrations/*.js'],
-    synchronize: false,
+    synchronize: true,
     logging: true,
 });

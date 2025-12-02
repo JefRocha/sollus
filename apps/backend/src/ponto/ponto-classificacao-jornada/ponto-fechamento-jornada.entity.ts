@@ -35,121 +35,121 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_FECHAMENTO_JORNADA' })
+@Entity()
 export class PontoFechamentoJornada {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PONTO_CLASSIFICACAO_JORNADA' })
+	@Column()
 	idPontoClassificacaoJornada: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_FECHAMENTO' })
+	@Column()
 	dataFechamento: Date;
 
-	@Column({ name: 'DIA_SEMANA' })
+	@Column()
 	diaSemana: string;
 
-	@Column({ name: 'CODIGO_HORARIO' })
+	@Column()
 	codigoHorario: string;
 
-	@Column({ name: 'CARGA_HORARIA_ESPERADA' })
+	@Column()
 	cargaHorariaEsperada: string;
 
-	@Column({ name: 'CARGA_HORARIA_DIURNA' })
+	@Column()
 	cargaHorariaDiurna: string;
 
-	@Column({ name: 'CARGA_HORARIA_NOTURNA' })
+	@Column()
 	cargaHorariaNoturna: string;
 
-	@Column({ name: 'CARGA_HORARIA_TOTAL' })
+	@Column()
 	cargaHorariaTotal: string;
 
-	@Column({ name: 'ENTRADA01' })
+	@Column()
 	entrada01: string;
 
-	@Column({ name: 'SAIDA01' })
+	@Column()
 	saida01: string;
 
-	@Column({ name: 'ENTRADA02' })
+	@Column()
 	entrada02: string;
 
-	@Column({ name: 'SAIDA02' })
+	@Column()
 	saida02: string;
 
-	@Column({ name: 'ENTRADA03' })
+	@Column()
 	entrada03: string;
 
-	@Column({ name: 'SAIDA03' })
+	@Column()
 	saida03: string;
 
-	@Column({ name: 'ENTRADA04' })
+	@Column()
 	entrada04: string;
 
-	@Column({ name: 'SAIDA04' })
+	@Column()
 	saida04: string;
 
-	@Column({ name: 'ENTRADA05' })
+	@Column()
 	entrada05: string;
 
-	@Column({ name: 'SAIDA05' })
+	@Column()
 	saida05: string;
 
-	@Column({ name: 'HORA_INICIO_JORNADA' })
+	@Column()
 	horaInicioJornada: string;
 
-	@Column({ name: 'HORA_FIM_JORNADA' })
+	@Column()
 	horaFimJornada: string;
 
-	@Column({ name: 'HORA_EXTRA01' })
+	@Column()
 	horaExtra01: string;
 
-	@Column({ name: 'PERCENTUAL_HORA_EXTRA01' })
+	@Column()
 	percentualHoraExtra01: number;
 
-	@Column({ name: 'MODALIDADE_HORA_EXTRA01' })
+	@Column()
 	modalidadeHoraExtra01: string;
 
-	@Column({ name: 'HORA_EXTRA02' })
+	@Column()
 	horaExtra02: string;
 
-	@Column({ name: 'PERCENTUAL_HORA_EXTRA02' })
+	@Column()
 	percentualHoraExtra02: number;
 
-	@Column({ name: 'MODALIDADE_HORA_EXTRA02' })
+	@Column()
 	modalidadeHoraExtra02: string;
 
-	@Column({ name: 'HORA_EXTRA03' })
+	@Column()
 	horaExtra03: string;
 
-	@Column({ name: 'PERCENTUAL_HORA_EXTRA03' })
+	@Column()
 	percentualHoraExtra03: number;
 
-	@Column({ name: 'MODALIDADE_HORA_EXTRA03' })
+	@Column()
 	modalidadeHoraExtra03: string;
 
-	@Column({ name: 'HORA_EXTRA04' })
+	@Column()
 	horaExtra04: string;
 
-	@Column({ name: 'PERCENTUAL_HORA_EXTRA04' })
+	@Column()
 	percentualHoraExtra04: number;
 
-	@Column({ name: 'MODALIDADE_HORA_EXTRA04' })
+	@Column()
 	modalidadeHoraExtra04: string;
 
-	@Column({ name: 'FALTA_ATRASO' })
+	@Column()
 	faltaAtraso: string;
 
-	@Column({ name: 'COMPENSAR' })
+	@Column()
 	compensar: string;
 
-	@Column({ name: 'BANCO_HORAS' })
+	@Column()
 	bancoHoras: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 

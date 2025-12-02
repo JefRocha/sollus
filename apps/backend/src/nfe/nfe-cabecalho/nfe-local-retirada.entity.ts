@@ -36,58 +36,58 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_LOCAL_RETIRADA' })
+@Entity()
 export class NfeLocalRetirada {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'NOME_EXPEDIDOR' })
+	@Column()
 	nomeExpedidor: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: number;
 
-	@Column({ name: 'NOME_MUNICIPIO' })
+	@Column()
 	nomeMunicipio: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'CODIGO_PAIS' })
+	@Column()
 	codigoPais: number;
 
-	@Column({ name: 'NOME_PAIS' })
+	@Column()
 	nomePais: string;
 
-	@Column({ name: 'TELEFONE' })
+	@Column()
 	telefone: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
 
@@ -95,7 +95,7 @@ export class NfeLocalRetirada {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeLocalRetirada)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

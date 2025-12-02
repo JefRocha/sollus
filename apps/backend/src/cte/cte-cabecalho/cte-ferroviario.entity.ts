@@ -35,28 +35,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_FERROVIARIO' })
+@Entity()
 export class CteFerroviario {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'TIPO_TRAFEGO' })
+	@Column()
 	tipoTrafego: string;
 
-	@Column({ name: 'RESPONSAVEL_FATURAMENTO' })
+	@Column()
 	responsavelFaturamento: string;
 
-	@Column({ name: 'FERROVIA_EMITENTE_CTE' })
+	@Column()
 	ferroviaEmitenteCte: string;
 
-	@Column({ name: 'FLUXO' })
+	@Column()
 	fluxo: string;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
 

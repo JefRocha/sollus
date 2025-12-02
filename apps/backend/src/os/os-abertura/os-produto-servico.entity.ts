@@ -37,34 +37,34 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { OsAbertura } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'OS_PRODUTO_SERVICO' })
+@Entity()
 export class OsProdutoServico {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'VALOR_UNITARIO' })
+	@Column()
 	valorUnitario: number;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
 
@@ -72,11 +72,11 @@ export class OsProdutoServico {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => OsAbertura, osAbertura => osAbertura.listaOsProdutoServico)
-	@JoinColumn({ name: "ID_OS_ABERTURA" })
+	@JoinColumn()
 	osAbertura: OsAbertura;
 
 

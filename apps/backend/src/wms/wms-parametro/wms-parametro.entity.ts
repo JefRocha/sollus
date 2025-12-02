@@ -35,25 +35,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_PARAMETRO' })
+@Entity()
 export class WmsParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'HORA_POR_VOLUME' })
+	@Column()
 	horaPorVolume: number;
 
-	@Column({ name: 'PESSOA_POR_VOLUME' })
+	@Column()
 	pessoaPorVolume: number;
 
-	@Column({ name: 'HORA_POR_PESO' })
+	@Column()
 	horaPorPeso: number;
 
-	@Column({ name: 'PESSOA_POR_PESO' })
+	@Column()
 	pessoaPorPeso: number;
 
-	@Column({ name: 'ITEM_DIFERENTE_CAIXA' })
+	@Column()
 	itemDiferenteCaixa: string;
 
 

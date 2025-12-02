@@ -21,6 +21,8 @@ interface DataTableRowActionsProps<TData> {
     resource: string;
     resourceName: string;
     onDelete?: (id: number) => Promise<void>;
+    canEdit?: boolean;
+    canDelete?: boolean;
 }
 
 export function DataTableRowActions<TData>({
@@ -28,6 +30,8 @@ export function DataTableRowActions<TData>({
     resource,
     resourceName,
     onDelete,
+    canEdit = true,
+    canDelete = true,
 }: DataTableRowActionsProps<TData>) {
     const router = useRouter();
     const data = row.original as any;
@@ -63,13 +67,15 @@ export function DataTableRowActions<TData>({
             <DropdownMenuContent align="end" className="w-[160px]">
                 <DropdownMenuLabel>Ações</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                    <Link href={`${resource}/${data.id}`} className="cursor-pointer">
-                        <Pencil className="mr-2 h-4 w-4" />
-                        Editar
-                    </Link>
-                </DropdownMenuItem>
-                {onDelete && (
+                {canEdit && (
+                    <DropdownMenuItem asChild>
+                        <Link href={`${resource}/${data.id}`} className="cursor-pointer">
+                            <Pencil className="mr-2 h-4 w-4" />
+                            Editar
+                        </Link>
+                    </DropdownMenuItem>
+                )}
+                {onDelete && canDelete && (
                     <DropdownMenuItem
                         onClick={handleDelete}
                         className="text-red-600 cursor-pointer"

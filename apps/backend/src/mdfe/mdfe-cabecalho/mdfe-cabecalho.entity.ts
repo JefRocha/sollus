@@ -35,85 +35,85 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'MDFE_CABECALHO' })
+@Entity()
 export class MdfeCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: number;
 
-	@Column({ name: 'TIPO_AMBIENTE' })
+	@Column()
 	tipoAmbiente: number;
 
-	@Column({ name: 'TIPO_EMITENTE' })
+	@Column()
 	tipoEmitente: number;
 
-	@Column({ name: 'TIPO_TRANSPORTADORA' })
+	@Column()
 	tipoTransportadora: number;
 
-	@Column({ name: 'MODELO' })
+	@Column()
 	modelo: string;
 
-	@Column({ name: 'SERIE' })
+	@Column()
 	serie: string;
 
-	@Column({ name: 'NUMERO_MDFE' })
+	@Column()
 	numeroMdfe: string;
 
-	@Column({ name: 'CODIGO_NUMERICO' })
+	@Column()
 	codigoNumerico: string;
 
-	@Column({ name: 'CHAVE_ACESSO' })
+	@Column()
 	chaveAcesso: string;
 
-	@Column({ name: 'DIGITO_VERIFICADOR' })
+	@Column()
 	digitoVerificador: number;
 
-	@Column({ name: 'MODAL' })
+	@Column()
 	modal: number;
 
-	@Column({ name: 'DATA_HORA_EMISSAO' })
+	@Column()
 	dataHoraEmissao: Date;
 
-	@Column({ name: 'TIPO_EMISSAO' })
+	@Column()
 	tipoEmissao: number;
 
-	@Column({ name: 'PROCESSO_EMISSAO' })
+	@Column()
 	processoEmissao: number;
 
-	@Column({ name: 'VERSAO_PROCESSO_EMISSAO' })
+	@Column()
 	versaoProcessoEmissao: string;
 
-	@Column({ name: 'UF_INICIO' })
+	@Column()
 	ufInicio: string;
 
-	@Column({ name: 'UF_FIM' })
+	@Column()
 	ufFim: string;
 
-	@Column({ name: 'DATA_HORA_PREVISAO_VIAGEM' })
+	@Column()
 	dataHoraPrevisaoViagem: Date;
 
-	@Column({ name: 'QUANTIDADE_TOTAL_CTE' })
+	@Column()
 	quantidadeTotalCte: number;
 
-	@Column({ name: 'QUANTIDADE_TOTAL_NFE' })
+	@Column()
 	quantidadeTotalNfe: number;
 
-	@Column({ name: 'QUANTIDADE_TOTAL_MDFE' })
+	@Column()
 	quantidadeTotalMdfe: number;
 
-	@Column({ name: 'CODIGO_UNIDADE_MEDIDA' })
+	@Column()
 	codigoUnidadeMedida: string;
 
-	@Column({ name: 'PESO_BRUTO_CARGA' })
+	@Column()
 	pesoBrutoCarga: number;
 
-	@Column({ name: 'VALOR_CARGA' })
+	@Column()
 	valorCarga: number;
 
-	@Column({ name: 'NUMERO_PROTOCOLO' })
+	@Column()
 	numeroProtocolo: string;
 
 

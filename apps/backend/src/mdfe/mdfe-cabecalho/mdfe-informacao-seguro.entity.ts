@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'MDFE_INFORMACAO_SEGURO' })
+@Entity()
 export class MdfeInformacaoSeguro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_MDFE_CABECALHO' })
+	@Column()
 	idMdfeCabecalho: number;
 
-	@Column({ name: 'RESPONSAVEL' })
+	@Column()
 	responsavel: number;
 
-	@Column({ name: 'CNPJ_CPF' })
+	@Column()
 	cnpjCpf: string;
 
-	@Column({ name: 'SEGURADORA' })
+	@Column()
 	seguradora: string;
 
-	@Column({ name: 'CNPJ_SEGURADORA' })
+	@Column()
 	cnpjSeguradora: string;
 
-	@Column({ name: 'APOLICE' })
+	@Column()
 	apolice: string;
 
-	@Column({ name: 'AVERBACAO' })
+	@Column()
 	averbacao: string;
 
 

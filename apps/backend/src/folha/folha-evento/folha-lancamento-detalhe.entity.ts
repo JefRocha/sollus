@@ -37,19 +37,19 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { FolhaEvento } from '../../entities-export';
 import { FolhaLancamentoCabecalho } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_LANCAMENTO_DETALHE' })
+@Entity()
 export class FolhaLancamentoDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ORIGEM' })
+	@Column()
 	origem: number;
 
-	@Column({ name: 'PROVENTO' })
+	@Column()
 	provento: number;
 
-	@Column({ name: 'DESCONTO' })
+	@Column()
 	desconto: number;
 
 
@@ -57,11 +57,11 @@ export class FolhaLancamentoDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => FolhaEvento)
-	@JoinColumn({ name: "ID_FOLHA_EVENTO" })
+	@JoinColumn()
 	folhaEvento: FolhaEvento;
 
 	@ManyToOne(() => FolhaLancamentoCabecalho, folhaLancamentoCabecalho => folhaLancamentoCabecalho.listaFolhaLancamentoDetalhe)
-	@JoinColumn({ name: "ID_FOLHA_LANCAMENTO_CABECALHO" })
+	@JoinColumn()
 	folhaLancamentoCabecalho: FolhaLancamentoCabecalho;
 
 

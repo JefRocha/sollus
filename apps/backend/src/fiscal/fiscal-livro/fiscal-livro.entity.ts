@@ -35,13 +35,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FISCAL_LIVRO' })
+@Entity()
 export class FiscalLivro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 

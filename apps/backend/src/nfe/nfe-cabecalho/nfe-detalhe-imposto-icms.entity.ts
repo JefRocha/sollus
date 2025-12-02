@@ -36,136 +36,136 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE_IMPOSTO_ICMS' })
+@Entity()
 export class NfeDetalheImpostoIcms {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ORIGEM_MERCADORIA' })
+	@Column()
 	origemMercadoria: string;
 
-	@Column({ name: 'CST_ICMS' })
+	@Column()
 	cstIcms: string;
 
-	@Column({ name: 'CSOSN' })
+	@Column()
 	csosn: string;
 
-	@Column({ name: 'MODALIDADE_BC_ICMS' })
+	@Column()
 	modalidadeBcIcms: string;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_ICMS' })
+	@Column()
 	percentualReducaoBcIcms: number;
 
-	@Column({ name: 'VALOR_BC_ICMS' })
+	@Column()
 	valorBcIcms: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS' })
+	@Column()
 	aliquotaIcms: number;
 
-	@Column({ name: 'VALOR_ICMS_OPERACAO' })
+	@Column()
 	valorIcmsOperacao: number;
 
-	@Column({ name: 'PERCENTUAL_DIFERIMENTO' })
+	@Column()
 	percentualDiferimento: number;
 
-	@Column({ name: 'VALOR_ICMS_DIFERIDO' })
+	@Column()
 	valorIcmsDiferido: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'BASE_CALCULO_FCP' })
+	@Column()
 	baseCalculoFcp: number;
 
-	@Column({ name: 'PERCENTUAL_FCP' })
+	@Column()
 	percentualFcp: number;
 
-	@Column({ name: 'VALOR_FCP' })
+	@Column()
 	valorFcp: number;
 
-	@Column({ name: 'MODALIDADE_BC_ICMS_ST' })
+	@Column()
 	modalidadeBcIcmsSt: string;
 
-	@Column({ name: 'PERCENTUAL_MVA_ICMS_ST' })
+	@Column()
 	percentualMvaIcmsSt: number;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_ICMS_ST' })
+	@Column()
 	percentualReducaoBcIcmsSt: number;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_ICMS_ST' })
+	@Column()
 	valorBaseCalculoIcmsSt: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_ST' })
+	@Column()
 	aliquotaIcmsSt: number;
 
-	@Column({ name: 'VALOR_ICMS_ST' })
+	@Column()
 	valorIcmsSt: number;
 
-	@Column({ name: 'BASE_CALCULO_FCP_ST' })
+	@Column()
 	baseCalculoFcpSt: number;
 
-	@Column({ name: 'PERCENTUAL_FCP_ST' })
+	@Column()
 	percentualFcpSt: number;
 
-	@Column({ name: 'VALOR_FCP_ST' })
+	@Column()
 	valorFcpSt: number;
 
-	@Column({ name: 'UF_ST' })
+	@Column()
 	ufSt: string;
 
-	@Column({ name: 'PERCENTUAL_BC_OPERACAO_PROPRIA' })
+	@Column()
 	percentualBcOperacaoPropria: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ST_RETIDO' })
+	@Column()
 	valorBcIcmsStRetido: number;
 
-	@Column({ name: 'ALIQUOTA_SUPORTADA_CONSUMIDOR' })
+	@Column()
 	aliquotaSuportadaConsumidor: number;
 
-	@Column({ name: 'VALOR_ICMS_SUBSTITUTO' })
+	@Column()
 	valorIcmsSubstituto: number;
 
-	@Column({ name: 'VALOR_ICMS_ST_RETIDO' })
+	@Column()
 	valorIcmsStRetido: number;
 
-	@Column({ name: 'BASE_CALCULO_FCP_ST_RETIDO' })
+	@Column()
 	baseCalculoFcpStRetido: number;
 
-	@Column({ name: 'PERCENTUAL_FCP_ST_RETIDO' })
+	@Column()
 	percentualFcpStRetido: number;
 
-	@Column({ name: 'VALOR_FCP_ST_RETIDO' })
+	@Column()
 	valorFcpStRetido: number;
 
-	@Column({ name: 'MOTIVO_DESONERACAO_ICMS' })
+	@Column()
 	motivoDesoneracaoIcms: string;
 
-	@Column({ name: 'VALOR_ICMS_DESONERADO' })
+	@Column()
 	valorIcmsDesonerado: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_ICMS_SN' })
+	@Column()
 	aliquotaCreditoIcmsSn: number;
 
-	@Column({ name: 'VALOR_CREDITO_ICMS_SN' })
+	@Column()
 	valorCreditoIcmsSn: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ST_DESTINO' })
+	@Column()
 	valorBcIcmsStDestino: number;
 
-	@Column({ name: 'VALOR_ICMS_ST_DESTINO' })
+	@Column()
 	valorIcmsStDestino: number;
 
-	@Column({ name: 'PERCENTUAL_REDUCAO_BC_EFETIVO' })
+	@Column()
 	percentualReducaoBcEfetivo: number;
 
-	@Column({ name: 'VALOR_BC_EFETIVO' })
+	@Column()
 	valorBcEfetivo: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS_EFETIVO' })
+	@Column()
 	aliquotaIcmsEfetivo: number;
 
-	@Column({ name: 'VALOR_ICMS_EFETIVO' })
+	@Column()
 	valorIcmsEfetivo: number;
 
 
@@ -173,7 +173,7 @@ export class NfeDetalheImpostoIcms {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIcms)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

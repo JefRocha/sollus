@@ -35,43 +35,43 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_SPED_C190' })
+@Entity()
 export class ViewSpedC190 {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CST_ICMS' })
+	@Column()
 	cstIcms: string;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'ALIQUOTA_ICMS' })
+	@Column()
 	aliquotaIcms: number;
 
-	@Column({ name: 'DATA_HORA_EMISSAO' })
+	@Column()
 	dataHoraEmissao: Date;
 
-	@Column({ name: 'SOMA_VALOR_OPERACAO' })
+	@Column()
 	somaValorOperacao: number;
 
-	@Column({ name: 'SOMA_BASE_CALCULO_ICMS' })
+	@Column()
 	somaBaseCalculoIcms: number;
 
-	@Column({ name: 'SOMA_VALOR_ICMS' })
+	@Column()
 	somaValorIcms: number;
 
-	@Column({ name: 'SOMA_BASE_CALCULO_ICMS_ST' })
+	@Column()
 	somaBaseCalculoIcmsSt: number;
 
-	@Column({ name: 'SOMA_VALOR_ICMS_ST' })
+	@Column()
 	somaValorIcmsSt: number;
 
-	@Column({ name: 'SOMA_VL_RED_BC' })
+	@Column()
 	somaVlRedBc: number;
 
-	@Column({ name: 'SOMA_VALOR_IPI' })
+	@Column()
 	somaValorIpi: number;
 
 

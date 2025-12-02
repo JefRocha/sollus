@@ -37,40 +37,40 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { VendaCabecalho } from '../../entities-export';
 import { Transportadora } from '../../entities-export';
 
-@Entity({ name: 'VENDA_FRETE' })
+@Entity()
 export class VendaFrete {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CONHECIMENTO' })
+	@Column()
 	conhecimento: number;
 
-	@Column({ name: 'RESPONSAVEL' })
+	@Column()
 	responsavel: string;
 
-	@Column({ name: 'PLACA' })
+	@Column()
 	placa: string;
 
-	@Column({ name: 'UF_PLACA' })
+	@Column()
 	ufPlaca: string;
 
-	@Column({ name: 'SELO_FISCAL' })
+	@Column()
 	seloFiscal: number;
 
-	@Column({ name: 'QUANTIDADE_VOLUME' })
+	@Column()
 	quantidadeVolume: number;
 
-	@Column({ name: 'MARCA_VOLUME' })
+	@Column()
 	marcaVolume: string;
 
-	@Column({ name: 'ESPECIE_VOLUME' })
+	@Column()
 	especieVolume: string;
 
-	@Column({ name: 'PESO_BRUTO' })
+	@Column()
 	pesoBruto: number;
 
-	@Column({ name: 'PESO_LIQUIDO' })
+	@Column()
 	pesoLiquido: number;
 
 
@@ -78,11 +78,11 @@ export class VendaFrete {
 	* Relations
 	*/
 	@OneToOne(() => VendaCabecalho)
-	@JoinColumn({ name: "ID_VENDA_CABECALHO" })
+	@JoinColumn()
 	vendaCabecalho: VendaCabecalho;
 
 	@OneToOne(() => Transportadora)
-	@JoinColumn({ name: "ID_TRANSPORTADORA" })
+	@JoinColumn()
 	transportadora: Transportadora;
 
 

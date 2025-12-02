@@ -37,13 +37,13 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { EmpresaTransporteItinerario } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_VALE_TRANSPORTE' })
+@Entity()
 export class FolhaValeTransporte {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 
@@ -51,11 +51,11 @@ export class FolhaValeTransporte {
 	* Relations
 	*/
 	@OneToOne(() => EmpresaTransporteItinerario)
-	@JoinColumn({ name: "ID_EMPRESA_TRANSP_ITIN" })
+	@JoinColumn()
 	empresaTranspItin: EmpresaTransporteItinerario;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 

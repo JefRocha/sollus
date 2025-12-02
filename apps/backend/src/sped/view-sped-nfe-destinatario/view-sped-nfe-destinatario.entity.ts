@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_SPED_NFE_DESTINATARIO' })
+@Entity()
 export class ViewSpedNfeDestinatario {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: number;
 
-	@Column({ name: 'SUFRAMA' })
+	@Column()
 	suframa: number;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
 

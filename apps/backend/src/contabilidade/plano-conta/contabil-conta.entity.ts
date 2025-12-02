@@ -35,55 +35,55 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_CONTA' })
+@Entity()
 export class ContabilConta {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PLANO_CONTA' })
+	@Column()
 	idPlanoConta: number;
 
-	@Column({ name: 'ID_CONTABIL_CONTA' })
+	@Column()
 	idContabilConta: number;
 
-	@Column({ name: 'ID_PLANO_CONTA_REF_SPED' })
+	@Column()
 	idPlanoContaRefSped: number;
 
-	@Column({ name: 'CLASSIFICACAO' })
+	@Column()
 	classificacao: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'DATA_INCLUSAO' })
+	@Column()
 	dataInclusao: Date;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
-	@Column({ name: 'NATUREZA' })
+	@Column()
 	natureza: string;
 
-	@Column({ name: 'PATRIMONIO_RESULTADO' })
+	@Column()
 	patrimonioResultado: string;
 
-	@Column({ name: 'LIVRO_CAIXA' })
+	@Column()
 	livroCaixa: string;
 
-	@Column({ name: 'DFC' })
+	@Column()
 	dfc: string;
 
-	@Column({ name: 'ORDEM' })
+	@Column()
 	ordem: string;
 
-	@Column({ name: 'CODIGO_REDUZIDO' })
+	@Column()
 	codigoReduzido: string;
 
-	@Column({ name: 'CODIGO_EFD' })
+	@Column()
 	codigoEfd: string;
 
 

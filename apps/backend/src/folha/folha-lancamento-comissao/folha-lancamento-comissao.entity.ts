@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Vendedor } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_LANCAMENTO_COMISSAO' })
+@Entity()
 export class FolhaLancamentoComissao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'VENCIMENTO' })
+	@Column()
 	vencimento: Date;
 
-	@Column({ name: 'BASE_CALCULO' })
+	@Column()
 	baseCalculo: number;
 
-	@Column({ name: 'VALOR_COMISSAO' })
+	@Column()
 	valorComissao: number;
 
 
@@ -59,7 +59,7 @@ export class FolhaLancamentoComissao {
 	* Relations
 	*/
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 

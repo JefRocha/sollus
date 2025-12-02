@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { FiscalParametro } from '../../entities-export';
 
-@Entity({ name: 'FISCAL_INSCRICOES_SUBSTITUTAS' })
+@Entity()
 export class FiscalInscricoesSubstitutas {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
-	@Column({ name: 'PMPF' })
+	@Column()
 	pmpf: string;
 
 
@@ -56,7 +56,7 @@ export class FiscalInscricoesSubstitutas {
 	* Relations
 	*/
 	@OneToOne(() => FiscalParametro)
-	@JoinColumn({ name: "ID_FISCAL_PARAMETROS" })
+	@JoinColumn()
 	fiscalParametros: FiscalParametro;
 
 

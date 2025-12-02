@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { OsEquipamento } from '../../entities-export';
 import { OsAbertura } from '../../entities-export';
 
-@Entity({ name: 'OS_ABERTURA_EQUIPAMENTO' })
+@Entity()
 export class OsAberturaEquipamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_SERIE' })
+	@Column()
 	numeroSerie: string;
 
-	@Column({ name: 'TIPO_COBERTURA' })
+	@Column()
 	tipoCobertura: string;
 
 
@@ -54,11 +54,11 @@ export class OsAberturaEquipamento {
 	* Relations
 	*/
 	@OneToOne(() => OsEquipamento)
-	@JoinColumn({ name: "ID_OS_EQUIPAMENTO" })
+	@JoinColumn()
 	osEquipamento: OsEquipamento;
 
 	@ManyToOne(() => OsAbertura, osAbertura => osAbertura.listaOsAberturaEquipamento)
-	@JoinColumn({ name: "ID_OS_ABERTURA" })
+	@JoinColumn()
 	osAbertura: OsAbertura;
 
 

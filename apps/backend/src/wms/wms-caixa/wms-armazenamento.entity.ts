@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_ARMAZENAMENTO' })
+@Entity()
 export class WmsArmazenamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_WMS_CAIXA' })
+	@Column()
 	idWmsCaixa: number;
 
-	@Column({ name: 'ID_WMS_RECEBIMENTO_DETALHE' })
+	@Column()
 	idWmsRecebimentoDetalhe: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 

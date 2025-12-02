@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'AGENDA_NOTIFICACAO' })
+@Entity()
 export class AgendaNotificacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_AGENDA_COMPROMISSO' })
+	@Column()
 	idAgendaCompromisso: number;
 
-	@Column({ name: 'DATA_NOTIFICACAO' })
+	@Column()
 	dataNotificacao: Date;
 
-	@Column({ name: 'HORA' })
+	@Column()
 	hora: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: number;
 
 

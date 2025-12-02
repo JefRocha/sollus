@@ -57,238 +57,238 @@ import { Cliente } from '../../entities-export';
 import { TributOperacaoFiscal } from '../../entities-export';
 import { VendaCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_CABECALHO' })
+@Entity()
 export class NfeCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'UF_EMITENTE' })
+	@Column()
 	ufEmitente: number;
 
-	@Column({ name: 'CODIGO_NUMERICO' })
+	@Column()
 	codigoNumerico: string;
 
-	@Column({ name: 'NATUREZA_OPERACAO' })
+	@Column()
 	naturezaOperacao: string;
 
-	@Column({ name: 'CODIGO_MODELO' })
+	@Column()
 	codigoModelo: string;
 
-	@Column({ name: 'SERIE' })
+	@Column()
 	serie: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_HORA_EMISSAO' })
+	@Column()
 	dataHoraEmissao: Date;
 
-	@Column({ name: 'DATA_HORA_ENTRADA_SAIDA' })
+	@Column()
 	dataHoraEntradaSaida: Date;
 
-	@Column({ name: 'TIPO_OPERACAO' })
+	@Column()
 	tipoOperacao: string;
 
-	@Column({ name: 'LOCAL_DESTINO' })
+	@Column()
 	localDestino: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: number;
 
-	@Column({ name: 'FORMATO_IMPRESSAO_DANFE' })
+	@Column()
 	formatoImpressaoDanfe: string;
 
-	@Column({ name: 'TIPO_EMISSAO' })
+	@Column()
 	tipoEmissao: string;
 
-	@Column({ name: 'CHAVE_ACESSO' })
+	@Column()
 	chaveAcesso: string;
 
-	@Column({ name: 'DIGITO_CHAVE_ACESSO' })
+	@Column()
 	digitoChaveAcesso: string;
 
-	@Column({ name: 'AMBIENTE' })
+	@Column()
 	ambiente: string;
 
-	@Column({ name: 'FINALIDADE_EMISSAO' })
+	@Column()
 	finalidadeEmissao: string;
 
-	@Column({ name: 'CONSUMIDOR_OPERACAO' })
+	@Column()
 	consumidorOperacao: string;
 
-	@Column({ name: 'CONSUMIDOR_PRESENCA' })
+	@Column()
 	consumidorPresenca: string;
 
-	@Column({ name: 'PROCESSO_EMISSAO' })
+	@Column()
 	processoEmissao: string;
 
-	@Column({ name: 'VERSAO_PROCESSO_EMISSAO' })
+	@Column()
 	versaoProcessoEmissao: string;
 
-	@Column({ name: 'DATA_ENTRADA_CONTINGENCIA' })
+	@Column()
 	dataEntradaContingencia: Date;
 
-	@Column({ name: 'JUSTIFICATIVA_CONTINGENCIA' })
+	@Column()
 	justificativaContingencia: string;
 
-	@Column({ name: 'BASE_CALCULO_ICMS' })
+	@Column()
 	baseCalculoIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'VALOR_ICMS_DESONERADO' })
+	@Column()
 	valorIcmsDesonerado: number;
 
-	@Column({ name: 'TOTAL_ICMS_FCP_UF_DESTINO' })
+	@Column()
 	totalIcmsFcpUfDestino: number;
 
-	@Column({ name: 'TOTAL_ICMS_INTERESTADUAL_UF_DESTINO' })
+	@Column()
 	totalIcmsInterestadualUfDestino: number;
 
-	@Column({ name: 'TOTAL_ICMS_INTERESTADUAL_UF_REMETENTE' })
+	@Column()
 	totalIcmsInterestadualUfRemetente: number;
 
-	@Column({ name: 'VALOR_TOTAL_FCP' })
+	@Column()
 	valorTotalFcp: number;
 
-	@Column({ name: 'BASE_CALCULO_ICMS_ST' })
+	@Column()
 	baseCalculoIcmsSt: number;
 
-	@Column({ name: 'VALOR_ICMS_ST' })
+	@Column()
 	valorIcmsSt: number;
 
-	@Column({ name: 'VALOR_TOTAL_FCP_ST' })
+	@Column()
 	valorTotalFcpSt: number;
 
-	@Column({ name: 'VALOR_TOTAL_FCP_ST_RETIDO' })
+	@Column()
 	valorTotalFcpStRetido: number;
 
-	@Column({ name: 'VALOR_TOTAL_PRODUTOS' })
+	@Column()
 	valorTotalProdutos: number;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'VALOR_SEGURO' })
+	@Column()
 	valorSeguro: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_IMPOSTO_IMPORTACAO' })
+	@Column()
 	valorImpostoImportacao: number;
 
-	@Column({ name: 'VALOR_IPI' })
+	@Column()
 	valorIpi: number;
 
-	@Column({ name: 'VALOR_IPI_DEVOLVIDO' })
+	@Column()
 	valorIpiDevolvido: number;
 
-	@Column({ name: 'VALOR_PIS' })
+	@Column()
 	valorPis: number;
 
-	@Column({ name: 'VALOR_COFINS' })
+	@Column()
 	valorCofins: number;
 
-	@Column({ name: 'VALOR_DESPESAS_ACESSORIAS' })
+	@Column()
 	valorDespesasAcessorias: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'VALOR_TOTAL_TRIBUTOS' })
+	@Column()
 	valorTotalTributos: number;
 
-	@Column({ name: 'VALOR_SERVICOS' })
+	@Column()
 	valorServicos: number;
 
-	@Column({ name: 'BASE_CALCULO_ISSQN' })
+	@Column()
 	baseCalculoIssqn: number;
 
-	@Column({ name: 'VALOR_ISSQN' })
+	@Column()
 	valorIssqn: number;
 
-	@Column({ name: 'VALOR_PIS_ISSQN' })
+	@Column()
 	valorPisIssqn: number;
 
-	@Column({ name: 'VALOR_COFINS_ISSQN' })
+	@Column()
 	valorCofinsIssqn: number;
 
-	@Column({ name: 'DATA_PRESTACAO_SERVICO' })
+	@Column()
 	dataPrestacaoServico: Date;
 
-	@Column({ name: 'VALOR_DEDUCAO_ISSQN' })
+	@Column()
 	valorDeducaoIssqn: number;
 
-	@Column({ name: 'OUTRAS_RETENCOES_ISSQN' })
+	@Column()
 	outrasRetencoesIssqn: number;
 
-	@Column({ name: 'DESCONTO_INCONDICIONADO_ISSQN' })
+	@Column()
 	descontoIncondicionadoIssqn: number;
 
-	@Column({ name: 'DESCONTO_CONDICIONADO_ISSQN' })
+	@Column()
 	descontoCondicionadoIssqn: number;
 
-	@Column({ name: 'TOTAL_RETENCAO_ISSQN' })
+	@Column()
 	totalRetencaoIssqn: number;
 
-	@Column({ name: 'REGIME_ESPECIAL_TRIBUTACAO' })
+	@Column()
 	regimeEspecialTributacao: string;
 
-	@Column({ name: 'VALOR_RETIDO_PIS' })
+	@Column()
 	valorRetidoPis: number;
 
-	@Column({ name: 'VALOR_RETIDO_COFINS' })
+	@Column()
 	valorRetidoCofins: number;
 
-	@Column({ name: 'VALOR_RETIDO_CSLL' })
+	@Column()
 	valorRetidoCsll: number;
 
-	@Column({ name: 'BASE_CALCULO_IRRF' })
+	@Column()
 	baseCalculoIrrf: number;
 
-	@Column({ name: 'VALOR_RETIDO_IRRF' })
+	@Column()
 	valorRetidoIrrf: number;
 
-	@Column({ name: 'BASE_CALCULO_PREVIDENCIA' })
+	@Column()
 	baseCalculoPrevidencia: number;
 
-	@Column({ name: 'VALOR_RETIDO_PREVIDENCIA' })
+	@Column()
 	valorRetidoPrevidencia: number;
 
-	@Column({ name: 'INFORMACOES_ADD_FISCO' })
+	@Column()
 	informacoesAddFisco: string;
 
-	@Column({ name: 'INFORMACOES_ADD_CONTRIBUINTE' })
+	@Column()
 	informacoesAddContribuinte: string;
 
-	@Column({ name: 'COMEX_UF_EMBARQUE' })
+	@Column()
 	comexUfEmbarque: string;
 
-	@Column({ name: 'COMEX_LOCAL_EMBARQUE' })
+	@Column()
 	comexLocalEmbarque: string;
 
-	@Column({ name: 'COMEX_LOCAL_DESPACHO' })
+	@Column()
 	comexLocalDespacho: string;
 
-	@Column({ name: 'COMPRA_NOTA_EMPENHO' })
+	@Column()
 	compraNotaEmpenho: string;
 
-	@Column({ name: 'COMPRA_PEDIDO' })
+	@Column()
 	compraPedido: string;
 
-	@Column({ name: 'COMPRA_CONTRATO' })
+	@Column()
 	compraContrato: string;
 
-	@Column({ name: 'QRCODE' })
+	@Column()
 	qrcode: string;
 
-	@Column({ name: 'URL_CHAVE' })
+	@Column()
 	urlChave: string;
 
-	@Column({ name: 'STATUS_NOTA' })
+	@Column()
 	statusNota: string;
 
 
@@ -323,23 +323,23 @@ export class NfeCabecalho {
 	nfeTransporte: NfeTransporte;
 
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@OneToOne(() => Fornecedor)
-	@JoinColumn({ name: "ID_FORNECEDOR" })
+	@JoinColumn()
 	fornecedor: Fornecedor;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@OneToOne(() => TributOperacaoFiscal)
-	@JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
+	@JoinColumn()
 	tributOperacaoFiscal: TributOperacaoFiscal;
 
 	@OneToOne(() => VendaCabecalho)
-	@JoinColumn({ name: "ID_VENDA_CABECALHO" })
+	@JoinColumn()
 	vendaCabecalho: VendaCabecalho;
 
 	@OneToMany(() => NfeAcessoXml, nfeAcessoXml => nfeAcessoXml.nfeCabecalho, { cascade: true })

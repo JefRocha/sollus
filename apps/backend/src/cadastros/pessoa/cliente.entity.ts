@@ -38,25 +38,25 @@ import { Pessoa, Empresa } from '../../entities-export';
 import { TabelaPreco } from '../../entities-export';
 import { ViewPessoaCliente } from '../../entities-export';
 
-@Entity({ name: 'CLIENTE' })
+@Entity()
 export class Cliente {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESDE' })
+	@Column()
 	desde: Date;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'LIMITE_CREDITO' })
+	@Column()
 	limiteCredito: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -64,15 +64,15 @@ export class Cliente {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.cliente)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 	@OneToOne(() => TabelaPreco)
-	@JoinColumn({ name: "ID_TABELA_PRECO" })
+	@JoinColumn()
 	tabelaPreco: TabelaPreco;
 
 	// Removed viewPessoaCliente - duplicate @OneToOne on ID_PESSOA column

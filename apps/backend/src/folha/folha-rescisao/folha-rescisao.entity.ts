@@ -36,55 +36,55 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_RESCISAO' })
+@Entity()
 export class FolhaRescisao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_DEMISSAO' })
+	@Column()
 	dataDemissao: Date;
 
-	@Column({ name: 'DATA_PAGAMENTO' })
+	@Column()
 	dataPagamento: Date;
 
-	@Column({ name: 'MOTIVO' })
+	@Column()
 	motivo: string;
 
-	@Column({ name: 'MOTIVO_ESOCIAL' })
+	@Column()
 	motivoEsocial: string;
 
-	@Column({ name: 'DATA_AVISO_PREVIO' })
+	@Column()
 	dataAvisoPrevio: Date;
 
-	@Column({ name: 'DIAS_AVISO_PREVIO' })
+	@Column()
 	diasAvisoPrevio: number;
 
-	@Column({ name: 'COMPROVOU_NOVO_EMPREGO' })
+	@Column()
 	comprovouNovoEmprego: string;
 
-	@Column({ name: 'DISPENSOU_EMPREGADO' })
+	@Column()
 	dispensouEmpregado: string;
 
-	@Column({ name: 'PENSAO_ALIMENTICIA' })
+	@Column()
 	pensaoAlimenticia: number;
 
-	@Column({ name: 'PENSAO_ALIMENTICIA_FGTS' })
+	@Column()
 	pensaoAlimenticiaFgts: number;
 
-	@Column({ name: 'FGTS_VALOR_RESCISAO' })
+	@Column()
 	fgtsValorRescisao: number;
 
-	@Column({ name: 'FGTS_SALDO_BANCO' })
+	@Column()
 	fgtsSaldoBanco: number;
 
-	@Column({ name: 'FGTS_COMPLEMENTO_SALDO' })
+	@Column()
 	fgtsComplementoSaldo: number;
 
-	@Column({ name: 'FGTS_CODIGO_AFASTAMENTO' })
+	@Column()
 	fgtsCodigoAfastamento: string;
 
-	@Column({ name: 'FGTS_CODIGO_SAQUE' })
+	@Column()
 	fgtsCodigoSaque: string;
 
 
@@ -92,7 +92,7 @@ export class FolhaRescisao {
 	* Relations
 	*/
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 

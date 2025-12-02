@@ -35,55 +35,55 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_HORARIO_AUTORIZADO' })
+@Entity()
 export class PontoHorarioAutorizado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_HORARIO' })
+	@Column()
 	dataHorario: Date;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'CARGA_HORARIA' })
+	@Column()
 	cargaHoraria: string;
 
-	@Column({ name: 'ENTRADA01' })
+	@Column()
 	entrada01: string;
 
-	@Column({ name: 'SAIDA01' })
+	@Column()
 	saida01: string;
 
-	@Column({ name: 'ENTRADA02' })
+	@Column()
 	entrada02: string;
 
-	@Column({ name: 'SAIDA02' })
+	@Column()
 	saida02: string;
 
-	@Column({ name: 'ENTRADA03' })
+	@Column()
 	entrada03: string;
 
-	@Column({ name: 'SAIDA03' })
+	@Column()
 	saida03: string;
 
-	@Column({ name: 'ENTRADA04' })
+	@Column()
 	entrada04: string;
 
-	@Column({ name: 'SAIDA04' })
+	@Column()
 	saida04: string;
 
-	@Column({ name: 'ENTRADA05' })
+	@Column()
 	entrada05: string;
 
-	@Column({ name: 'SAIDA05' })
+	@Column()
 	saida05: string;
 
-	@Column({ name: 'HORA_FECHAMENTO_DIA' })
+	@Column()
 	horaFechamentoDia: string;
 
 

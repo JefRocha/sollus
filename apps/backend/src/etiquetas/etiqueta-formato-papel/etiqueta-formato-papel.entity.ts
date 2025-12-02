@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'ETIQUETA_FORMATO_PAPEL' })
+@Entity()
 export class EtiquetaFormatoPapel {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'ALTURA' })
+	@Column()
 	altura: number;
 
-	@Column({ name: 'LARGURA' })
+	@Column()
 	largura: number;
 
 

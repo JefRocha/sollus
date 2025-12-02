@@ -35,6 +35,7 @@ interface DataTableProps<TData, TValue> {
     filterBy?: string;
     createHref?: string;
     createText?: string;
+    canCreate?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -43,6 +44,7 @@ export function DataTable<TData, TValue>({
     filterBy,
     createHref,
     createText = 'Criar Novo',
+    canCreate = true,
 }: DataTableProps<TData, TValue>) {
     const pathname = usePathname();
     const storageKey = `dataTable-state-${pathname}`;
@@ -143,7 +145,7 @@ export function DataTable<TData, TValue>({
                         className="flex-1"
                     />
                 )}
-                {createHref && (
+                {createHref && canCreate && (
                     <Link href={createHref}>
                         <Button>
                             <Plus className="mr-2 h-4 w-4" />
@@ -152,14 +154,14 @@ export function DataTable<TData, TValue>({
                     </Link>
                 )}
             </div>
-            <div className="rounded-md border">
+            <div className="rounded-xl border border-border/50 shadow-md overflow-hidden bg-card">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
+                            <TableRow key={headerGroup.id} className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2">
                                 {headerGroup.headers.map((header) => {
                                     return (
-                                        <TableHead key={header.id}>
+                                        <TableHead key={header.id} className="font-semibold">
                                             {header.isPlaceholder
                                                 ? null
                                                 : flexRender(
@@ -178,6 +180,7 @@ export function DataTable<TData, TValue>({
                                 <TableRow
                                     key={row.id}
                                     data-state={row.getIsSelected() && 'selected'}
+                                    className="transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer border-b border-border/30 hover:border-accent/50"
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>

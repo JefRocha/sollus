@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { CompraCotacaoDetalhe, CompraFornecedorCotacao, Empresa } from '../../entities-export';
 import { CompraRequisicao } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_COTACAO' })
+@Entity()
 export class CompraCotacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_COTACAO' })
+	@Column()
 	dataCotacao: Date;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 
@@ -54,11 +54,11 @@ export class CompraCotacao {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => CompraRequisicao)
-	@JoinColumn({ name: "ID_COMPRA_REQUISICAO" })
+	@JoinColumn()
 	compraRequisicao: CompraRequisicao;
 
 	@OneToMany(() => CompraFornecedorCotacao, compraFornecedorCotacao => compraFornecedorCotacao.compraCotacao, { cascade: true })

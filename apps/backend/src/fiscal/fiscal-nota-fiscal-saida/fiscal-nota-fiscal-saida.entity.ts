@@ -36,13 +36,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'FISCAL_NOTA_FISCAL_SAIDA' })
+@Entity()
 export class FiscalNotaFiscalSaida {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
 
@@ -50,7 +50,7 @@ export class FiscalNotaFiscalSaida {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_BANCO_HORAS' })
+@Entity()
 export class PontoBancoHoras {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_TRABALHO' })
+	@Column()
 	dataTrabalho: Date;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: string;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
 

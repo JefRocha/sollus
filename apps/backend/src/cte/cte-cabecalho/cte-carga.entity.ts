@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { CteCabecalho } from '../../entities-export';
 
-@Entity({ name: 'CTE_CARGA' })
+@Entity()
 export class CteCarga {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO_UNIDADE_MEDIDA' })
+	@Column()
 	codigoUnidadeMedida: string;
 
-	@Column({ name: 'TIPO_MEDIDA' })
+	@Column()
 	tipoMedida: string;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 
@@ -56,7 +56,7 @@ export class CteCarga {
 	* Relations
 	*/
 	@ManyToOne(() => CteCabecalho, cteCabecalho => cteCabecalho.listaCteCarga)
-	@JoinColumn({ name: "ID_CTE_CABECALHO" })
+	@JoinColumn()
 	cteCabecalho: CteCabecalho;
 
 

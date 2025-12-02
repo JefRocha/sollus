@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { CteCabecalho } from '../../entities-export';
 
-@Entity({ name: 'CTE_RODOVIARIO' })
+@Entity()
 export class CteRodoviario {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'RNTRC' })
+	@Column()
 	rntrc: string;
 
-	@Column({ name: 'DATA_PREVISTA_ENTREGA' })
+	@Column()
 	dataPrevistaEntrega: Date;
 
-	@Column({ name: 'INDICADOR_LOTACAO' })
+	@Column()
 	indicadorLotacao: string;
 
-	@Column({ name: 'CIOT' })
+	@Column()
 	ciot: number;
 
 
@@ -59,7 +59,7 @@ export class CteRodoviario {
 	* Relations
 	*/
 	@OneToOne(() => CteCabecalho, cteCabecalho => cteCabecalho.cteRodoviario)
-	@JoinColumn({ name: "ID_CTE_CABECALHO" })
+	@JoinColumn()
 	cteCabecalho: CteCabecalho;
 
 

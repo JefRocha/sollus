@@ -35,118 +35,118 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_PARAMETRO' })
+@Entity()
 export class ContabilParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MASCARA' })
+	@Column()
 	mascara: string;
 
-	@Column({ name: 'NIVEIS' })
+	@Column()
 	niveis: number;
 
-	@Column({ name: 'INFORMAR_CONTA_POR' })
+	@Column()
 	informarContaPor: string;
 
-	@Column({ name: 'COMPARTILHA_PLANO_CONTA' })
+	@Column()
 	compartilhaPlanoConta: string;
 
-	@Column({ name: 'COMPARTILHA_HISTORICOS' })
+	@Column()
 	compartilhaHistoricos: string;
 
-	@Column({ name: 'ALTERA_LANCAMENTO_OUTRO' })
+	@Column()
 	alteraLancamentoOutro: string;
 
-	@Column({ name: 'HISTORICO_OBRIGATORIO' })
+	@Column()
 	historicoObrigatorio: string;
 
-	@Column({ name: 'PERMITE_LANCAMENTO_ZERADO' })
+	@Column()
 	permiteLancamentoZerado: string;
 
-	@Column({ name: 'GERA_INFORMATIVO_SPED' })
+	@Column()
 	geraInformativoSped: string;
 
-	@Column({ name: 'SPED_FORMA_ESCRIT_DIARIO' })
+	@Column()
 	spedFormaEscritDiario: string;
 
-	@Column({ name: 'SPED_NOME_LIVRO_DIARIO' })
+	@Column()
 	spedNomeLivroDiario: string;
 
-	@Column({ name: 'ASSINATURA_DIREITA' })
+	@Column()
 	assinaturaDireita: string;
 
-	@Column({ name: 'ASSINATURA_ESQUERDA' })
+	@Column()
 	assinaturaEsquerda: string;
 
-	@Column({ name: 'CONTA_ATIVO' })
+	@Column()
 	contaAtivo: string;
 
-	@Column({ name: 'CONTA_PASSIVO' })
+	@Column()
 	contaPassivo: string;
 
-	@Column({ name: 'CONTA_PATRIMONIO_LIQUIDO' })
+	@Column()
 	contaPatrimonioLiquido: string;
 
-	@Column({ name: 'CONTA_DEPRECIACAO_ACUMULADA' })
+	@Column()
 	contaDepreciacaoAcumulada: string;
 
-	@Column({ name: 'CONTA_CAPITAL_SOCIAL' })
+	@Column()
 	contaCapitalSocial: string;
 
-	@Column({ name: 'CONTA_RESULTADO_EXERCICIO' })
+	@Column()
 	contaResultadoExercicio: string;
 
-	@Column({ name: 'CONTA_PREJUIZO_ACUMULADO' })
+	@Column()
 	contaPrejuizoAcumulado: string;
 
-	@Column({ name: 'CONTA_LUCRO_ACUMULADO' })
+	@Column()
 	contaLucroAcumulado: string;
 
-	@Column({ name: 'CONTA_TITULO_PAGAR' })
+	@Column()
 	contaTituloPagar: string;
 
-	@Column({ name: 'CONTA_TITULO_RECEBER' })
+	@Column()
 	contaTituloReceber: string;
 
-	@Column({ name: 'CONTA_JUROS_PASSIVO' })
+	@Column()
 	contaJurosPassivo: string;
 
-	@Column({ name: 'CONTA_JUROS_ATIVO' })
+	@Column()
 	contaJurosAtivo: string;
 
-	@Column({ name: 'CONTA_DESCONTO_OBTIDO' })
+	@Column()
 	contaDescontoObtido: string;
 
-	@Column({ name: 'CONTA_DESCONTO_CONCEDIDO' })
+	@Column()
 	contaDescontoConcedido: string;
 
-	@Column({ name: 'CONTA_CMV' })
+	@Column()
 	contaCmv: string;
 
-	@Column({ name: 'CONTA_VENDA' })
+	@Column()
 	contaVenda: string;
 
-	@Column({ name: 'CONTA_VENDA_SERVICO' })
+	@Column()
 	contaVendaServico: string;
 
-	@Column({ name: 'CONTA_ESTOQUE' })
+	@Column()
 	contaEstoque: string;
 
-	@Column({ name: 'CONTA_APURA_RESULTADO' })
+	@Column()
 	contaApuraResultado: string;
 
-	@Column({ name: 'CONTA_JUROS_APROPRIAR' })
+	@Column()
 	contaJurosApropriar: string;
 
-	@Column({ name: 'ID_HIST_PADRAO_RESULTADO' })
+	@Column()
 	idHistPadraoResultado: number;
 
-	@Column({ name: 'ID_HIST_PADRAO_LUCRO' })
+	@Column()
 	idHistPadraoLucro: number;
 
-	@Column({ name: 'ID_HIST_PADRAO_PREJUIZO' })
+	@Column()
 	idHistPadraoPrejuizo: number;
 
 

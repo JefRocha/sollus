@@ -37,25 +37,25 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne
 import { BancoAgencia } from '../../cadastros/banco-agencia/banco-agencia.entity';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'BANCO_CONTA_CAIXA' })
+@Entity()
 export class BancoContaCaixa {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DIGITO' })
+	@Column()
 	digito: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 
@@ -63,11 +63,11 @@ export class BancoContaCaixa {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@ManyToOne(() => BancoAgencia)
-	@JoinColumn({ name: "ID_BANCO_AGENCIA" })
+	@JoinColumn()
 	bancoAgencia: BancoAgencia;
 
 

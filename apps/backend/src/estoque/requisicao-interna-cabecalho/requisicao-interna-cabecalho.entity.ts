@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { RequisicaoInternaDetalhe, Empresa } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'REQUISICAO_INTERNA_CABECALHO' })
+@Entity()
 export class RequisicaoInternaCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_REQUISICAO' })
+	@Column()
 	dataRequisicao: Date;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
 
@@ -54,11 +54,11 @@ export class RequisicaoInternaCabecalho {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => RequisicaoInternaDetalhe, requisicaoInternaDetalhe => requisicaoInternaDetalhe.requisicaoInternaCabecalho, { cascade: true })

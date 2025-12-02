@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_INDICE' })
+@Entity()
 export class ContabilIndice {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'INDICE' })
+	@Column()
 	indice: string;
 
-	@Column({ name: 'PERIODICIDADE' })
+	@Column()
 	periodicidade: string;
 
-	@Column({ name: 'DIARIO_A_PARTIR_DE' })
+	@Column()
 	diarioAPartirDe: Date;
 
-	@Column({ name: 'MENSAL_MES_ANO' })
+	@Column()
 	mensalMesAno: string;
 
 

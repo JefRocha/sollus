@@ -36,25 +36,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { NfeCana } from '../../entities-export';
 
-@Entity({ name: 'NFE_CANA_DEDUCOES_SAFRA' })
+@Entity()
 export class NfeCanaDeducoesSafra {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DECRICAO' })
+	@Column()
 	decricao: string;
 
-	@Column({ name: 'VALOR_DEDUCAO' })
+	@Column()
 	valorDeducao: number;
 
-	@Column({ name: 'VALOR_FORNECIMENTO' })
+	@Column()
 	valorFornecimento: number;
 
-	@Column({ name: 'VALOR_TOTAL_DEDUCAO' })
+	@Column()
 	valorTotalDeducao: number;
 
-	@Column({ name: 'VALOR_LIQUIDO_FORNECIMENTO' })
+	@Column()
 	valorLiquidoFornecimento: number;
 
 
@@ -62,7 +62,7 @@ export class NfeCanaDeducoesSafra {
 	* Relations
 	*/
 	@ManyToOne(() => NfeCana, nfeCana => nfeCana.listaNfeCanaDeducoesSafra)
-	@JoinColumn({ name: "ID_NFE_CANA" })
+	@JoinColumn()
 	nfeCana: NfeCana;
 
 

@@ -35,55 +35,55 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'MDFE_EMITENTE' })
+@Entity()
 export class MdfeEmitente {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_MDFE_CABECALHO' })
+	@Column()
 	idMdfeCabecalho: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'FANTASIA' })
+	@Column()
 	fantasia: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'IE' })
+	@Column()
 	ie: number;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: string;
 
-	@Column({ name: 'NOME_MUNICIPIO' })
+	@Column()
 	nomeMunicipio: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'TELEFONE' })
+	@Column()
 	telefone: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
 

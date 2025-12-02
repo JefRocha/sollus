@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FOLHA_FERIAS_COLETIVAS' })
+@Entity()
 export class FolhaFeriasColetivas {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'DIAS_GOZO' })
+	@Column()
 	diasGozo: number;
 
-	@Column({ name: 'ABONO_PECUNIARIO_INICIO' })
+	@Column()
 	abonoPecuniarioInicio: Date;
 
-	@Column({ name: 'ABONO_PECUNIARIO_FIM' })
+	@Column()
 	abonoPecuniarioFim: Date;
 
-	@Column({ name: 'DIAS_ABONO' })
+	@Column()
 	diasAbono: number;
 
-	@Column({ name: 'DATA_PAGAMENTO' })
+	@Column()
 	dataPagamento: Date;
 
 

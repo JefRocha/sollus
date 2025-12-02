@@ -18,12 +18,17 @@ export default function NivelFormacaoEditarPage() {
     });
 
     useEffect(() => {
+        console.log('[NivelFormacaoEditarPage] useEffect triggered, params.id:', params.id);
         async function load() {
+            console.log('[NivelFormacaoEditarPage] Starting load...');
             const r = await getNivelFormacaoById(Number(params.id));
+            console.log('[NivelFormacaoEditarPage] Result:', r);
             if ((r as any).error) {
+                console.error('[NivelFormacaoEditarPage] Error:', (r as any).error);
                 toast.error(String((r as any).error));
                 return;
             }
+            console.log('[NivelFormacaoEditarPage] Resetting form with:', (r as any).nivelFormacao);
             form.reset((r as any).nivelFormacao);
         }
         load();

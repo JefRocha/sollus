@@ -35,16 +35,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'AGENDA_COMPROMISSO_CONVIDADO' })
+@Entity()
 export class AgendaCompromissoConvidado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_AGENDA_COMPROMISSO' })
+	@Column()
 	idAgendaCompromisso: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
 

@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_FIN_MOVIMENTO_CAIXA_BANCO' })
+@Entity()
 export class ViewFinMovimentoCaixaBanco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTA_CAIXA' })
+	@Column()
 	idContaCaixa: number;
 
-	@Column({ name: 'NOME_CONTA_CAIXA' })
+	@Column()
 	nomeContaCaixa: string;
 
-	@Column({ name: 'NOME_PESSOA' })
+	@Column()
 	nomePessoa: string;
 
-	@Column({ name: 'DATA_LANCAMENTO' })
+	@Column()
 	dataLancamento: Date;
 
-	@Column({ name: 'DATA_PAGO_RECEBIDO' })
+	@Column()
 	dataPagoRecebido: Date;
 
-	@Column({ name: 'MES_ANO' })
+	@Column()
 	mesAno: string;
 
-	@Column({ name: 'HISTORICO' })
+	@Column()
 	historico: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'DESCRICAO_DOCUMENTO_ORIGEM' })
+	@Column()
 	descricaoDocumentoOrigem: string;
 
-	@Column({ name: 'OPERACAO' })
+	@Column()
 	operacao: string;
 
 

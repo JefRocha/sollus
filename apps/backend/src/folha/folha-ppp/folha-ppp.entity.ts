@@ -40,13 +40,13 @@ import { FolhaPppExameMedico } from '../../entities-export';
 import { FolhaPppFatorRisco } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_PPP' })
+@Entity()
 export class FolhaPpp {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -54,7 +54,7 @@ export class FolhaPpp {
 	* Relations
 	*/
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => FolhaPppAtividade, folhaPppAtividade => folhaPppAtividade.folhaPpp, { cascade: true })

@@ -39,91 +39,91 @@ import { CompraTipoPedido } from '../../entities-export';
 import { Fornecedor } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_PEDIDO' })
+@Entity()
 export class CompraPedido {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_PEDIDO' })
+	@Column()
 	dataPedido: Date;
 
-	@Column({ name: 'DATA_PREVISTA_ENTREGA' })
+	@Column()
 	dataPrevistaEntrega: Date;
 
-	@Column({ name: 'DATA_PREVISAO_PAGAMENTO' })
+	@Column()
 	dataPrevisaoPagamento: Date;
 
-	@Column({ name: 'LOCAL_ENTREGA' })
+	@Column()
 	localEntrega: string;
 
-	@Column({ name: 'LOCAL_COBRANCA' })
+	@Column()
 	localCobranca: string;
 
-	@Column({ name: 'CONTATO' })
+	@Column()
 	contato: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'TIPO_FRETE' })
+	@Column()
 	tipoFrete: string;
 
-	@Column({ name: 'FORMA_PAGAMENTO' })
+	@Column()
 	formaPagamento: string;
 
-	@Column({ name: 'BASE_CALCULO_ICMS' })
+	@Column()
 	baseCalculoIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'BASE_CALCULO_ICMS_ST' })
+	@Column()
 	baseCalculoIcmsSt: number;
 
-	@Column({ name: 'VALOR_ICMS_ST' })
+	@Column()
 	valorIcmsSt: number;
 
-	@Column({ name: 'VALOR_TOTAL_PRODUTOS' })
+	@Column()
 	valorTotalProdutos: number;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'VALOR_SEGURO' })
+	@Column()
 	valorSeguro: number;
 
-	@Column({ name: 'VALOR_OUTRAS_DESPESAS' })
+	@Column()
 	valorOutrasDespesas: number;
 
-	@Column({ name: 'VALOR_IPI' })
+	@Column()
 	valorIpi: number;
 
-	@Column({ name: 'VALOR_TOTAL_NF' })
+	@Column()
 	valorTotalNf: number;
 
-	@Column({ name: 'QUANTIDADE_PARCELAS' })
+	@Column()
 	quantidadeParcelas: number;
 
-	@Column({ name: 'DIA_PRIMEIRO_VENCIMENTO' })
+	@Column()
 	diaPrimeiroVencimento: string;
 
-	@Column({ name: 'INTERVALO_ENTRE_PARCELAS' })
+	@Column()
 	intervaloEntreParcelas: number;
 
-	@Column({ name: 'DIA_FIXO_PARCELA' })
+	@Column()
 	diaFixoParcela: string;
 
-	@Column({ name: 'CODIGO_COTACAO' })
+	@Column()
 	codigoCotacao: string;
 
 
@@ -131,19 +131,19 @@ export class CompraPedido {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => CompraTipoPedido)
-	@JoinColumn({ name: "ID_COMPRA_TIPO_PEDIDO" })
+	@JoinColumn()
 	compraTipoPedido: CompraTipoPedido;
 
 	@OneToOne(() => Fornecedor)
-	@JoinColumn({ name: "ID_FORNECEDOR" })
+	@JoinColumn()
 	fornecedor: Fornecedor;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => CompraPedidoDetalhe, compraPedidoDetalhe => compraPedidoDetalhe.compraPedido, { cascade: true })

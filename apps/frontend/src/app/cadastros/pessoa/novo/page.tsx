@@ -13,11 +13,11 @@ export default function PessoaNovoPage() {
     id: 0,
     nome: "",
     tipo: "F",
-    ehCliente: "N",
-    ehFornecedor: "N",
-    ehTransportadora: "N",
-    ehColaborador: "N",
-    ehContador: "N",
+    eh_cliente: "N",
+    eh_fornecedor: "N",
+    eh_transportadora: "N",
+    eh_colaborador: "N",
+    eh_contador: "N",
   });
 
   async function save() {

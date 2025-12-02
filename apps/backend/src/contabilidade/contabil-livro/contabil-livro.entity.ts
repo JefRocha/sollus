@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_LIVRO' })
+@Entity()
 export class ContabilLivro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'FORMA_ESCRITURACAO' })
+	@Column()
 	formaEscrituracao: string;
 
 

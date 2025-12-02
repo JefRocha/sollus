@@ -41,7 +41,7 @@ import { TributPis } from '../../entities-export';
 import { TributGrupoTributario } from '../../entities-export';
 import { TributOperacaoFiscal, Empresa } from '../../entities-export';
 
-@Entity({ name: 'TRIBUT_CONFIGURA_OF_GT' })
+@Entity()
 export class TributConfiguraOfGt {
 
 	@PrimaryGeneratedColumn()
@@ -52,7 +52,7 @@ export class TributConfiguraOfGt {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => TributCofins, tributCofins => tributCofins.tributConfiguraOfGt, { cascade: true })
@@ -65,11 +65,11 @@ export class TributConfiguraOfGt {
 	tributPis: TributPis;
 
 	@OneToOne(() => TributGrupoTributario)
-	@JoinColumn({ name: "ID_TRIBUT_GRUPO_TRIBUTARIO" })
+	@JoinColumn()
 	tributGrupoTributario: TributGrupoTributario;
 
 	@OneToOne(() => TributOperacaoFiscal)
-	@JoinColumn({ name: "ID_TRIBUT_OPERACAO_FISCAL" })
+	@JoinColumn()
 	tributOperacaoFiscal: TributOperacaoFiscal;
 
 	@OneToMany(() => TributIcmsUf, tributIcmsUf => tributIcmsUf.tributConfiguraOfGt, { cascade: true })

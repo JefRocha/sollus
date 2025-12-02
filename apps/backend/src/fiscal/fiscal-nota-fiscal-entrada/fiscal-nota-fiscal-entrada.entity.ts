@@ -36,88 +36,88 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'FISCAL_NOTA_FISCAL_ENTRADA' })
+@Entity()
 export class FiscalNotaFiscalEntrada {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'CFOP_ENTRADA' })
+	@Column()
 	cfopEntrada: number;
 
-	@Column({ name: 'VALOR_RATEIO_FRETE' })
+	@Column()
 	valorRateioFrete: number;
 
-	@Column({ name: 'VALOR_CUSTO_MEDIO' })
+	@Column()
 	valorCustoMedio: number;
 
-	@Column({ name: 'VALOR_ICMS_ANTECIPADO' })
+	@Column()
 	valorIcmsAntecipado: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_ANTECIPADO' })
+	@Column()
 	valorBcIcmsAntecipado: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_CREDITADO' })
+	@Column()
 	valorBcIcmsCreditado: number;
 
-	@Column({ name: 'VALOR_BC_PIS_CREDITADO' })
+	@Column()
 	valorBcPisCreditado: number;
 
-	@Column({ name: 'VALOR_BC_COFINS_CREDITADO' })
+	@Column()
 	valorBcCofinsCreditado: number;
 
-	@Column({ name: 'VALOR_BC_IPI_CREDITADO' })
+	@Column()
 	valorBcIpiCreditado: number;
 
-	@Column({ name: 'CST_CREDITO_ICMS' })
+	@Column()
 	cstCreditoIcms: string;
 
-	@Column({ name: 'CST_CREDITO_PIS' })
+	@Column()
 	cstCreditoPis: string;
 
-	@Column({ name: 'CST_CREDITO_COFINS' })
+	@Column()
 	cstCreditoCofins: string;
 
-	@Column({ name: 'CST_CREDITO_IPI' })
+	@Column()
 	cstCreditoIpi: string;
 
-	@Column({ name: 'VALOR_ICMS_CREDITADO' })
+	@Column()
 	valorIcmsCreditado: number;
 
-	@Column({ name: 'VALOR_PIS_CREDITADO' })
+	@Column()
 	valorPisCreditado: number;
 
-	@Column({ name: 'VALOR_COFINS_CREDITADO' })
+	@Column()
 	valorCofinsCreditado: number;
 
-	@Column({ name: 'VALOR_IPI_CREDITADO' })
+	@Column()
 	valorIpiCreditado: number;
 
-	@Column({ name: 'QTDE_PARCELA_CREDITO_PIS' })
+	@Column()
 	qtdeParcelaCreditoPis: number;
 
-	@Column({ name: 'QTDE_PARCELA_CREDITO_COFINS' })
+	@Column()
 	qtdeParcelaCreditoCofins: number;
 
-	@Column({ name: 'QTDE_PARCELA_CREDITO_ICMS' })
+	@Column()
 	qtdeParcelaCreditoIcms: number;
 
-	@Column({ name: 'QTDE_PARCELA_CREDITO_IPI' })
+	@Column()
 	qtdeParcelaCreditoIpi: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_ICMS' })
+	@Column()
 	aliquotaCreditoIcms: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_PIS' })
+	@Column()
 	aliquotaCreditoPis: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_COFINS' })
+	@Column()
 	aliquotaCreditoCofins: number;
 
-	@Column({ name: 'ALIQUOTA_CREDITO_IPI' })
+	@Column()
 	aliquotaCreditoIpi: number;
 
 
@@ -125,7 +125,7 @@ export class FiscalNotaFiscalEntrada {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

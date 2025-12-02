@@ -35,55 +35,55 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FISCAL_APURACAO_ICMS' })
+@Entity()
 export class FiscalApuracaoIcms {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'VALOR_TOTAL_DEBITO' })
+	@Column()
 	valorTotalDebito: number;
 
-	@Column({ name: 'VALOR_AJUSTE_DEBITO' })
+	@Column()
 	valorAjusteDebito: number;
 
-	@Column({ name: 'VALOR_TOTAL_AJUSTE_DEBITO' })
+	@Column()
 	valorTotalAjusteDebito: number;
 
-	@Column({ name: 'VALOR_ESTORNO_CREDITO' })
+	@Column()
 	valorEstornoCredito: number;
 
-	@Column({ name: 'VALOR_TOTAL_CREDITO' })
+	@Column()
 	valorTotalCredito: number;
 
-	@Column({ name: 'VALOR_AJUSTE_CREDITO' })
+	@Column()
 	valorAjusteCredito: number;
 
-	@Column({ name: 'VALOR_TOTAL_AJUSTE_CREDITO' })
+	@Column()
 	valorTotalAjusteCredito: number;
 
-	@Column({ name: 'VALOR_ESTORNO_DEBITO' })
+	@Column()
 	valorEstornoDebito: number;
 
-	@Column({ name: 'VALOR_SALDO_CREDOR_ANTERIOR' })
+	@Column()
 	valorSaldoCredorAnterior: number;
 
-	@Column({ name: 'VALOR_SALDO_APURADO' })
+	@Column()
 	valorSaldoApurado: number;
 
-	@Column({ name: 'VALOR_TOTAL_DEDUCAO' })
+	@Column()
 	valorTotalDeducao: number;
 
-	@Column({ name: 'VALOR_ICMS_RECOLHER' })
+	@Column()
 	valorIcmsRecolher: number;
 
-	@Column({ name: 'VALOR_SALDO_CREDOR_TRANSP' })
+	@Column()
 	valorSaldoCredorTransp: number;
 
-	@Column({ name: 'VALOR_DEBITO_ESPECIAL' })
+	@Column()
 	valorDebitoEspecial: number;
 
 

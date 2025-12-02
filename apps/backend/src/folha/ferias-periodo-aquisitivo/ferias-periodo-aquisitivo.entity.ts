@@ -35,52 +35,52 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FERIAS_PERIODO_AQUISITIVO' })
+@Entity()
 export class FeriasPeriodoAquisitivo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
-	@Column({ name: 'LIMITE_PARA_GOZO' })
+	@Column()
 	limiteParaGozo: Date;
 
-	@Column({ name: 'DESCONTAR_FALTAS' })
+	@Column()
 	descontarFaltas: string;
 
-	@Column({ name: 'DESCONSIDERAR_AFASTAMENTO' })
+	@Column()
 	desconsiderarAfastamento: string;
 
-	@Column({ name: 'AFASTAMENTO_PREVIDENCIA' })
+	@Column()
 	afastamentoPrevidencia: number;
 
-	@Column({ name: 'AFASTAMENTO_SEM_REMUN' })
+	@Column()
 	afastamentoSemRemun: number;
 
-	@Column({ name: 'AFASTAMENTO_COM_REMUN' })
+	@Column()
 	afastamentoComRemun: number;
 
-	@Column({ name: 'DIAS_DIREITO' })
+	@Column()
 	diasDireito: number;
 
-	@Column({ name: 'DIAS_GOZADOS' })
+	@Column()
 	diasGozados: number;
 
-	@Column({ name: 'DIAS_FALTAS' })
+	@Column()
 	diasFaltas: number;
 
-	@Column({ name: 'DIAS_RESTANTES' })
+	@Column()
 	diasRestantes: number;
 
 

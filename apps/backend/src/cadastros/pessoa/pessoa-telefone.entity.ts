@@ -36,16 +36,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Pessoa } from '../../entities-export';
 
-@Entity({ name: 'PESSOA_TELEFONE' })
+@Entity()
 export class PessoaTelefone {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
 
@@ -53,7 +53,7 @@ export class PessoaTelefone {
 	* Relations
 	*/
 	@ManyToOne(() => Pessoa, pessoa => pessoa.listaPessoaTelefone)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 

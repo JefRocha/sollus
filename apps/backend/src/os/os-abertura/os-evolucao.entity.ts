@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { OsAbertura } from '../../entities-export';
 
-@Entity({ name: 'OS_EVOLUCAO' })
+@Entity()
 export class OsEvolucao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_REGISTRO' })
+	@Column()
 	dataRegistro: Date;
 
-	@Column({ name: 'HORA_REGISTRO' })
+	@Column()
 	horaRegistro: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'ENVIAR_EMAIL' })
+	@Column()
 	enviarEmail: string;
 
 
@@ -59,7 +59,7 @@ export class OsEvolucao {
 	* Relations
 	*/
 	@ManyToOne(() => OsAbertura, osAbertura => osAbertura.listaOsEvolucao)
-	@JoinColumn({ name: "ID_OS_ABERTURA" })
+	@JoinColumn()
 	osAbertura: OsAbertura;
 
 

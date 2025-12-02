@@ -53,115 +53,115 @@ import { NfeItemRastreado } from '../../entities-export';
 import { NfeCabecalho } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE' })
+@Entity()
 export class NfeDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_ITEM' })
+	@Column()
 	numeroItem: number;
 
-	@Column({ name: 'CODIGO_PRODUTO' })
+	@Column()
 	codigoProduto: string;
 
-	@Column({ name: 'GTIN' })
+	@Column()
 	gtin: string;
 
-	@Column({ name: 'NOME_PRODUTO' })
+	@Column()
 	nomeProduto: string;
 
-	@Column({ name: 'NCM' })
+	@Column()
 	ncm: string;
 
-	@Column({ name: 'NVE' })
+	@Column()
 	nve: string;
 
-	@Column({ name: 'CEST' })
+	@Column()
 	cest: string;
 
-	@Column({ name: 'INDICADOR_ESCALA_RELEVANTE' })
+	@Column()
 	indicadorEscalaRelevante: string;
 
-	@Column({ name: 'CNPJ_FABRICANTE' })
+	@Column()
 	cnpjFabricante: string;
 
-	@Column({ name: 'CODIGO_BENEFICIO_FISCAL' })
+	@Column()
 	codigoBeneficioFiscal: string;
 
-	@Column({ name: 'EX_TIPI' })
+	@Column()
 	exTipi: number;
 
-	@Column({ name: 'CFOP' })
+	@Column()
 	cfop: number;
 
-	@Column({ name: 'UNIDADE_COMERCIAL' })
+	@Column()
 	unidadeComercial: string;
 
-	@Column({ name: 'QUANTIDADE_COMERCIAL' })
+	@Column()
 	quantidadeComercial: number;
 
-	@Column({ name: 'NUMERO_PEDIDO_COMPRA' })
+	@Column()
 	numeroPedidoCompra: string;
 
-	@Column({ name: 'ITEM_PEDIDO_COMPRA' })
+	@Column()
 	itemPedidoCompra: number;
 
-	@Column({ name: 'NUMERO_FCI' })
+	@Column()
 	numeroFci: string;
 
-	@Column({ name: 'NUMERO_RECOPI' })
+	@Column()
 	numeroRecopi: string;
 
-	@Column({ name: 'VALOR_UNITARIO_COMERCIAL' })
+	@Column()
 	valorUnitarioComercial: number;
 
-	@Column({ name: 'VALOR_BRUTO_PRODUTO' })
+	@Column()
 	valorBrutoProduto: number;
 
-	@Column({ name: 'GTIN_UNIDADE_TRIBUTAVEL' })
+	@Column()
 	gtinUnidadeTributavel: string;
 
-	@Column({ name: 'UNIDADE_TRIBUTAVEL' })
+	@Column()
 	unidadeTributavel: string;
 
-	@Column({ name: 'QUANTIDADE_TRIBUTAVEL' })
+	@Column()
 	quantidadeTributavel: number;
 
-	@Column({ name: 'VALOR_UNITARIO_TRIBUTAVEL' })
+	@Column()
 	valorUnitarioTributavel: number;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'VALOR_SEGURO' })
+	@Column()
 	valorSeguro: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_OUTRAS_DESPESAS' })
+	@Column()
 	valorOutrasDespesas: number;
 
-	@Column({ name: 'ENTRA_TOTAL' })
+	@Column()
 	entraTotal: string;
 
-	@Column({ name: 'VALOR_TOTAL_TRIBUTOS' })
+	@Column()
 	valorTotalTributos: number;
 
-	@Column({ name: 'PERCENTUAL_DEVOLVIDO' })
+	@Column()
 	percentualDevolvido: number;
 
-	@Column({ name: 'VALOR_IPI_DEVOLVIDO' })
+	@Column()
 	valorIpiDevolvido: number;
 
-	@Column({ name: 'INFORMACOES_ADICIONAIS' })
+	@Column()
 	informacoesAdicionais: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
 
@@ -205,7 +205,7 @@ export class NfeDetalhe {
 	nfeDetalheImpostoPisSt: NfeDetalheImpostoPisSt;
 
 	// @OneToOne(type => Produto, {cascade: true, nullable: true} )
-	// @JoinColumn({ name: "ID_PRODUTO" })
+	// @JoinColumn()
 	produto: Produto;
 
 	@OneToMany(() => NfeDeclaracaoImportacao, nfeDeclaracaoImportacao => nfeDeclaracaoImportacao.nfeDetalhe, { cascade: true })
@@ -221,7 +221,7 @@ export class NfeDetalhe {
 	listaNfeItemRastreado: NfeItemRastreado[];
 
 	@ManyToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.listaNfeDetalhe)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

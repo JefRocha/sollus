@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { FolhaLancamentoDetalhe } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_LANCAMENTO_CABECALHO' })
+@Entity()
 export class FolhaLancamentoCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
 
@@ -54,7 +54,7 @@ export class FolhaLancamentoCabecalho {
 	* Relations
 	*/
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => FolhaLancamentoDetalhe, folhaLancamentoDetalhe => folhaLancamentoDetalhe.folhaLancamentoCabecalho, { cascade: true })

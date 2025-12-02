@@ -2,6 +2,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "@/components/data-table/data-table-column-header";
 import { DataTableRowActions } from "@/components/data-table/data-table-row-actions";
+import { isMaster } from "@/lib/utils";
 
 export type EstadoCivil = { id: number; nome: string; descricao?: string };
 
@@ -11,7 +12,7 @@ export const columns: ColumnDef<EstadoCivil>[] = [
   {
     id: "actions",
     cell: ({ row }) => (
-      <DataTableRowActions row={row} resource="/cadastros/estado-civil" resourceName="Estado Civil" />
+      <DataTableRowActions row={row} resource="/cadastros/estado-civil" resourceName="Estado Civil" canEdit={isMaster()} canDelete={isMaster()} />
     ),
   },
 ];

@@ -35,22 +35,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_DUPLICATA' })
+@Entity()
 export class CteDuplicata {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
 

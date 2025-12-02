@@ -36,82 +36,82 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DET_ESPECIFICO_VEICULO' })
+@Entity()
 export class NfeDetEspecificoVeiculo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'TIPO_OPERACAO' })
+	@Column()
 	tipoOperacao: string;
 
-	@Column({ name: 'CHASSI' })
+	@Column()
 	chassi: string;
 
-	@Column({ name: 'COR' })
+	@Column()
 	cor: string;
 
-	@Column({ name: 'DESCRICAO_COR' })
+	@Column()
 	descricaoCor: string;
 
-	@Column({ name: 'POTENCIA_MOTOR' })
+	@Column()
 	potenciaMotor: string;
 
-	@Column({ name: 'CILINDRADAS' })
+	@Column()
 	cilindradas: string;
 
-	@Column({ name: 'PESO_LIQUIDO' })
+	@Column()
 	pesoLiquido: string;
 
-	@Column({ name: 'PESO_BRUTO' })
+	@Column()
 	pesoBruto: string;
 
-	@Column({ name: 'NUMERO_SERIE' })
+	@Column()
 	numeroSerie: string;
 
-	@Column({ name: 'TIPO_COMBUSTIVEL' })
+	@Column()
 	tipoCombustivel: string;
 
-	@Column({ name: 'NUMERO_MOTOR' })
+	@Column()
 	numeroMotor: string;
 
-	@Column({ name: 'CAPACIDADE_MAXIMA_TRACAO' })
+	@Column()
 	capacidadeMaximaTracao: string;
 
-	@Column({ name: 'DISTANCIA_EIXOS' })
+	@Column()
 	distanciaEixos: string;
 
-	@Column({ name: 'ANO_MODELO' })
+	@Column()
 	anoModelo: string;
 
-	@Column({ name: 'ANO_FABRICACAO' })
+	@Column()
 	anoFabricacao: string;
 
-	@Column({ name: 'TIPO_PINTURA' })
+	@Column()
 	tipoPintura: string;
 
-	@Column({ name: 'TIPO_VEICULO' })
+	@Column()
 	tipoVeiculo: string;
 
-	@Column({ name: 'ESPECIE_VEICULO' })
+	@Column()
 	especieVeiculo: string;
 
-	@Column({ name: 'CONDICAO_VIN' })
+	@Column()
 	condicaoVin: string;
 
-	@Column({ name: 'CONDICAO_VEICULO' })
+	@Column()
 	condicaoVeiculo: string;
 
-	@Column({ name: 'CODIGO_MARCA_MODELO' })
+	@Column()
 	codigoMarcaModelo: string;
 
-	@Column({ name: 'CODIGO_COR_DENATRAN' })
+	@Column()
 	codigoCorDenatran: string;
 
-	@Column({ name: 'LOTACAO_MAXIMA' })
+	@Column()
 	lotacaoMaxima: number;
 
-	@Column({ name: 'RESTRICAO' })
+	@Column()
 	restricao: string;
 
 
@@ -119,7 +119,7 @@ export class NfeDetEspecificoVeiculo {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetEspecificoVeiculo)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

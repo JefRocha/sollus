@@ -40,49 +40,49 @@ import { Vendedor } from '../../entities-export';
 import { Cliente } from '../../entities-export';
 import { Transportadora, Empresa } from '../../entities-export';
 
-@Entity({ name: 'VENDA_ORCAMENTO_CABECALHO' })
+@Entity()
 export class VendaOrcamentoCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'DATA_ENTREGA' })
+	@Column()
 	dataEntrega: Date;
 
-	@Column({ name: 'VALIDADE' })
+	@Column()
 	validade: Date;
 
-	@Column({ name: 'TIPO_FRETE' })
+	@Column()
 	tipoFrete: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'TAXA_COMISSAO' })
+	@Column()
 	taxaComissao: number;
 
-	@Column({ name: 'VALOR_COMISSAO' })
+	@Column()
 	valorComissao: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -90,23 +90,23 @@ export class VendaOrcamentoCabecalho {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => VendaCondicoesPagamento)
-	@JoinColumn({ name: "ID_VENDA_CONDICOES_PAGAMENTO" })
+	@JoinColumn()
 	vendaCondicoesPagamento: VendaCondicoesPagamento;
 
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@OneToOne(() => Transportadora)
-	@JoinColumn({ name: "ID_TRANSPORTADORA" })
+	@JoinColumn()
 	transportadora: Transportadora;
 
 	@OneToMany(() => VendaOrcamentoDetalhe, vendaOrcamentoDetalhe => vendaOrcamentoDetalhe.vendaOrcamentoCabecalho, { cascade: true })

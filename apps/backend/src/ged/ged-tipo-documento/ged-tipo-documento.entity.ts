@@ -36,16 +36,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'GED_TIPO_DOCUMENTO' })
+@Entity()
 export class GedTipoDocumento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TAMANHO_MAXIMO' })
+	@Column()
 	tamanhoMaximo: number;
 
 
@@ -53,7 +53,7 @@ export class GedTipoDocumento {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

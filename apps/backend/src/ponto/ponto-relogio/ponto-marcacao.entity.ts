@@ -35,37 +35,37 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_MARCACAO' })
+@Entity()
 export class PontoMarcacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PONTO_RELOGIO' })
+	@Column()
 	idPontoRelogio: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'NSR' })
+	@Column()
 	nsr: number;
 
-	@Column({ name: 'DATA_MARCACAO' })
+	@Column()
 	dataMarcacao: Date;
 
-	@Column({ name: 'HORA_MARCACAO' })
+	@Column()
 	horaMarcacao: string;
 
-	@Column({ name: 'TIPO_MARCACAO' })
+	@Column()
 	tipoMarcacao: string;
 
-	@Column({ name: 'TIPO_REGISTRO' })
+	@Column()
 	tipoRegistro: string;
 
-	@Column({ name: 'PAR_ENTRADA_SAIDA' })
+	@Column()
 	parEntradaSaida: string;
 
-	@Column({ name: 'JUSTIFICATIVA' })
+	@Column()
 	justificativa: string;
 
 

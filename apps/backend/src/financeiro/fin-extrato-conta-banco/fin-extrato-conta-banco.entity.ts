@@ -36,40 +36,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { BancoContaCaixa } from '../../entities-export';
 
-@Entity({ name: 'FIN_EXTRATO_CONTA_BANCO' })
+@Entity()
 export class FinExtratoContaBanco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MES_ANO' })
+	@Column()
 	mesAno: string;
 
-	@Column({ name: 'MES' })
+	@Column()
 	mes: string;
 
-	@Column({ name: 'ANO' })
+	@Column()
 	ano: string;
 
-	@Column({ name: 'DATA_MOVIMENTO' })
+	@Column()
 	dataMovimento: Date;
 
-	@Column({ name: 'DATA_BALANCETE' })
+	@Column()
 	dataBalancete: Date;
 
-	@Column({ name: 'HISTORICO' })
+	@Column()
 	historico: string;
 
-	@Column({ name: 'DOCUMENTO' })
+	@Column()
 	documento: string;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'CONCILIADO' })
+	@Column()
 	conciliado: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -77,7 +77,7 @@ export class FinExtratoContaBanco {
 	* Relations
 	*/
 	@OneToOne(() => BancoContaCaixa)
-	@JoinColumn({ name: "ID_BANCO_CONTA_CAIXA" })
+	@JoinColumn()
 	bancoContaCaixa: BancoContaCaixa;
 
 

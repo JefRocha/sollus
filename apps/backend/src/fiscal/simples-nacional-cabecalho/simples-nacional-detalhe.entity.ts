@@ -35,49 +35,49 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'SIMPLES_NACIONAL_DETALHE' })
+@Entity()
 export class SimplesNacionalDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_SIMPLES_NACIONAL_CABECALHO' })
+	@Column()
 	idSimplesNacionalCabecalho: number;
 
-	@Column({ name: 'FAIXA' })
+	@Column()
 	faixa: number;
 
-	@Column({ name: 'VALOR_INICIAL' })
+	@Column()
 	valorInicial: number;
 
-	@Column({ name: 'VALOR_FINAL' })
+	@Column()
 	valorFinal: number;
 
-	@Column({ name: 'ALIQUOTA' })
+	@Column()
 	aliquota: number;
 
-	@Column({ name: 'IRPJ' })
+	@Column()
 	irpj: number;
 
-	@Column({ name: 'CSLL' })
+	@Column()
 	csll: number;
 
-	@Column({ name: 'COFINS' })
+	@Column()
 	cofins: number;
 
-	@Column({ name: 'PIS_PASEP' })
+	@Column()
 	pisPasep: number;
 
-	@Column({ name: 'CPP' })
+	@Column()
 	cpp: number;
 
-	@Column({ name: 'ICMS' })
+	@Column()
 	icms: number;
 
-	@Column({ name: 'IPI' })
+	@Column()
 	ipi: number;
 
-	@Column({ name: 'ISS' })
+	@Column()
 	iss: number;
 
 

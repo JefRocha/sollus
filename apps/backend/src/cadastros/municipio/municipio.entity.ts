@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Uf } from '../../entities-export';
 
-@Entity({ name: 'MUNICIPIO' })
+@Entity({ name: 'municipio' })
 export class Municipio {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'CODIGO_IBGE' })
+	@Column()
 	codigoIbge: number;
 
-	@Column({ name: 'CODIGO_RECEITA_FEDERAL', nullable: true })
+	@Column({ nullable: true })
 	codigoReceitaFederal: number;
 
-	@Column({ name: 'CODIGO_ESTADUAL', nullable: true })
+	@Column({ nullable: true })
 	codigoEstadual: number;
 
 
@@ -59,7 +59,7 @@ export class Municipio {
 	* Relations
 	*/
 	@ManyToOne(() => Uf)
-	@JoinColumn({ name: "ID_UF" })
+	@JoinColumn()
 	uf: Uf;
 
 

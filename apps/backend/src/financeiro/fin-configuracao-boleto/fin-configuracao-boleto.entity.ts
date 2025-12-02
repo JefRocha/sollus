@@ -36,64 +36,64 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { BancoContaCaixa } from '../../entities-export';
 
-@Entity({ name: 'FIN_CONFIGURACAO_BOLETO' })
+@Entity()
 export class FinConfiguracaoBoleto {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'INSTRUCAO01' })
+	@Column()
 	instrucao01: string;
 
-	@Column({ name: 'INSTRUCAO02' })
+	@Column()
 	instrucao02: string;
 
-	@Column({ name: 'CAMINHO_ARQUIVO_REMESSA' })
+	@Column()
 	caminhoArquivoRemessa: string;
 
-	@Column({ name: 'CAMINHO_ARQUIVO_RETORNO' })
+	@Column()
 	caminhoArquivoRetorno: string;
 
-	@Column({ name: 'CAMINHO_ARQUIVO_LOGOTIPO' })
+	@Column()
 	caminhoArquivoLogotipo: string;
 
-	@Column({ name: 'CAMINHO_ARQUIVO_PDF' })
+	@Column()
 	caminhoArquivoPdf: string;
 
-	@Column({ name: 'MENSAGEM' })
+	@Column()
 	mensagem: string;
 
-	@Column({ name: 'LOCAL_PAGAMENTO' })
+	@Column()
 	localPagamento: string;
 
-	@Column({ name: 'LAYOUT_REMESSA' })
+	@Column()
 	layoutRemessa: string;
 
-	@Column({ name: 'ACEITE' })
+	@Column()
 	aceite: string;
 
-	@Column({ name: 'ESPECIE' })
+	@Column()
 	especie: string;
 
-	@Column({ name: 'CARTEIRA' })
+	@Column()
 	carteira: string;
 
-	@Column({ name: 'CODIGO_CONVENIO' })
+	@Column()
 	codigoConvenio: string;
 
-	@Column({ name: 'CODIGO_CEDENTE' })
+	@Column()
 	codigoCedente: string;
 
-	@Column({ name: 'TAXA_MULTA' })
+	@Column()
 	taxaMulta: number;
 
-	@Column({ name: 'TAXA_JURO' })
+	@Column()
 	taxaJuro: number;
 
-	@Column({ name: 'DIAS_PROTESTO' })
+	@Column()
 	diasProtesto: number;
 
-	@Column({ name: 'NOSSO_NUMERO_ANTERIOR' })
+	@Column()
 	nossoNumeroAnterior: string;
 
 
@@ -101,7 +101,7 @@ export class FinConfiguracaoBoleto {
 	* Relations
 	*/
 	@OneToOne(() => BancoContaCaixa)
-	@JoinColumn({ name: "ID_BANCO_CONTA_CAIXA" })
+	@JoinColumn()
 	bancoContaCaixa: BancoContaCaixa;
 
 

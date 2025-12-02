@@ -38,13 +38,13 @@ import { Vendedor } from '../../entities-export';
 import { Cliente } from '../../entities-export';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'VENDEDOR_ROTA' })
+@Entity()
 export class VendedorRota {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'POSICAO' })
+	@Column()
 	posicao: number;
 
 
@@ -52,15 +52,15 @@ export class VendedorRota {
 	* Relations
 	*/
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

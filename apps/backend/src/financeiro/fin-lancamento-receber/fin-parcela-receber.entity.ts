@@ -39,55 +39,55 @@ import { FinStatusParcela } from '../../entities-export';
 import { FinTipoRecebimento } from '../../entities-export';
 import { FinChequeRecebido } from '../../entities-export';
 
-@Entity({ name: 'FIN_PARCELA_RECEBER' })
+@Entity()
 export class FinParcelaReceber {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_PARCELA' })
+	@Column()
 	numeroParcela: number;
 
-	@Column({ name: 'DATA_EMISSAO' })
+	@Column()
 	dataEmissao: Date;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'DESCONTO_ATE' })
+	@Column()
 	descontoAte: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'TAXA_JURO' })
+	@Column()
 	taxaJuro: number;
 
-	@Column({ name: 'TAXA_MULTA' })
+	@Column()
 	taxaMulta: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_JURO' })
+	@Column()
 	valorJuro: number;
 
-	@Column({ name: 'VALOR_MULTA' })
+	@Column()
 	valorMulta: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'EMITIU_BOLETO' })
+	@Column()
 	emitiuBoleto: string;
 
-	@Column({ name: 'BOLETO_NOSSO_NUMERO' })
+	@Column()
 	boletoNossoNumero: string;
 
-	@Column({ name: 'VALOR_RECEBIDO' })
+	@Column()
 	valorRecebido: number;
 
-	@Column({ name: 'HISTORICO' })
+	@Column()
 	historico: string;
 
 
@@ -95,19 +95,19 @@ export class FinParcelaReceber {
 	* Relations
 	*/
 	@OneToOne(() => FinStatusParcela)
-	@JoinColumn({ name: "ID_FIN_STATUS_PARCELA" })
+	@JoinColumn()
 	finStatusParcela: FinStatusParcela;
 
 	@OneToOne(() => FinTipoRecebimento)
-	@JoinColumn({ name: "ID_FIN_TIPO_RECEBIMENTO" })
+	@JoinColumn()
 	finTipoRecebimento: FinTipoRecebimento;
 
 	@OneToOne(() => FinChequeRecebido)
-	@JoinColumn({ name: "ID_FIN_CHEQUE_RECEBIDO" })
+	@JoinColumn()
 	finChequeRecebido: FinChequeRecebido;
 
 	@ManyToOne(() => FinLancamentoReceber, finLancamentoReceber => finLancamentoReceber.listaFinParcelaReceber)
-	@JoinColumn({ name: "ID_FIN_LANCAMENTO_RECEBER" })
+	@JoinColumn()
 	finLancamentoReceber: FinLancamentoReceber;
 
 

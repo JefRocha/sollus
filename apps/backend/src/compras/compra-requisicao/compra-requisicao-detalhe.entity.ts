@@ -37,13 +37,13 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { CompraRequisicao } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_REQUISICAO_DETALHE' })
+@Entity()
 export class CompraRequisicaoDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 
@@ -51,11 +51,11 @@ export class CompraRequisicaoDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => CompraRequisicao, compraRequisicao => compraRequisicao.listaCompraRequisicaoDetalhe)
-	@JoinColumn({ name: "ID_COMPRA_REQUISICAO" })
+	@JoinColumn()
 	compraRequisicao: CompraRequisicao;
 
 

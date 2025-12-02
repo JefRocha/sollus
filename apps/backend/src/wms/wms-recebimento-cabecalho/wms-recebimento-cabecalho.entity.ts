@@ -35,34 +35,34 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_RECEBIMENTO_CABECALHO' })
+@Entity()
 export class WmsRecebimentoCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_WMS_AGENDAMENTO' })
+	@Column()
 	idWmsAgendamento: number;
 
-	@Column({ name: 'DATA_RECEBIMENTO' })
+	@Column()
 	dataRecebimento: Date;
 
-	@Column({ name: 'HORA_INICIO' })
+	@Column()
 	horaInicio: string;
 
-	@Column({ name: 'HORA_FIM' })
+	@Column()
 	horaFim: string;
 
-	@Column({ name: 'VOLUME_RECEBIDO' })
+	@Column()
 	volumeRecebido: number;
 
-	@Column({ name: 'PESO_RECEBIDO' })
+	@Column()
 	pesoRecebido: number;
 
-	@Column({ name: 'INCONSISTENCIA' })
+	@Column()
 	inconsistencia: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 

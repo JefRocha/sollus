@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'ORCAMENTO_FLUXO_CAIXA_DETALHE' })
+@Entity()
 export class OrcamentoFluxoCaixaDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_ORCAMENTO_FLUXO_CAIXA' })
+	@Column()
 	idOrcamentoFluxoCaixa: number;
 
-	@Column({ name: 'ID_FIN_NATUREZA_FINANCEIRA' })
+	@Column()
 	idFinNaturezaFinanceira: number;
 
-	@Column({ name: 'PERIODO' })
+	@Column()
 	periodo: string;
 
-	@Column({ name: 'VALOR_ORCADO' })
+	@Column()
 	valorOrcado: number;
 
-	@Column({ name: 'VALOR_REALIZADO' })
+	@Column()
 	valorRealizado: number;
 
-	@Column({ name: 'TAXA_VARIACAO' })
+	@Column()
 	taxaVariacao: number;
 
-	@Column({ name: 'VALOR_VARIACAO' })
+	@Column()
 	valorVariacao: number;
 
 

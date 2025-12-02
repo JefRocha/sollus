@@ -35,64 +35,64 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_EXPEDIDOR' })
+@Entity()
 export class CteExpedidor {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CPF' })
+	@Column()
 	cpf: string;
 
-	@Column({ name: 'IE' })
+	@Column()
 	ie: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'FANTASIA' })
+	@Column()
 	fantasia: string;
 
-	@Column({ name: 'TELEFONE' })
+	@Column()
 	telefone: string;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CODIGO_MUNICIPIO' })
+	@Column()
 	codigoMunicipio: number;
 
-	@Column({ name: 'NOME_MUNICIPIO' })
+	@Column()
 	nomeMunicipio: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'CODIGO_PAIS' })
+	@Column()
 	codigoPais: number;
 
-	@Column({ name: 'NOME_PAIS' })
+	@Column()
 	nomePais: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
 

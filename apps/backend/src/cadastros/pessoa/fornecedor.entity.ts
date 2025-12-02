@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Pessoa, ViewPessoaFornecedor, Empresa } from '../../entities-export';
 
-@Entity({ name: 'FORNECEDOR' })
+@Entity()
 export class Fornecedor {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESDE' })
+	@Column()
 	desde: Date;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -56,11 +56,11 @@ export class Fornecedor {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.fornecedor)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 	// Removed viewPessoaFornecedor - duplicate @OneToOne on ID_PESSOA column

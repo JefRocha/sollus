@@ -36,46 +36,46 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'EMPRESA_ENDERECO' })
+@Entity()
 export class EmpresaEndereco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'LOGRADOURO' })
+	@Column()
 	logradouro: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'BAIRRO' })
+	@Column()
 	bairro: string;
 
-	@Column({ name: 'CIDADE' })
+	@Column()
 	cidade: string;
 
-	@Column({ name: 'UF' })
+	@Column()
 	uf: string;
 
-	@Column({ name: 'CEP' })
+	@Column()
 	cep: string;
 
-	@Column({ name: 'MUNICIPIO_IBGE' })
+	@Column()
 	municipioIbge: number;
 
-	@Column({ name: 'COMPLEMENTO' })
+	@Column()
 	complemento: string;
 
-	@Column({ name: 'PRINCIPAL' })
+	@Column()
 	principal: string;
 
-	@Column({ name: 'ENTREGA' })
+	@Column()
 	entrega: string;
 
-	@Column({ name: 'COBRANCA' })
+	@Column()
 	cobranca: string;
 
-	@Column({ name: 'CORRESPONDENCIA' })
+	@Column()
 	correspondencia: string;
 
 
@@ -83,7 +83,7 @@ export class EmpresaEndereco {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa, empresa => empresa.listaEmpresaEndereco)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

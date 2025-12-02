@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_MULTIMODAL' })
+@Entity()
 export class CteMultimodal {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'COTM' })
+	@Column()
 	cotm: string;
 
-	@Column({ name: 'INDICADOR_NEGOCIAVEL' })
+	@Column()
 	indicadorNegociavel: string;
 
 

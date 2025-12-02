@@ -36,31 +36,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Pessoa } from '../../entities-export';
 
-@Entity({ name: 'PESSOA_JURIDICA' })
+@Entity()
 export class PessoaJuridica {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'NOME_FANTASIA' })
+	@Column()
 	nomeFantasia: string;
 
-	@Column({ name: 'INSCRICAO_ESTADUAL' })
+	@Column()
 	inscricaoEstadual: string;
 
-	@Column({ name: 'INSCRICAO_MUNICIPAL' })
+	@Column()
 	inscricaoMunicipal: string;
 
-	@Column({ name: 'DATA_CONSTITUICAO' })
+	@Column()
 	dataConstituicao: Date;
 
-	@Column({ name: 'TIPO_REGIME' })
+	@Column()
 	tipoRegime: string;
 
-	@Column({ name: 'CRT' })
+	@Column()
 	crt: string;
 
 
@@ -68,7 +68,7 @@ export class PessoaJuridica {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa, pessoa => pessoa.pessoaJuridica)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 

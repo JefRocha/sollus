@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_EXPORTACAO' })
+@Entity()
 export class NfeExportacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DRAWBACK' })
+	@Column()
 	drawback: number;
 
-	@Column({ name: 'NUMERO_REGISTRO' })
+	@Column()
 	numeroRegistro: number;
 
-	@Column({ name: 'CHAVE_ACESSO' })
+	@Column()
 	chaveAcesso: string;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
 
@@ -59,7 +59,7 @@ export class NfeExportacao {
 	* Relations
 	*/
 	@ManyToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.listaNfeExportacao)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

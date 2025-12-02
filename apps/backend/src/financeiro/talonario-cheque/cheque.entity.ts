@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { TalonarioCheque } from '../../entities-export';
 
-@Entity({ name: 'CHEQUE' })
+@Entity()
 export class Cheque {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: number;
 
-	@Column({ name: 'STATUS_CHEQUE' })
+	@Column()
 	statusCheque: string;
 
-	@Column({ name: 'DATA_STATUS' })
+	@Column()
 	dataStatus: Date;
 
 
@@ -56,7 +56,7 @@ export class Cheque {
 	* Relations
 	*/
 	@ManyToOne(() => TalonarioCheque, talonarioCheque => talonarioCheque.listaCheque)
-	@JoinColumn({ name: "ID_TALONARIO_CHEQUE" })
+	@JoinColumn()
 	talonarioCheque: TalonarioCheque;
 
 

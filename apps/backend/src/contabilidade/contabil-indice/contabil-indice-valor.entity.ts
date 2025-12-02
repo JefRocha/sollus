@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_INDICE_VALOR' })
+@Entity()
 export class ContabilIndiceValor {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTABIL_INDICE' })
+	@Column()
 	idContabilIndice: number;
 
-	@Column({ name: 'DATA_INDICE' })
+	@Column()
 	dataIndice: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
 

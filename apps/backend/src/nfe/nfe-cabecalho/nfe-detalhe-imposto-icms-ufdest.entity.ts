@@ -36,37 +36,37 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE_IMPOSTO_ICMS_UFDEST' })
+@Entity()
 export class NfeDetalheImpostoIcmsUfdest {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VALOR_BC_ICMS_UF_DESTINO' })
+	@Column()
 	valorBcIcmsUfDestino: number;
 
-	@Column({ name: 'VALOR_BC_FCP_UF_DESTINO' })
+	@Column()
 	valorBcFcpUfDestino: number;
 
-	@Column({ name: 'PERCENTUAL_FCP_UF_DESTINO' })
+	@Column()
 	percentualFcpUfDestino: number;
 
-	@Column({ name: 'ALIQUOTA_INTERNA_UF_DESTINO' })
+	@Column()
 	aliquotaInternaUfDestino: number;
 
-	@Column({ name: 'ALIQUOTA_INTERESDATUAL_UF_ENVOLVIDAS' })
+	@Column()
 	aliquotaInteresdatualUfEnvolvidas: number;
 
-	@Column({ name: 'PERCENTUAL_PROVISORIO_PARTILHA_ICMS' })
+	@Column()
 	percentualProvisorioPartilhaIcms: number;
 
-	@Column({ name: 'VALOR_ICMS_FCP_UF_DESTINO' })
+	@Column()
 	valorIcmsFcpUfDestino: number;
 
-	@Column({ name: 'VALOR_INTERESTADUAL_UF_DESTINO' })
+	@Column()
 	valorInterestadualUfDestino: number;
 
-	@Column({ name: 'VALOR_INTERESTADUAL_UF_REMETENTE' })
+	@Column()
 	valorInterestadualUfRemetente: number;
 
 
@@ -74,7 +74,7 @@ export class NfeDetalheImpostoIcmsUfdest {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIcmsUfdest)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

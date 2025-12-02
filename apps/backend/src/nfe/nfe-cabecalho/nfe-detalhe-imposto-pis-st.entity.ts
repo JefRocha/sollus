@@ -36,25 +36,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE_IMPOSTO_PIS_ST' })
+@Entity()
 export class NfeDetalheImpostoPisSt {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VALOR_BASE_CALCULO_PIS_ST' })
+	@Column()
 	valorBaseCalculoPisSt: number;
 
-	@Column({ name: 'ALIQUOTA_PIS_ST_PERCENTUAL' })
+	@Column()
 	aliquotaPisStPercentual: number;
 
-	@Column({ name: 'QUANTIDADE_VENDIDA_PIS_ST' })
+	@Column()
 	quantidadeVendidaPisSt: number;
 
-	@Column({ name: 'ALIQUOTA_PIS_ST_REAIS' })
+	@Column()
 	aliquotaPisStReais: number;
 
-	@Column({ name: 'VALOR_PIS_ST' })
+	@Column()
 	valorPisSt: number;
 
 
@@ -62,7 +62,7 @@ export class NfeDetalheImpostoPisSt {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoPisSt)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

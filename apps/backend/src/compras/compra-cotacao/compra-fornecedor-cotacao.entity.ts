@@ -38,31 +38,31 @@ import { CompraCotacaoDetalhe } from '../../entities-export';
 import { CompraCotacao } from '../../entities-export';
 import { Fornecedor } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_FORNECEDOR_COTACAO' })
+@Entity()
 export class CompraFornecedorCotacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'PRAZO_ENTREGA' })
+	@Column()
 	prazoEntrega: string;
 
-	@Column({ name: 'VENDA_CONDICOES_PAGAMENTO' })
+	@Column()
 	vendaCondicoesPagamento: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
 
@@ -70,14 +70,14 @@ export class CompraFornecedorCotacao {
 	* Relations
 	*/
 	@OneToOne(() => Fornecedor)
-	@JoinColumn({ name: "ID_FORNECEDOR" })
+	@JoinColumn()
 	fornecedor: Fornecedor;
 
 	@OneToMany(() => CompraCotacaoDetalhe, compraCotacaoDetalhe => compraCotacaoDetalhe.compraFornecedorCotacao, { cascade: true })
 	listaCompraCotacaoDetalhe: CompraCotacaoDetalhe[];
 
 	@ManyToOne(() => CompraCotacao, compraCotacao => compraCotacao.listaCompraFornecedorCotacao)
-	@JoinColumn({ name: "ID_COMPRA_COTACAO" })
+	@JoinColumn()
 	compraCotacao: CompraCotacao;
 
 

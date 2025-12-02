@@ -35,25 +35,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'RECADO_REMETENTE' })
+@Entity()
 export class RecadoRemetente {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'DATA_ENVIO' })
+	@Column()
 	dataEnvio: Date;
 
-	@Column({ name: 'HORA_ENVIO' })
+	@Column()
 	horaEnvio: string;
 
-	@Column({ name: 'ASSUNTO' })
+	@Column()
 	assunto: string;
 
-	@Column({ name: 'TEXTO' })
+	@Column()
 	texto: string;
 
 

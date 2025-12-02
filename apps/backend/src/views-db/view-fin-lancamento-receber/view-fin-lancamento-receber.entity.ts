@@ -35,79 +35,79 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'VIEW_FIN_LANCAMENTO_RECEBER' })
+@Entity()
 export class ViewFinLancamentoReceber {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_FIN_LANCAMENTO_RECEBER' })
+	@Column()
 	idFinLancamentoReceber: number;
 
-	@Column({ name: 'QUANTIDADE_PARCELA' })
+	@Column()
 	quantidadeParcela: number;
 
-	@Column({ name: 'VALOR_LANCAMENTO' })
+	@Column()
 	valorLancamento: number;
 
-	@Column({ name: 'DATA_LANCAMENTO' })
+	@Column()
 	dataLancamento: Date;
 
-	@Column({ name: 'NUMERO_DOCUMENTO' })
+	@Column()
 	numeroDocumento: string;
 
-	@Column({ name: 'ID_FIN_PARCELA_RECEBER' })
+	@Column()
 	idFinParcelaReceber: number;
 
-	@Column({ name: 'NUMERO_PARCELA' })
+	@Column()
 	numeroParcela: number;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'DATA_RECEBIMENTO' })
+	@Column()
 	dataRecebimento: Date;
 
-	@Column({ name: 'VALOR_PARCELA' })
+	@Column()
 	valorParcela: number;
 
-	@Column({ name: 'TAXA_JURO' })
+	@Column()
 	taxaJuro: number;
 
-	@Column({ name: 'VALOR_JURO' })
+	@Column()
 	valorJuro: number;
 
-	@Column({ name: 'TAXA_MULTA' })
+	@Column()
 	taxaMulta: number;
 
-	@Column({ name: 'VALOR_MULTA' })
+	@Column()
 	valorMulta: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'SIGLA_DOCUMENTO' })
+	@Column()
 	siglaDocumento: string;
 
-	@Column({ name: 'NOME_CLIENTE' })
+	@Column()
 	nomeCliente: string;
 
-	@Column({ name: 'ID_FIN_STATUS_PARCELA' })
+	@Column()
 	idFinStatusParcela: number;
 
-	@Column({ name: 'SITUACAO_PARCELA' })
+	@Column()
 	situacaoParcela: string;
 
-	@Column({ name: 'DESCRICAO_SITUACAO_PARCELA' })
+	@Column()
 	descricaoSituacaoParcela: string;
 
-	@Column({ name: 'ID_BANCO_CONTA_CAIXA' })
+	@Column()
 	idBancoContaCaixa: number;
 
-	@Column({ name: 'NOME_CONTA_CAIXA' })
+	@Column()
 	nomeContaCaixa: string;
 
 

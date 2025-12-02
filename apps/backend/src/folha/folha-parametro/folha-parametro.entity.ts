@@ -35,61 +35,61 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'FOLHA_PARAMETRO' })
+@Entity()
 export class FolhaParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'CONTRIBUI_PIS' })
+	@Column()
 	contribuiPis: string;
 
-	@Column({ name: 'ALIQUOTA_PIS' })
+	@Column()
 	aliquotaPis: number;
 
-	@Column({ name: 'DISCRIMINAR_DSR' })
+	@Column()
 	discriminarDsr: string;
 
-	@Column({ name: 'DIA_PAGAMENTO' })
+	@Column()
 	diaPagamento: string;
 
-	@Column({ name: 'CALCULO_PROPORCIONALIDADE' })
+	@Column()
 	calculoProporcionalidade: string;
 
-	@Column({ name: 'DESCONTAR_FALTAS_13' })
+	@Column()
 	descontarFaltas13: string;
 
-	@Column({ name: 'PAGAR_ADICIONAIS_13' })
+	@Column()
 	pagarAdicionais13: string;
 
-	@Column({ name: 'PAGAR_ESTAGIARIOS_13' })
+	@Column()
 	pagarEstagiarios13: string;
 
-	@Column({ name: 'MES_ADIANTAMENTO_13' })
+	@Column()
 	mesAdiantamento13: string;
 
-	@Column({ name: 'PERCENTUAL_ADIANTAM_13' })
+	@Column()
 	percentualAdiantam13: number;
 
-	@Column({ name: 'FERIAS_DESCONTAR_FALTAS' })
+	@Column()
 	feriasDescontarFaltas: string;
 
-	@Column({ name: 'FERIAS_PAGAR_ADICIONAIS' })
+	@Column()
 	feriasPagarAdicionais: string;
 
-	@Column({ name: 'FERIAS_ADIANTAR_13' })
+	@Column()
 	feriasAdiantar13: string;
 
-	@Column({ name: 'FERIAS_PAGAR_ESTAGIARIOS' })
+	@Column()
 	feriasPagarEstagiarios: string;
 
-	@Column({ name: 'FERIAS_CALC_JUSTA_CAUSA' })
+	@Column()
 	feriasCalcJustaCausa: string;
 
-	@Column({ name: 'FERIAS_MOVIMENTO_MENSAL' })
+	@Column()
 	feriasMovimentoMensal: string;
 
 

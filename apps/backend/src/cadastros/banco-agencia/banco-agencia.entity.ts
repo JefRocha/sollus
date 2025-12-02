@@ -37,31 +37,31 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne
 import { Banco } from '../../entities-export';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'BANCO_AGENCIA' })
+@Entity()
 export class BancoAgencia {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DIGITO' })
+	@Column()
 	digito: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'TELEFONE' })
+	@Column()
 	telefone: string;
 
-	@Column({ name: 'CONTATO' })
+	@Column()
 	contato: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'GERENTE' })
+	@Column()
 	gerente: string;
 
 
@@ -69,11 +69,11 @@ export class BancoAgencia {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@ManyToOne(() => Banco)
-	@JoinColumn({ name: "ID_BANCO" })
+	@JoinColumn()
 	banco: Banco;
 
 

@@ -35,25 +35,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'WMS_CAIXA' })
+@Entity()
 export class WmsCaixa {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_WMS_ESTANTE' })
+	@Column()
 	idWmsEstante: number;
 
-	@Column({ name: 'CODIGO' })
+	@Column()
 	codigo: string;
 
-	@Column({ name: 'ALTURA' })
+	@Column()
 	altura: number;
 
-	@Column({ name: 'LARGURA' })
+	@Column()
 	largura: number;
 
-	@Column({ name: 'PROFUNDIDADE' })
+	@Column()
 	profundidade: number;
 
 

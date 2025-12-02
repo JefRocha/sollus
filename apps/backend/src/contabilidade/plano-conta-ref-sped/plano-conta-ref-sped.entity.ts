@@ -35,28 +35,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PLANO_CONTA_REF_SPED' })
+@Entity()
 export class PlanoContaRefSped {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COD_CTA_REF' })
+	@Column()
 	codCtaRef: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'ORIENTACOES' })
+	@Column()
 	orientacoes: string;
 
-	@Column({ name: 'INICIO_VALIDADE' })
+	@Column()
 	inicioValidade: Date;
 
-	@Column({ name: 'FIM_VALIDADE' })
+	@Column()
 	fimValidade: Date;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
 

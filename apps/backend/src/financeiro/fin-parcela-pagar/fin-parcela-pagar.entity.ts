@@ -39,52 +39,52 @@ import { FinStatusParcela } from '../../entities-export';
 import { FinTipoPagamento } from '../../entities-export';
 import { FinChequeEmitido } from '../../entities-export';
 
-@Entity({ name: 'FIN_PARCELA_PAGAR' })
+@Entity()
 export class FinParcelaPagar {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_PARCELA' })
+	@Column()
 	numeroParcela: number;
 
-	@Column({ name: 'DATA_EMISSAO' })
+	@Column()
 	dataEmissao: Date;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'DATA_PAGAMENTO' })
+	@Column()
 	dataPagamento: Date;
 
-	@Column({ name: 'DESCONTO_ATE' })
+	@Column()
 	descontoAte: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'TAXA_JURO' })
+	@Column()
 	taxaJuro: number;
 
-	@Column({ name: 'TAXA_MULTA' })
+	@Column()
 	taxaMulta: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_JURO' })
+	@Column()
 	valorJuro: number;
 
-	@Column({ name: 'VALOR_MULTA' })
+	@Column()
 	valorMulta: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_PAGO' })
+	@Column()
 	valorPago: number;
 
-	@Column({ name: 'HISTORICO' })
+	@Column()
 	historico: string;
 
 
@@ -92,19 +92,19 @@ export class FinParcelaPagar {
 	* Relations
 	*/
 	@OneToOne(() => FinStatusParcela)
-	@JoinColumn({ name: "ID_FIN_STATUS_PARCELA" })
+	@JoinColumn()
 	finStatusParcela: FinStatusParcela;
 
 	@OneToOne(() => FinTipoPagamento)
-	@JoinColumn({ name: "ID_FIN_TIPO_PAGAMENTO" })
+	@JoinColumn()
 	finTipoPagamento: FinTipoPagamento;
 
 	@OneToOne(() => FinChequeEmitido)
-	@JoinColumn({ name: "ID_FIN_CHEQUE_EMITIDO" })
+	@JoinColumn()
 	finChequeEmitido: FinChequeEmitido;
 
 	@ManyToOne(() => FinLancamentoPagar, finLancamentoPagar => finLancamentoPagar.listaFinParcelaPagar)
-	@JoinColumn({ name: "ID_FIN_LANCAMENTO_PAGAR" })
+	@JoinColumn()
 	finLancamentoPagar: FinLancamentoPagar;
 
 

@@ -36,28 +36,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_RESPONSAVEL_TECNICO' })
+@Entity()
 export class NfeResponsavelTecnico {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'CONTATO' })
+	@Column()
 	contato: string;
 
-	@Column({ name: 'EMAIL' })
+	@Column()
 	email: string;
 
-	@Column({ name: 'TELEFONE' })
+	@Column()
 	telefone: string;
 
-	@Column({ name: 'IDENTIFICADOR_CSRT' })
+	@Column()
 	identificadorCsrt: string;
 
-	@Column({ name: 'HASH_CSRT' })
+	@Column()
 	hashCsrt: string;
 
 
@@ -65,7 +65,7 @@ export class NfeResponsavelTecnico {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeResponsavelTecnico)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

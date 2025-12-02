@@ -36,16 +36,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { ProdutoGrupo } from '../../entities-export';
 
-@Entity({ name: 'PRODUTO_SUBGRUPO' })
+@Entity()
 export class ProdutoSubgrupo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 
@@ -53,7 +53,7 @@ export class ProdutoSubgrupo {
 	* Relations
 	*/
 	@OneToOne(() => ProdutoGrupo)
-	@JoinColumn({ name: "ID_PRODUTO_GRUPO" })
+	@JoinColumn()
 	produtoGrupo: ProdutoGrupo;
 
 

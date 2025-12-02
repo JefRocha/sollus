@@ -35,52 +35,52 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTABIL_LANCAMENTO_ORCADO' })
+@Entity()
 export class ContabilLancamentoOrcado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTABIL_CONTA' })
+	@Column()
 	idContabilConta: number;
 
-	@Column({ name: 'ANO' })
+	@Column()
 	ano: string;
 
-	@Column({ name: 'JANEIRO' })
+	@Column()
 	janeiro: number;
 
-	@Column({ name: 'FEVEREIRO' })
+	@Column()
 	fevereiro: number;
 
-	@Column({ name: 'MARCO' })
+	@Column()
 	marco: number;
 
-	@Column({ name: 'ABRIL' })
+	@Column()
 	abril: number;
 
-	@Column({ name: 'MAIO' })
+	@Column()
 	maio: number;
 
-	@Column({ name: 'JUNHO' })
+	@Column()
 	junho: number;
 
-	@Column({ name: 'JULHO' })
+	@Column()
 	julho: number;
 
-	@Column({ name: 'AGOSTO' })
+	@Column()
 	agosto: number;
 
-	@Column({ name: 'SETEMBRO' })
+	@Column()
 	setembro: number;
 
-	@Column({ name: 'OUTUBRO' })
+	@Column()
 	outubro: number;
 
-	@Column({ name: 'NOVEMBRO' })
+	@Column()
 	novembro: number;
 
-	@Column({ name: 'DEZEMBRO' })
+	@Column()
 	dezembro: number;
 
 

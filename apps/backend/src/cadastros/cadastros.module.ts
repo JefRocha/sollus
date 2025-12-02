@@ -50,7 +50,7 @@ import { CepModule } from '../cadastros/cep/cep.module';
 import { CfopModule } from '../cadastros/cfop/cfop.module';
 //import { ClienteModule } from '../cadastros/cliente/cliente.module';
 import { CnaeModule } from '../cadastros/cnae/cnae.module';
-//import { ColaboradorModule } from '../cadastros/colaborador/colaborador.module';
+import { ColaboradorModule } from '../cadastros/colaborador/colaborador.module';
 import { SetorModule } from '../cadastros/setor/setor.module';
 import { PapelModule } from '../cadastros/papel/papel.module';
 //import { ContadorModule } from '../cadastros/contador/contador.module';
@@ -88,7 +88,7 @@ import { CboModule } from './cbo/cbo.module';
 		CfopModule,
 		//		ClienteModule,
 		CnaeModule,
-		//		ColaboradorModule,
+		ColaboradorModule,
 		SetorModule,
 		PapelModule,
 		//		ContadorModule,

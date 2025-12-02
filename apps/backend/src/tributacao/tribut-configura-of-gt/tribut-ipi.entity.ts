@@ -36,31 +36,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { TributConfiguraOfGt } from '../../entities-export';
 
-@Entity({ name: 'TRIBUT_IPI' })
+@Entity()
 export class TributIpi {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CST_IPI' })
+	@Column()
 	cstIpi: string;
 
-	@Column({ name: 'MODALIDADE_BASE_CALCULO' })
+	@Column()
 	modalidadeBaseCalculo: string;
 
-	@Column({ name: 'PORCENTO_BASE_CALCULO' })
+	@Column()
 	porcentoBaseCalculo: number;
 
-	@Column({ name: 'ALIQUOTA_PORCENTO' })
+	@Column()
 	aliquotaPorcento: number;
 
-	@Column({ name: 'ALIQUOTA_UNIDADE' })
+	@Column()
 	aliquotaUnidade: number;
 
-	@Column({ name: 'VALOR_PRECO_MAXIMO' })
+	@Column()
 	valorPrecoMaximo: number;
 
-	@Column({ name: 'VALOR_PAUTA_FISCAL' })
+	@Column()
 	valorPautaFiscal: number;
 
 
@@ -68,7 +68,7 @@ export class TributIpi {
 	* Relations
 	*/
 	@OneToOne(() => TributConfiguraOfGt, tributConfiguraOfGt => tributConfiguraOfGt.tributIpi)
-	@JoinColumn({ name: "ID_TRIBUT_CONFIGURA_OF_GT" })
+	@JoinColumn()
 	tributConfiguraOfGt: TributConfiguraOfGt;
 
 

@@ -37,16 +37,16 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { FolhaInss } from '../../entities-export';
 import { FolhaInssServico } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_INSS_RETENCAO' })
+@Entity()
 export class FolhaInssRetencao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VALOR_MENSAL' })
+	@Column()
 	valorMensal: number;
 
-	@Column({ name: 'VALOR_13' })
+	@Column()
 	valor13: number;
 
 
@@ -54,11 +54,11 @@ export class FolhaInssRetencao {
 	* Relations
 	*/
 	@OneToOne(() => FolhaInssServico)
-	@JoinColumn({ name: "ID_FOLHA_INSS_SERVICO" })
+	@JoinColumn()
 	folhaInssServico: FolhaInssServico;
 
 	@ManyToOne(() => FolhaInss, folhaInss => folhaInss.listaFolhaInssRetencao)
-	@JoinColumn({ name: "ID_FOLHA_INSS" })
+	@JoinColumn()
 	folhaInss: FolhaInss;
 
 

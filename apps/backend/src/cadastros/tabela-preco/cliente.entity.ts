@@ -37,25 +37,25 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { Pessoa } from '../../entities-export';
 import { TabelaPreco } from '../../entities-export';
 
-@Entity({ name: 'CLIENTE' })
+@Entity()
 export class Cliente {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DESDE' })
+	@Column()
 	desde: Date;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'LIMITE_CREDITO' })
+	@Column()
 	limiteCredito: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -63,11 +63,11 @@ export class Cliente {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa, pessoa => pessoa.cliente)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 	@OneToOne(() => TabelaPreco)
-	@JoinColumn({ name: "ID_TABELA_PRECO" })
+	@JoinColumn()
 	tabelaPreco: TabelaPreco;
 
 

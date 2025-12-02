@@ -42,43 +42,43 @@ import { Cliente } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 import { Empresa } from '../../entities-export';
 
-@Entity({ name: 'OS_ABERTURA' })
+@Entity()
 export class OsAbertura {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_INICIO' })
+	@Column()
 	dataInicio: Date;
 
-	@Column({ name: 'HORA_INICIO' })
+	@Column()
 	horaInicio: string;
 
-	@Column({ name: 'DATA_PREVISAO' })
+	@Column()
 	dataPrevisao: Date;
 
-	@Column({ name: 'HORA_PREVISAO' })
+	@Column()
 	horaPrevisao: string;
 
-	@Column({ name: 'DATA_FIM' })
+	@Column()
 	dataFim: Date;
 
-	@Column({ name: 'HORA_FIM' })
+	@Column()
 	horaFim: string;
 
-	@Column({ name: 'NOME_CONTATO' })
+	@Column()
 	nomeContato: string;
 
-	@Column({ name: 'FONE_CONTATO' })
+	@Column()
 	foneContato: string;
 
-	@Column({ name: 'OBSERVACAO_CLIENTE' })
+	@Column()
 	observacaoCliente: string;
 
-	@Column({ name: 'OBSERVACAO_ABERTURA' })
+	@Column()
 	observacaoAbertura: string;
 
 
@@ -86,15 +86,15 @@ export class OsAbertura {
 	* Relations
 	*/
 	@OneToOne(() => OsStatus)
-	@JoinColumn({ name: "ID_OS_STATUS" })
+	@JoinColumn()
 	osStatus: OsStatus;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => OsAberturaEquipamento, osAberturaEquipamento => osAberturaEquipamento.osAbertura, { cascade: true })
@@ -107,7 +107,7 @@ export class OsAbertura {
 	listaOsProdutoServico: OsProdutoServico[];
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

@@ -40,43 +40,43 @@ import { ProdutoUnidade } from '../../entities-export';
 import { TributIcmsCustomCab } from '../../entities-export';
 import { TributGrupoTributario } from '../../entities-export';
 
-@Entity({ name: 'PRODUTO' })
+@Entity()
 export class Produto {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'GTIN' })
+	@Column()
 	gtin: string;
 
-	@Column({ name: 'CODIGO_INTERNO' })
+	@Column()
 	codigoInterno: string;
 
-	@Column({ name: 'VALOR_COMPRA' })
+	@Column()
 	valorCompra: number;
 
-	@Column({ name: 'VALOR_VENDA' })
+	@Column()
 	valorVenda: number;
 
-	@Column({ name: 'CODIGO_NCM' })
+	@Column()
 	codigoNcm: string;
 
-	@Column({ name: 'ESTOQUE_MINIMO' })
+	@Column()
 	estoqueMinimo: number;
 
-	@Column({ name: 'ESTOQUE_MAXIMO' })
+	@Column()
 	estoqueMaximo: number;
 
-	@Column({ name: 'QUANTIDADE_ESTOQUE' })
+	@Column()
 	quantidadeEstoque: number;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
 
@@ -84,27 +84,27 @@ export class Produto {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => ProdutoSubgrupo)
-	@JoinColumn({ name: "ID_PRODUTO_SUBGRUPO" })
+	@JoinColumn()
 	produtoSubgrupo: ProdutoSubgrupo;
 
 	@OneToOne(() => ProdutoMarca)
-	@JoinColumn({ name: "ID_PRODUTO_MARCA" })
+	@JoinColumn()
 	produtoMarca: ProdutoMarca;
 
 	@OneToOne(() => ProdutoUnidade)
-	@JoinColumn({ name: "ID_PRODUTO_UNIDADE" })
+	@JoinColumn()
 	produtoUnidade: ProdutoUnidade;
 
 	@OneToOne(() => TributIcmsCustomCab)
-	@JoinColumn({ name: "ID_TRIBUT_ICMS_CUSTOM_CAB" })
+	@JoinColumn()
 	tributIcmsCustomCab: TributIcmsCustomCab;
 
 	@OneToOne(() => TributGrupoTributario)
-	@JoinColumn({ name: "ID_TRIBUT_GRUPO_TRIBUTARIO" })
+	@JoinColumn()
 	tributGrupoTributario: TributGrupoTributario;
 
 

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { cn } from '@/lib/utils';
+import { cn, isMaster } from '@/lib/utils';
 import {
     LayoutDashboard,
     Users,
@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { useAction } from 'next-safe-action/hooks';
 import { logoutAction } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
+import { ModeToggle } from '@/components/mode-toggle';
 
 const menuItems = [
     {
@@ -30,7 +31,7 @@ const menuItems = [
         icon: Users,
         items: [
             { title: 'Pessoas', href: '/cadastros/pessoa' },
-            { title: 'Produtos', href: '/cadastros/produtos' },
+            { title: 'Produtos', href: '/cadastros/produto' },
             { title: 'Colaboradores', href: '/cadastros/colaborador' },
             {
                 title: 'Outros Cadastros',
@@ -41,6 +42,7 @@ const menuItems = [
                     { title: 'Setor', href: '/cadastros/setor' },
                     {
                         title: 'Diversos',
+                        masterOnly: true,
                         items: [
                             { title: 'Nível de Formação', href: '/cadastros/nivel-formacao' },
                             { title: 'Estado Civil', href: '/cadastros/estado-civil' },
@@ -94,6 +96,37 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
             router.push('/login');
         },
     });
+
+    // Global tables that should only be visible to master users
+    const globalTables = ['/cadastros/municipio', '/cadastros/estado-civil', '/cadastros/tipo-admissao'];
+
+    const filterMenuItemsByMaster = (item: any): any | null => {
+        // If item is marked as masterOnly, hide it for non-master users
+        if (item.masterOnly && !isMaster()) {
+            return null;
+        }
+
+        // If item has href and it's a global table, check master status
+        if (item.href && globalTables.includes(item.href) && !isMaster()) {
+            return null;
+        }
+
+        // If item has subitems, filter them recursively
+        if (item.items) {
+            const filteredItems = item.items
+                .map((subItem: any) => filterMenuItemsByMaster(subItem))
+                .filter((subItem: any) => subItem !== null);
+
+            // If all subitems were filtered out, hide the parent too
+            if (filteredItems.length === 0) {
+                return null;
+            }
+
+            return { ...item, items: filteredItems };
+        }
+
+        return item;
+    };
 
     const toggleMenu = (title: string) => {
         setExpandedMenus((prev) =>
@@ -153,7 +186,11 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                 <div className="px-3 py-2">
                     <div className="space-y-1">
                         {menuItems.map((item, index) => {
-                            if (item.items) {
+                            // Filter menu items based on master status
+                            const filteredItem = filterMenuItemsByMaster(item);
+                            if (!filteredItem) return null;
+
+                            if (filteredItem.items) {
                                 // Item com subitens (agora colapsável)
                                 const isExpanded = expandedMenus.includes(item.title);
 
@@ -195,7 +232,7 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
 
                                         {isExpanded && (
                                             <div className="ml-6 space-y-1">
-                                                {item.items.map((subItem: any, subIndex: number) =>
+                                                {filteredItem.items.map((subItem: any, subIndex: number) =>
                                                     renderSubItem(subItem, subIndex)
                                                 )}
                                             </div>
@@ -226,7 +263,10 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                     </div>
                 </div>
             </div>
-            <div className="p-4 border-t">
+            <div className="p-4 border-t space-y-2">
+                <div className={cn("flex justify-center", !collapsed && "justify-start")}>
+                    <ModeToggle />
+                </div>
                 <Button
                     variant="ghost"
                     className={cn(

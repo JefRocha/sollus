@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { Empresa, GedDocumentoDetalhe } from '../../entities-export';
 
-@Entity({ name: 'GED_DOCUMENTO_CABECALHO' })
+@Entity()
 export class GedDocumentoCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'DATA_INCLUSAO' })
+	@Column()
 	dataInclusao: Date;
 
 
@@ -59,7 +59,7 @@ export class GedDocumentoCabecalho {
 	listaGedDocumentoDetalhe: GedDocumentoDetalhe[];
 
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

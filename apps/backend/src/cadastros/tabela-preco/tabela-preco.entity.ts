@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { TabelaPrecoProduto } from '../../entities-export';
 
-@Entity({ name: 'TABELA_PRECO' })
+@Entity()
 export class TabelaPreco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'PRINCIPAL' })
+	@Column()
 	principal: string;
 
-	@Column({ name: 'COEFICIENTE' })
+	@Column()
 	coeficiente: number;
 
 

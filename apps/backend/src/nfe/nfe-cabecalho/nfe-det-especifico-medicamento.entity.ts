@@ -36,19 +36,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DET_ESPECIFICO_MEDICAMENTO' })
+@Entity()
 export class NfeDetEspecificoMedicamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO_ANVISA' })
+	@Column()
 	codigoAnvisa: string;
 
-	@Column({ name: 'MOTIVO_ISENCAO' })
+	@Column()
 	motivoIsencao: string;
 
-	@Column({ name: 'PRECO_MAXIMO_CONSUMIDOR' })
+	@Column()
 	precoMaximoConsumidor: number;
 
 
@@ -56,7 +56,7 @@ export class NfeDetEspecificoMedicamento {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetEspecificoMedicamento)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

@@ -36,58 +36,58 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DETALHE_IMPOSTO_ISSQN' })
+@Entity()
 export class NfeDetalheImpostoIssqn {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'BASE_CALCULO_ISSQN' })
+	@Column()
 	baseCalculoIssqn: number;
 
-	@Column({ name: 'ALIQUOTA_ISSQN' })
+	@Column()
 	aliquotaIssqn: number;
 
-	@Column({ name: 'VALOR_ISSQN' })
+	@Column()
 	valorIssqn: number;
 
-	@Column({ name: 'MUNICIPIO_ISSQN' })
+	@Column()
 	municipioIssqn: number;
 
-	@Column({ name: 'ITEM_LISTA_SERVICOS' })
+	@Column()
 	itemListaServicos: number;
 
-	@Column({ name: 'VALOR_DEDUCAO' })
+	@Column()
 	valorDeducao: number;
 
-	@Column({ name: 'VALOR_OUTRAS_RETENCOES' })
+	@Column()
 	valorOutrasRetencoes: number;
 
-	@Column({ name: 'VALOR_DESCONTO_INCONDICIONADO' })
+	@Column()
 	valorDescontoIncondicionado: number;
 
-	@Column({ name: 'VALOR_DESCONTO_CONDICIONADO' })
+	@Column()
 	valorDescontoCondicionado: number;
 
-	@Column({ name: 'VALOR_RETENCAO_ISS' })
+	@Column()
 	valorRetencaoIss: number;
 
-	@Column({ name: 'INDICADOR_EXIGIBILIDADE_ISS' })
+	@Column()
 	indicadorExigibilidadeIss: string;
 
-	@Column({ name: 'CODIGO_SERVICO' })
+	@Column()
 	codigoServico: string;
 
-	@Column({ name: 'MUNICIPIO_INCIDENCIA' })
+	@Column()
 	municipioIncidencia: number;
 
-	@Column({ name: 'PAIS_SEVICO_PRESTADO' })
+	@Column()
 	paisSevicoPrestado: number;
 
-	@Column({ name: 'NUMERO_PROCESSO' })
+	@Column()
 	numeroProcesso: string;
 
-	@Column({ name: 'INDICADOR_INCENTIVO_FISCAL' })
+	@Column()
 	indicadorIncentivoFiscal: string;
 
 
@@ -95,7 +95,7 @@ export class NfeDetalheImpostoIssqn {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetalheImpostoIssqn)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

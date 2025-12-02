@@ -37,19 +37,19 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColum
 import { Empresa } from '../../entities-export';
 import { InventarioContagemDet } from '../../entities-export';
 
-@Entity({ name: 'INVENTARIO_CONTAGEM_CAB' })
+@Entity()
 export class InventarioContagemCab {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_CONTAGEM' })
+	@Column()
 	dataContagem: Date;
 
-	@Column({ name: 'ESTOQUE_ATUALIZADO' })
+	@Column()
 	estoqueAtualizado: string;
 
-	@Column({ name: 'TIPO' })
+	@Column()
 	tipo: string;
 
 
@@ -59,7 +59,7 @@ export class InventarioContagemCab {
 	@OneToMany(() => InventarioContagemDet, inventarioContagemDet => inventarioContagemDet.inventarioContagemCab, { cascade: true })
 	listaInventarioContagemDet: InventarioContagemDet[];
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

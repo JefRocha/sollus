@@ -36,46 +36,46 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { FiscalLivro } from '../../entities-export';
 
-@Entity({ name: 'FISCAL_TERMO' })
+@Entity()
 export class FiscalTermo {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ABERTURA_ENCERRAMENTO' })
+	@Column()
 	aberturaEncerramento: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: number;
 
-	@Column({ name: 'PAGINA_INICIAL' })
+	@Column()
 	paginaInicial: number;
 
-	@Column({ name: 'PAGINA_FINAL' })
+	@Column()
 	paginaFinal: number;
 
-	@Column({ name: 'REGISTRADO' })
+	@Column()
 	registrado: string;
 
-	@Column({ name: 'NUMERO_REGISTRO' })
+	@Column()
 	numeroRegistro: string;
 
-	@Column({ name: 'DATA_DESPACHO' })
+	@Column()
 	dataDespacho: Date;
 
-	@Column({ name: 'DATA_ABERTURA' })
+	@Column()
 	dataAbertura: Date;
 
-	@Column({ name: 'DATA_ENCERRAMENTO' })
+	@Column()
 	dataEncerramento: Date;
 
-	@Column({ name: 'ESCRITURACAO_INICIO' })
+	@Column()
 	escrituracaoInicio: Date;
 
-	@Column({ name: 'ESCRITURACAO_FIM' })
+	@Column()
 	escrituracaoFim: Date;
 
-	@Column({ name: 'TEXTO' })
+	@Column()
 	texto: string;
 
 
@@ -83,7 +83,7 @@ export class FiscalTermo {
 	* Relations
 	*/
 	@OneToOne(() => FiscalLivro)
-	@JoinColumn({ name: "ID_FISCAL_LIVRO" })
+	@JoinColumn()
 	fiscalLivro: FiscalLivro;
 
 

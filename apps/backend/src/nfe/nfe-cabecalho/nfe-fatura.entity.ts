@@ -37,22 +37,22 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { NfeDuplicata } from '../../entities-export';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_FATURA' })
+@Entity()
 export class NfeFatura {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'VALOR_ORIGINAL' })
+	@Column()
 	valorOriginal: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_LIQUIDO' })
+	@Column()
 	valorLiquido: number;
 
 
@@ -60,7 +60,7 @@ export class NfeFatura {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeFatura)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 	@OneToMany(() => NfeDuplicata, nfeDuplicata => nfeDuplicata.nfeFatura, { cascade: true })

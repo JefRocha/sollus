@@ -36,25 +36,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Cheque } from '../../entities-export';
 
-@Entity({ name: 'FIN_CHEQUE_EMITIDO' })
+@Entity()
 export class FinChequeEmitido {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_EMISSAO' })
+	@Column()
 	dataEmissao: Date;
 
-	@Column({ name: 'BOM_PARA' })
+	@Column()
 	bomPara: Date;
 
-	@Column({ name: 'DATA_COMPENSACAO' })
+	@Column()
 	dataCompensacao: Date;
 
-	@Column({ name: 'VALOR' })
+	@Column()
 	valor: number;
 
-	@Column({ name: 'NOMINAL_A' })
+	@Column()
 	nominalA: string;
 
 
@@ -62,7 +62,7 @@ export class FinChequeEmitido {
 	* Relations
 	*/
 	@OneToOne(() => Cheque)
-	@JoinColumn({ name: "ID_CHEQUE" })
+	@JoinColumn()
 	cheque: Cheque;
 
 

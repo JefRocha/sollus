@@ -37,19 +37,19 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { Cheque } from '../../entities-export';
 import { BancoContaCaixa } from '../../entities-export';
 
-@Entity({ name: 'TALONARIO_CHEQUE' })
+@Entity()
 export class TalonarioCheque {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'TALAO' })
+	@Column()
 	talao: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: number;
 
-	@Column({ name: 'STATUS_TALAO' })
+	@Column()
 	statusTalao: string;
 
 
@@ -57,7 +57,7 @@ export class TalonarioCheque {
 	* Relations
 	*/
 	@OneToOne(() => BancoContaCaixa)
-	@JoinColumn({ name: "ID_BANCO_CONTA_CAIXA" })
+	@JoinColumn()
 	bancoContaCaixa: BancoContaCaixa;
 
 	@OneToMany(() => Cheque, cheque => cheque.talonarioCheque, { cascade: true })

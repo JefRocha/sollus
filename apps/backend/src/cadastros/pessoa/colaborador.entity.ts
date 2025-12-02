@@ -45,37 +45,37 @@ import { ColaboradorTipo } from '../../entities-export';
 import { Sindicato } from '../../entities-export';
 import { ViewPessoaColaborador } from '../../entities-export';
 
-@Entity({ name: 'COLABORADOR' })
+@Entity()
 export class Colaborador {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MATRICULA' })
+	@Column()
 	matricula: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
-	@Column({ name: 'DATA_ADMISSAO' })
+	@Column()
 	dataAdmissao: Date;
 
-	@Column({ name: 'DATA_DEMISSAO' })
+	@Column()
 	dataDemissao: Date;
 
-	@Column({ name: 'CTPS_NUMERO' })
+	@Column()
 	ctpsNumero: string;
 
-	@Column({ name: 'CTPS_SERIE' })
+	@Column()
 	ctpsSerie: string;
 
-	@Column({ name: 'CTPS_DATA_EXPEDICAO' })
+	@Column()
 	ctpsDataExpedicao: Date;
 
-	@Column({ name: 'CTPS_UF' })
+	@Column()
 	ctpsUf: string;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
 
@@ -83,38 +83,38 @@ export class Colaborador {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Usuario, usuario => usuario.colaborador, { cascade: true })
 	usuario: Usuario;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.colaborador)
-	@JoinColumn({ name: "ID_PESSOA" })
+	@JoinColumn()
 	pessoa: Pessoa;
 
 	@OneToOne(() => Cargo)
-	@JoinColumn({ name: "ID_CARGO" })
+	@JoinColumn()
 	cargo: Cargo;
 
 	@OneToOne(() => Setor)
-	@JoinColumn({ name: "ID_SETOR" })
+	@JoinColumn()
 	setor: Setor;
 
 	@OneToOne(() => ColaboradorSituacao)
-	@JoinColumn({ name: "ID_COLABORADOR_SITUACAO" })
+	@JoinColumn()
 	colaboradorSituacao: ColaboradorSituacao;
 
 	@OneToOne(() => TipoAdmissao)
-	@JoinColumn({ name: "ID_TIPO_ADMISSAO" })
+	@JoinColumn()
 	tipoAdmissao: TipoAdmissao;
 
 	@OneToOne(() => ColaboradorTipo)
-	@JoinColumn({ name: "ID_COLABORADOR_TIPO" })
+	@JoinColumn()
 	colaboradorTipo: ColaboradorTipo;
 
 	@OneToOne(() => Sindicato)
-	@JoinColumn({ name: "ID_SINDICATO" })
+	@JoinColumn()
 	sindicato: Sindicato;
 
 	@OneToMany(() => Vendedor, vendedor => vendedor.colaborador, { cascade: true })

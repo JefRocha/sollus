@@ -43,67 +43,67 @@ import { Cliente } from '../../entities-export';
 import { Transportadora } from '../../entities-export';
 import { Vendedor } from '../../entities-export';
 
-@Entity({ name: 'VENDA_CABECALHO' })
+@Entity()
 export class VendaCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_VENDA' })
+	@Column()
 	dataVenda: Date;
 
-	@Column({ name: 'DATA_SAIDA' })
+	@Column()
 	dataSaida: Date;
 
-	@Column({ name: 'HORA_SAIDA' })
+	@Column()
 	horaSaida: string;
 
-	@Column({ name: 'NUMERO_FATURA' })
+	@Column()
 	numeroFatura: number;
 
-	@Column({ name: 'LOCAL_ENTREGA' })
+	@Column()
 	localEntrega: string;
 
-	@Column({ name: 'LOCAL_COBRANCA' })
+	@Column()
 	localCobranca: string;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_COMISSAO' })
+	@Column()
 	taxaComissao: number;
 
-	@Column({ name: 'VALOR_COMISSAO' })
+	@Column()
 	valorComissao: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'TIPO_FRETE' })
+	@Column()
 	tipoFrete: string;
 
-	@Column({ name: 'FORMA_PAGAMENTO' })
+	@Column()
 	formaPagamento: string;
 
-	@Column({ name: 'VALOR_FRETE' })
+	@Column()
 	valorFrete: number;
 
-	@Column({ name: 'VALOR_SEGURO' })
+	@Column()
 	valorSeguro: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'SITUACAO' })
+	@Column()
 	situacao: string;
 
-	@Column({ name: 'DIA_FIXO_PARCELA' })
+	@Column()
 	diaFixoParcela: string;
 
 
@@ -111,31 +111,31 @@ export class VendaCabecalho {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => VendaOrcamentoCabecalho)
-	@JoinColumn({ name: "ID_VENDA_ORCAMENTO_CABECALHO" })
+	@JoinColumn()
 	vendaOrcamentoCabecalho: VendaOrcamentoCabecalho;
 
 	@OneToOne(() => VendaCondicoesPagamento)
-	@JoinColumn({ name: "ID_VENDA_CONDICOES_PAGAMENTO" })
+	@JoinColumn()
 	vendaCondicoesPagamento: VendaCondicoesPagamento;
 
 	@OneToOne(() => NotaFiscalTipo)
-	@JoinColumn({ name: "ID_NOTA_FISCAL_TIPO" })
+	@JoinColumn()
 	notaFiscalTipo: NotaFiscalTipo;
 
 	@OneToOne(() => Cliente)
-	@JoinColumn({ name: "ID_CLIENTE" })
+	@JoinColumn()
 	cliente: Cliente;
 
 	@OneToOne(() => Transportadora)
-	@JoinColumn({ name: "ID_TRANSPORTADORA" })
+	@JoinColumn()
 	transportadora: Transportadora;
 
 	@OneToOne(() => Vendedor)
-	@JoinColumn({ name: "ID_VENDEDOR" })
+	@JoinColumn()
 	vendedor: Vendedor;
 
 	@OneToMany(() => VendaComissao, vendaComissao => vendaComissao.vendaCabecalho, { cascade: true })

@@ -35,31 +35,31 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PCP_OP_CABECALHO' })
+@Entity()
 export class PcpOpCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'INICIO' })
+	@Column()
 	inicio: Date;
 
-	@Column({ name: 'PREVISAO_ENTREGA' })
+	@Column()
 	previsaoEntrega: Date;
 
-	@Column({ name: 'TERMINO' })
+	@Column()
 	termino: Date;
 
-	@Column({ name: 'CUSTO_TOTAL_PREVISTO' })
+	@Column()
 	custoTotalPrevisto: number;
 
-	@Column({ name: 'CUSTO_TOTAL_REALIZADO' })
+	@Column()
 	custoTotalRealizado: number;
 
-	@Column({ name: 'PORCENTO_VENDA' })
+	@Column()
 	porcentoVenda: number;
 
-	@Column({ name: 'PORCENTO_ESTOQUE' })
+	@Column()
 	porcentoEstoque: number;
 
 

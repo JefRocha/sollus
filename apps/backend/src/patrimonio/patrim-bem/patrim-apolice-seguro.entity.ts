@@ -35,37 +35,37 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PATRIM_APOLICE_SEGURO' })
+@Entity()
 export class PatrimApoliceSeguro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PATRIM_BEM' })
+	@Column()
 	idPatrimBem: number;
 
-	@Column({ name: 'ID_SEGURADORA' })
+	@Column()
 	idSeguradora: number;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_CONTRATACAO' })
+	@Column()
 	dataContratacao: Date;
 
-	@Column({ name: 'DATA_VENCIMENTO' })
+	@Column()
 	dataVencimento: Date;
 
-	@Column({ name: 'VALOR_PREMIO' })
+	@Column()
 	valorPremio: number;
 
-	@Column({ name: 'VALOR_SEGURADO' })
+	@Column()
 	valorSegurado: number;
 
-	@Column({ name: 'OBSERVACAO' })
+	@Column()
 	observacao: string;
 
-	@Column({ name: 'IMAGEM' })
+	@Column()
 	imagem: string;
 
 

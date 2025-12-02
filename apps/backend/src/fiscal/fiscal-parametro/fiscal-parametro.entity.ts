@@ -38,49 +38,49 @@ import { FiscalEstadualPorte } from '../../entities-export';
 import { FiscalEstadualRegime } from '../../entities-export';
 import { FiscalMunicipalRegime } from '../../entities-export';
 
-@Entity({ name: 'FISCAL_PARAMETRO' })
+@Entity()
 export class FiscalParametro {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'VIGENCIA' })
+	@Column()
 	vigencia: string;
 
-	@Column({ name: 'DESCRICAO_VIGENCIA' })
+	@Column()
 	descricaoVigencia: string;
 
-	@Column({ name: 'CRITERIO_LANCAMENTO' })
+	@Column()
 	criterioLancamento: string;
 
-	@Column({ name: 'APURACAO' })
+	@Column()
 	apuracao: string;
 
-	@Column({ name: 'MICROEMPREE_INDIVIDUAL' })
+	@Column()
 	microempreeIndividual: string;
 
-	@Column({ name: 'CALC_PIS_COFINS_EFD' })
+	@Column()
 	calcPisCofinsEfd: string;
 
-	@Column({ name: 'SIMPLES_CODIGO_ACESSO' })
+	@Column()
 	simplesCodigoAcesso: string;
 
-	@Column({ name: 'SIMPLES_TABELA' })
+	@Column()
 	simplesTabela: string;
 
-	@Column({ name: 'SIMPLES_ATIVIDADE' })
+	@Column()
 	simplesAtividade: string;
 
-	@Column({ name: 'PERFIL_SPED' })
+	@Column()
 	perfilSped: string;
 
-	@Column({ name: 'APURACAO_CONSOLIDADA' })
+	@Column()
 	apuracaoConsolidada: string;
 
-	@Column({ name: 'SUBSTITUICAO_TRIBUTARIA' })
+	@Column()
 	substituicaoTributaria: string;
 
-	@Column({ name: 'FORMA_CALCULO_ISS' })
+	@Column()
 	formaCalculoIss: string;
 
 
@@ -88,15 +88,15 @@ export class FiscalParametro {
 	* Relations
 	*/
 	@OneToOne(() => FiscalEstadualPorte)
-	@JoinColumn({ name: "ID_FISCAL_ESTADUAL_PORTE" })
+	@JoinColumn()
 	fiscalEstadualPorte: FiscalEstadualPorte;
 
 	@OneToOne(() => FiscalEstadualRegime)
-	@JoinColumn({ name: "ID_FISCAL_ESTADUAL_REGIME" })
+	@JoinColumn()
 	fiscalEstadualRegime: FiscalEstadualRegime;
 
 	@OneToOne(() => FiscalMunicipalRegime)
-	@JoinColumn({ name: "ID_FISCAL_MUNICIPAL_REGIME" })
+	@JoinColumn()
 	fiscalMunicipalRegime: FiscalMunicipalRegime;
 
 

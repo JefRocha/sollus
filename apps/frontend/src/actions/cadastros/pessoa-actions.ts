@@ -14,11 +14,11 @@ export type Pessoa = {
     tipo: "F" | "J";
     site?: string;
     email?: string;
-    ehCliente: "S" | "N";
-    ehFornecedor?: "S" | "N";
-    ehTransportadora?: "S" | "N";
-    ehColaborador?: "S" | "N";
-    ehContador?: "S" | "N";
+    eh_cliente: "S" | "N";
+    eh_fornecedor?: "S" | "N";
+    eh_transportadora?: "S" | "N";
+    eh_colaborador?: "S" | "N";
+    eh_contador?: "S" | "N";
     clienteModel?: any;
     fornecedorModel?: any;
     transportadoraModel?: any;

@@ -36,13 +36,13 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_CTE_REFERENCIADO' })
+@Entity()
 export class NfeCteReferenciado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CHAVE_ACESSO' })
+	@Column()
 	chaveAcesso: string;
 
 
@@ -50,7 +50,7 @@ export class NfeCteReferenciado {
 	* Relations
 	*/
 	@ManyToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.listaNfeCteReferenciado)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

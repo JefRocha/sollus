@@ -35,76 +35,76 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CTE_INFORMACAO_NF_OUTROS' })
+@Entity()
 export class CteInformacaoNfOutros {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CTE_CABECALHO' })
+	@Column()
 	idCteCabecalho: number;
 
-	@Column({ name: 'NUMERO_ROMANEIO' })
+	@Column()
 	numeroRomaneio: string;
 
-	@Column({ name: 'NUMERO_PEDIDO' })
+	@Column()
 	numeroPedido: string;
 
-	@Column({ name: 'CHAVE_ACESSO_NFE' })
+	@Column()
 	chaveAcessoNfe: string;
 
-	@Column({ name: 'CODIGO_MODELO' })
+	@Column()
 	codigoModelo: string;
 
-	@Column({ name: 'SERIE' })
+	@Column()
 	serie: string;
 
-	@Column({ name: 'NUMERO' })
+	@Column()
 	numero: string;
 
-	@Column({ name: 'DATA_EMISSAO' })
+	@Column()
 	dataEmissao: Date;
 
-	@Column({ name: 'UF_EMITENTE' })
+	@Column()
 	ufEmitente: number;
 
-	@Column({ name: 'BASE_CALCULO_ICMS' })
+	@Column()
 	baseCalculoIcms: number;
 
-	@Column({ name: 'VALOR_ICMS' })
+	@Column()
 	valorIcms: number;
 
-	@Column({ name: 'BASE_CALCULO_ICMS_ST' })
+	@Column()
 	baseCalculoIcmsSt: number;
 
-	@Column({ name: 'VALOR_ICMS_ST' })
+	@Column()
 	valorIcmsSt: number;
 
-	@Column({ name: 'VALOR_TOTAL_PRODUTOS' })
+	@Column()
 	valorTotalProdutos: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
-	@Column({ name: 'CFOP_PREDOMINANTE' })
+	@Column()
 	cfopPredominante: number;
 
-	@Column({ name: 'PESO_TOTAL_KG' })
+	@Column()
 	pesoTotalKg: number;
 
-	@Column({ name: 'PIN_SUFRAMA' })
+	@Column()
 	pinSuframa: number;
 
-	@Column({ name: 'DATA_PREVISTA_ENTREGA' })
+	@Column()
 	dataPrevistaEntrega: Date;
 
-	@Column({ name: 'OUTRO_TIPO_DOC_ORIG' })
+	@Column()
 	outroTipoDocOrig: string;
 
-	@Column({ name: 'OUTRO_DESCRICAO' })
+	@Column()
 	outroDescricao: string;
 
-	@Column({ name: 'OUTRO_VALOR_DOCUMENTO' })
+	@Column()
 	outroValorDocumento: number;
 
 

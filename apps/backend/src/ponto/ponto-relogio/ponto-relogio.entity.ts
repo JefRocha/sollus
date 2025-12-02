@@ -35,25 +35,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PONTO_RELOGIO' })
+@Entity()
 export class PontoRelogio {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'LOCALIZACAO' })
+	@Column()
 	localizacao: string;
 
-	@Column({ name: 'MARCA' })
+	@Column()
 	marca: string;
 
-	@Column({ name: 'FABRICANTE' })
+	@Column()
 	fabricante: string;
 
-	@Column({ name: 'NUMERO_SERIE' })
+	@Column()
 	numeroSerie: string;
 
-	@Column({ name: 'UTILIZACAO' })
+	@Column()
 	utilizacao: string;
 
 

@@ -36,37 +36,37 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { VendaCondicoesParcelas, Empresa } from '../../entities-export';
 
-@Entity({ name: 'VENDA_CONDICOES_PAGAMENTO' })
+@Entity()
 export class VendaCondicoesPagamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
-	@Column({ name: 'FATURAMENTO_MINIMO' })
+	@Column()
 	faturamentoMinimo: number;
 
-	@Column({ name: 'FATURAMENTO_MAXIMO' })
+	@Column()
 	faturamentoMaximo: number;
 
-	@Column({ name: 'INDICE_CORRECAO' })
+	@Column()
 	indiceCorrecao: number;
 
-	@Column({ name: 'DIAS_TOLERANCIA' })
+	@Column()
 	diasTolerancia: number;
 
-	@Column({ name: 'VALOR_TOLERANCIA' })
+	@Column()
 	valorTolerancia: number;
 
-	@Column({ name: 'PRAZO_MEDIO' })
+	@Column()
 	prazoMedio: number;
 
-	@Column({ name: 'VISTA_PRAZO' })
+	@Column()
 	vistaPrazo: string;
 
 
@@ -74,7 +74,7 @@ export class VendaCondicoesPagamento {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToMany(() => VendaCondicoesParcelas, vendaCondicoesParcelas => vendaCondicoesParcelas.vendaCondicoesPagamento, { cascade: true })

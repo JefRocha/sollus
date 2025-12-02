@@ -35,16 +35,16 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'PCP_SERVICO_EQUIPAMENTO' })
+@Entity()
 export class PcpServicoEquipamento {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_PATRIM_BEM' })
+	@Column()
 	idPatrimBem: number;
 
-	@Column({ name: 'ID_PCP_SERVICO' })
+	@Column()
 	idPcpServico: number;
 
 

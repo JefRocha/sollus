@@ -37,28 +37,28 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { CompraFornecedorCotacao } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'COMPRA_COTACAO_DETALHE' })
+@Entity()
 export class CompraCotacaoDetalhe {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'QUANTIDADE' })
+	@Column()
 	quantidade: number;
 
-	@Column({ name: 'VALOR_UNITARIO' })
+	@Column()
 	valorUnitario: number;
 
-	@Column({ name: 'VALOR_SUBTOTAL' })
+	@Column()
 	valorSubtotal: number;
 
-	@Column({ name: 'TAXA_DESCONTO' })
+	@Column()
 	taxaDesconto: number;
 
-	@Column({ name: 'VALOR_DESCONTO' })
+	@Column()
 	valorDesconto: number;
 
-	@Column({ name: 'VALOR_TOTAL' })
+	@Column()
 	valorTotal: number;
 
 
@@ -66,11 +66,11 @@ export class CompraCotacaoDetalhe {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => CompraFornecedorCotacao, compraFornecedorCotacao => compraFornecedorCotacao.listaCompraCotacaoDetalhe)
-	@JoinColumn({ name: "ID_COMPRA_FORNECEDOR_COTACAO" })
+	@JoinColumn()
 	compraFornecedorCotacao: CompraFornecedorCotacao;
 
 

@@ -35,40 +35,40 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'CONTRATO_SOLICITACAO_SERVICO' })
+@Entity()
 export class ContratoSolicitacaoServico {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_CONTRATO_TIPO_SERVICO' })
+	@Column()
 	idContratoTipoServico: number;
 
-	@Column({ name: 'ID_SETOR' })
+	@Column()
 	idSetor: number;
 
-	@Column({ name: 'ID_COLABORADOR' })
+	@Column()
 	idColaborador: number;
 
-	@Column({ name: 'ID_CLIENTE' })
+	@Column()
 	idCliente: number;
 
-	@Column({ name: 'ID_FORNECEDOR' })
+	@Column()
 	idFornecedor: number;
 
-	@Column({ name: 'DATA_SOLICITACAO' })
+	@Column()
 	dataSolicitacao: Date;
 
-	@Column({ name: 'DATA_DESEJADA_INICIO' })
+	@Column()
 	dataDesejadaInicio: Date;
 
-	@Column({ name: 'URGENTE' })
+	@Column()
 	urgente: string;
 
-	@Column({ name: 'STATUS_SOLICITACAO' })
+	@Column()
 	statusSolicitacao: string;
 
-	@Column({ name: 'DESCRICAO' })
+	@Column()
 	descricao: string;
 
 

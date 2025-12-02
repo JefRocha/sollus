@@ -219,7 +219,7 @@ async function importSqlStream() {
                         }
                     }
                 }
-                
+
                 if (count > 0 && count % 500 < inserts.length) {
                     console.log(`✅ ${count} comandos executados (Até a linha ~${lineCount})`);
                 }

@@ -37,22 +37,22 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn
 import { EstoqueReajusteDetalhe, Empresa } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'ESTOQUE_REAJUSTE_CABECALHO' })
+@Entity()
 export class EstoqueReajusteCabecalho {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'DATA_REAJUSTE' })
+	@Column()
 	dataReajuste: Date;
 
-	@Column({ name: 'TAXA' })
+	@Column()
 	taxa: number;
 
-	@Column({ name: 'TIPO_REAJUSTE' })
+	@Column()
 	tipoReajuste: string;
 
-	@Column({ name: 'JUSTIFICATIVA' })
+	@Column()
 	justificativa: string;
 
 
@@ -60,11 +60,11 @@ export class EstoqueReajusteCabecalho {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToMany(() => EstoqueReajusteDetalhe, estoqueReajusteDetalhe => estoqueReajusteDetalhe.estoqueReajusteCabecalho, { cascade: true })

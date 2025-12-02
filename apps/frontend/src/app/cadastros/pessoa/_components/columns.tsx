@@ -9,11 +9,11 @@ export type Pessoa = {
     nome: string;
     tipo: string;
     email?: string;
-    ehCliente: string;
-    ehFornecedor?: string;
-    ehTransportadora?: string;
-    ehColaborador?: string;
-    ehContador?: string;
+    eh_cliente: string;
+    eh_fornecedor?: string;
+    eh_transportadora?: string;
+    eh_colaborador?: string;
+    eh_contador?: string;
 };
 
 function labelTipo(v?: string) {
@@ -51,39 +51,39 @@ export const columns: ColumnDef<Pessoa>[] = [
         ),
     },
     {
-        accessorKey: "ehCliente",
+        accessorKey: "eh_cliente",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Cliente" />
         ),
-        cell: ({ row }) => labelSN(row.getValue("ehCliente")),
+        cell: ({ row }) => labelSN(row.getValue("eh_cliente")),
     },
     {
-        accessorKey: "ehFornecedor",
+        accessorKey: "eh_fornecedor",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Fornecedor" />
         ),
-        cell: ({ row }) => labelSN(row.getValue("ehFornecedor")),
+        cell: ({ row }) => labelSN(row.getValue("eh_fornecedor")),
     },
     {
-        accessorKey: "ehTransportadora",
+        accessorKey: "eh_transportadora",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Transportadora" />
         ),
-        cell: ({ row }) => labelSN(row.getValue("ehTransportadora")),
+        cell: ({ row }) => labelSN(row.getValue("eh_transportadora")),
     },
     {
-        accessorKey: "ehColaborador",
+        accessorKey: "eh_colaborador",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Colaborador" />
         ),
-        cell: ({ row }) => labelSN(row.getValue("ehColaborador")),
+        cell: ({ row }) => labelSN(row.getValue("eh_colaborador")),
     },
     {
-        accessorKey: "ehContador",
+        accessorKey: "eh_contador",
         header: ({ column }) => (
             <DataTableColumnHeader column={column} title="Contador" />
         ),
-        cell: ({ row }) => labelSN(row.getValue("ehContador")),
+        cell: ({ row }) => labelSN(row.getValue("eh_contador")),
     },
     {
         id: "actions",

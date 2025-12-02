@@ -36,22 +36,22 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { ProdutoUnidade } from '../../entities-export';
 
-@Entity({ name: 'VIEW_SPED_NFE_ITEM' })
+@Entity()
 export class ViewSpedNfeItem {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'GTIN' })
+	@Column()
 	gtin: string;
 
-	@Column({ name: 'SIGLA' })
+	@Column()
 	sigla: string;
 
-	@Column({ name: 'CODIGO_NCM' })
+	@Column()
 	codigoNcm: string;
 
 
@@ -59,7 +59,7 @@ export class ViewSpedNfeItem {
 	* Relations
 	*/
 	@OneToOne(() => ProdutoUnidade)
-	@JoinColumn({ name: "ID_PRODUTO_UNIDADE" })
+	@JoinColumn()
 	produtoUnidade: ProdutoUnidade;
 
 

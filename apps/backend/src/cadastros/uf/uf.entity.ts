@@ -35,19 +35,19 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'UF' })
+@Entity()
 export class Uf {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'SIGLA' })
+	@Column()
 	sigla: string;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'CODIGO_IBGE' })
+	@Column()
 	codigoIbge: number;
 
 

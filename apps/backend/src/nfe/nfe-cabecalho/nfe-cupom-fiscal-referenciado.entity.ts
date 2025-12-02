@@ -36,28 +36,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_CUPOM_FISCAL_REFERENCIADO' })
+@Entity()
 export class NfeCupomFiscalReferenciado {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'MODELO_DOCUMENTO_FISCAL' })
+	@Column()
 	modeloDocumentoFiscal: string;
 
-	@Column({ name: 'NUMERO_ORDEM_ECF' })
+	@Column()
 	numeroOrdemEcf: number;
 
-	@Column({ name: 'COO' })
+	@Column()
 	coo: number;
 
-	@Column({ name: 'DATA_EMISSAO_CUPOM' })
+	@Column()
 	dataEmissaoCupom: Date;
 
-	@Column({ name: 'NUMERO_CAIXA' })
+	@Column()
 	numeroCaixa: number;
 
-	@Column({ name: 'NUMERO_SERIE_ECF' })
+	@Column()
 	numeroSerieEcf: string;
 
 
@@ -65,7 +65,7 @@ export class NfeCupomFiscalReferenciado {
 	* Relations
 	*/
 	@ManyToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.listaNfeCupomFiscalReferenciado)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 

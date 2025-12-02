@@ -37,31 +37,31 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn
 import { InventarioContagemCab } from '../../entities-export';
 import { Produto } from '../../entities-export';
 
-@Entity({ name: 'INVENTARIO_CONTAGEM_DET' })
+@Entity()
 export class InventarioContagemDet {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CONTAGEM01' })
+	@Column()
 	contagem01: number;
 
-	@Column({ name: 'CONTAGEM02' })
+	@Column()
 	contagem02: number;
 
-	@Column({ name: 'CONTAGEM03' })
+	@Column()
 	contagem03: number;
 
-	@Column({ name: 'FECHADO_CONTAGEM' })
+	@Column()
 	fechadoContagem: string;
 
-	@Column({ name: 'QUANTIDADE_SISTEMA' })
+	@Column()
 	quantidadeSistema: number;
 
-	@Column({ name: 'ACURACIDADE' })
+	@Column()
 	acuracidade: number;
 
-	@Column({ name: 'DIVERGENCIA' })
+	@Column()
 	divergencia: number;
 
 
@@ -69,11 +69,11 @@ export class InventarioContagemDet {
 	* Relations
 	*/
 	@OneToOne(() => Produto)
-	@JoinColumn({ name: "ID_PRODUTO" })
+	@JoinColumn()
 	produto: Produto;
 
 	@ManyToOne(() => InventarioContagemCab, inventarioContagemCab => inventarioContagemCab.listaInventarioContagemDet)
-	@JoinColumn({ name: "ID_INVENTARIO_CONTAGEM_CAB" })
+	@JoinColumn()
 	inventarioContagemCab: InventarioContagemCab;
 
 

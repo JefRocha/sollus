@@ -9,7 +9,7 @@ export class Cbo {
     @Column()
     codigo: string;
 
-    // @Column({ name: 'CODIGO_1994' })
+    // @Column()
     // codigo1994: string;
 
     @Column()

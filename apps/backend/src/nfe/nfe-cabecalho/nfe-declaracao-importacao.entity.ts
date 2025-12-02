@@ -37,43 +37,43 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColum
 import { NfeImportacaoDetalhe } from '../../entities-export';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DECLARACAO_IMPORTACAO' })
+@Entity()
 export class NfeDeclaracaoImportacao {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NUMERO_DOCUMENTO' })
+	@Column()
 	numeroDocumento: string;
 
-	@Column({ name: 'DATA_REGISTRO' })
+	@Column()
 	dataRegistro: Date;
 
-	@Column({ name: 'LOCAL_DESEMBARACO' })
+	@Column()
 	localDesembaraco: string;
 
-	@Column({ name: 'UF_DESEMBARACO' })
+	@Column()
 	ufDesembaraco: string;
 
-	@Column({ name: 'DATA_DESEMBARACO' })
+	@Column()
 	dataDesembaraco: Date;
 
-	@Column({ name: 'VIA_TRANSPORTE' })
+	@Column()
 	viaTransporte: string;
 
-	@Column({ name: 'VALOR_AFRMM' })
+	@Column()
 	valorAfrmm: number;
 
-	@Column({ name: 'FORMA_INTERMEDIACAO' })
+	@Column()
 	formaIntermediacao: string;
 
-	@Column({ name: 'CNPJ' })
+	@Column()
 	cnpj: string;
 
-	@Column({ name: 'UF_TERCEIRO' })
+	@Column()
 	ufTerceiro: string;
 
-	@Column({ name: 'CODIGO_EXPORTADOR' })
+	@Column()
 	codigoExportador: string;
 
 
@@ -84,7 +84,7 @@ export class NfeDeclaracaoImportacao {
 	listaNfeImportacaoDetalhe: NfeImportacaoDetalhe[];
 
 	@ManyToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.listaNfeDeclaracaoImportacao)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

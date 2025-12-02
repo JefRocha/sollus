@@ -37,22 +37,22 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { Colaborador } from '../../entities-export';
 import { Papel } from '../../entities-export';
 
-@Entity({ name: 'USUARIO' })
+@Entity()
 export class Usuario {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'LOGIN' })
+	@Column()
 	login: string;
 
-	@Column({ name: 'SENHA' })
+	@Column()
 	senha: string;
 
-	@Column({ name: 'ADMINISTRADOR' })
+	@Column()
 	administrador: string;
 
-	@Column({ name: 'DATA_CADASTRO' })
+	@Column()
 	dataCadastro: Date;
 
 
@@ -60,11 +60,11 @@ export class Usuario {
 	* Relations
 	*/
 	@OneToOne(() => Colaborador, colaborador => colaborador.usuario)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 	@OneToOne(() => Papel)
-	@JoinColumn({ name: "ID_PAPEL" })
+	@JoinColumn()
 	papel: Papel;
 
 

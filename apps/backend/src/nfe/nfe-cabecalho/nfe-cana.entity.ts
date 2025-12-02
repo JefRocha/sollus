@@ -38,16 +38,16 @@ import { NfeCanaDeducoesSafra } from '../../entities-export';
 import { NfeCanaFornecimentoDiario } from '../../entities-export';
 import { NfeCabecalho } from '../../entities-export';
 
-@Entity({ name: 'NFE_CANA' })
+@Entity()
 export class NfeCana {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'SAFRA' })
+	@Column()
 	safra: string;
 
-	@Column({ name: 'MES_ANO_REFERENCIA' })
+	@Column()
 	mesAnoReferencia: string;
 
 
@@ -55,7 +55,7 @@ export class NfeCana {
 	* Relations
 	*/
 	@OneToOne(() => NfeCabecalho, nfeCabecalho => nfeCabecalho.nfeCana)
-	@JoinColumn({ name: "ID_NFE_CABECALHO" })
+	@JoinColumn()
 	nfeCabecalho: NfeCabecalho;
 
 	@OneToMany(() => NfeCanaDeducoesSafra, nfeCanaDeducoesSafra => nfeCanaDeducoesSafra.nfeCana, { cascade: true })

@@ -35,28 +35,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'ETIQUETA_TEMPLATE' })
+@Entity()
 export class EtiquetaTemplate {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'ID_ETIQUETA_LAYOUT' })
+	@Column()
 	idEtiquetaLayout: number;
 
-	@Column({ name: 'TABELA' })
+	@Column()
 	tabela: string;
 
-	@Column({ name: 'CAMPO' })
+	@Column()
 	campo: string;
 
-	@Column({ name: 'FORMATO' })
+	@Column()
 	formato: number;
 
-	@Column({ name: 'QUANTIDADE_REPETICOES' })
+	@Column()
 	quantidadeRepeticoes: number;
 
-	@Column({ name: 'FILTRO' })
+	@Column()
 	filtro: string;
 
 

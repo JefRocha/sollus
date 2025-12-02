@@ -37,19 +37,19 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne, JoinColum
 import { Empresa } from '../../entities-export';
 import { TabelaPrecoProduto } from '../../entities-export';
 
-@Entity({ name: 'TABELA_PRECO' })
+@Entity()
 export class TabelaPreco {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'NOME' })
+	@Column()
 	nome: string;
 
-	@Column({ name: 'PRINCIPAL' })
+	@Column()
 	principal: string;
 
-	@Column({ name: 'COEFICIENTE' })
+	@Column()
 	coeficiente: number;
 
 
@@ -59,7 +59,7 @@ export class TabelaPreco {
 	@OneToMany(() => TabelaPrecoProduto, tabelaPrecoProduto => tabelaPrecoProduto.tabelaPreco, { cascade: true })
 	listaTabelaPrecoProduto: TabelaPrecoProduto[];
 	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: "ID_EMPRESA" })
+	@JoinColumn()
 	empresa: Empresa;
 
 

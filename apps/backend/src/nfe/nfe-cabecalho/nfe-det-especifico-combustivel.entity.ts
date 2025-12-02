@@ -36,61 +36,61 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { NfeDetalhe } from '../../entities-export';
 
-@Entity({ name: 'NFE_DET_ESPECIFICO_COMBUSTIVEL' })
+@Entity()
 export class NfeDetEspecificoCombustivel {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'CODIGO_ANP' })
+	@Column()
 	codigoAnp: number;
 
-	@Column({ name: 'DESCRICAO_ANP' })
+	@Column()
 	descricaoAnp: string;
 
-	@Column({ name: 'PERCENTUAL_GLP' })
+	@Column()
 	percentualGlp: number;
 
-	@Column({ name: 'PERCENTUAL_GAS_NACIONAL' })
+	@Column()
 	percentualGasNacional: number;
 
-	@Column({ name: 'PERCENTUAL_GAS_IMPORTADO' })
+	@Column()
 	percentualGasImportado: number;
 
-	@Column({ name: 'VALOR_PARTIDA' })
+	@Column()
 	valorPartida: number;
 
-	@Column({ name: 'CODIF' })
+	@Column()
 	codif: string;
 
-	@Column({ name: 'QUANTIDADE_TEMP_AMBIENTE' })
+	@Column()
 	quantidadeTempAmbiente: number;
 
-	@Column({ name: 'UF_CONSUMO' })
+	@Column()
 	ufConsumo: string;
 
-	@Column({ name: 'CIDE_BASE_CALCULO' })
+	@Column()
 	cideBaseCalculo: number;
 
-	@Column({ name: 'CIDE_ALIQUOTA' })
+	@Column()
 	cideAliquota: number;
 
-	@Column({ name: 'CIDE_VALOR' })
+	@Column()
 	cideValor: number;
 
-	@Column({ name: 'ENCERRANTE_BICO' })
+	@Column()
 	encerranteBico: number;
 
-	@Column({ name: 'ENCERRANTE_BOMBA' })
+	@Column()
 	encerranteBomba: number;
 
-	@Column({ name: 'ENCERRANTE_TANQUE' })
+	@Column()
 	encerranteTanque: number;
 
-	@Column({ name: 'ENCERRANTE_VALOR_INICIO' })
+	@Column()
 	encerranteValorInicio: number;
 
-	@Column({ name: 'ENCERRANTE_VALOR_FIM' })
+	@Column()
 	encerranteValorFim: number;
 
 
@@ -98,7 +98,7 @@ export class NfeDetEspecificoCombustivel {
 	* Relations
 	*/
 	@OneToOne(() => NfeDetalhe, nfeDetalhe => nfeDetalhe.nfeDetEspecificoCombustivel)
-	@JoinColumn({ name: "ID_NFE_DETALHE" })
+	@JoinColumn()
 	nfeDetalhe: NfeDetalhe;
 
 

@@ -36,28 +36,28 @@ OTHER DEALINGS IN THE SOFTWARE.
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Colaborador } from '../../entities-export';
 
-@Entity({ name: 'FOLHA_HISTORICO_SALARIAL' })
+@Entity()
 export class FolhaHistoricoSalarial {
 
 	@PrimaryGeneratedColumn()
 	id: number;
 
-	@Column({ name: 'COMPETENCIA' })
+	@Column()
 	competencia: string;
 
-	@Column({ name: 'SALARIO_ATUAL' })
+	@Column()
 	salarioAtual: number;
 
-	@Column({ name: 'PERCENTUAL_AUMENTO' })
+	@Column()
 	percentualAumento: number;
 
-	@Column({ name: 'SALARIO_NOVO' })
+	@Column()
 	salarioNovo: number;
 
-	@Column({ name: 'VALIDO_A_PARTIR' })
+	@Column()
 	validoAPartir: string;
 
-	@Column({ name: 'MOTIVO' })
+	@Column()
 	motivo: string;
 
 
@@ -65,7 +65,7 @@ export class FolhaHistoricoSalarial {
 	* Relations
 	*/
 	@OneToOne(() => Colaborador)
-	@JoinColumn({ name: "ID_COLABORADOR" })
+	@JoinColumn()
 	colaborador: Colaborador;
 
 
