@@ -1,70 +1,48 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { actionClient } from "@/lib/safe-action";
-import { apiFetch } from "@/lib/api";
-import { bancoSchema } from "@/lib/schemas/banco-schema";
 import { z } from "zod";
+import { createBanco, updateBanco, deleteBanco } from "@/app/cadastros/bancos/banco.service";
+import { bancoSchema } from "@/app/cadastros/bancos/banco.zod.schema";
+import { revalidatePath } from "next/cache";
 
-export async function getBancos(searchParams: any) {
-    try {
-        const data = await apiFetch<any[]>("/banco");
-        return { bancos: data };
-    } catch (error) {
-        return { error: "Falha ao buscar bancos" };
-    }
-}
-
-export async function getBancoById(id: number) {
-    try {
-        const data = await apiFetch<any>(`/banco/${id}`);
-        return { banco: data };
-    } catch (error) {
-        return { error: "Falha ao buscar banco" };
-    }
-}
-
-export const createBanco = actionClient
+export const createBancoAction = actionClient
     .schema(bancoSchema)
     .action(async ({ parsedInput }) => {
         try {
-            await apiFetch("/banco", {
-                method: "POST",
-                body: JSON.stringify(parsedInput),
-            });
+            const newBanco = await createBanco(parsedInput);
             revalidatePath("/cadastros/bancos");
-            return { success: "Banco criado com sucesso" };
-        } catch (error) {
-            return { error: "Falha ao criar banco" };
+            return { success: true, data: newBanco };
+        } catch (error: any) {
+            console.error("[SERVER ACTION ERROR] createBancoAction failed:", error);
+            return { success: false, error: error.message || "Erro ao criar banco" };
         }
     });
 
-export const updateBanco = actionClient
-    .schema(bancoSchema)
+export const updateBancoAction = actionClient
+    .schema(bancoSchema.extend({ id: z.number() }))
     .action(async ({ parsedInput }) => {
         try {
             const { id, ...data } = parsedInput;
-            await apiFetch(`/banco/${id}`, {
-                method: "PUT",
-                body: JSON.stringify(data),
-            });
+            const updatedBanco = await updateBanco(id, data);
             revalidatePath("/cadastros/bancos");
-            return { success: "Banco atualizado com sucesso" };
-        } catch (error) {
-            return { error: "Falha ao atualizar banco" };
+            revalidatePath(`/cadastros/bancos/${id}`);
+            return { success: true, data: updatedBanco };
+        } catch (error: any) {
+            console.error("[SERVER ACTION ERROR] updateBancoAction failed:", error);
+            return { success: false, error: error.message || "Erro ao atualizar banco" };
         }
     });
 
-export const deleteBanco = actionClient
+export const deleteBancoAction = actionClient
     .schema(z.object({ id: z.number() }))
     .action(async ({ parsedInput: { id } }) => {
         try {
-            await apiFetch(`/banco/${id}`, {
-                method: "DELETE",
-            });
+            await deleteBanco(id);
             revalidatePath("/cadastros/bancos");
-            return { success: "Banco excluído com sucesso" };
-        } catch (error) {
-            return { error: "Falha ao excluir banco" };
+            return { success: true };
+        } catch (error: any) {
+            console.error("[SERVER ACTION ERROR] deleteBancoAction failed:", error);
+            return { success: false, error: error.message || "Erro ao excluir banco" };
         }
     });

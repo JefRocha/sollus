@@ -7,4 +7,4 @@ export const bancoSchema = z.object({
     url: z.string().nullable().optional(),
 });
 
-export type Banco = z.infer<typeof bancoSchema>;
+export type BancoSchema = z.infer<typeof bancoSchema>;

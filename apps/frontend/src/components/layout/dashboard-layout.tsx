@@ -50,8 +50,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 </Sheet>
 
                 {/* Main Content */}
-                <main className="flex-1 overflow-y-auto">
-                    <div className="container py-6 px-4 md:px-8 mx-auto">
+                <main className="flex-1 overflow-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    <div className="h-full">
                         {children}
                     </div>
                 </main>

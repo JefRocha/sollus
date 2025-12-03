@@ -45,7 +45,7 @@
 
 :root {
   --radius: 0.75rem;
-  
+
   /* Light mode - Vibrant blue theme */
   --background: oklch(0.99 0.005 240);
   --foreground: oklch(0.15 0.01 240);
@@ -53,36 +53,36 @@
   --card-foreground: oklch(0.15 0.01 240);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.15 0.01 240);
-  
+
   /* Primary - Vibrant Blue */
   --primary: oklch(0.55 0.22 250);
   --primary-foreground: oklch(0.99 0 0);
-  
+
   /* Secondary - Soft Purple */
   --secondary: oklch(0.95 0.02 280);
   --secondary-foreground: oklch(0.25 0.05 280);
-  
+
   /* Muted - Subtle gray-blue */
   --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.50 0.02 240);
-  
+  --muted-foreground: oklch(0.5 0.02 240);
+
   /* Accent - Vibrant Cyan */
   --accent: oklch(0.93 0.04 220);
   --accent-foreground: oklch(0.25 0.08 220);
-  
-  --destructive: oklch(0.60 0.25 25);
-  --border: oklch(0.90 0.01 240);
+
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.9 0.01 240);
   --input: oklch(0.92 0.01 240);
   --ring: oklch(0.55 0.22 250);
-  
+
   --chart-1: oklch(0.65 0.22 250);
-  --chart-2: oklch(0.60 0.18 180);
-  --chart-3: oklch(0.70 0.20 140);
+  --chart-2: oklch(0.6 0.18 180);
+  --chart-3: oklch(0.7 0.2 140);
   --chart-4: oklch(0.65 0.25 320);
   --chart-5: oklch(0.75 0.19 70);
-  
+
   --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.20 0.01 240);
+  --sidebar-foreground: oklch(0.2 0.01 240);
   --sidebar-primary: oklch(0.55 0.22 250);
   --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: oklch(0.96 0.01 240);
@@ -99,42 +99,42 @@
   --card-foreground: oklch(0.95 0.01 240);
   --popover: oklch(0.17 0.02 240);
   --popover-foreground: oklch(0.95 0.01 240);
-  
+
   /* Primary - Bright Blue */
-  --primary: oklch(0.70 0.20 250);
-  --primary-foreground: oklch(0.10 0.02 240);
-  
+  --primary: oklch(0.7 0.2 250);
+  --primary-foreground: oklch(0.1 0.02 240);
+
   /* Secondary - Deep Purple */
   --secondary: oklch(0.25 0.04 280);
   --secondary-foreground: oklch(0.95 0.01 280);
-  
+
   /* Muted - Dark blue-gray */
   --muted: oklch(0.22 0.02 240);
   --muted-foreground: oklch(0.65 0.02 240);
-  
+
   /* Accent - Vibrant Cyan */
-  --accent: oklch(0.30 0.06 220);
+  --accent: oklch(0.3 0.06 220);
   --accent-foreground: oklch(0.95 0.01 220);
-  
+
   --destructive: oklch(0.65 0.22 25);
   --border: oklch(0.25 0.02 240);
   --input: oklch(0.28 0.03 240);
-  --ring: oklch(0.70 0.20 250);
-  
-  --chart-1: oklch(0.60 0.24 250);
+  --ring: oklch(0.7 0.2 250);
+
+  --chart-1: oklch(0.6 0.24 250);
   --chart-2: oklch(0.65 0.18 180);
-  --chart-3: oklch(0.70 0.20 140);
-  --chart-4: oklch(0.60 0.26 320);
-  --chart-5: oklch(0.70 0.20 70);
-  
+  --chart-3: oklch(0.7 0.2 140);
+  --chart-4: oklch(0.6 0.26 320);
+  --chart-5: oklch(0.7 0.2 70);
+
   --sidebar: oklch(0.15 0.02 240);
-  --sidebar-foreground: oklch(0.90 0.01 240);
-  --sidebar-primary: oklch(0.70 0.20 250);
-  --sidebar-primary-foreground: oklch(0.10 0.02 240);
+  --sidebar-foreground: oklch(0.9 0.01 240);
+  --sidebar-primary: oklch(0.7 0.2 250);
+  --sidebar-primary-foreground: oklch(0.1 0.02 240);
   --sidebar-accent: oklch(0.22 0.02 240);
   --sidebar-accent-foreground: oklch(0.95 0.01 240);
   --sidebar-border: oklch(0.25 0.02 240);
-  --sidebar-ring: oklch(0.70 0.20 250);
+  --sidebar-ring: oklch(0.7 0.2 250);
 }
 
 @layer base {
@@ -145,15 +145,26 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  
+
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
   }
-  
+
   /* Better focus states */
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+@layer base {
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  *::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 }
 
@@ -162,11 +173,11 @@
   .glass {
     @apply bg-background/80 backdrop-blur-md;
   }
-  
+
   .glass-card {
     @apply bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg;
   }
-  
+
   /* Smooth transitions */
   .transition-smooth {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

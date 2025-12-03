@@ -133,8 +133,8 @@ export function DataTable<TData, TValue>({
     });
 
     return (
-        <div className="space-y-4">
-            <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-col h-full space-y-4">
+            <div className="flex items-center justify-between gap-4 shrink-0">
                 {filterBy && (
                     <Input
                         placeholder={`Filtrar por ${filterBy}...`}
@@ -154,58 +154,60 @@ export function DataTable<TData, TValue>({
                     </Link>
                 )}
             </div>
-            <div className="rounded-xl border border-border/50 shadow-md overflow-hidden bg-card">
-                <Table>
-                    <TableHeader>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id} className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2">
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <TableHead key={header.id} className="font-semibold">
-                                            {header.isPlaceholder
-                                                ? null
-                                                : flexRender(
-                                                    header.column.columnDef.header,
-                                                    header.getContext()
+            <div className="flex-1 rounded-md border border-border/50 shadow-md overflow-hidden bg-card flex flex-col">
+                <div className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    <table className="w-full caption-bottom text-sm">
+                        <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
+                            {table.getHeaderGroups().map((headerGroup) => (
+                                <tr key={headerGroup.id} className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2 shadow-sm">
+                                    {headerGroup.headers.map((header) => {
+                                        return (
+                                            <th key={header.id} className="h-8 px-2 text-left align-middle font-semibold text-muted-foreground whitespace-nowrap">
+                                                {header.isPlaceholder
+                                                    ? null
+                                                    : flexRender(
+                                                        header.column.columnDef.header,
+                                                        header.getContext()
+                                                    )}
+                                            </th>
+                                        );
+                                    })}
+                                </tr>
+                            ))}
+                        </thead>
+                        <tbody className="[&_tr:last-child]:border-0">
+                            {table.getRowModel().rows?.length ? (
+                                table.getRowModel().rows.map((row) => (
+                                    <tr
+                                        key={row.id}
+                                        data-state={row.getIsSelected() && 'selected'}
+                                        className="transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer border-b border-border/30 hover:border-accent/50"
+                                    >
+                                        {row.getVisibleCells().map((cell) => (
+                                            <td key={cell.id} className="px-4 py-0 align-middle">
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
                                                 )}
-                                        </TableHead>
-                                    );
-                                })}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    data-state={row.getIsSelected() && 'selected'}
-                                    className="transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer border-b border-border/30 hover:border-accent/50"
-                                >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            ))
-                        ) : (
-                            <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center"
-                                >
-                                    Nenhum resultado encontrado.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td
+                                        colSpan={columns.length}
+                                        className="h-24 text-center"
+                                    >
+                                        Nenhum resultado encontrado.
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div className="flex items-center justify-between space-x-2 py-4">
+            <div className="flex items-center justify-between space-x-2 py-3 shrink-0 border-t border-border/40">
                 <div className="flex-1 text-sm text-muted-foreground">
                     {table.getFilteredRowModel().rows.length} registro(s) encontrado(s).
                 </div>

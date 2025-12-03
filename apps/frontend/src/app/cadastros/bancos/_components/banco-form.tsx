@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
 import { useRouter } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
@@ -18,16 +17,16 @@ import {
 } from "@/components/ui/form";
 
 import { Input } from "@/components/ui/input";
-import { bancoSchema, Banco } from "@/lib/schemas/banco-schema";
-import { createBanco, updateBanco } from "@/actions/cadastros/banco-actions";
+import { bancoSchema, BancoSchema } from "../banco.zod.schema";
+import { createBancoAction, updateBancoAction } from "@/actions/cadastros/banco-actions";
 
 interface BancoFormProps {
-  initialData?: Banco;
+  initialData?: BancoSchema;
 }
 
 export function BancoForm({ initialData }: BancoFormProps) {
   const router = useRouter();
-  const form = useForm<z.infer<typeof bancoSchema>>({
+  const form = useForm<BancoSchema>({
     resolver: zodResolver(bancoSchema),
     defaultValues: initialData || {
       codigo: "",
@@ -36,10 +35,10 @@ export function BancoForm({ initialData }: BancoFormProps) {
     },
   });
 
-  const { execute: executeCreate, status: createStatus } = useAction(createBanco, {
+  const { execute: executeCreate, status: createStatus } = useAction(createBancoAction, {
     onSuccess: ({ data }) => {
       if (data?.success) {
-        toast.success(data.success);
+        toast.success("Banco criado com sucesso!");
         router.push("/cadastros/bancos");
       }
       if (data?.error) {
@@ -48,10 +47,10 @@ export function BancoForm({ initialData }: BancoFormProps) {
     },
   });
 
-  const { execute: executeUpdate, status: updateStatus } = useAction(updateBanco, {
+  const { execute: executeUpdate, status: updateStatus } = useAction(updateBancoAction, {
     onSuccess: ({ data }) => {
       if (data?.success) {
-        toast.success(data.success);
+        toast.success("Banco atualizado com sucesso!");
         router.push("/cadastros/bancos");
       }
       if (data?.error) {
@@ -62,7 +61,7 @@ export function BancoForm({ initialData }: BancoFormProps) {
 
   const status = initialData ? updateStatus : createStatus;
 
-  function onSubmit(values: z.infer<typeof bancoSchema>) {
+  function onSubmit(values: BancoSchema) {
     if (initialData) {
       executeUpdate({ ...values, id: initialData.id! });
     } else {
@@ -114,17 +113,18 @@ export function BancoForm({ initialData }: BancoFormProps) {
             )}
           />
         </div>
-        <Button type="submit" disabled={status === 'executing'}>
-          {status === 'executing' ? "Salvando..." : "Salvar"}
-        </Button>
-        <Button
-          type="button"
-          variant="outline"
-          className="ml-2"
-          onClick={() => router.back()}
-        >
-          Cancelar
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button type="submit" disabled={status === 'executing'}>
+            {status === 'executing' ? "Salvando..." : "Salvar"}
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => router.back()}
+          >
+            Cancelar
+          </Button>
+        </div>
       </form>
     </Form>
   );

@@ -24,21 +24,21 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { deleteBanco } from "@/actions/cadastros/banco-actions";
-import { Banco } from "@/lib/schemas/banco-schema";
+import { deleteBancoAction } from "@/actions/cadastros/banco-actions";
+import { BancoSchema } from "../banco.zod.schema";
 
 interface CellActionProps {
-  data: Banco;
+  data: BancoSchema;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
-  const { execute, status } = useAction(deleteBanco, {
+  const { execute, status } = useAction(deleteBancoAction, {
     onSuccess: ({ data }) => {
       if (data?.success) {
-        toast.success(data.success);
+        toast.success("Banco excluído com sucesso!");
       }
       if (data?.error) {
         toast.error(data.error);
@@ -83,7 +83,7 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Ações</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => router.push(`/cadastros/bancos/${data.id}/editar`)}
+            onClick={() => router.push(`/cadastros/bancos/${data.id}`)}
           >
             Editar
           </DropdownMenuItem>
