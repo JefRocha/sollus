@@ -36,6 +36,7 @@ interface DataTableProps<TData, TValue> {
     createHref?: string;
     createText?: string;
     canCreate?: boolean;
+    hidePagination?: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -45,6 +46,7 @@ export function DataTable<TData, TValue>({
     createHref,
     createText = 'Criar Novo',
     canCreate = true,
+    hidePagination = false,
 }: DataTableProps<TData, TValue>) {
     const pathname = usePathname();
     const storageKey = `dataTable-state-${pathname}`;
@@ -207,53 +209,55 @@ export function DataTable<TData, TValue>({
                     </table>
                 </div>
             </div>
-            <div className="flex items-center justify-between space-x-2 py-3 shrink-0 border-t border-border/40">
-                <div className="flex-1 text-sm text-muted-foreground">
-                    {table.getFilteredRowModel().rows.length} registro(s) encontrado(s).
-                </div>
-                <div className="flex items-center space-x-6">
-                    <div className="flex items-center space-x-2">
-                        <p className="text-sm font-medium">Registros por página</p>
-                        <select
-                            value={table.getState().pagination.pageSize}
-                            onChange={(e) => {
-                                table.setPageSize(Number(e.target.value));
-                            }}
-                            className="h-8 w-[70px] rounded-md border border-input bg-transparent px-2 py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        >
-                            {[10, 15, 25, 50, 100].map((size) => (
-                                <option key={size} value={size}>
-                                    {size}
-                                </option>
-                            ))}
-                        </select>
+            {!hidePagination && (
+                <div className="flex items-center justify-between space-x-2 py-3 shrink-0 border-t border-border/40">
+                    <div className="flex-1 text-sm text-muted-foreground">
+                        {table.getFilteredRowModel().rows.length} registro(s) encontrado(s).
                     </div>
-                    <div className="flex items-center space-x-2">
-                        <div className="text-sm font-medium">
-                            Página {table.getState().pagination.pageIndex + 1} de{' '}
-                            {table.getPageCount()}
+                    <div className="flex items-center space-x-6">
+                        <div className="flex items-center space-x-2">
+                            <p className="text-sm font-medium">Registros por página</p>
+                            <select
+                                value={table.getState().pagination.pageSize}
+                                onChange={(e) => {
+                                    table.setPageSize(Number(e.target.value));
+                                }}
+                                className="h-8 w-[70px] rounded-md border border-input bg-transparent px-2 py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            >
+                                {[10, 15, 25, 50, 100].map((size) => (
+                                    <option key={size} value={size}>
+                                        {size}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                            <div className="text-sm font-medium">
+                                Página {table.getState().pagination.pageIndex + 1} de{' '}
+                                {table.getPageCount()}
+                            </div>
+                        </div>
+                        <div className="space-x-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => table.previousPage()}
+                                disabled={!table.getCanPreviousPage()}
+                            >
+                                Anterior
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => table.nextPage()}
+                                disabled={!table.getCanNextPage()}
+                            >
+                                Próxima
+                            </Button>
                         </div>
                     </div>
-                    <div className="space-x-2">
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => table.previousPage()}
-                            disabled={!table.getCanPreviousPage()}
-                        >
-                            Anterior
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() => table.nextPage()}
-                            disabled={!table.getCanNextPage()}
-                        >
-                            Próxima
-                        </Button>
-                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

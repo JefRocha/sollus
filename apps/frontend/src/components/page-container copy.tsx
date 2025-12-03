@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 
 interface PageContainerProps {
-  title?: string;
+  title: string;
   description?: string;
   actions?: ReactNode;
   breadcrumbs?: ReactNode;
@@ -102,7 +102,7 @@ export function PageContainer({
         "--pc-header-fg-muted",
         `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
       );
-    } catch { }
+    } catch {}
   }, []);
   useEffect(() => {
     const onCustom = (e: any) => {
@@ -171,7 +171,7 @@ export function PageContainer({
             `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
           );
         }
-      } catch { }
+      } catch {}
     };
     const onStorage = (e: StorageEvent) => {
       if (e.key === "pc:headerColor") setColor(e.newValue || undefined);
@@ -238,7 +238,7 @@ export function PageContainer({
             `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
           );
         }
-      } catch { }
+      } catch {}
     };
     window.addEventListener("pc:headerColorChange", onCustom as EventListener);
     window.addEventListener("storage", onStorage);
@@ -258,30 +258,26 @@ export function PageContainer({
       <div className="h-full flex flex-col max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
         <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-md border-border/40 py-0">
-          {(title || actions) && (
-            <CardHeader
-              className={cn(
-                "rounded-md rounded-bl-none flex items-center min-h-0 px-6 py-2 shrink-0",
-                headerGradientClass
+          <CardHeader
+            className={cn(
+              "rounded-md rounded-bl-none flex items-center min-h-0 px-6 py-2 shrink-0",
+              headerGradientClass
+            )}
+          >
+            <div className="space-y-1">
+              <CardTitle>
+                <h1 className="text-3xl font-bold text-[var(--pc-header-fg)]">
+                  {title}
+                </h1>
+              </CardTitle>
+              {description && (
+                <CardDescription className="text-base text-[var(--pc-header-fg-muted)]">
+                  {description}
+                </CardDescription>
               )}
-            >
-              <div className="space-y-1">
-                {title && (
-                  <CardTitle>
-                    <h1 className="text-3xl font-bold text-[var(--pc-header-fg)]">
-                      {title}
-                    </h1>
-                  </CardTitle>
-                )}
-                {description && (
-                  <CardDescription className="text-base text-[var(--pc-header-fg-muted)]">
-                    {description}
-                  </CardDescription>
-                )}
-              </div>
-              <CardAction>{actions}</CardAction>
-            </CardHeader>
-          )}
+            </div>
+            <CardAction>{actions}</CardAction>
+          </CardHeader>
           <CardContent
             className={cn(
               "flex-1 pt-3 px-6 pb-4 overflow-hidden flex flex-col",

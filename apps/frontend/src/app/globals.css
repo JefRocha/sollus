@@ -89,6 +89,12 @@
   --sidebar-accent-foreground: oklch(0.25 0.05 240);
   --sidebar-border: oklch(0.92 0.01 240);
   --sidebar-ring: oklch(0.55 0.22 250);
+
+  /* UI customizations */
+  --ui-header-bg: transparent;
+  --ui-header-fg: var(--foreground);
+  --ui-sidebar-bg: var(--background);
+  --ui-sidebar-fg: var(--foreground);
 }
 
 .dark {
@@ -135,6 +141,12 @@
   --sidebar-accent-foreground: oklch(0.95 0.01 240);
   --sidebar-border: oklch(0.25 0.02 240);
   --sidebar-ring: oklch(0.7 0.2 250);
+
+  /* UI customizations */
+  --ui-header-bg: transparent;
+  --ui-header-fg: var(--foreground);
+  --ui-sidebar-bg: var(--background);
+  --ui-sidebar-fg: var(--foreground);
 }
 
 @layer base {
