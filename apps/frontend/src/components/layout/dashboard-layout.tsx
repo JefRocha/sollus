@@ -36,7 +36,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             {!sidebarCollapsed && <span className="font-semibold">Menu</span>}
             <button
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="p-1 hover:bg-muted rounded-md transition-colors"
+              className="p-1 hover:bg-muted transition-colors"
               title={sidebarCollapsed ? "Expandir menu" : "Recolher menu"}
             >
               <ChevronRight

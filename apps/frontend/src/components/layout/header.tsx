@@ -70,7 +70,7 @@ export function Header({ onMenuClick }: HeaderProps) {
       const c = localStorage.getItem("pc:headerColor");
       if (c) setColor(c);
       else if (t) setTone(t);
-    } catch {}
+    } catch { }
   }, []);
 
   const applyToneColor = (newTone?: string, newColor?: string) => {
@@ -132,7 +132,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
         );
       }
-    } catch {}
+    } catch { }
   };
 
   return (
@@ -204,7 +204,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -219,21 +219,21 @@ export function Header({ onMenuClick }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
+                  } catch { }
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Padrão do sistema
@@ -246,7 +246,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", val);
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   applyToneColor(val, undefined);
                   try {
                     window.dispatchEvent(
@@ -254,7 +254,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                         detail: { tone: val, color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 <DropdownMenuRadioItem value="primary">
@@ -286,7 +286,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch {}
+                    } catch { }
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -294,7 +294,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch {}
+                    } catch { }
                   }}
                 />
                 <Input
@@ -308,7 +308,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch {}
+                    } catch { }
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -316,7 +316,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch {}
+                    } catch { }
                   }}
                 />
               </div>
@@ -343,15 +343,14 @@ export function Header({ onMenuClick }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
+                      }, transparent)`;
                     root.style.setProperty("--ui-header-bg", bg);
                     root.style.setProperty(
                       "--ui-header-fg",
                       "var(--foreground)"
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Aplicar ao cabeçalho
@@ -376,15 +375,14 @@ export function Header({ onMenuClick }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
+                      }, transparent)`;
                     root.style.setProperty("--ui-sidebar-bg", bg);
                     root.style.setProperty(
                       "--ui-sidebar-fg",
                       "var(--foreground)"
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Aplicar à sidebar
@@ -397,7 +395,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -412,21 +410,21 @@ export function Header({ onMenuClick }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
+                  } catch { }
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Redefinir padrão

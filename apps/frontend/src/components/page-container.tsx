@@ -257,11 +257,11 @@ export function PageContainer({
     <DashboardLayout>
       <div className="h-full flex flex-col max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
-        <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-md border-border/40 py-0">
+        <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl border-border/40 py-0">
           {(title || actions) && (
             <CardHeader
               className={cn(
-                "rounded-md rounded-bl-none flex items-center min-h-0 px-6 py-2 shrink-0",
+                "flex items-center min-h-0 px-6 py-2 shrink-0",
                 headerGradientClass
               )}
             >

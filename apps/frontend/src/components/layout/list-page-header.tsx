@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 interface ListPageHeaderProps {
-    title: string
-    description?: string
-    className?: string
+  title: string;
+  description?: string;
+  className?: string;
 }
 
 /**
@@ -11,16 +11,16 @@ interface ListPageHeaderProps {
  * Exibe título e descrição opcional de forma concisa
  */
 export function ListPageHeader({
-    title,
-    description,
-    className,
+  title,
+  description,
+  className,
 }: ListPageHeaderProps) {
-    return (
-        <div className={cn("space-y-1 pb-4", className)}>
-            <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
-            {description && (
-                <p className="text-sm text-muted-foreground">{description}</p>
-            )}
-        </div>
-    )
+  return (
+    <div className={cn("space-y-1 pb-2", className)}>
+      <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+      {description && (
+        <p className="text-sm text-muted-foreground">{description}</p>
+      )}
+    </div>
+  );
 }
