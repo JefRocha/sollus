@@ -13,6 +13,7 @@ export class CsrfController {
       secure: process.env.COOKIE_SECURE === 'true',
       sameSite: 'none',
       path: '/',
+      ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
     });
     return { csrfToken: token };
   }

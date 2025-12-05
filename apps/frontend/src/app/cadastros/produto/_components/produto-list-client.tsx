@@ -2,7 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Plus, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import {
+  Plus,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Download,
+  Settings,
+} from "lucide-react";
 
 import { PageContainer } from "@/components/page-container";
 import { ListPageLayout } from "@/components/layout/list-page-layout";
@@ -170,6 +176,18 @@ export function ProdutoListClient({ data }: ProdutoListClientProps) {
           )}
         </div>
       }
+      bottomActions={
+        <>
+          <Button variant="outline" className="w-full">
+            <Download className="mr-2 size-4" />
+            Exportar
+          </Button>
+          <Button variant="ghost" className="w-full">
+            <Settings className="mr-2 size-4" />
+            Configurações
+          </Button>
+        </>
+      }
     />
   );
 
@@ -233,6 +251,7 @@ export function ProdutoListClient({ data }: ProdutoListClientProps) {
               createHref="/cadastros/produto/novo"
               createText="Novo Produto"
               canCreate={false}
+              flexibleHeight={true}
               onRowClick={(row: any) =>
                 setSelected((prev: any) =>
                   prev && prev.id === row.id ? null : row

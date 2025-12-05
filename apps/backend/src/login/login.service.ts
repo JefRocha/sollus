@@ -57,48 +57,57 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
 
     async login(usuario: Usuario) {
         const crypto = require('crypto');
-        let md5Senha = crypto.createHash('md5').update(usuario.login + usuario.senha).digest('hex');
-
-        // Busca o usuário com as relações necessárias para identificar a empresa
-        let user = await this.findOne({
-            where: { login: usuario.login, senha: md5Senha },
+        const user = await this.findOne({
+            where: { login: usuario.login },
             relations: ['colaborador', 'colaborador.empresa']
         });
-
-        if (user != null) {
-            const tenantId = user.colaborador?.empresa?.id || null;
-
-            // Gera Access Token (15 min)
-            const accessToken = this.gerarJwt(usuario.login, tenantId, '15m');
-
-            // Gera Refresh Token (7 dias)
-            const refreshToken = await this.createRefreshToken(user.id);
-
-            return { accessToken, refreshToken };
+        if (!user) {
+            throw new UnauthorizedException();
         }
-        throw new UnauthorizedException();
+        const stored = String(user.senha || '');
+        let ok = false;
+        if (stored.startsWith('scrypt:')) {
+            const parts = stored.split(':');
+            const salt = parts[1] || '';
+            const hash = parts[2] || '';
+            const calc = crypto.scryptSync(String(usuario.senha || ''), salt, 64).toString('hex');
+            ok = calc === hash;
+        } else {
+            const md5Senha = crypto.createHash('md5').update(user.login + usuario.senha).digest('hex');
+            ok = md5Senha === stored;
+        }
+        if (!ok) {
+            throw new UnauthorizedException();
+        }
+        const tenantId = user.colaborador?.empresa?.id || null;
+        const accessToken = this.gerarJwt(user.login, tenantId, '15m');
+        const refreshToken = await this.createRefreshToken(user.id);
+        return { accessToken, refreshToken };
     }
 
     async createRefreshToken(userId: number): Promise<string> {
         const crypto = require('crypto');
         const token = crypto.randomBytes(64).toString('hex');
-
+        const salt = String(process.env.REFRESH_TOKEN_SALT || '');
+        const tokenHash = crypto.createHash('sha256').update(token + salt).digest('hex');
         const refreshToken = this.refreshTokenRepo.create({
             userId,
-            token,
-            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 dias
+            token: tokenHash,
+            expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
             isRevoked: false,
-            lastActivityAt: new Date() // Define atividade inicial
+            lastActivityAt: new Date()
         });
-
         await this.refreshTokenRepo.save(refreshToken);
         return token;
     }
 
     async refresh(oldRefreshToken: string) {
         console.log('LoginService.refresh: oldRefreshToken received:', oldRefreshToken);
+        const crypto = require('crypto');
+        const salt = String(process.env.REFRESH_TOKEN_SALT || '');
+        const tokenHash = crypto.createHash('sha256').update(oldRefreshToken + salt).digest('hex');
         const tokenDoc = await this.refreshTokenRepo.findOne({
-            where: { token: oldRefreshToken }
+            where: { token: tokenHash }
         });
 
         if (!tokenDoc || tokenDoc.isRevoked || tokenDoc.expiresAt < new Date()) {
@@ -135,6 +144,18 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
         const newRefreshToken = await this.createRefreshToken(user.id);
 
         return { accessToken: newAccessToken, refreshToken: newRefreshToken };
+    }
+
+    async revokeByRefreshTokenPlain(tokenPlain: string) {
+        const crypto = require('crypto');
+        const salt = String(process.env.REFRESH_TOKEN_SALT || '');
+        const tokenHash = crypto.createHash('sha256').update(tokenPlain + salt).digest('hex');
+        const tokenDoc = await this.refreshTokenRepo.findOne({ where: { token: tokenHash } });
+        if (tokenDoc) {
+            tokenDoc.isRevoked = true;
+            await this.refreshTokenRepo.save(tokenDoc);
+        }
+        return true;
     }
 
     gerarJwt(login: string, tenantId: number | null, expiresIn: string = '7d') {

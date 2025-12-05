@@ -39,11 +39,11 @@ export function ListPageSidebar({
         "flex h-full flex-col gap-6 p-6 pb-10 transition-colors duration-300 overflow-y-auto",
         variant === "glass"
           ? "bg-background/60 backdrop-blur-sm border-r"
-          : "bg-muted/30",
+          : "bg-sidebar",
         className
       )}
     >
-      <div className="sticky top-0 z-10 bg-background/80 backdrop-blur-sm border-b flex items-center justify-between py-0">
+      <div className="sticky top-0 z-10 flex items-center justify-between py-0">
         <h2 className="text-lg font-semibold">AÇÕES</h2>
         {headerActions}
       </div>

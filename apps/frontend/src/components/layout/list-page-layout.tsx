@@ -40,7 +40,7 @@ export function ListPageLayout({
     return (
       <div className={cn("flex h-full flex-col", className)}>
         {/* Botão hambúrguer para mobile */}
-        <div className="shrink-0 border-b bg-background p-4">
+        <div className="shrink-0 border-b glass-card p-4">
           <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon">

@@ -192,7 +192,7 @@ export function DataTable<TData, TValue>({
         </div>
       )}
       {flexibleHeight ? (
-        <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col rounded-md">
+        <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col py-2">
           <div className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <table className="w-full caption-bottom text-sm">
               <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
@@ -269,7 +269,7 @@ export function DataTable<TData, TValue>({
             className={`flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col mb-3`}
           >
             <div
-              className={`overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] max-h-[60vh]`}
+              className={`overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
             >
               <table className="w-full caption-bottom text-sm">
                 <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
@@ -336,7 +336,7 @@ export function DataTable<TData, TValue>({
             </div>
           </div>
           {!hidePagination && (
-            <div className="mt-2 flex items-center justify-between space-x-2 py-2 px-6 shrink-0 border-t border-border/40 bg-card shadow-sm rounded-b-md">
+            <div className="mt-2 flex items-center justify-between space-x-2 py-2 px-6 shrink-0 border-t border-border/40 bg-card shadow-sm">
               <div className="flex-1 text-xs text-muted-foreground">
                 {table.getFilteredRowModel().rows.length} registro(s)
                 encontrado(s).

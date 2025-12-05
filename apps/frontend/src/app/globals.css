@@ -46,101 +46,157 @@
 :root {
   --radius: 0.75rem;
 
-  /* Light mode - Vibrant blue theme */
-  --background: oklch(0.99 0.005 240);
-  --foreground: oklch(0.15 0.01 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.01 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.01 240);
+  --background: #f7f8fb;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
 
-  /* Primary - Vibrant Blue */
-  --primary: oklch(0.55 0.22 250);
-  --primary-foreground: oklch(0.99 0 0);
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
 
-  /* Secondary - Soft Purple */
-  --secondary: oklch(0.95 0.02 280);
-  --secondary-foreground: oklch(0.25 0.05 280);
+  --secondary: #e5e7eb;
+  --secondary-foreground: #111827;
 
-  /* Muted - Subtle gray-blue */
-  --muted: oklch(0.96 0.01 240);
-  --muted-foreground: oklch(0.5 0.02 240);
+  --muted: #f1f5f9;
+  --muted-foreground: #475569;
 
-  /* Accent - Vibrant Cyan */
-  --accent: oklch(0.93 0.04 220);
-  --accent-foreground: oklch(0.25 0.08 220);
+  --accent: #93c5fd;
+  --accent-foreground: #0b1020;
 
-  --destructive: oklch(0.6 0.25 25);
-  --border: oklch(0.9 0.01 240);
-  --input: oklch(0.92 0.01 240);
-  --ring: oklch(0.55 0.22 250);
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #2563eb;
 
-  --chart-1: oklch(0.65 0.22 250);
-  --chart-2: oklch(0.6 0.18 180);
-  --chart-3: oklch(0.7 0.2 140);
-  --chart-4: oklch(0.65 0.25 320);
-  --chart-5: oklch(0.75 0.19 70);
+  --chart-1: #3b82f6;
+  --chart-2: #10b981;
+  --chart-3: #f59e0b;
+  --chart-4: #ef4444;
+  --chart-5: #6366f1;
 
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.2 0.01 240);
-  --sidebar-primary: oklch(0.55 0.22 250);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.96 0.01 240);
-  --sidebar-accent-foreground: oklch(0.25 0.05 240);
-  --sidebar-border: oklch(0.92 0.01 240);
-  --sidebar-ring: oklch(0.55 0.22 250);
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f5f9;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #2563eb;
 
-  /* UI customizations */
-  --ui-header-bg: color-mix(in oklch, var(--primary) 10%, transparent);
+  --ui-header-bg: transparent;
   --ui-header-fg: var(--foreground);
-  --ui-sidebar-bg: var(--ui-header-bg);
-  --ui-sidebar-fg: var(--ui-header-fg);
+  --ui-sidebar-bg: transparent;
+  --ui-sidebar-fg: var(--foreground);
+
+  /* Transparency controls */
+  --glass-amount: 95%; /* percentage for card translucency */
+  --panel-overlay-a: 8%; /* top gradient intensity */
+  --panel-overlay-b: 6%; /* bottom gradient intensity */
+  --panel-overlay-base: 18%; /* base overlay intensity */
 }
 
 .dark {
-  --background: oklch(0.22 0.02 240);
-  --foreground: oklch(0.95 0.01 240);
-  --card: oklch(0.28 0.02 240);
-  --card-foreground: oklch(0.95 0.01 240);
-  --popover: oklch(0.28 0.02 240);
-  --popover-foreground: oklch(0.95 0.01 240);
+  --background: #0f1214; /* cool neutral gray */
+  --foreground: #e5e7eb;
+  --card: #14171a;
+  --card-foreground: #e5e7eb;
+  --popover: #14171a;
+  --popover-foreground: #e5e7eb;
 
-  --primary: oklch(0.72 0.2 250);
-  --primary-foreground: oklch(0.1 0.02 240);
+  --primary: #80858c; /* neutral gray */
+  --primary-foreground: #0b0e13;
 
-  --secondary: oklch(0.32 0.04 280);
-  --secondary-foreground: oklch(0.95 0.01 280);
+  --secondary: #1c1f23; /* neutral gray */
+  --secondary-foreground: #e5e7eb;
 
-  --muted: oklch(0.38 0.02 240);
-  --muted-foreground: oklch(0.85 0.02 240);
+  --muted: #202428;
+  --muted-foreground: #b5bac2;
 
-  --accent: oklch(0.6 0.07 220);
-  --accent-foreground: oklch(0.18 0.02 220);
+  --accent: #9aa0a6;
+  --accent-foreground: #0b0e13;
 
-  --destructive: oklch(0.65 0.22 25);
-  --border: oklch(0.38 0.02 240);
-  --input: oklch(0.42 0.03 240);
-  --ring: oklch(0.72 0.2 250);
+  --destructive: #ef4444;
+  --border: #2a2e33;
+  --input: #2a2e33;
+  --ring: #80858c;
 
-  --chart-1: oklch(0.6 0.24 250);
-  --chart-2: oklch(0.65 0.18 180);
-  --chart-3: oklch(0.7 0.2 140);
-  --chart-4: oklch(0.6 0.26 320);
-  --chart-5: oklch(0.7 0.2 70);
+  --chart-1: #9aa0a6;
+  --chart-2: #80858c;
+  --chart-3: #b5bac2;
+  --chart-4: #ef4444;
+  --chart-5: #6f757c;
 
-  --sidebar: oklch(0.26 0.02 240);
-  --sidebar-foreground: oklch(0.9 0.01 240);
-  --sidebar-primary: oklch(0.72 0.2 250);
-  --sidebar-primary-foreground: oklch(0.1 0.02 240);
-  --sidebar-accent: oklch(0.36 0.02 240);
-  --sidebar-accent-foreground: oklch(0.95 0.01 240);
-  --sidebar-border: oklch(0.38 0.02 240);
-  --sidebar-ring: oklch(0.72 0.2 250);
+  --sidebar: #13161a;
+  --sidebar-foreground: #e5e7eb;
+  --sidebar-primary: #80858c;
+  --sidebar-primary-foreground: #0b0e13;
+  --sidebar-accent: #202428;
+  --sidebar-accent-foreground: #e5e7eb;
+  --sidebar-border: #2a2e33;
+  --sidebar-ring: #80858c;
 
-  --ui-header-bg: color-mix(in oklch, var(--primary) 14%, transparent);
+  --ui-header-bg: transparent;
   --ui-header-fg: var(--foreground);
-  --ui-sidebar-bg: var(--ui-header-bg);
-  --ui-sidebar-fg: var(--ui-header-fg);
+  --ui-sidebar-bg: transparent;
+  --ui-sidebar-fg: var(--foreground);
+}
+
+.renthub {
+  --background: #120a2a;
+  --foreground: #f1f5ff;
+  --card: #1a0e45;
+  --card-foreground: #f7f9ff;
+  --popover: #1b1049;
+  --popover-foreground: #f7f8ff;
+  --primary: #7e3ff2;
+  --primary-foreground: #ffffff;
+  --secondary: #3c0fa9;
+  --secondary-foreground: #ffffff;
+  --muted: #1f1454;
+  --muted-foreground: #c8d2f0;
+  --accent: #7dd3fc;
+  --accent-foreground: #0b1020;
+  --destructive: #dc2626;
+  --border: #2b1b6a;
+  --input: #181043;
+  --ring: #7dd3fc;
+  --chart-1: #7e3ff2;
+  --chart-2: #3c0fa9;
+  --chart-3: #9b5cf4;
+  --chart-4: #ff5ac8;
+  --chart-5: #7dd3fc;
+  --sidebar: #1b1049;
+  --sidebar-foreground: #f7f8ff;
+  --sidebar-primary: #7e3ff2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #221659;
+  --sidebar-accent-foreground: #eef2ff;
+  --sidebar-border: #2b1b6a;
+  --sidebar-ring: #7dd3fc;
+  --ui-header-bg: color-mix(in oklch, #7e3ff2 20%, transparent);
+  --ui-header-fg: #f7f8ff;
+  --ui-sidebar-bg: color-mix(in oklch, #3c0fa9 14%, transparent);
+  --ui-sidebar-fg: #f7f8ff;
+}
+
+html.renthub body {
+  background-color: var(--background);
+  background-image: radial-gradient(
+      1100px circle at 32% 18%,
+      #9b5cf4 0%,
+      transparent 60%
+    ),
+    radial-gradient(900px circle at 70% 42%, #7e3ff2 0%, transparent 55%),
+    linear-gradient(135deg, #170d36 0%, #3c0fa9 52%, #7e3ff2 100%);
+  background-attachment: fixed;
+}
+
+html.light body,
+html.dark body {
+  background-image: none !important;
+  background-color: var(--background) !important;
 }
 
 @layer base {
@@ -191,6 +247,77 @@
 
   .glass-card {
     @apply bg-card/95 backdrop-blur-sm border border-border/50 shadow-lg;
+    /* Override bg with adjustable transparency */
+    background: color-mix(
+      in oklch,
+      var(--card) var(--glass-amount),
+      transparent
+    );
+  }
+
+  .renthub .glass-card {
+    background: linear-gradient(
+        180deg,
+        rgba(126, 63, 242, 0.22) 0%,
+        rgba(60, 15, 169, 0.18) 100%
+      ),
+      rgba(24, 16, 67, 0.35);
+    border-color: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 36px rgba(16, 10, 40, 0.5),
+      inset 0 1px rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+  }
+
+  .renthub .module-panel {
+    background: linear-gradient(
+        180deg,
+        color-mix(in oklch, var(--primary) var(--panel-overlay-a), transparent)
+          0%,
+        color-mix(
+            in oklch,
+            var(--secondary) var(--panel-overlay-b),
+            transparent
+          )
+          100%
+      ),
+      color-mix(
+        in oklch,
+        var(--background) var(--panel-overlay-base),
+        transparent
+      );
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-xl);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: 0 10px 24px rgba(16, 10, 40, 0.35),
+      inset 0 1px rgba(255, 255, 255, 0.06);
+    /* suaviza os elementos internos do módulo */
+    --card: rgba(24, 16, 67, 0.12);
+    --card-foreground: #e8ecff;
+    --border: rgba(255, 255, 255, 0.12);
+  }
+
+  .module-panel {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  /* Unificar cores da sidebar dos módulos em todos os temas */
+  .list-page-sidebar {
+    border-right: 1px solid var(--border);
+  }
+  html.renthub .list-page-sidebar {
+    background-color: var(--sidebar) !important;
+  }
+
+  .glass-card:hover {
+    @apply brightness-105 shadow-xl;
+  }
+
+  .glass-card:active {
+    @apply brightness-95 shadow-md;
+    filter: saturate(0.96);
   }
 
   /* Smooth transitions */

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PRD de Produção — Sollus ERP</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif; margin: 0; line-height: 1.5; }
+    header { padding: 24px; background: #0ea5e9; color: #fff; }
+    main { max-width: 960px; margin: 0 auto; padding: 24px; }
+    h1, h2 { margin: 0 0 12px; }
+    section { margin: 24px 0; }
+    code, kbd { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; }
+    ul { margin: 8px 0 8px 20px; }
+    .card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 12px 0; }
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  </style>
+  <meta name="description" content="Guia de implantação em produção do Sollus ERP" />
+</head>
+<body>
+  <header>
+    <h1>PRD de Produção — Sollus ERP</h1>
+    <p>Guia rápido para colocar o sistema em produção com segurança.</p>
+  </header>
+  <main>
+    <section>
+      <h2>Domínios e Certificados</h2>
+      <div class="card">
+        <ul>
+          <li>Frontend: <code>https://app.seu-dominio.com</code></li>
+          <li>Backend: <code>https://api.seu-dominio.com</code></li>
+          <li>Instalar certificados TLS válidos no backend (chave e cadeia).</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>Variáveis de Ambiente</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Backend (.env)</h3>
+          <ul>
+            <li><code>APP_ORIGIN=https://app.seu-dominio.com</code></li>
+            <li><code>JWT_SECRET=&lt;segredo forte&gt;</code></li>
+            <li><code>COOKIE_SECURE=true</code></li>
+            <li><code>HTTPS_ENABLE=true</code></li>
+            <li><code>HTTPS_KEY_PATH=/caminho/privkey.pem</code></li>
+            <li><code>HTTPS_CERT_PATH=/caminho/fullchain.pem</code></li>
+            <li><code>REFRESH_TOKEN_SALT=&lt;segredo-salt&gt;</code></li>
+            <li><code>DB_*</code> (host, usuário, senha, base)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Frontend (.env.local)</h3>
+          <ul>
+            <li><code>NEXT_PUBLIC_API_URL=https://api.seu-dominio.com</code></li>
+            <li><code>NEXT_PUBLIC_ENABLE_CSRF=1</code></li>
+            <li><code>NEXT_PUBLIC_AUTH_COOKIE_ONLY=1</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Build e Start</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Backend</h3>
+          <ul>
+            <li><kbd>pnpm build</kbd></li>
+            <li><kbd>pnpm start:prod</kbd> ou PM2: <kbd>pm2 start dist/main.js --name sollus-backend</kbd></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Frontend</h3>
+          <ul>
+            <li><kbd>pnpm build</kbd></li>
+            <li><kbd>pnpm start</kbd> ou deploy na sua plataforma</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Checklist de Segurança</h2>
+      <div class="card">
+        <ul>
+          <li>Cookies de tokens: <strong>HttpOnly</strong>, <strong>Secure</strong>, <strong>SameSite='none'</strong>.</li>
+          <li>CSRF ativo: header <code>X-CSRF-Token</code> confere com cookie <code>XSRF-TOKEN</code>.</li>
+          <li>CORS com <code>credentials: true</code> e <code>APP_ORIGIN</code> restrito.</li>
+          <li>HTTPS com HSTS (produção).</li>
+          <li>JWT e salts vindos de env; sem segredos no código.</li>
+          <li>Refresh tokens armazenados como hash; senhas migrando para scrypt.</li>
+          <li>Rate limiting em <code>login</code> e <code>refresh</code>.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>Smoke Tests</h2>
+      <div class="card">
+        <ul>
+          <li>GET <code>/api/csrf</code> → 200 e cookie <code>XSRF-TOKEN</code>.</li>
+          <li>POST <code>/api/auth/login</code> → 200 e <code>Set-Cookie</code> dos tokens.</li>
+          <li>GET <code>/api/auth/me</code> → 200 autenticado (nome/email/papel).</li>
+          <li>POST <code>/api/auth/refresh</code> com <code>X-CSRF-Token</code> → 200.</li>
+          <li>POST <code>/api/auth/logout</code> → 200; cookies limpos e refresh revogado.</li>
+        </ul>
+      </div>
+    </section>
+    <section>
+      <h2>Rollback</h2>
+      <div class="card">
+        <ul>
+          <li>Manter release anterior disponível.</li>
+          <li>Reverter envs/certs se necessário.</li>
+          <li>Desativar <code>NEXT_PUBLIC_AUTH_COOKIE_ONLY</code> temporariamente se algum cliente depender de Bearer.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -52,9 +52,26 @@ import { Request, Response } from 'express';
 export class LoginController {
   constructor(private service: LoginService) {}
 
+  private rl = new Map<string, { c: number; t: number }>();
+  private allow(key: string, limit: number, windowMs: number) {
+    const now = Date.now();
+    const cur = this.rl.get(key);
+    if (!cur || now - cur.t > windowMs) {
+      this.rl.set(key, { c: 1, t: now });
+      return true;
+    }
+    if (cur.c >= limit) return false;
+    cur.c += 1;
+    return true;
+  }
+
   @Post('login')
   async login(@Req() request: Request, @Res() response: Response) {
     try {
+      const ip = String(request.ip || request.socket.remoteAddress || '');
+      if (!this.allow(`login:${ip}`, 10, 60_000)) {
+        return response.status(HttpStatus.TOO_MANY_REQUESTS).json({ message: 'Too many attempts' });
+      }
       let objetoJson = request.body;
       let usuario = new Usuario(objetoJson);
 
@@ -64,6 +81,7 @@ export class LoginController {
         secure: process.env.COOKIE_SECURE === 'true',
         sameSite: 'none',
         path: '/',
+        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 3600_000,
       });
       response.cookie('sollus_refresh_token', refreshToken, {
@@ -71,6 +89,7 @@ export class LoginController {
         secure: process.env.COOKIE_SECURE === 'true',
         sameSite: 'none',
         path: '/',
+        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 7 * 24 * 3600_000,
       });
       return response
@@ -84,6 +103,10 @@ export class LoginController {
   @Post('refresh')
   async refresh(@Req() request: Request, @Res() response: Response) {
     try {
+      const ip = String(request.ip || request.socket.remoteAddress || '');
+      if (!this.allow(`refresh:${ip}`, 30, 60_000)) {
+        return response.status(HttpStatus.TOO_MANY_REQUESTS).json({ message: 'Too many attempts' });
+      }
       const oldRefreshToken = request.cookies['sollus_refresh_token'];
 
       if (!oldRefreshToken) {
@@ -101,6 +124,7 @@ export class LoginController {
         secure: process.env.COOKIE_SECURE === 'true',
         sameSite: 'none',
         path: '/',
+        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 3600_000,
       });
       return response
@@ -108,11 +132,24 @@ export class LoginController {
         .json({ token: accessToken, refreshToken: refreshToken });
     } catch (error) {
       // Se falhar, limpa o cookie
-      response.clearCookie('sollus_refresh_token', { path: '/' });
+      response.clearCookie('sollus_refresh_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
       return response
         .status(HttpStatus.UNAUTHORIZED)
         .json({ message: 'Invalid refresh token' });
     }
+  }
+
+  @Post('logout')
+  async logout(@Req() request: Request, @Res() response: Response) {
+    try {
+      const rt = request.cookies['sollus_refresh_token'];
+      if (rt) {
+        await this.service.revokeByRefreshTokenPlain(rt);
+      }
+    } catch {}
+    response.clearCookie('sollus_access_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
+    response.clearCookie('sollus_refresh_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
+    return response.status(HttpStatus.OK).json({ ok: true });
   }
 
   @Get('me')

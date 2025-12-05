@@ -11,6 +11,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { ThemeTransparencyControl } from "@/components/theme-transparency"
 
 export function ModeToggle() {
     const { setTheme } = useTheme()
@@ -34,6 +35,10 @@ export function ModeToggle() {
                 <DropdownMenuItem onClick={() => setTheme("system")}>
                     System
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("renthub")}>
+                    RentHub
+                </DropdownMenuItem>
+                <ThemeTransparencyControl />
             </DropdownMenuContent>
         </DropdownMenu>
     )

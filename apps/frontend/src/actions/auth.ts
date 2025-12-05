@@ -55,10 +55,17 @@ export const loginAction = actionClient
 
 export const logoutAction = actionClient.action(async () => {
   try {
+    try {
+      const API_URL =
+        process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000";
+      await fetch(`${API_URL}/api/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+      });
+    } catch {}
     const cookieStore = await cookies();
-    // Limpar o cookie do access token
-    cookieStore.delete("sollus_access_token"); // Changed from sollus_token
-    // O refresh token está no localStorage, será limpo pelo cliente
+    cookieStore.delete("sollus_access_token");
     return { success: true };
   } catch (error) {
     return { success: false, error: "Erro ao fazer logout" };

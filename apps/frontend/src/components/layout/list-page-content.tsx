@@ -21,7 +21,7 @@ export function ListPageContent({
   className,
 }: ListPageContentProps) {
   return (
-    <div className={cn("flex h-full flex-col bg-background", className)}>
+    <div className={cn("flex h-full flex-col module-panel", className)}>
       {/* Cabeçalho compacto - apenas se título fornecido */}
       {title && (
         <div className="shrink-0 px-6 pt-4">
@@ -34,7 +34,7 @@ export function ListPageContent({
 
       {/* Paginação fixa no rodapé */}
       {pagination && (
-        <div className="shrink-0 border-t bg-background -mx-6 px-6 py-3 mt-2">
+        <div className="shrink-0 border-t -mx-6 px-6 py-3 mt-2">
           {pagination}
         </div>
       )}
