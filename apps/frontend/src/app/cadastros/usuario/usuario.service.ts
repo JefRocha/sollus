@@ -9,8 +9,8 @@ export type Usuario = {
     idPapel: number;
     login: string;
     senha: string;
-    administrador: string;
-    dataCadastro: string;
+    administrador?: string;
+    dataCadastro?: string;
 }
 
 /**

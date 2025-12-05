@@ -1,5 +1,6 @@
 import { PageContainer } from "@/components/page-container";
 import { CargoForm } from "../_components/cargo-form";
+import * as React from "react";
 
 export default function NovoCargoPage() {
   return (
@@ -7,7 +8,9 @@ export default function NovoCargoPage() {
       title="Novo Cargo"
       description="Cadastre um novo cargo no sistema."
     >
-      <CargoForm />
+      <React.Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Carregando...</div>}>
+        <CargoForm />
+      </React.Suspense>
     </PageContainer>
   );
 }

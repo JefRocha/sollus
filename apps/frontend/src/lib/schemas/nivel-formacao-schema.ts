@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const nivelFormacaoSchema = z.object({
     id: z.number().optional(),
-    nome: z.string({ required_error: "Nome é obrigatório" }).min(1, "Nome é obrigatório"),
+    nome: z.string().min(1, { message: "Nome é obrigatório" }),
     observacao: z.string().optional().nullable(),
 });
 

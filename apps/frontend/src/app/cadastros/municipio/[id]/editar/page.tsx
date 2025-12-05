@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export default function MunicipioEditarPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
-  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema), defaultValues: { id: Number(params.id), nome: "", codigoIbge: 0, uf: "" } });
+  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema) as any, defaultValues: { id: Number(params.id), nome: "", codigoIbge: 0, uf: "" } });
 
   useEffect(() => {
     async function load() {
@@ -52,4 +52,3 @@ export default function MunicipioEditarPage() {
     </PageContainer>
   );
 }
-

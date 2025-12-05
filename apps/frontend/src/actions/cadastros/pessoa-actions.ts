@@ -1,6 +1,6 @@
 "use server";
 
-import { apiFetch } from "@/lib/api";
+import { apiFetch, isErrorResult } from "@/lib/api";
 import { revalidatePath } from "next/cache";
 
 export type OptionItem = {
@@ -39,9 +39,11 @@ export async function getPessoas(searchParams: any) {
         }
 
         const queryString = params.toString();
-        const endpoint = `/pessoa${queryString ? `?${queryString}` : ''}`;
-
-        const data = await apiFetch<any[]>(endpoint);
+        const base = `/pessoa${queryString ? `?${queryString}` : ''}`;
+        const data = await apiFetch<any[]>([base, base.replace('/pessoa', '/pessoas'), `/api${base}`, `/cadastros${base}`], { suppressErrorLog: true });
+        if (isErrorResult(data)) {
+            return { error: "Falha ao buscar pessoas" };
+        }
         return { pessoas: data };
     } catch (error) {
         return { error: "Falha ao buscar pessoas" };
@@ -49,23 +51,35 @@ export async function getPessoas(searchParams: any) {
 }
 
 export async function getPessoa(id: number) {
-    return apiFetch<Pessoa>(`/pessoa/${id}`);
+    const data = await apiFetch<Pessoa>([`/pessoa/${id}`, `/pessoas/${id}`, `/api/pessoa/${id}`, `/cadastros/pessoa/${id}`], { suppressErrorLog: true });
+    if (isErrorResult(data)) {
+        throw new Error("Falha ao buscar pessoa");
+    }
+    return data;
 }
 
 export async function createPessoa(data: Pessoa) {
-    const res = await apiFetch<Pessoa>("/pessoa", {
+    const res = await apiFetch<Pessoa>(["/pessoa", "/pessoas", "/api/pessoa", "/cadastros/pessoa"], {
         method: "POST",
         body: JSON.stringify(data),
+        suppressErrorLog: true,
     });
+    if (isErrorResult(res)) {
+        throw new Error("Falha ao criar pessoa");
+    }
     revalidatePath("/cadastros/pessoa");
     return res;
 }
 
 export async function updatePessoa(data: Pessoa) {
-    const res = await apiFetch<Pessoa>(`/pessoa/${data.id}`, {
+    const res = await apiFetch<Pessoa>([`/pessoa/${data.id}`, `/pessoas/${data.id}`, `/api/pessoa/${data.id}`, `/cadastros/pessoa/${data.id}`], {
         method: "PUT",
         body: JSON.stringify(data),
+        suppressErrorLog: true,
     });
+    if (isErrorResult(res)) {
+        throw new Error("Falha ao atualizar pessoa");
+    }
     revalidatePath("/cadastros/pessoa");
     return res;
 }

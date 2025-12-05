@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
+import * as React from "react";
 
 interface OverviewChartProps {
   title?: string;
@@ -10,7 +11,7 @@ interface OverviewChartProps {
 }
 
 export function OverviewChart({ title = "Visão Geral", series = [12, 18, 16, 22, 19, 24, 28, 26, 30, 27, 32, 35] }: OverviewChartProps) {
-  const [ChartComp, setChartComp] = useState<null | ((props: { data: number[] }) => JSX.Element)>(null);
+  const [ChartComp, setChartComp] = useState<null | ((props: { data: number[] }) => React.ReactElement | null)>(null);
 
   useEffect(() => {
     const tryImports = async () => {

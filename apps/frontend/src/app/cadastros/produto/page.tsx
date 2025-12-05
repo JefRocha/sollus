@@ -1,5 +1,6 @@
 import { produtoList } from "./produto.service";
 import { ProdutoListClient } from "./_components/produto-list-client";
+import * as React from "react";
 
 export default async function ProdutoPage() {
   const data = await produtoList("");
@@ -10,5 +11,9 @@ export default async function ProdutoPage() {
     : Array.isArray((data as any)?.content)
     ? (data as any).content
     : [];
-  return <ProdutoListClient data={list as any} />;
+  return (
+    <React.Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Carregando...</div>}>
+      <ProdutoListClient data={list as any} />
+    </React.Suspense>
+  );
 }

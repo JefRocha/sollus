@@ -5,10 +5,10 @@ const ENDPOINT = `/cargo`;
 export type Cargo = {
   id: number;
   nome: string;
-  descricao: string;
+  descricao?: string;
   salario: number;
-  cbo1994: string;
-  cbo2002: string;
+  cbo1994?: string;
+  cbo2002?: string;
 };
 
 /**

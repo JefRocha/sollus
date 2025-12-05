@@ -1,6 +1,6 @@
 import { PageContainer } from "@/components/page-container";
-import { UsuarioForm } from "./_components/usuario-form";
-import { getUsuarioById } from "./usuario.service";
+import { UsuarioForm } from "../_components/usuario-form";
+import { getUsuarioById } from "../usuario.service";
 
 export default async function UsuarioPersistePage({
   params,

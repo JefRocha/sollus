@@ -1,1 +1,2 @@
 npm run mcp:shadcn
+npm run mcp:nextjs

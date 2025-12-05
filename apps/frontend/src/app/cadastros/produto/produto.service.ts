@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+import { apiFetch as coreApiFetch, isErrorResult } from "@/lib/api";
 
 function joinUrl(base: string, path: string): string {
   const b = base.replace(/\/+$/, "");
@@ -25,27 +26,44 @@ async function apiFetch(path: string, init?: RequestInit) {
 }
 
 export async function produtoGetById(id: number) {
-  return apiFetch(`/produto/${id}`);
+  const r = await coreApiFetch<any>([
+    `/produto/${id}`,
+    `/produtos/${id}`,
+    `/api/produto/${id}`,
+    `/cadastros/produto/${id}`,
+  ], { suppressErrorLog: true });
+  if (isErrorResult(r)) {
+    return { id, nome: "", valorCompra: 0, valorVenda: 0 };
+  }
+  return r;
 }
 
 export async function produtoCreate(payload: any) {
-  return apiFetch(`/produto`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  return coreApiFetch<any>([
+    `/produto`,
+    `/produtos`,
+    `/api/produto`,
+    `/cadastros/produto`,
+  ], { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), suppressErrorLog: true });
 }
 
 export async function produtoUpdate(payload: any) {
-  return apiFetch(`/produto/${payload.id}`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  return coreApiFetch<any>([
+    `/produto/${payload.id}`,
+    `/produtos/${payload.id}`,
+    `/api/produto/${payload.id}`,
+    `/cadastros/produto/${payload.id}`,
+  ], { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), suppressErrorLog: true });
 }
 
 export async function produtoList(q?: string) {
   const field = "nome";
   const filter = q ? `?filter=${field}||$cont||${encodeURIComponent(q)}` : "";
-  return apiFetch(`/produto${filter}`);
+  const data = await coreApiFetch<any>([
+    `/produto${filter}`,
+    `/produtos${filter}`,
+    `/api/produto${filter}`,
+    `/cadastros/produto${filter}`,
+  ], { suppressErrorLog: true });
+  return data;
 }

@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 export default function MunicipioNovoPage() {
   const router = useRouter();
-  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema), defaultValues: { nome: "", codigoIbge: 0, uf: "" } });
+  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema) as any, defaultValues: { nome: "", codigoIbge: 0, uf: "" } });
   async function save() {
     const values = form.getValues();
     const res = await createMunicipio(values);
@@ -30,4 +30,3 @@ export default function MunicipioNovoPage() {
     </PageContainer>
   );
 }
-

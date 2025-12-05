@@ -30,7 +30,7 @@ export default function ProdutoIdPage() {
   const params = useParams<{ id: string }>();
   const isNovo = params.id === "novo";
   const form = useForm<ProdutoSchema>({
-    resolver: zodResolver(produtoSchema),
+    resolver: zodResolver(produtoSchema) as any,
     defaultValues: {
       id: isNovo ? undefined : Number(params.id),
       nome: "",

@@ -14,6 +14,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
+import * as React from "react";
 
 const menuItems = [
   {
@@ -133,7 +134,7 @@ export function Sidebar({
     );
   };
 
-  const renderSubItem = (subItem: any, subIndex: number): JSX.Element => {
+  const renderSubItem = (subItem: any, subIndex: number): React.ReactElement => {
     if (subItem.items) {
       // Submenu aninhado (recursivo)
       const isExpanded = expandedMenus.includes(subItem.title);

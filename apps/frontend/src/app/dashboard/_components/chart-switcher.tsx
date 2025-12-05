@@ -3,8 +3,9 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
+import * as React from "react";
 
-type ChartRenderer = (props: { data: number[]; labels?: string[] }) => JSX.Element;
+type ChartRenderer = (props: { data: number[]; labels?: string[] }) => React.ReactElement | null;
 
 interface ChartSwitcherProps {
   title?: string;
@@ -25,7 +26,7 @@ export function ChartSwitcher({ title = "Gráficos", series, labels }: ChartSwit
       area: [() => import("@/components/charts/area-chart").then((m: any) => m.default || m.AreaChart)],
       pie: [() => import("@/components/charts/pie-chart").then((m: any) => m.default || m.PieChart)],
     } as const;
-    const loadOne = async (arr: Array<() => Promise<any>>) => {
+    const loadOne = async (arr: ReadonlyArray<() => Promise<any>>) => {
       for (const l of arr) {
         try {
           const C = await l();

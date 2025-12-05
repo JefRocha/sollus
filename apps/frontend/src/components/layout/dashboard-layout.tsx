@@ -11,13 +11,14 @@ import { cn } from "@/lib/utils";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
+  user?: { name?: string; email?: string; administrador?: string; roles?: string[]; displayName?: string };
 }
 
-export function DashboardLayout({ children }: DashboardLayoutProps) {
+export function DashboardLayout({ children, user: initialUser }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [lowRes, setLowRes] = useState(false);
-  const [user, setUser] = useState<{ name?: string; email?: string; administrador?: string; roles?: string[]; displayName?: string } | undefined>(undefined);
+  const [user, setUser] = useState<{ name?: string; email?: string; administrador?: string; roles?: string[]; displayName?: string } | undefined>(initialUser);
 
   useEffect(() => {
     const detect = () => {

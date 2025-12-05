@@ -3,6 +3,7 @@ import { DataTable } from "@/components/data-table/data-table";
 import { columns } from "./_components/columns";
 import { apiFetch } from "@/lib/api";
 import { BancoListClient } from "./_components/banco-list-client";
+import * as React from "react";
 
 async function getBancos(input: { q?: string; field?: string } = {}) {
   const q = input.q?.trim();
@@ -14,7 +15,7 @@ async function getBancos(input: { q?: string; field?: string } = {}) {
       : `${base}&filter=${field}||$cont||${encodeURIComponent(q)}`
     : base;
   try {
-    const res = await apiFetch<any>(filter);
+    const res = await apiFetch<any>([filter, filter.replace('/banco', '/bancos'), `/api${filter}`, `/cadastros${filter}`], { suppressErrorLog: true });
     // Adaptação para o retorno da API que pode ser array direto ou objeto paginado
     const bancos = Array.isArray(res) ? res : (res.data || res.content || []);
     return { bancos };
@@ -27,5 +28,9 @@ export default async function BancosPage() {
   const result = await getBancos({});
   const data = result.bancos || [];
 
-  return <BancoListClient data={data} />;
+  return (
+    <React.Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Carregando...</div>}>
+      <BancoListClient data={data} />
+    </React.Suspense>
+  );
 }

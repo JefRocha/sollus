@@ -5,17 +5,17 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PageContainer } from "@/components/page-container";
 import { MunicipioForm } from "../_components/MunicipioForm";
-import { municipioSchema, type MunicipioFormValues } from "../municipio.zod.schema";
+import { municipioSchema, type MunicipioSchema as MunicipioFormValues } from "../municipio.zod.schema";
 import { Button } from "@/components/ui/button";
 import { municipioGetById } from "../municipio.service";
-import { createMunicipioAction, updateMunicipioAction } from "@/actions/cadastros/municipio";
+import { createMunicipio, updateMunicipio } from "@/actions/cadastros/municipio-actions";
 import { toast } from "sonner";
 
 export default function MunicipioIdPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const isNovo = params.id === "novo";
-  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema), defaultValues: { id: isNovo ? undefined : Number(params.id), nome: "", codigoIbge: 0, uf: "" } });
+  const form = useForm<MunicipioFormValues>({ resolver: zodResolver(municipioSchema) as any, defaultValues: { id: isNovo ? undefined : Number(params.id), nome: "", codigoIbge: 0, uf: "" } });
 
   useEffect(() => {
     async function load() {
@@ -28,7 +28,7 @@ export default function MunicipioIdPage() {
 
   async function save() {
     const values = form.getValues();
-    const action = isNovo ? createMunicipioAction : updateMunicipioAction;
+    const action = isNovo ? createMunicipio : updateMunicipio;
     const r = await action(values);
     if ((r as any)?.serverError) { toast.error(String((r as any).serverError)); return; }
     toast.success(isNovo ? "Município criado" : "Município atualizado");
@@ -47,4 +47,3 @@ export default function MunicipioIdPage() {
     </PageContainer>
   );
 }
-

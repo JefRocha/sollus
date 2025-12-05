@@ -2,6 +2,7 @@
 
 import { actionClient } from "@/lib/safe-action";
 import { revalidatePath } from "next/cache";
+import { z } from "zod";
 import {
   cargoSchema,
   CargoSchema,
@@ -21,7 +22,7 @@ export const createCargoAction = actionClient
   });
 
 export const updateCargoAction = actionClient
-  .schema(cargoSchema.extend({ id: cargoSchema.shape.id.optional() }))
+  .schema(cargoSchema.extend({ id: z.number().optional() }))
   .action(async ({ parsedInput }) => {
     const { id, ...rest } = parsedInput as CargoSchema & { id?: number };
     await updateCargo(id!, rest);
@@ -31,7 +32,7 @@ export const updateCargoAction = actionClient
   });
 
 export const deleteCargoAction = actionClient
-  .schema(cargoSchema.pick({ id: true }))
+  .schema(z.object({ id: z.number() }))
   .action(async ({ parsedInput }) => {
     const { id } = parsedInput;
     await deleteCargo(id!);

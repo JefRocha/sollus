@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { PageContainer } from "@/components/page-container";
 import { NivelFormacaoForm, nivelFormacaoSchema, NivelFormacaoFormValues } from "../../_components/NivelFormacaoForm";
 import { Button } from "@/components/ui/button";
-import { getNivelFormacaoById, updateNivelFormacao } from "@/actions/cadastros/nivel-formacao-actions";
+import { getNivelFormacaoById, updateNivelFormacaoAction } from "@/actions/cadastros/nivel-formacao";
 import { toast } from "sonner";
 
 export default function NivelFormacaoEditarPage() {
@@ -35,7 +35,7 @@ export default function NivelFormacaoEditarPage() {
     }, [params.id, form]);
 
     async function onSubmit(data: NivelFormacaoFormValues) {
-        const res = await updateNivelFormacao(data);
+        const res = await updateNivelFormacaoAction({ ...data } as any);
         if ((res as any).error) {
             toast.error(String((res as any).error));
             return;

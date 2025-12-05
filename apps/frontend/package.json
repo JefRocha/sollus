@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "mcp:shadcn": "npx shadcn@latest mcp"
+    "mcp:shadcn": "npx shadcn@latest mcp",
+    "mcp:nextjs": "npx next@latest mcp"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
