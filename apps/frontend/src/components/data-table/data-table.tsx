@@ -192,7 +192,7 @@ export function DataTable<TData, TValue>({
         </div>
       )}
       {flexibleHeight ? (
-        <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col py-2">
+        <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col">
           <div className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <table className="w-full caption-bottom text-sm">
               <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
