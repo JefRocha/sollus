@@ -204,14 +204,14 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
                     roleFilters.cliente
                       ? "cliente"
                       : roleFilters.fornecedor
-                      ? "fornecedor"
-                      : roleFilters.transportadora
-                      ? "transportadora"
-                      : roleFilters.colaborador
-                      ? "colaborador"
-                      : roleFilters.contador
-                      ? "contador"
-                      : "all"
+                        ? "fornecedor"
+                        : roleFilters.transportadora
+                          ? "transportadora"
+                          : roleFilters.colaborador
+                            ? "colaborador"
+                            : roleFilters.contador
+                              ? "contador"
+                              : "all"
                   }
                   onValueChange={(v) =>
                     setRoleFilters({
@@ -415,7 +415,7 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
   );
 
   return (
-    <PageContainer contentClassName="p-0 pb-4">
+    <PageContainer contentClassName="p-0 pb-0">
       <ListPageLayout
         sidebar={sidebar}
         mobileTitle="Ações - Pessoas"
@@ -472,6 +472,7 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
                 setSelected((prev) => (prev && prev.id === row.id ? null : row))
               }
               onRowHover={(row) => setHovered(row)}
+              flexibleHeight
             />
           )}
         </ListPageContent>

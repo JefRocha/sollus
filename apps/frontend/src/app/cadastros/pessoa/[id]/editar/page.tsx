@@ -2,45 +2,91 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { getPessoa, updatePessoa, type Pessoa } from "@/actions/cadastros/pessoa-actions";
+import type { Pessoa } from "@/actions/cadastros/pessoa-actions";
+import {
+  getPessoaAction,
+  updatePessoaAction,
+} from "@/actions/cadastros/pessoa-safe-actions";
+import { useAction } from "next-safe-action/hooks";
 import { FormTabs } from "../../_components/FormTabs";
-import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { PageContainer } from "@/components/page-container";
+import { apiClientFetch } from "@/lib/api-client";
 
 export default function PessoaEditarPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
   const [form, setForm] = useState<Pessoa | null>(null);
+  const [initial, setInitial] = useState<Pessoa | null>(null);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>(
+    "Não foi possível salvar a pessoa. Tente novamente."
+  );
 
   useEffect(() => {
-    async function load() {
-      const id = Number(params.id);
-      try {
-        const remote = await getPessoa(id);
-        const normalized = {
-          ...remote,
-          pessoaContatoModelList: remote.pessoaContatoModelList ?? [],
-          pessoaTelefoneModelList: remote.pessoaTelefoneModelList ?? [],
-          pessoaEnderecoModelList: remote.pessoaEnderecoModelList ?? [],
-        } as Pessoa;
-        setForm(normalized);
-      } catch {
-        toast.error("Erro ao carregar pessoa");
-      }
-    }
-    if (params.id) {
-      load();
-    }
+    const id = Number(params.id);
+    if (!id) return;
+    executeGet({ id });
   }, [params.id]);
+
+  const { execute: executeGet } = useAction(getPessoaAction, {
+    onSuccess: ({ data }) => {
+      const remote = (data as any)?.pessoa as Pessoa;
+      const normalized = {
+        ...remote,
+        pessoaContatoModelList: remote.pessoaContatoModelList ?? [],
+        pessoaTelefoneModelList: remote.pessoaTelefoneModelList ?? [],
+        pessoaEnderecoModelList: remote.pessoaEnderecoModelList ?? [],
+      } as Pessoa;
+      setForm(normalized);
+      setInitial(normalized);
+    },
+    onError: () => {
+      setSuccessOpen(false);
+    },
+  });
+
+  const { execute: executeUpdate, status: updateStatus } = useAction(
+    updatePessoaAction,
+    {
+      onSuccess: () => {
+        setSuccessOpen(true);
+        setSaving(false);
+      },
+      onError: () => {
+        setSaving(false);
+        setErrorOpen(true);
+      },
+    }
+  );
 
   async function save() {
     if (!form) return;
     try {
-      await updatePessoa(form);
-      toast.success("Pessoa atualizada com sucesso");
-      router.push("/cadastros/pessoa");
+      setSaving(true);
+      if (initial?.eh_colaborador === "S" && form.eh_colaborador === "N") {
+        form.eh_colaborador = "S" as any;
+      }
+      if (form.eh_colaborador === "S") {
+        const existingId = (initial as any)?.colaboradorModel?.id;
+        if (existingId && !(form as any)?.colaboradorModel?.id) {
+          (form as any).colaboradorModel = { id: existingId, statusCrud: "U" };
+        }
+      }
+      await executeUpdate({ pessoa: form });
     } catch {
-      toast.error("Erro ao atualizar pessoa");
+      setSaving(false);
+      setErrorOpen(true);
     }
   }
 
@@ -49,20 +95,74 @@ export default function PessoaEditarPage() {
       <PageContainer title="Editar Pessoa" description="Carregando dados...">
         <div className="flex flex-col items-center gap-4 py-8">
           <p className="text-sm text-muted-foreground">Carregando...</p>
-          <Button variant="outline" onClick={() => router.push("/cadastros/pessoa")}>Voltar</Button>
+          <Button
+            variant="outline"
+            onClick={() => router.push("/cadastros/pessoa")}
+          >
+            Voltar
+          </Button>
         </div>
       </PageContainer>
     );
   }
 
   return (
-    <PageContainer title={`Editar Pessoa #${form.id}`} description="Atualize os dados da pessoa.">
+    <PageContainer
+      title={`Editar Pessoa #${form.id}`}
+      description="Atualize os dados da pessoa."
+    >
       <div className="space-y-4">
-        <FormTabs value={form} onChange={(v) => setForm({ ...(form as Pessoa), ...v })} />
+        <FormTabs
+          value={form}
+          onChange={(v) => setForm({ ...(form as Pessoa), ...v })}
+        />
         <div className="flex justify-end gap-2">
-          <Button variant="outline" onClick={() => router.push("/cadastros/pessoa")}>Cancelar</Button>
-          <Button onClick={save}>Salvar</Button>
+          <Button
+            variant="outline"
+            onClick={() => router.push("/cadastros/pessoa")}
+          >
+            Cancelar
+          </Button>
+          <Button
+            onClick={save}
+            disabled={saving || updateStatus === "executing"}
+          >
+            {saving || updateStatus === "executing" ? "Salvando..." : "Salvar"}
+          </Button>
         </div>
+        <AlertDialog open={successOpen} onOpenChange={setSuccessOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Sucesso</AlertDialogTitle>
+              <AlertDialogDescription>
+                Pessoa atualizada com sucesso.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction
+                onClick={() => {
+                  setSuccessOpen(false);
+                  router.push("/cadastros/pessoa");
+                }}
+              >
+                OK
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        <AlertDialog open={errorOpen} onOpenChange={setErrorOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Erro</AlertDialogTitle>
+              <AlertDialogDescription>{errorMessage}</AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setErrorOpen(false)}>
+                OK
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </PageContainer>
   );

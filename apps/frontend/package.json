@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "mcp:shadcn": "npx shadcn@latest mcp"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

@@ -2,11 +2,16 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { useAction } from "next-safe-action/hooks";
 
 import { CargoSchema, cargoSchema } from "../cargo.zod.schema";
-import { createCargo, updateCargo, Cargo } from "../cargo.service";
+import { Cargo } from "../cargo.service";
+import {
+  createCargoAction,
+  updateCargoAction,
+} from "@/actions/cadastros/cargo-actions";
 
 import {
   Form,
@@ -28,6 +33,8 @@ interface CargoFormProps {
 
 export function CargoForm({ data }: CargoFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const view = searchParams?.get("view");
   const isEditing = !!data;
 
   const form = useForm<CargoSchema>({
@@ -35,21 +42,39 @@ export function CargoForm({ data }: CargoFormProps) {
     defaultValues: data || {},
   });
 
-  const onSubmit = async (formData: CargoSchema) => {
-    try {
-      if (isEditing) {
-        await updateCargo(data.id, formData);
-        toast.success("Cargo atualizado com sucesso!");
-      } else {
-        await createCargo(formData);
-        toast.success("Cargo criado com sucesso!");
-      }
-      router.push("/cadastros/cargo");
-      router.refresh(); // Garante que os dados na página de listagem sejam atualizados
-    } catch (error) {
-      toast.error("Ocorreu um erro ao salvar. Tente novamente.");
-      console.error(error);
+  const { execute: execCreate, status: createStatus } = useAction(
+    createCargoAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Cargo criado com sucesso!");
+          router.push("/cadastros/cargo");
+        }
+      },
+      onError: () => toast.error("Erro ao criar Cargo"),
     }
+  );
+  const { execute: execUpdate, status: updateStatus } = useAction(
+    updateCargoAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Cargo atualizado com sucesso!");
+          router.push("/cadastros/cargo");
+        }
+      },
+      onError: () => toast.error("Erro ao atualizar Cargo"),
+    }
+  );
+  const status = isEditing ? updateStatus : createStatus;
+  const onSubmit = async (formData: CargoSchema) => {
+    if (isEditing) {
+      await execUpdate({ ...formData, id: data!.id });
+    } else {
+      await execCreate(formData);
+    }
+    const suffix = view === "cards" || view === "table" ? `?view=${view}` : "";
+    router.push(`/cadastros/cargo${suffix}`);
   };
 
   return (
@@ -60,7 +85,6 @@ export function CargoForm({ data }: CargoFormProps) {
             <CardTitle>Informações Básicas</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-12 gap-4">
-
             <FormField
               control={form.control}
               name="nome"
@@ -142,12 +166,16 @@ export function CargoForm({ data }: CargoFormProps) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.back()}
+            onClick={() => {
+              const suffix =
+                view === "cards" || view === "table" ? `?view=${view}` : "";
+              router.push(`/cadastros/cargo${suffix}`);
+            }}
           >
             Cancelar
           </Button>
-          <Button type="submit" disabled={form.formState.isSubmitting}>
-            {form.formState.isSubmitting ? "Salvando..." : "Salvar"}
+          <Button type="submit" disabled={status === "executing"}>
+            {status === "executing" ? "Salvando..." : "Salvar"}
           </Button>
         </div>
       </form>

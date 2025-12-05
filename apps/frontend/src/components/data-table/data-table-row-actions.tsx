@@ -4,7 +4,7 @@ import { Row } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -35,6 +35,7 @@ export function DataTableRowActions<TData>({
   canDelete = true,
 }: DataTableRowActionsProps<TData>) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const data = row.original as any;
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -75,7 +76,13 @@ export function DataTableRowActions<TData>({
         <DropdownMenuSeparator />
         {canEdit && (
           <DropdownMenuItem asChild>
-            <Link href={`${resource}/${data.id}`} className="cursor-pointer">
+            <Link
+              href={`${resource}/${data.id}${(() => {
+                const v = searchParams?.get("view");
+                return v === "cards" || v === "table" ? `?view=${v}` : "";
+              })()}`}
+              className="cursor-pointer"
+            >
               <Pencil className="mr-2 h-4 w-4" />
               Editar
             </Link>

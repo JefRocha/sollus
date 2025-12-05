@@ -102,7 +102,7 @@ export function PageContainer({
         "--pc-header-fg-muted",
         `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
       );
-    } catch { }
+    } catch {}
   }, []);
   useEffect(() => {
     const onCustom = (e: any) => {
@@ -171,7 +171,7 @@ export function PageContainer({
             `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
           );
         }
-      } catch { }
+      } catch {}
     };
     const onStorage = (e: StorageEvent) => {
       if (e.key === "pc:headerColor") setColor(e.newValue || undefined);
@@ -238,7 +238,7 @@ export function PageContainer({
             `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
           );
         }
-      } catch { }
+      } catch {}
     };
     window.addEventListener("pc:headerColorChange", onCustom as EventListener);
     window.addEventListener("storage", onStorage);
@@ -255,9 +255,9 @@ export function PageContainer({
   );
   return (
     <DashboardLayout>
-      <div className="h-full flex flex-col max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      <div className="h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
-        <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl border-border/40 py-0">
+        <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl border-border/40 py-4">
           {(title || actions) && (
             <CardHeader
               className={cn(
@@ -284,7 +284,7 @@ export function PageContainer({
           )}
           <CardContent
             className={cn(
-              "flex-1 pt-3 px-6 pb-4 overflow-hidden flex flex-col",
+              "flex-1 pt-3 px-6 pb-4 overflow-auto flex flex-col",
               contentClassName
             )}
           >

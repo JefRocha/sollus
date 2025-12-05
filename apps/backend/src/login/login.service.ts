@@ -43,10 +43,10 @@ import { Repository } from 'typeorm';
 
 import { BaseRepository } from '../common/base.repository';
 import { ClsService } from 'nestjs-cls';
+import { jwtConstants } from './jwt.constants';
+
 @Injectable()
 export class LoginService extends TypeOrmCrudService<Usuario> {
-
-    private key: string = "#Sua-chave-de-32-caracteres-aqui";
 
     constructor(
         @InjectRepository(Usuario) repository,
@@ -96,6 +96,7 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
     }
 
     async refresh(oldRefreshToken: string) {
+        console.log('LoginService.refresh: oldRefreshToken received:', oldRefreshToken);
         const tokenDoc = await this.refreshTokenRepo.findOne({
             where: { token: oldRefreshToken }
         });
@@ -144,13 +145,13 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
             tenant: tenantId
         };
 
-        return jwt.sign(payload, this.key, { expiresIn });
+        return jwt.sign(payload, jwtConstants.secret, { expiresIn });
     }
 
     verificarToken(token: string): boolean {
         try {
             const jwt = require('jsonwebtoken');
-            let decoded = jwt.verify(token, this.key);
+            let decoded = jwt.verify(token, jwtConstants.secret);
 
             if (decoded != null) {
                 return true;

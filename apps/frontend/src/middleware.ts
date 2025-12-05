@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 const publicRoutes = ['/login'];
 
 export function middleware(request: NextRequest) {
-    const token = request.cookies.get('sollus_token');
+    const token = request.cookies.get('sollus_access_token');
     const { pathname } = request.nextUrl;
 
     // Se a rota é pública, permite acesso

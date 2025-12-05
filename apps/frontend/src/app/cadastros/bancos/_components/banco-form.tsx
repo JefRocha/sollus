@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 
@@ -18,7 +18,10 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { bancoSchema, BancoSchema } from "../banco.zod.schema";
-import { createBancoAction, updateBancoAction } from "@/actions/cadastros/banco-actions";
+import {
+  createBancoAction,
+  updateBancoAction,
+} from "@/actions/cadastros/banco-actions";
 
 interface BancoFormProps {
   initialData?: BancoSchema;
@@ -26,6 +29,7 @@ interface BancoFormProps {
 
 export function BancoForm({ initialData }: BancoFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const form = useForm<BancoSchema>({
     resolver: zodResolver(bancoSchema),
     defaultValues: initialData || {
@@ -35,29 +39,39 @@ export function BancoForm({ initialData }: BancoFormProps) {
     },
   });
 
-  const { execute: executeCreate, status: createStatus } = useAction(createBancoAction, {
-    onSuccess: ({ data }) => {
-      if (data?.success) {
-        toast.success("Banco criado com sucesso!");
-        router.push("/cadastros/bancos");
-      }
-      if (data?.error) {
-        toast.error(data.error);
-      }
-    },
-  });
+  const { execute: executeCreate, status: createStatus } = useAction(
+    createBancoAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Banco criado com sucesso!");
+          const v = searchParams?.get("view");
+          const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+          router.push(`/cadastros/bancos${suffix}`);
+        }
+        if (data?.error) {
+          toast.error(data.error);
+        }
+      },
+    }
+  );
 
-  const { execute: executeUpdate, status: updateStatus } = useAction(updateBancoAction, {
-    onSuccess: ({ data }) => {
-      if (data?.success) {
-        toast.success("Banco atualizado com sucesso!");
-        router.push("/cadastros/bancos");
-      }
-      if (data?.error) {
-        toast.error(data.error);
-      }
-    },
-  });
+  const { execute: executeUpdate, status: updateStatus } = useAction(
+    updateBancoAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Banco atualizado com sucesso!");
+          const v = searchParams?.get("view");
+          const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+          router.push(`/cadastros/bancos${suffix}`);
+        }
+        if (data?.error) {
+          toast.error(data.error);
+        }
+      },
+    }
+  );
 
   const status = initialData ? updateStatus : createStatus;
 
@@ -106,7 +120,11 @@ export function BancoForm({ initialData }: BancoFormProps) {
               <FormItem>
                 <FormLabel>URL</FormLabel>
                 <FormControl>
-                  <Input placeholder="https://www.banco.com.br" {...field} value={field.value ?? ""} />
+                  <Input
+                    placeholder="https://www.banco.com.br"
+                    {...field}
+                    value={field.value ?? ""}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,13 +132,17 @@ export function BancoForm({ initialData }: BancoFormProps) {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Button type="submit" disabled={status === 'executing'}>
-            {status === 'executing' ? "Salvando..." : "Salvar"}
+          <Button type="submit" disabled={status === "executing"}>
+            {status === "executing" ? "Salvando..." : "Salvar"}
           </Button>
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.back()}
+            onClick={() => {
+              const v = searchParams?.get("view");
+              const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+              router.push(`/cadastros/bancos${suffix}`);
+            }}
           >
             Cancelar
           </Button>

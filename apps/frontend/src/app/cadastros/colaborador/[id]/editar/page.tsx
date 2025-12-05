@@ -1,15 +1,19 @@
 "use client";
-import { useRouter, useParams } from "next/navigation";
+import { useRouter, useParams, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PageContainer } from "@/components/page-container";
 import { ColaboradorForm } from "../../_components/ColaboradorForm";
 import { Button } from "@/components/ui/button";
-import { getColaboradorById, updateColaborador } from "@/actions/cadastros/colaborador-actions";
+import {
+  getColaboradorById,
+  updateColaborador,
+} from "@/actions/cadastros/colaborador-actions";
 import { toast } from "sonner";
 
 export default function ColaboradorEditarPage() {
   const router = useRouter();
   const params = useParams<{ id: string }>();
+  const searchParams = useSearchParams();
   const [form, setForm] = useState<any>(null);
 
   useEffect(() => {
@@ -71,7 +75,11 @@ export default function ColaboradorEditarPage() {
       return;
     }
     toast.success("Colaborador atualizado");
-    router.push("/cadastros/colaborador");
+    {
+      const v = searchParams?.get("view");
+      const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+      router.push(`/cadastros/colaborador${suffix}`);
+    }
   }
 
   if (!form) {
@@ -84,11 +92,20 @@ export default function ColaboradorEditarPage() {
 
   return (
     <PageContainer title={`Editar Colaborador #${form.id}`}>
-      <div className="space-y-4 pb-24">
+      <div className="space-y-4 pb-8">
         <ColaboradorForm value={form} onChange={setForm} />
-        <div className="sticky bottom-0 z-50 border-t bg-background/80 backdrop-blur px-6 py-3 flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-2 px-6">
           <Button onClick={save}>Salvar</Button>
-          <Button variant="outline" onClick={() => router.push("/cadastros/colaborador")}>Cancelar</Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              const v = searchParams?.get("view");
+              const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+              router.push(`/cadastros/colaborador${suffix}`);
+            }}
+          >
+            Cancelar
+          </Button>
         </div>
       </div>
     </PageContainer>

@@ -2,12 +2,12 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import { CboSchema, cboSchema } from "../cbo.zod.schema";
 import { Cbo } from "../cbo.service"; // Keep Cbo type import
-import { createCboAction, updateCboAction } from '@/actions/cbo'; // Import Server Actions
+import { createCboAction, updateCboAction } from "@/actions/cbo"; // Import Server Actions
 
 import {
   Form,
@@ -28,6 +28,7 @@ interface CboFormProps {
 
 export function CboForm({ data }: CboFormProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const isEditing = !!data;
 
   const form = useForm<CboSchema>({
@@ -42,20 +43,32 @@ export function CboForm({ data }: CboFormProps) {
         if (result?.data?.success) {
           toast.success("Cbo atualizado com sucesso!");
         } else {
-          toast.error(result?.data?.error || result?.serverError || "Erro ao atualizar Cbo.");
+          toast.error(
+            result?.data?.error ||
+              result?.serverError ||
+              "Erro ao atualizar Cbo."
+          );
         }
       } else {
         const result = await createCboAction(formData);
         if (result?.data?.success) {
           toast.success("Cbo criado com sucesso!");
         } else {
-          toast.error(result?.data?.error || result?.serverError || "Erro ao criar Cbo.");
+          toast.error(
+            result?.data?.error || result?.serverError || "Erro ao criar Cbo."
+          );
         }
       }
-      router.push("/cadastros/cbo");
+      {
+        const v = searchParams?.get("view");
+        const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+        router.push(`/cadastros/cbo${suffix}`);
+      }
       router.refresh();
     } catch (error: any) {
-      toast.error(error.message || "Ocorreu um erro ao salvar. Tente novamente.");
+      toast.error(
+        error.message || "Ocorreu um erro ao salvar. Tente novamente."
+      );
       console.error(error);
     }
   };
@@ -68,7 +81,6 @@ export function CboForm({ data }: CboFormProps) {
             <CardTitle>Informações Básicas</CardTitle>
           </CardHeader>
           <CardContent className="grid grid-cols-12 gap-4">
-
             <FormField
               control={form.control}
               name="codigo"
@@ -78,9 +90,7 @@ export function CboForm({ data }: CboFormProps) {
                   <FormControl>
                     <Input placeholder="código cbo 2002" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    código cbo 2002
-                  </FormDescription>
+                  <FormDescription>código cbo 2002</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -94,9 +104,7 @@ export function CboForm({ data }: CboFormProps) {
                   <FormControl>
                     <Input placeholder="código cbo 1994" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    código cbo 1994
-                  </FormDescription>
+                  <FormDescription>código cbo 1994</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -110,9 +118,7 @@ export function CboForm({ data }: CboFormProps) {
                   <FormControl>
                     <Input placeholder="nome" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    nome
-                  </FormDescription>
+                  <FormDescription>nome</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -126,9 +132,7 @@ export function CboForm({ data }: CboFormProps) {
                   <FormControl>
                     <Input placeholder="observação" {...field} />
                   </FormControl>
-                  <FormDescription>
-                    observação
-                  </FormDescription>
+                  <FormDescription>observação</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -140,7 +144,11 @@ export function CboForm({ data }: CboFormProps) {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.back()}
+            onClick={() => {
+              const v = searchParams?.get("view");
+              const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+              router.push(`/cadastros/cbo${suffix}`);
+            }}
           >
             Cancelar
           </Button>

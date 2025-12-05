@@ -5,9 +5,21 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { useEffect, useState } from "react";
 
 const colaboradorSchema = z.object({
@@ -40,41 +52,36 @@ function useOptions(resource: string) {
   useEffect(() => {
     async function load() {
       try {
-        // Client-side: usar variável de ambiente ou fallback
-        const base = typeof window !== 'undefined'
-          ? (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000')
-          : 'http://localhost:4000';
-        const url = `${base}/${resource}`;
-        console.log(`[useOptions] Carregando ${resource} de:`, url);
-
-        const r = await fetch(url, {
-          cache: "no-store",
-          headers: {
-            'Accept': 'application/json',
+        const base =
+          typeof window !== "undefined"
+            ? process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"
+            : "http://localhost:4000";
+        const candidates: string[] = [];
+        const q = "?page=1&limit=100";
+        candidates.push(`${base}/${resource}${q}`);
+        if (resource === "colaborador-situacao") {
+          candidates.push(`${base}/colaborador/situacao${q}`);
+          candidates.push(`${base}/colaborador-situacoes${q}`);
+        }
+        if (resource === "colaborador-tipo") {
+          candidates.push(`${base}/colaborador/tipo${q}`);
+          candidates.push(`${base}/colaborador-tipos${q}`);
+        }
+        let data: any[] = [];
+        for (const url of candidates) {
+          const r = await fetch(url, {
+            cache: "no-store",
+            headers: { Accept: "application/json" },
+          });
+          if (!r.ok) continue;
+          const j = await r.json().catch(() => []);
+          if (Array.isArray(j) && j.length >= 0) {
+            data = j;
+            break;
           }
-        });
-
-        console.log(`[useOptions] ${resource} - Status:`, r.status, r.statusText);
-
-        if (!r.ok) {
-          const errorText = await r.text().catch(() => 'Sem detalhes');
-          console.error(`[useOptions] Erro HTTP ${r.status} ao carregar ${resource}:`, errorText);
-          setItems([]);
-          return;
         }
-
-        const j = await r.json().catch((err) => {
-          console.error(`[useOptions] Erro ao fazer parse JSON de ${resource}:`, err);
-          return [];
-        });
-        const list = Array.isArray(j) ? j : [];
-        console.log(`[useOptions] ${resource} carregado com sucesso:`, list.length, 'itens');
-        if (list.length > 0) {
-          console.log(`[useOptions] Exemplo de item:`, list[0]);
-        }
-        setItems(list);
+        setItems(Array.isArray(data) ? data : []);
       } catch (error) {
-        console.error(`[useOptions] Erro ao carregar ${resource}:`, error);
         setItems([]);
       } finally {
         setLoading(false);
@@ -86,16 +93,55 @@ function useOptions(resource: string) {
   return { items, loading };
 }
 
-export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v: any) => void }) {
+export function ColaboradorForm({
+  value,
+  onChange,
+}: {
+  value: any;
+  onChange: (v: any) => void;
+}) {
   const { items: pessoas, loading: loadingPessoas } = useOptions("pessoa");
   const { items: cargos, loading: loadingCargos } = useOptions("cargo");
   const { items: setores, loading: loadingSetores } = useOptions("setor");
-  const { items: situacoes, loading: loadingSituacoes } = useOptions("colaborador-situacao");
-  const { items: tiposAdm, loading: loadingTiposAdm } = useOptions("tipo-admissao");
-  const { items: tiposCol, loading: loadingTiposCol } = useOptions("colaborador-tipo");
-  const { items: sindicatos, loading: loadingSindicatos } = useOptions("sindicato");
+  const { items: situacoes, loading: loadingSituacoes } = useOptions(
+    "colaborador-situacao"
+  );
+  const { items: tiposAdm, loading: loadingTiposAdm } =
+    useOptions("tipo-admissao");
+  const { items: tiposCol, loading: loadingTiposCol } =
+    useOptions("colaborador-tipo");
+  const { items: sindicatos, loading: loadingSindicatos } =
+    useOptions("sindicato");
 
-  const ufs = ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'];
+  const ufs = [
+    "AC",
+    "AL",
+    "AM",
+    "AP",
+    "BA",
+    "CE",
+    "DF",
+    "ES",
+    "GO",
+    "MA",
+    "MG",
+    "MS",
+    "MT",
+    "PA",
+    "PB",
+    "PE",
+    "PI",
+    "PR",
+    "RJ",
+    "RN",
+    "RO",
+    "RR",
+    "RS",
+    "SC",
+    "SE",
+    "SP",
+    "TO",
+  ];
 
   return (
     <Tabs defaultValue="dados" className="w-full">
@@ -111,15 +157,21 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
             <CardTitle>Informações do Colaborador</CardTitle>
             <CardDescription>Dados principais do colaborador</CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4">
+          <CardContent className="grid gap-4 max-h-[70vh] overflow-y-auto pr-2">
             <div className="grid gap-2">
               <Label htmlFor="pessoa">Pessoa *</Label>
               <Select
                 value={value.pessoaModel?.id?.toString() || ""}
-                onValueChange={(val) => onChange({ ...value, pessoaModel: { id: Number(val) } })}
+                onValueChange={(val) =>
+                  onChange({ ...value, pessoaModel: { id: Number(val) } })
+                }
               >
-                <SelectTrigger id="pessoa">
-                  <SelectValue placeholder={loadingPessoas ? "Carregando..." : "Selecione uma pessoa"} />
+                <SelectTrigger id="pessoa" disabled={loadingPessoas}>
+                  <SelectValue
+                    placeholder={
+                      loadingPessoas ? "Carregando..." : "Selecione uma pessoa"
+                    }
+                  />
                 </SelectTrigger>
                 <SelectContent>
                   {pessoas.map((p) => (
@@ -131,15 +183,21 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
               </Select>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="cargo">Cargo</Label>
                 <Select
                   value={value.cargoModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, cargoModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({ ...value, cargoModel: { id: Number(val) } })
+                  }
                 >
-                  <SelectTrigger id="cargo">
-                    <SelectValue placeholder={loadingCargos ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="cargo" disabled={loadingCargos}>
+                    <SelectValue
+                      placeholder={
+                        loadingCargos ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {cargos.map((c) => (
@@ -155,10 +213,16 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                 <Label htmlFor="setor">Setor</Label>
                 <Select
                   value={value.setorModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, setorModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({ ...value, setorModel: { id: Number(val) } })
+                  }
                 >
-                  <SelectTrigger id="setor">
-                    <SelectValue placeholder={loadingSetores ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="setor" disabled={loadingSetores}>
+                    <SelectValue
+                      placeholder={
+                        loadingSetores ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {setores.map((s) => (
@@ -171,15 +235,24 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="situacao">Situação</Label>
                 <Select
                   value={value.colaboradorSituacaoModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, colaboradorSituacaoModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({
+                      ...value,
+                      colaboradorSituacaoModel: { id: Number(val) },
+                    })
+                  }
                 >
-                  <SelectTrigger id="situacao">
-                    <SelectValue placeholder={loadingSituacoes ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="situacao" disabled={loadingSituacoes}>
+                    <SelectValue
+                      placeholder={
+                        loadingSituacoes ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {situacoes.map((s) => (
@@ -195,10 +268,19 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                 <Label htmlFor="tipo">Tipo Colaborador</Label>
                 <Select
                   value={value.colaboradorTipoModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, colaboradorTipoModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({
+                      ...value,
+                      colaboradorTipoModel: { id: Number(val) },
+                    })
+                  }
                 >
-                  <SelectTrigger id="tipo">
-                    <SelectValue placeholder={loadingTiposCol ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="tipo" disabled={loadingTiposCol}>
+                    <SelectValue
+                      placeholder={
+                        loadingTiposCol ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {tiposCol.map((t) => (
@@ -211,15 +293,24 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="tipoAdmissao">Tipo Admissão</Label>
                 <Select
                   value={value.tipoAdmissaoModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, tipoAdmissaoModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({
+                      ...value,
+                      tipoAdmissaoModel: { id: Number(val) },
+                    })
+                  }
                 >
-                  <SelectTrigger id="tipoAdmissao">
-                    <SelectValue placeholder={loadingTiposAdm ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="tipoAdmissao" disabled={loadingTiposAdm}>
+                    <SelectValue
+                      placeholder={
+                        loadingTiposAdm ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {tiposAdm.map((t) => (
@@ -235,10 +326,16 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                 <Label htmlFor="sindicato">Sindicato</Label>
                 <Select
                   value={value.sindicatoModel?.id?.toString() || ""}
-                  onValueChange={(val) => onChange({ ...value, sindicatoModel: { id: Number(val) } })}
+                  onValueChange={(val) =>
+                    onChange({ ...value, sindicatoModel: { id: Number(val) } })
+                  }
                 >
-                  <SelectTrigger id="sindicato">
-                    <SelectValue placeholder={loadingSindicatos ? "Carregando..." : "Selecione"} />
+                  <SelectTrigger id="sindicato" disabled={loadingSindicatos}>
+                    <SelectValue
+                      placeholder={
+                        loadingSindicatos ? "Carregando..." : "Selecione"
+                      }
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     {sindicatos.map((s) => (
@@ -251,13 +348,15 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="matricula">Matrícula</Label>
                 <Input
                   id="matricula"
                   value={value.matricula || ""}
-                  onChange={(e) => onChange({ ...value, matricula: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, matricula: e.target.value })
+                  }
                 />
               </div>
 
@@ -267,7 +366,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                   id="dataCadastro"
                   type="date"
                   value={value.dataCadastro || ""}
-                  onChange={(e) => onChange({ ...value, dataCadastro: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, dataCadastro: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -279,7 +380,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                   id="dataAdmissao"
                   type="date"
                   value={value.dataAdmissao || ""}
-                  onChange={(e) => onChange({ ...value, dataAdmissao: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, dataAdmissao: e.target.value })
+                  }
                 />
               </div>
 
@@ -289,7 +392,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                   id="dataDemissao"
                   type="date"
                   value={value.dataDemissao || ""}
-                  onChange={(e) => onChange({ ...value, dataDemissao: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, dataDemissao: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -301,16 +406,20 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
         <Card>
           <CardHeader>
             <CardTitle>Dados da CTPS</CardTitle>
-            <CardDescription>Informações da Carteira de Trabalho</CardDescription>
+            <CardDescription>
+              Informações da Carteira de Trabalho
+            </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4">
+          <CardContent className="grid gap-4 max-h-[70vh] overflow-y-auto pr-2">
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="ctpsNumero">CTPS Número</Label>
                 <Input
                   id="ctpsNumero"
                   value={value.ctpsNumero || ""}
-                  onChange={(e) => onChange({ ...value, ctpsNumero: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, ctpsNumero: e.target.value })
+                  }
                 />
               </div>
 
@@ -319,7 +428,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                 <Input
                   id="ctpsSerie"
                   value={value.ctpsSerie || ""}
-                  onChange={(e) => onChange({ ...value, ctpsSerie: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, ctpsSerie: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -331,7 +442,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                   id="ctpsDataExpedicao"
                   type="date"
                   value={value.ctpsDataExpedicao || ""}
-                  onChange={(e) => onChange({ ...value, ctpsDataExpedicao: e.target.value })}
+                  onChange={(e) =>
+                    onChange({ ...value, ctpsDataExpedicao: e.target.value })
+                  }
                 />
               </div>
 
@@ -371,7 +484,9 @@ export function ColaboradorForm({ value, onChange }: { value: any; onChange: (v:
                 id="observacao"
                 className="min-h-[100px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 value={value.observacao || ""}
-                onChange={(e) => onChange({ ...value, observacao: e.target.value })}
+                onChange={(e) =>
+                  onChange({ ...value, observacao: e.target.value })
+                }
               />
             </div>
           </CardContent>

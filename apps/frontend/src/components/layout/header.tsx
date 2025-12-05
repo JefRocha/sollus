@@ -29,12 +29,20 @@ import { logoutAction } from "@/actions/auth";
 import { useAction } from "next-safe-action/hooks";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { apiClientFetch } from "@/lib/api-client";
 
 interface HeaderProps {
   onMenuClick: () => void;
+  user?: {
+    name?: string;
+    email?: string;
+    administrador?: string;
+    roles?: string[];
+    displayName?: string;
+  };
 }
 
-export function Header({ onMenuClick }: HeaderProps) {
+export function Header({ onMenuClick, user }: HeaderProps) {
   const pathname = usePathname();
   const { execute: executeLogout, isExecuting: isLoggingOut } = useAction(
     logoutAction,
@@ -70,8 +78,47 @@ export function Header({ onMenuClick }: HeaderProps) {
       const c = localStorage.getItem("pc:headerColor");
       if (c) setColor(c);
       else if (t) setTone(t);
-    } catch { }
+    } catch {}
   }, []);
+
+  // Resolve dados do usuário para o dropdown
+  const [localUser, setLocalUser] = React.useState(user);
+  React.useEffect(() => {
+    if (user?.email || user?.displayName || user?.name) {
+      setLocalUser(user);
+    } else {
+      const load = async () => {
+        try {
+          const u = await apiClientFetch<any>("/api/auth/me");
+          const name = u?.name ?? undefined;
+          const email = u?.email ?? undefined;
+          const displayName =
+            u?.displayName ??
+            name ??
+            (email ? String(email).split("@")[0] : undefined);
+          setLocalUser({
+            name,
+            email,
+            displayName,
+            administrador: u?.administrador,
+            roles: u?.roles,
+          });
+        } catch (error) {
+          console.error("Falha ao buscar dados do usuário:", error);
+          try {
+            const name = localStorage.getItem("user:name") || undefined;
+            const email = localStorage.getItem("user:email") || undefined;
+            const displayName =
+              localStorage.getItem("user:displayName") || undefined;
+            if (name || email || displayName) {
+              setLocalUser({ name, email, displayName });
+            }
+          } catch {}
+        }
+      };
+      load();
+    }
+  }, [user]);
 
   const applyToneColor = (newTone?: string, newColor?: string) => {
     try {
@@ -132,7 +179,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
         );
       }
-    } catch { }
+    } catch {}
   };
 
   return (
@@ -204,7 +251,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch { }
+                  } catch {}
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -219,21 +266,21 @@ export function Header({ onMenuClick }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch { }
+                  } catch {}
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch { }
+                  } catch {}
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch { }
+                  } catch {}
                 }}
               >
                 Padrão do sistema
@@ -246,7 +293,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", val);
                     localStorage.removeItem("pc:headerColor");
-                  } catch { }
+                  } catch {}
                   applyToneColor(val, undefined);
                   try {
                     window.dispatchEvent(
@@ -254,7 +301,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                         detail: { tone: val, color: undefined },
                       })
                     );
-                  } catch { }
+                  } catch {}
                 }}
               >
                 <DropdownMenuRadioItem value="primary">
@@ -286,7 +333,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch { }
+                    } catch {}
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -294,7 +341,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch { }
+                    } catch {}
                   }}
                 />
                 <Input
@@ -308,7 +355,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch { }
+                    } catch {}
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -316,7 +363,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch { }
+                    } catch {}
                   }}
                 />
               </div>
@@ -343,14 +390,15 @@ export function Header({ onMenuClick }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
-                      }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${
+                          factorMap[tone] || "28%"
+                        }, transparent)`;
                     root.style.setProperty("--ui-header-bg", bg);
                     root.style.setProperty(
                       "--ui-header-fg",
                       "var(--foreground)"
                     );
-                  } catch { }
+                  } catch {}
                 }}
               >
                 Aplicar ao cabeçalho
@@ -375,14 +423,15 @@ export function Header({ onMenuClick }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
-                      }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${
+                          factorMap[tone] || "28%"
+                        }, transparent)`;
                     root.style.setProperty("--ui-sidebar-bg", bg);
                     root.style.setProperty(
                       "--ui-sidebar-fg",
                       "var(--foreground)"
                     );
-                  } catch { }
+                  } catch {}
                 }}
               >
                 Aplicar à sidebar
@@ -395,7 +444,7 @@ export function Header({ onMenuClick }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch { }
+                  } catch {}
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -410,21 +459,21 @@ export function Header({ onMenuClick }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch { }
+                  } catch {}
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch { }
+                  } catch {}
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch { }
+                  } catch {}
                 }}
               >
                 Redefinir padrão
@@ -439,7 +488,19 @@ export function Header({ onMenuClick }: HeaderProps) {
               >
                 <Avatar>
                   <AvatarFallback className="bg-primary text-primary-foreground">
-                    AD
+                    {(() => {
+                      const base =
+                        localUser?.displayName ||
+                        localUser?.name ||
+                        localUser?.email ||
+                        "";
+                      const parts = String(base)
+                        .split(/[\s@._-]+/)
+                        .filter(Boolean);
+                      const initials =
+                        (parts[0]?.[0] || "A") + (parts[1]?.[0] || "D");
+                      return initials.toUpperCase();
+                    })()}
                   </AvatarFallback>
                 </Avatar>
               </Button>
@@ -448,10 +509,17 @@ export function Header({ onMenuClick }: HeaderProps) {
               <DropdownMenuLabel className="font-normal">
                 <div className="flex flex-col space-y-1">
                   <p className="text-sm font-medium leading-none">
-                    Administrador
+                    {localUser?.displayName ||
+                      localUser?.name ||
+                      localUser?.email ||
+                      "Usuário"}
                   </p>
                   <p className="text-xs leading-none text-muted-foreground">
-                    admin@sollus.com
+                    {localUser?.email ||
+                      (Array.isArray(localUser?.roles) &&
+                      localUser!.roles!.includes("ADMIN")
+                        ? "Administrador"
+                        : "")}
                   </p>
                 </div>
               </DropdownMenuLabel>

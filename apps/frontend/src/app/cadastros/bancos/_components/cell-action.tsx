@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 
@@ -33,6 +33,7 @@ interface CellActionProps {
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const { execute, status } = useAction(deleteBancoAction, {
@@ -83,7 +84,11 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Ações</DropdownMenuLabel>
           <DropdownMenuItem
-            onClick={() => router.push(`/cadastros/bancos/${data.id}`)}
+            onClick={() => {
+              const v = searchParams?.get("view");
+              const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+              router.push(`/cadastros/bancos/${data.id}${suffix}`);
+            }}
           >
             Editar
           </DropdownMenuItem>

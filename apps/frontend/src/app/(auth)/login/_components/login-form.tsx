@@ -3,7 +3,8 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useAction } from 'next-safe-action/hooks';
+import { useAction } from "next-safe-action/hooks";
+import { apiClientFetch } from "@/lib/api-client";
 import { useRouter } from 'next/navigation';
 import { loginAction } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
@@ -29,8 +30,14 @@ type LoginSchema = z.infer<typeof loginSchema>;
 export function LoginForm() {
     const router = useRouter();
     const { execute, isExecuting, result } = useAction(loginAction, {
-        onSuccess: (data) => {
-            if (data.data?.success) {
+        onSuccess: async ({ data }) => {
+            if (data?.success && data?.token && data?.refreshToken) {
+                try {
+                    window.localStorage.setItem('sollus_access_token', data.token);
+                    window.localStorage.setItem('sollus_refresh_token', data.refreshToken);
+                } catch (e) {
+                    console.error("Failed to save tokens to localStorage:", e);
+                }
                 router.push('/dashboard');
             }
         },

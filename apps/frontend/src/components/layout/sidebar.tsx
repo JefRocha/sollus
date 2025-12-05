@@ -79,9 +79,16 @@ const menuItems = [
 interface SidebarProps {
   className?: string;
   collapsed?: boolean;
+  onNavigate?: () => void;
+  onExpand?: () => void;
 }
 
-export function Sidebar({ className, collapsed = false }: SidebarProps) {
+export function Sidebar({
+  className,
+  collapsed = false,
+  onNavigate,
+  onExpand,
+}: SidebarProps) {
   const pathname = usePathname();
   const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
 
@@ -166,6 +173,14 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
             ? "bg-accent text-accent-foreground"
             : "text-muted-foreground"
         )}
+        onClick={(e) => {
+          if (collapsed && onExpand) {
+            e.preventDefault();
+            onExpand();
+            return;
+          }
+          onNavigate?.();
+        }}
       >
         {subItem.title}
       </Link>
@@ -189,15 +204,19 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                 // Se collapsed, não mostrar submenus, apenas ícone
                 if (collapsed) {
                   return (
-                    <div
+                    <button
                       key={index}
                       className={cn(
                         "flex items-center justify-center px-3 py-2 text-sm font-medium rounded-md transition-colors hover:bg-accent hover:text-accent-foreground text-muted-foreground"
                       )}
                       title={item.title}
+                      onClick={() => {
+                        onExpand?.();
+                        toggleMenu(item.title);
+                      }}
                     >
                       {item.icon && <item.icon className="h-4 w-4" />}
-                    </div>
+                    </button>
                   );
                 }
 
@@ -249,6 +268,14 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                     collapsed && "justify-center"
                   )}
                   title={collapsed ? item.title : undefined}
+                  onClick={(e) => {
+                    if (collapsed && onExpand) {
+                      e.preventDefault();
+                      onExpand();
+                      return;
+                    }
+                    onNavigate?.();
+                  }}
                 >
                   {item.icon && <item.icon className="h-4 w-4" />}
                   {!collapsed && item.title}

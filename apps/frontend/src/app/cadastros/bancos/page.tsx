@@ -2,6 +2,7 @@ import { PageContainer } from "@/components/page-container";
 import { DataTable } from "@/components/data-table/data-table";
 import { columns } from "./_components/columns";
 import { apiFetch } from "@/lib/api";
+import { BancoListClient } from "./_components/banco-list-client";
 
 async function getBancos(input: { q?: string; field?: string } = {}) {
   const q = input.q?.trim();
@@ -26,15 +27,5 @@ export default async function BancosPage() {
   const result = await getBancos({});
   const data = result.bancos || [];
 
-  return (
-    <PageContainer title="Bancos" description={result.error ? `Erro: ${result.error}` : "Gerencie seus bancos."}>
-      <DataTable
-        columns={columns}
-        data={data}
-        filterBy="nome"
-        createHref="/cadastros/bancos/novo"
-        createText="Novo Banco"
-      />
-    </PageContainer>
-  );
+  return <BancoListClient data={data} />;
 }
