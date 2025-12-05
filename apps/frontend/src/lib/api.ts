@@ -56,42 +56,40 @@ export async function apiFetch<T>(
           }
 
           if (!refreshToken) {
-            // Não há refresh token - usuário precisa fazer login novamente
-            console.warn("No refresh token available. User needs to login again.");
-            throw new Error("Unauthorized");
-          }
+            // Não há refresh token - sair silenciosamente
+          } else {
+            const refreshRes = await fetch(`${API_URL}/api/auth/refresh`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ refreshToken }),
+            });
 
-          const refreshRes = await fetch(`${API_URL}/api/auth/refresh`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ refreshToken }), // Envia o refresh token no corpo
-          });
+            if (refreshRes.ok) {
+              const { token: newAccessToken, refreshToken: newRefreshToken } = await refreshRes.json();
 
-          if (refreshRes.ok) {
-            const { token: newAccessToken, refreshToken: newRefreshToken } = await refreshRes.json();
-
-            if (newAccessToken && newRefreshToken) {
-              // Armazena os novos tokens no localStorage (apenas para Client Components)
-              // Nota: Server Components não podem definir cookies, apenas ler
-              if (typeof window !== 'undefined') {
-                localStorage.setItem("sollus_access_token", newAccessToken);
-                localStorage.setItem("sollus_refresh_token", newRefreshToken);
-              }
+              if (newAccessToken && newRefreshToken) {
+                // Armazena os novos tokens no localStorage (apenas para Client Components)
+                // Nota: Server Components não podem definir cookies, apenas ler
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem("sollus_access_token", newAccessToken);
+                  localStorage.setItem("sollus_refresh_token", newRefreshToken);
+                }
 
 
-              // Tenta novamente a requisição original com o novo token
-              const retryRes = await fetch(url, {
-                ...fetchOptions,
-                credentials: "include",
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${newAccessToken}`,
-                  ...fetchOptions?.headers,
-                },
-              });
+                // Tenta novamente a requisição original com o novo token
+                const retryRes = await fetch(url, {
+                  ...fetchOptions,
+                  credentials: "include",
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${newAccessToken}`,
+                    ...fetchOptions?.headers,
+                  },
+                });
 
-              if (retryRes.ok) {
-                return retryRes.json();
+                if (retryRes.ok) {
+                  return retryRes.json();
+                }
               }
             }
           }
@@ -115,8 +113,9 @@ export async function apiFetch<T>(
       throw new Error(errorMessage);
     }
 
+
     return res.json();
-  } catch (error) {
+  } catch (error: any) {
     const suppress = !!(options as any)?.suppressErrorLog;
     // Não logar erros de autenticação como críticos
     const isAuthError = error instanceof Error && error.message === "Unauthorized";

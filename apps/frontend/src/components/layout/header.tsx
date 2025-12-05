@@ -48,10 +48,20 @@ export function Header({ onMenuClick, user }: HeaderProps) {
     logoutAction,
     {
       onSuccess: () => {
+        // Limpar tokens do localStorage
+        try {
+          localStorage.removeItem("sollus_access_token");
+          localStorage.removeItem("sollus_refresh_token");
+        } catch { }
         window.location.href = "/login";
       },
       onError: (error) => {
         console.error("Erro ao fazer logout:", error);
+        // Mesmo com erro, limpar tokens e redirecionar
+        try {
+          localStorage.removeItem("sollus_access_token");
+          localStorage.removeItem("sollus_refresh_token");
+        } catch { }
         window.location.href = "/login";
       },
     }
@@ -67,6 +77,11 @@ export function Header({ onMenuClick, user }: HeaderProps) {
   }, [pathname]);
 
   const handleLogout = async () => {
+    // Limpar tokens ANTES de fazer logout para evitar requisições com token inválido
+    try {
+      localStorage.removeItem("sollus_access_token");
+      localStorage.removeItem("sollus_refresh_token");
+    } catch { }
     await executeLogout();
   };
 
@@ -78,7 +93,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
       const c = localStorage.getItem("pc:headerColor");
       if (c) setColor(c);
       else if (t) setTone(t);
-    } catch {}
+    } catch { }
   }, []);
 
   // Resolve dados do usuário para o dropdown
@@ -89,6 +104,12 @@ export function Header({ onMenuClick, user }: HeaderProps) {
     } else {
       const load = async () => {
         try {
+          // Verificar se há token antes de fazer requisição
+          const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
+          if (!hasToken) {
+            return;
+          }
+
           const u = await apiClientFetch<any>("/api/auth/me");
           const name = u?.name ?? undefined;
           const email = u?.email ?? undefined;
@@ -104,7 +125,11 @@ export function Header({ onMenuClick, user }: HeaderProps) {
             roles: u?.roles,
           });
         } catch (error) {
-          console.error("Falha ao buscar dados do usuário:", error);
+          // Não logar erro se não houver token (logout)
+          const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
+          if (hasToken) {
+            console.error("Falha ao buscar dados do usuário:", error);
+          }
           try {
             const name = localStorage.getItem("user:name") || undefined;
             const email = localStorage.getItem("user:email") || undefined;
@@ -113,7 +138,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
             if (name || email || displayName) {
               setLocalUser({ name, email, displayName });
             }
-          } catch {}
+          } catch { }
         }
       };
       load();
@@ -179,7 +204,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
           `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
         );
       }
-    } catch {}
+    } catch { }
   };
 
   return (
@@ -251,7 +276,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -266,21 +291,21 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
+                  } catch { }
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Padrão do sistema
@@ -293,7 +318,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", val);
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   applyToneColor(val, undefined);
                   try {
                     window.dispatchEvent(
@@ -301,7 +326,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                         detail: { tone: val, color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 <DropdownMenuRadioItem value="primary">
@@ -333,7 +358,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch {}
+                    } catch { }
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -341,7 +366,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch {}
+                    } catch { }
                   }}
                 />
                 <Input
@@ -355,7 +380,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                     try {
                       localStorage.setItem("pc:headerColor", v);
                       localStorage.removeItem("pc:headerTone");
-                    } catch {}
+                    } catch { }
                     applyToneColor(undefined, v);
                     try {
                       window.dispatchEvent(
@@ -363,7 +388,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                           detail: { tone: undefined, color: v },
                         })
                       );
-                    } catch {}
+                    } catch { }
                   }}
                 />
               </div>
@@ -390,15 +415,14 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
+                      }, transparent)`;
                     root.style.setProperty("--ui-header-bg", bg);
                     root.style.setProperty(
                       "--ui-header-fg",
                       "var(--foreground)"
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Aplicar ao cabeçalho
@@ -423,15 +447,14 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                     };
                     const bg = color
                       ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
+                      : `color-mix(in oklch, ${baseMap[tone]} ${factorMap[tone] || "28%"
+                      }, transparent)`;
                     root.style.setProperty("--ui-sidebar-bg", bg);
                     root.style.setProperty(
                       "--ui-sidebar-fg",
                       "var(--foreground)"
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Aplicar à sidebar
@@ -444,7 +467,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                   try {
                     localStorage.setItem("pc:headerTone", "primary");
                     localStorage.removeItem("pc:headerColor");
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.setProperty(
@@ -459,21 +482,21 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                       "--pc-header-fg-muted",
                       `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
                     );
-                  } catch {}
+                  } catch { }
                   try {
                     const root = document.documentElement;
                     root.style.removeProperty("--ui-header-bg");
                     root.style.removeProperty("--ui-header-fg");
                     root.style.removeProperty("--ui-sidebar-bg");
                     root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
+                  } catch { }
                   try {
                     window.dispatchEvent(
                       new CustomEvent("pc:headerColorChange", {
                         detail: { tone: "primary", color: undefined },
                       })
                     );
-                  } catch {}
+                  } catch { }
                 }}
               >
                 Redefinir padrão
@@ -517,7 +540,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                   <p className="text-xs leading-none text-muted-foreground">
                     {localUser?.email ||
                       (Array.isArray(localUser?.roles) &&
-                      localUser!.roles!.includes("ADMIN")
+                        localUser!.roles!.includes("ADMIN")
                         ? "Administrador"
                         : "")}
                   </p>

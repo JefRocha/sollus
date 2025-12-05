@@ -25,7 +25,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         const w = window.innerWidth;
         const h = window.innerHeight;
         setLowRes(w < 1366 || h < 768);
-      } catch {}
+      } catch { }
     };
     detect();
     window.addEventListener("resize", detect);
@@ -36,12 +36,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     try {
       const v = window.localStorage.getItem("sidebarCollapsed");
       if (v === "1") setSidebarCollapsed(true);
-    } catch {}
+    } catch { }
   }, []);
 
   useEffect(() => {
     const loadUser = async () => {
       try {
+        // Verificar se há token antes de fazer requisição
+        const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
+        if (!hasToken) {
+          // Sem token, não fazer requisição
+          return;
+        }
+
         const r = await apiClientFetch<any>('/api/auth/me');
         const name = r?.colaborador?.pessoa?.nome || r?.nome || r?.name;
         const email = r?.colaborador?.pessoa?.email || r?.email;
@@ -56,7 +63,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         };
         setUser(u);
       } catch (error) {
-        console.error("Falha ao buscar dados do usuário:", error);
+        // Não logar erro se não houver token (logout)
+        const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
+        if (hasToken) {
+          console.error("Falha ao buscar dados do usuário:", error);
+        }
         // Se a chamada principal falhar, tenta carregar do localStorage como fallback
         if (!user) {
           try {
@@ -66,7 +77,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             if (name || email || displayName) {
               setUser({ name, email, displayName });
             }
-          } catch {}
+          } catch { }
         }
       }
     };
@@ -100,7 +111,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                       "sidebarCollapsed",
                       next ? "1" : "0"
                     );
-                  } catch {}
+                  } catch { }
                   return next;
                 });
               }}
@@ -122,14 +133,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                 setSidebarCollapsed(true);
                 try {
                   window.localStorage.setItem("sidebarCollapsed", "1");
-                } catch {}
+                } catch { }
               }
             }}
             onExpand={() => {
               setSidebarCollapsed(false);
               try {
                 window.localStorage.setItem("sidebarCollapsed", "0");
-              } catch {}
+              } catch { }
             }}
           />
         </aside>
@@ -145,14 +156,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   setSidebarCollapsed(true);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "1");
-                  } catch {}
+                  } catch { }
                 }
               }}
               onExpand={() => {
                 setSidebarCollapsed(false);
                 try {
                   window.localStorage.setItem("sidebarCollapsed", "0");
-                } catch {}
+                } catch { }
               }}
             />
           </SheetContent>
