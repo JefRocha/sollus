@@ -28,19 +28,19 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, httpsOptions ? { httpsOptions } : {});
   app.setGlobalPrefix('api');
   app.use(cookieParser());
-  app.use(helmet());
-  app.use((req, res, next) => {
-    console.log('Incoming request cookies:', req.cookies);
-    next();
-  });
+  app.use(helmet(process.env.NODE_ENV === 'production' ? { hsts: { maxAge: 31536000, includeSubDomains: true, preload: true } } : undefined));
+  if (process.env.NODE_ENV !== 'production') {
+    app.use((req, res, next) => {
+      console.log('Incoming request cookies:', req.cookies);
+      next();
+    });
+  }
   app.useGlobalFilters(new HttpExceptionFilter());
 
   // Configurar CORS para permitir credenciais (cookies)
+  const origins = String(process.env.APP_ORIGIN || 'http://localhost:3000').split(',').map((s) => s.trim()).filter(Boolean);
   app.enableCors({
-    origin: [
-      process.env.APP_ORIGIN || 'http://localhost:3000',
-      'http://localhost:3001',
-    ],
+    origin: origins.length ? origins : ['http://localhost:3000'],
     credentials: true, // Permite envio de cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token'],

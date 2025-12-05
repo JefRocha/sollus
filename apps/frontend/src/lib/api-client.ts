@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const COOKIE_ONLY = process.env.NEXT_PUBLIC_AUTH_COOKIE_ONLY === "1";
 
 export async function apiClientFetch<T>(
   endpoint: string,
@@ -8,7 +9,7 @@ export async function apiClientFetch<T>(
 
   // Obter o token de acesso do localStorage (client-side)
   let accessToken: string | undefined;
-  if (typeof window !== "undefined") {
+  if (!COOKIE_ONLY && typeof window !== "undefined") {
     accessToken = localStorage.getItem("sollus_access_token") || undefined;
   }
 
@@ -47,7 +48,9 @@ export async function apiClientFetch<T>(
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+      ...(!COOKIE_ONLY && accessToken
+        ? { Authorization: `Bearer ${accessToken}` }
+        : {}),
       ...(csrfToken && { "X-CSRF-Token": csrfToken }),
       ...(options?.headers || {}),
     },
@@ -93,7 +96,7 @@ export async function apiClientFetch<T>(
       // Tentar refresh via body (localStorage refreshToken), depois fallback para cookies httpOnly
       try {
         const rt =
-          typeof window !== "undefined"
+          !COOKIE_ONLY && typeof window !== "undefined"
             ? localStorage.getItem("sollus_refresh_token") || undefined
             : undefined;
         if (rt) {
@@ -111,7 +114,7 @@ export async function apiClientFetch<T>(
               const body = await refreshResBody.json().catch(() => ({} as any));
               const newAccess = body?.token || body?.accessToken;
               const newRefresh = body?.refreshToken;
-              if (typeof window !== "undefined") {
+              if (!COOKIE_ONLY && typeof window !== "undefined") {
                 if (newAccess)
                   localStorage.setItem("sollus_access_token", newAccess);
                 if (newRefresh)
@@ -145,7 +148,7 @@ export async function apiClientFetch<T>(
           const body = {} as any;
           const newAccess = body?.token || body?.accessToken;
           const newRefresh = body?.refreshToken;
-          if (typeof window !== "undefined") {
+          if (!COOKIE_ONLY && typeof window !== "undefined") {
             if (newAccess)
               localStorage.setItem("sollus_access_token", newAccess);
             if (newRefresh)
@@ -157,7 +160,8 @@ export async function apiClientFetch<T>(
           credentials: "include",
           headers: {
             "Content-Type": "application/json",
-            ...(typeof window !== "undefined" &&
+            ...(!COOKIE_ONLY &&
+            typeof window !== "undefined" &&
             localStorage.getItem("sollus_access_token")
               ? {
                   Authorization: `Bearer ${localStorage.getItem(

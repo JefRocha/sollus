@@ -14,7 +14,7 @@ export class CsrfGuard implements CanActivate {
     if (!needsCsrf) return true;
     const url = String(req.originalUrl || req.url || '');
     if (/^\/api\/csrf(\b|\/)?.*/.test(url)) return true;
-    if (/^\/api\/auth\/(login|refresh)(\b|\/)?.*/.test(url)) return true;
+    if (/^\/api\/auth\/login(\b|\/)?.*/.test(url)) return true;
     const headerToken = req.headers['x-csrf-token'];
     const cookieToken = req.cookies?.['XSRF-TOKEN'];
     if (

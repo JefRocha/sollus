@@ -55,9 +55,12 @@ export function LoginForm() {
             const r = await res.json();
             const access = r?.token ?? r?.access_token ?? r?.accessToken ?? r?.jwt ?? r?.data?.token;
             const refresh = r?.refreshToken ?? r?.refresh_token ?? r?.data?.refresh;
+            const COOKIE_ONLY = process.env.NEXT_PUBLIC_AUTH_COOKIE_ONLY === '1';
             try {
-                if (access) window.localStorage.setItem('sollus_access_token', access);
-                if (refresh) window.localStorage.setItem('sollus_refresh_token', refresh);
+                if (!COOKIE_ONLY) {
+                    if (access) window.localStorage.setItem('sollus_access_token', access);
+                    if (refresh) window.localStorage.setItem('sollus_refresh_token', refresh);
+                }
             } catch {}
             try {
                 window.location.href = '/dashboard';
