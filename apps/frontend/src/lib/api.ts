@@ -23,13 +23,15 @@ export async function apiFetch<T>(
   // Obter o token de acesso (preferencialmente do localStorage para Client Components, fallback para cookies para Server Components)
   let accessToken: string | undefined;
   try {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       accessToken = localStorage.getItem("sollus_access_token") || undefined;
     }
   } catch (e) {
-    console.warn("Could not access localStorage or cookies for access token:", e);
+    console.warn(
+      "Could not access localStorage or cookies for access token:",
+      e
+    );
   }
-
 
   const { suppressErrorLog, ...fetchOptions } = options || ({} as any);
   const suppress = !!suppressErrorLog;
@@ -41,12 +43,43 @@ export async function apiFetch<T>(
   for (const ep of endpoints) {
     const url = `${API_URL}${ep}`;
     try {
+      const method = String(fetchOptions?.method || "GET").toUpperCase();
+      let csrfToken: string | undefined;
+      if (
+        typeof window !== "undefined" &&
+        process.env.NEXT_PUBLIC_ENABLE_CSRF === "1" &&
+        /^(POST|PUT|PATCH|DELETE)$/.test(method)
+      ) {
+        try {
+          csrfToken = localStorage.getItem("sollus_csrf_token") || undefined;
+          if (!csrfToken) {
+            const csrfRes = await fetch(`${API_URL}/api/csrf`, {
+              credentials: "include",
+            }).catch(() => null);
+            if (csrfRes && csrfRes.ok) {
+              const bodyText = await csrfRes.text().catch(() => "");
+              try {
+                const json = JSON.parse(bodyText);
+                csrfToken = json?.token || json?.csrfToken || undefined;
+              } catch {
+                csrfToken = bodyText || undefined;
+              }
+              if (csrfToken) {
+                try {
+                  localStorage.setItem("sollus_csrf_token", csrfToken);
+                } catch {}
+              }
+            }
+          }
+        } catch {}
+      }
       const res = await fetch(url, {
         ...fetchOptions,
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
           ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+          ...(csrfToken && { "X-CSRF-Token": csrfToken }),
           ...fetchOptions?.headers,
         },
       });
@@ -57,37 +90,142 @@ export async function apiFetch<T>(
 
       if (res.status === 401) {
         try {
-          let refreshToken: string | undefined;
-          if (typeof window !== 'undefined') {
-            refreshToken = localStorage.getItem("sollus_refresh_token") || undefined;
-          }
+          let refreshed = false;
+          let newAccessToken: string | undefined;
 
-          if (refreshToken) {
+          try {
+            let refreshToken: string | undefined;
+            if (typeof window !== "undefined") {
+              refreshToken =
+                localStorage.getItem("sollus_refresh_token") || undefined;
+            }
+
+            if (refreshToken) {
+              let refreshCsrf: string | undefined;
+              if (
+                typeof window !== "undefined" &&
+                process.env.NEXT_PUBLIC_ENABLE_CSRF === "1"
+              ) {
+                try {
+                  refreshCsrf =
+                    localStorage.getItem("sollus_csrf_token") || undefined;
+                  if (!refreshCsrf) {
+                    const csrfRes = await fetch(`${API_URL}/api/csrf`, {
+                      credentials: "include",
+                    }).catch(() => null);
+                    if (csrfRes && csrfRes.ok) {
+                      const bodyText = await csrfRes.text().catch(() => "");
+                      try {
+                        const json = JSON.parse(bodyText);
+                        refreshCsrf =
+                          json?.token || json?.csrfToken || undefined;
+                      } catch {
+                        refreshCsrf = bodyText || undefined;
+                      }
+                      if (refreshCsrf) {
+                        try {
+                          localStorage.setItem(
+                            "sollus_csrf_token",
+                            refreshCsrf
+                          );
+                        } catch {}
+                      }
+                    }
+                  }
+                } catch {}
+              }
+              const refreshRes = await fetch(`${API_URL}/api/auth/refresh`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  ...(refreshCsrf && { "X-CSRF-Token": refreshCsrf }),
+                },
+                body: JSON.stringify({ refreshToken }),
+                credentials: "include",
+              });
+              if (refreshRes.ok) {
+                try {
+                  const json = await refreshRes.json().catch(() => ({} as any));
+                  newAccessToken =
+                    json?.token || json?.accessToken || undefined;
+                  const newRefreshToken = json?.refreshToken || undefined;
+                  if (typeof window !== "undefined") {
+                    if (newAccessToken)
+                      localStorage.setItem(
+                        "sollus_access_token",
+                        newAccessToken
+                      );
+                    if (newRefreshToken)
+                      localStorage.setItem(
+                        "sollus_refresh_token",
+                        newRefreshToken
+                      );
+                  }
+                } catch {}
+                refreshed = true;
+              }
+            }
+          } catch {}
+
+          // Se não conseguiu via Bearer/localStorage, tenta refresh só com cookies httpOnly
+          if (!refreshed) {
+            let refreshCsrf: string | undefined;
+            if (
+              typeof window !== "undefined" &&
+              process.env.NEXT_PUBLIC_ENABLE_CSRF === "1"
+            ) {
+              try {
+                refreshCsrf =
+                  localStorage.getItem("sollus_csrf_token") || undefined;
+                if (!refreshCsrf) {
+                  const csrfRes = await fetch(`${API_URL}/api/csrf`, {
+                    credentials: "include",
+                  }).catch(() => null);
+                  if (csrfRes && csrfRes.ok) {
+                    const bodyText = await csrfRes.text().catch(() => "");
+                    try {
+                      const json = JSON.parse(bodyText);
+                      refreshCsrf = json?.token || json?.csrfToken || undefined;
+                    } catch {
+                      refreshCsrf = bodyText || undefined;
+                    }
+                    if (refreshCsrf) {
+                      try {
+                        localStorage.setItem("sollus_csrf_token", refreshCsrf);
+                      } catch {}
+                    }
+                  }
+                }
+              } catch {}
+            }
             const refreshRes = await fetch(`${API_URL}/api/auth/refresh`, {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ refreshToken }),
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+                ...(refreshCsrf && { "X-CSRF-Token": refreshCsrf }),
+              },
+            }).catch(() => null);
+            if (refreshRes && refreshRes.ok) {
+              refreshed = true;
+            }
+          }
+
+          if (refreshed) {
+            const retryRes = await fetch(url, {
+              ...fetchOptions,
+              credentials: "include",
+              headers: {
+                "Content-Type": "application/json",
+                ...(newAccessToken && {
+                  Authorization: `Bearer ${newAccessToken}`,
+                }),
+                ...(csrfToken && { "X-CSRF-Token": csrfToken }),
+                ...fetchOptions?.headers,
+              },
             });
-            if (refreshRes.ok) {
-              const { token: newAccessToken, refreshToken: newRefreshToken } = await refreshRes.json();
-              if (newAccessToken && newRefreshToken) {
-                if (typeof window !== 'undefined') {
-                  localStorage.setItem("sollus_access_token", newAccessToken);
-                  localStorage.setItem("sollus_refresh_token", newRefreshToken);
-                }
-                const retryRes = await fetch(url, {
-                  ...fetchOptions,
-                  credentials: "include",
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${newAccessToken}`,
-                    ...fetchOptions?.headers,
-                  },
-                });
-                if (retryRes.ok) {
-                  return retryRes.json();
-                }
-              }
+            if (retryRes.ok) {
+              return retryRes.json();
             }
           }
         } catch (e) {
@@ -103,7 +241,9 @@ export async function apiFetch<T>(
       lastBody = await res.text().catch(() => null);
       continue;
     } catch (error: any) {
-      const isAuthError = error instanceof Error && (error.message === "Unauthorized" || /401/.test(String(error)));
+      const isAuthError =
+        error instanceof Error &&
+        (error.message === "Unauthorized" || /401/.test(String(error)));
       if (!suppress && !isAuthError) {
         console.error("[API FETCH ERROR] Network or other fetch issue:", error);
       }
@@ -114,9 +254,18 @@ export async function apiFetch<T>(
     }
   }
 
-  const msg = `API Error: ${lastStatus} ${lastStatusText}${lastBody ? ` - ${lastBody}` : ""}`;
+  const msg = `API Error: ${lastStatus} ${lastStatusText}${
+    lastBody ? ` - ${lastBody}` : ""
+  }`;
   if (!suppress) {
     console.error("[API FETCH ERROR] Response not OK:", msg);
   }
-  return { __http_error: { status: lastStatus, statusText: lastStatusText, body: lastBody }, message: msg } as any as T;
+  return {
+    __http_error: {
+      status: lastStatus,
+      statusText: lastStatusText,
+      body: lastBody,
+    },
+    message: msg,
+  } as any as T;
 }

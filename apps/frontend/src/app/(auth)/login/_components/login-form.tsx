@@ -1,12 +1,12 @@
 'use client';
 
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useAction } from "next-safe-action/hooks";
 import { apiClientFetch } from "@/lib/api-client";
 import { useRouter } from 'next/navigation';
-import { loginAction } from '@/actions/auth';
+// Removido uso de server action para garantir Set-Cookie no navegador
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -29,19 +29,8 @@ type LoginSchema = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
     const router = useRouter();
-    const { execute, isExecuting, result } = useAction(loginAction, {
-        onSuccess: async ({ data }) => {
-            if (data?.success && data?.token && data?.refreshToken) {
-                try {
-                    window.localStorage.setItem('sollus_access_token', data.token);
-                    window.localStorage.setItem('sollus_refresh_token', data.refreshToken);
-                } catch (e) {
-                    console.error("Failed to save tokens to localStorage:", e);
-                }
-                router.push('/dashboard');
-            }
-        },
-    });
+    const [isExecuting, setExecuting] = React.useState(false);
+    const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
     const form = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
@@ -51,8 +40,36 @@ export function LoginForm() {
         },
     });
 
-    function onSubmit(values: LoginSchema) {
-        execute(values);
+    async function onSubmit(values: LoginSchema) {
+        setExecuting(true);
+        setErrorMsg(null);
+        try {
+            const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://localhost:4000';
+            const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(values),
+            });
+            if (!res.ok) throw new Error(`login_failed_${res.status}`);
+            const r = await res.json();
+            const access = r?.token ?? r?.access_token ?? r?.accessToken ?? r?.jwt ?? r?.data?.token;
+            const refresh = r?.refreshToken ?? r?.refresh_token ?? r?.data?.refresh;
+            try {
+                if (access) window.localStorage.setItem('sollus_access_token', access);
+                if (refresh) window.localStorage.setItem('sollus_refresh_token', refresh);
+            } catch {}
+            try {
+                window.location.href = '/dashboard';
+            } catch {
+                router.push('/dashboard');
+            }
+        } catch (e) {
+            console.error('Login error:', e);
+            setErrorMsg('Usuário ou senha inválidos');
+        } finally {
+            setExecuting(false);
+        }
     }
 
     return (
@@ -93,10 +110,10 @@ export function LoginForm() {
                             )}
                         />
 
-                        {result.data?.error && (
+                        {errorMsg && (
                             <div className="flex items-center gap-2 p-3 text-sm text-red-600 bg-red-50 rounded-md">
                                 <AlertCircle className="w-4 h-4" />
-                                <span>{result.data.error}</span>
+                                <span>{errorMsg}</span>
                             </div>
                         )}
 

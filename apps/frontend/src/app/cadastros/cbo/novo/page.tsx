@@ -1,24 +1,13 @@
 import { PageContainer } from "@/components/page-container";
 import { CboForm } from "./../_components/cbo-form";
-import { getCboById } from "./../cbo.service";
+import * as React from "react";
 
-export default async function CboPersistePage({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const id = params.id;
-  const isEditing = id !== "novo";
-  const data = isEditing ? await getCboById(Number(id)) : undefined;
-
-  const title = isEditing ? "Editar Cbo" : "Novo Cbo";
-  const description = isEditing
-    ? "Altere os dados do seu cbo aqui."
-    : "Crie um novo cbo preenchendo o formulário abaixo.";
-
+export default async function CboNovoPage() {
   return (
-    <PageContainer title={title} description={description}>
-      <CboForm data={data} />
+    <PageContainer title="Novo Cbo" description="Crie um novo cbo preenchendo o formulário abaixo.">
+      <React.Suspense fallback={<div className="p-4 text-sm text-muted-foreground">Carregando...</div>}>
+        <CboForm />
+      </React.Suspense>
     </PageContainer>
   );
 }

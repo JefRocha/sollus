@@ -23,6 +23,7 @@ import { ViewsDBModule } from './views-db/views-db.module';
 import { LoginModule } from './login/login.module';
 import { TenantModule } from './tenant/tenant.module';
 import { HealthController } from './health/health.controller';
+import { SecurityModule } from './security/security.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { ClsInterceptor } from './common/cls.interceptor';
 
@@ -50,6 +51,7 @@ import { ClsInterceptor } from './common/cls.interceptor';
     ViewsDBModule,
     LoginModule,
     TenantModule,
+    SecurityModule,
   ],
   controllers: [AppController, HealthController],
   providers: [
@@ -61,5 +63,5 @@ import { ClsInterceptor } from './common/cls.interceptor';
   ],
 })
 export class AppModule {
-  constructor(private dataSource: DataSource) { }
+  constructor(private dataSource: DataSource) {}
 }

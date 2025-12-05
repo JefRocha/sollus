@@ -34,7 +34,15 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Post, Req, Res, HttpStatus, Get, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Req,
+  Res,
+  HttpStatus,
+  Get,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Usuario } from './../cadastros/usuario/usuario.entity';
 import { LoginService } from './login.service';
@@ -42,56 +50,82 @@ import { Request, Response } from 'express';
 
 @Controller('auth')
 export class LoginController {
+  constructor(private service: LoginService) {}
 
-    constructor(private service: LoginService) { }
+  @Post('login')
+  async login(@Req() request: Request, @Res() response: Response) {
+    try {
+      let objetoJson = request.body;
+      let usuario = new Usuario(objetoJson);
 
-    @Post('login')
-    async login(@Req() request: Request, @Res() response: Response) {
-        try {
-            let objetoJson = request.body;
-            let usuario = new Usuario(objetoJson);
-
-            const { accessToken, refreshToken } = await this.service.login(usuario);
-            console.log('LoginController.login: refreshToken generated:', refreshToken);
-
-            return response.status(HttpStatus.OK).json({ token: accessToken, refreshToken: refreshToken });
-        } catch (error) {
-            throw error;
-        }
+      const { accessToken, refreshToken } = await this.service.login(usuario);
+      response.cookie('sollus_access_token', accessToken, {
+        httpOnly: true,
+        secure: process.env.COOKIE_SECURE === 'true',
+        sameSite: 'none',
+        path: '/',
+        maxAge: 3600_000,
+      });
+      response.cookie('sollus_refresh_token', refreshToken, {
+        httpOnly: true,
+        secure: process.env.COOKIE_SECURE === 'true',
+        sameSite: 'none',
+        path: '/',
+        maxAge: 7 * 24 * 3600_000,
+      });
+      return response
+        .status(HttpStatus.OK)
+        .json({ token: accessToken, refreshToken: refreshToken });
+    } catch (error) {
+      throw error;
     }
+  }
 
-    @Post('refresh')
-    async refresh(@Req() request: Request, @Res() response: Response) {
-        try {
-            const oldRefreshToken = request.cookies['sollus_refresh'];
-            console.log('LoginController.refresh: oldRefreshToken from cookie:', oldRefreshToken);
+  @Post('refresh')
+  async refresh(@Req() request: Request, @Res() response: Response) {
+    try {
+      const oldRefreshToken = request.cookies['sollus_refresh_token'];
 
-            if (!oldRefreshToken) {
-                return response.status(HttpStatus.UNAUTHORIZED).json({ message: 'Refresh token not found' });
-            }
+      if (!oldRefreshToken) {
+        return response
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ message: 'Refresh token not found' });
+      }
 
-            const { accessToken, refreshToken } = await this.service.refresh(oldRefreshToken);
+      const { accessToken, refreshToken } = await this.service.refresh(
+        oldRefreshToken,
+      );
 
-            // Atualiza o cookie com o novo Refresh Token (Rotação)
-            return response.status(HttpStatus.OK).json({ token: accessToken, refreshToken: refreshToken });
-        } catch (error) {
-            // Se falhar, limpa o cookie
-            response.clearCookie('sollus_refresh', { path: '/' });
-            return response.status(HttpStatus.UNAUTHORIZED).json({ message: 'Invalid refresh token' });
-        }
+      response.cookie('sollus_access_token', accessToken, {
+        httpOnly: true,
+        secure: process.env.COOKIE_SECURE === 'true',
+        sameSite: 'none',
+        path: '/',
+        maxAge: 3600_000,
+      });
+      return response
+        .status(HttpStatus.OK)
+        .json({ token: accessToken, refreshToken: refreshToken });
+    } catch (error) {
+      // Se falhar, limpa o cookie
+      response.clearCookie('sollus_refresh_token', { path: '/' });
+      return response
+        .status(HttpStatus.UNAUTHORIZED)
+        .json({ message: 'Invalid refresh token' });
     }
+  }
 
-    @Get('me')
-    @UseGuards(AuthGuard('jwt'))
-    async me(@Req() request: Request) {
-        // o AuthGuard('jwt') já validou o token e anexou o payload do usuário em request.user
-        const userPayload = request.user as { sub: string };
-        const login = userPayload.sub;
-        
-        // usamos o serviço para buscar o usuário completo, carregando as relações de colaborador e pessoa
-        return this.service.findOne({ 
-            where: { login: login },
-            relations: ['colaborador', 'colaborador.pessoa']
-        });
-    }
+  @Get('me')
+  @UseGuards(AuthGuard('jwt'))
+  async me(@Req() request: Request) {
+    // o AuthGuard('jwt') já validou o token e anexou o payload do usuário em request.user
+    const userPayload = request.user as { sub: string };
+    const login = userPayload.sub;
+
+    // usamos o serviço para buscar o usuário completo, carregando as relações de colaborador e pessoa
+    return this.service.findOne({
+      where: { login: login },
+      relations: ['colaborador', 'colaborador.pessoa', 'papel'],
+    });
+  }
 }

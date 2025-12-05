@@ -1,6 +1,4 @@
-// A base da URL da API deve vir de uma variável de ambiente
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api';
-
+import { apiFetch, isErrorResult } from '@/lib/api';
 const ENDPOINT = `/usuario`;
 
 export type Usuario = {
@@ -17,11 +15,9 @@ export type Usuario = {
  * Busca uma lista de Usuario.
  */
 export async function getUsuarios(): Promise<Usuario[]> {
-    const response = await fetch(`${API_URL}${ENDPOINT}`);
-    if (!response.ok) {
-        throw new Error('Falha ao buscar os dados de Usuario.');
-    }
-    return response.json();
+    const r = await apiFetch<any>([ENDPOINT, '/usuarios', `/api${ENDPOINT}`, `/cadastros${ENDPOINT}`], { suppressErrorLog: true });
+    if (isErrorResult(r)) return [];
+    return Array.isArray(r) ? r : (Array.isArray(r?.data) ? r.data : (Array.isArray(r?.content) ? r.content : []));
 }
 
 /**
@@ -29,11 +25,8 @@ export async function getUsuarios(): Promise<Usuario[]> {
  * @param id O ID do(a) Usuario.
  */
 export async function getUsuarioById(id: number): Promise<Usuario> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`);
-    if (!response.ok) {
-        throw new Error('Falha ao buscar o dado de Usuario.');
-    }
-    return response.json();
+    const r = await apiFetch<Usuario>([`/usuario/${id}`, `/usuarios/${id}`, `/api/usuario/${id}`, `/cadastros/usuario/${id}`], { suppressErrorLog: true });
+    return r;
 }
 
 /**
@@ -41,18 +34,7 @@ export async function getUsuarioById(id: number): Promise<Usuario> {
  * @param data Os dados para o(a) novo(a) Usuario.
  */
 export async function createUsuario(data: Omit<Usuario, 'id'>): Promise<Usuario> {
-    const response = await fetch(`${API_URL}${ENDPOINT}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao criar o dado de Usuario.');
-    }
-    return response.json();
+    return apiFetch<Usuario>([ENDPOINT, '/usuarios', `/api${ENDPOINT}`, `/cadastros${ENDPOINT}`], { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), suppressErrorLog: true });
 }
 
 /**
@@ -61,18 +43,7 @@ export async function createUsuario(data: Omit<Usuario, 'id'>): Promise<Usuario>
  * @param data Os dados a serem atualizados.
  */
 export async function updateUsuario(id: number, data: Partial<Omit<Usuario, 'id'>>): Promise<Usuario> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao atualizar o dado de Usuario.');
-    }
-    return response.json();
+    return apiFetch<Usuario>([`/usuario/${id}`, `/usuarios/${id}`, `/api/usuario/${id}`, `/cadastros/usuario/${id}`], { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), suppressErrorLog: true });
 }
 
 /**
@@ -80,11 +51,5 @@ export async function updateUsuario(id: number, data: Partial<Omit<Usuario, 'id'
  * @param id O ID do(a) Usuario a ser deletado(a).
  */
 export async function deleteUsuario(id: number): Promise<void> {
-    const response = await fetch(`${API_URL}${ENDPOINT}/${id}`, {
-        method: 'DELETE',
-    });
-    if (!response.ok) {
-        // TODO: Melhorar o tratamento de erros com base no corpo da resposta
-        throw new Error('Falha ao deletar o dado de Usuario.');
-    }
+    await apiFetch<void>([`/usuario/${id}`, `/usuarios/${id}`, `/api/usuario/${id}`, `/cadastros/usuario/${id}`], { method: 'DELETE', suppressErrorLog: true });
 }

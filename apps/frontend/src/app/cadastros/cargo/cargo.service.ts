@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetch, isErrorResult } from "@/lib/api";
 
 const ENDPOINT = `/cargo`;
 
@@ -15,12 +15,9 @@ export type Cargo = {
  * Busca uma lista de Cargo.
  */
 export async function getCargos(): Promise<Cargo[]> {
-  try {
-    return await apiFetch<Cargo[]>(ENDPOINT);
-  } catch (error) {
-    console.error("Failed to fetch Cargos:", error);
-    return [];
-  }
+  const res = await apiFetch<any>(["/cargo", "/cargos", "/api/cargo", "/cadastros/cargo"], { suppressErrorLog: true });
+  if (isErrorResult(res)) return [];
+  return Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : (Array.isArray(res?.content) ? res.content : []));
 }
 
 /**
@@ -28,29 +25,12 @@ export async function getCargos(): Promise<Cargo[]> {
  * @param id O ID do(a) Cargo.
  */
 export async function getCargoById(id: number): Promise<Cargo> {
-  try {
-    return await apiFetch<Cargo>(`${ENDPOINT}/${id}`, {
-      suppressErrorLog: true,
-    });
-  } catch (error) {
-    console.error(
-      "[CargoService] Falha ao buscar por ID, tentando fallback via lista:",
-      error
-    );
-    try {
-      const list = await apiFetch<Cargo[]>(ENDPOINT, {
-        suppressErrorLog: true,
-      });
-      const found = list.find((c) => c.id === id);
-      if (!found) {
-        throw new Error(`Cargo ${id} não encontrado no fallback`);
-      }
-      return found;
-    } catch (fallbackError) {
-      console.error("[CargoService] Fallback também falhou:", fallbackError);
-      throw fallbackError;
-    }
-  }
+  const r = await apiFetch<any>([`/cargo/${id}`, `/cargos/${id}`, `/api/cargo/${id}`, `/cadastros/cargo/${id}`], { suppressErrorLog: true });
+  if (!isErrorResult(r)) return r;
+  const list = await getCargos();
+  const found = list.find((c) => c.id === id);
+  if (!found) return { id, nome: "", descricao: "", salario: 0 } as any;
+  return found;
 }
 
 /**
@@ -58,10 +38,8 @@ export async function getCargoById(id: number): Promise<Cargo> {
  * @param data Os dados para o(a) novo(a) Cargo.
  */
 export async function createCargo(data: Omit<Cargo, "id">): Promise<Cargo> {
-  return apiFetch<Cargo>(ENDPOINT, {
-    method: "POST",
-    body: JSON.stringify(data),
-  });
+  const res = await apiFetch<Cargo>(["/cargo", "/cargos", "/api/cargo", "/cadastros/cargo"], { method: "POST", body: JSON.stringify(data), suppressErrorLog: true });
+  return res;
 }
 
 /**
@@ -73,10 +51,8 @@ export async function updateCargo(
   id: number,
   data: Partial<Omit<Cargo, "id">>
 ): Promise<Cargo> {
-  return apiFetch<Cargo>(`${ENDPOINT}/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(data),
-  });
+  const res = await apiFetch<Cargo>([`/cargo/${id}`, `/cargos/${id}`, `/api/cargo/${id}`, `/cadastros/cargo/${id}`], { method: "PUT", body: JSON.stringify(data), suppressErrorLog: true });
+  return res;
 }
 
 /**
@@ -84,7 +60,5 @@ export async function updateCargo(
  * @param id O ID do(a) Cargo a ser deletado(a).
  */
 export async function deleteCargo(id: number): Promise<void> {
-  await apiFetch<void>(`${ENDPOINT}/${id}`, {
-    method: "DELETE",
-  });
+  await apiFetch<void>([`/cargo/${id}`, `/cargos/${id}`, `/api/cargo/${id}`, `/cadastros/cargo/${id}`], { method: "DELETE", suppressErrorLog: true });
 }

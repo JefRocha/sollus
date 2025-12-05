@@ -1,11 +1,23 @@
 import { NextResponse } from "next/server";
-import { apiFetch } from "@/lib/api";
+import { apiFetchServer } from "@/lib/api-server";
 
-export async function GET() {
+export async function GET(req: Request) {
+  const auth = req.headers.get("authorization") || undefined;
+  const cookie = req.headers.get("cookie") || undefined;
+  const opts: RequestInit & { suppressErrorLog?: boolean } = {
+    suppressErrorLog: true,
+    headers: {
+      ...(auth ? { Authorization: auth } : {}),
+      ...(cookie ? { Cookie: cookie } : {}),
+    },
+  };
+  const ctx = {
+    cookieHeader: cookie || undefined,
+  } as any;
   const tryPaths = async () => {
-    for (const p of ["/auth/me", "/usuario/me", "/me"]) {
+    for (const p of ["/api/auth/me", "/api/usuario/me", "/api/me"]) {
       try {
-        const u = await apiFetch<any>(p, { suppressErrorLog: true });
+        const u = await apiFetchServer<any>(p, opts, ctx);
         return u;
       } catch {}
     }
@@ -14,24 +26,35 @@ export async function GET() {
   const base = await tryPaths();
   if (!base) return NextResponse.json({ error: "not_found" }, { status: 404 });
 
-  const personName =
-    base?.pessoaModel?.nome ||
-    base?.colaboradorModel?.pessoaModel?.nome ||
-    base?.data?.pessoaModel?.nome ||
+  const name =
+    base?.colaborador?.pessoa?.nome ||
+    base?.nome ||
+    base?.name ||
+    base?.data?.nome ||
+    base?.data?.name ||
     undefined;
-  const personEmail =
-    base?.pessoaModel?.email || base?.data?.pessoaModel?.email || base?.email || base?.data?.email;
-  const name = personName || base?.nome || base?.name || base?.data?.nome || base?.data?.name;
-  const email = personEmail || base?.email || base?.data?.email;
-  const roles = Array.isArray(base?.roles)
+  const email =
+    base?.colaborador?.pessoa?.email ||
+    base?.email ||
+    base?.data?.email ||
+    undefined;
+  let roles = Array.isArray(base?.roles)
     ? base.roles
     : Array.isArray(base?.data?.roles)
     ? base.data.roles
     : undefined;
-  const administrador =
-    base?.administrador ?? (roles && roles.includes("ADMIN") ? "S" : undefined);
-  const idColaborador = base?.idColaborador ?? base?.data?.idColaborador ?? base?.colaboradorId;
-  const idPessoa = base?.idPessoa ?? base?.data?.idPessoa ?? base?.pessoaId;
+  const admRaw = base?.administrador ?? base?.data?.administrador;
+  const admStr = typeof admRaw === 'string' ? admRaw : (admRaw ? 'S' : undefined);
+  const admNorm = admStr ? String(admStr).toUpperCase() : undefined;
+  const administrador = admNorm && (admNorm === 'S' || admNorm === 'Y' || admNorm === 'TRUE' || admNorm === '1')
+    ? 'S'
+    : (roles && roles.includes('ADMIN') ? 'S' : undefined);
+  if (administrador === 'S') {
+    roles = Array.isArray(roles) ? roles : [];
+    if (!roles.includes('ADMIN')) roles.push('ADMIN');
+  }
+  const idColaborador = base?.idColaborador ?? base?.data?.idColaborador ?? base?.colaborador?.id ?? base?.colaboradorId;
+  const idPessoa = base?.idPessoa ?? base?.data?.idPessoa ?? base?.colaborador?.pessoa?.id ?? base?.pessoaId;
   const login = base?.login ?? base?.data?.login ?? base?.username;
   const displayName = name || (email ? String(email).split("@")[0] : login);
 

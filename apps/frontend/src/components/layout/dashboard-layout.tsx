@@ -11,14 +11,32 @@ import { cn } from "@/lib/utils";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
-  user?: { name?: string; email?: string; administrador?: string; roles?: string[]; displayName?: string };
+  user?: {
+    name?: string;
+    email?: string;
+    administrador?: string;
+    roles?: string[];
+    displayName?: string;
+  };
 }
 
-export function DashboardLayout({ children, user: initialUser }: DashboardLayoutProps) {
+export function DashboardLayout({
+  children,
+  user: initialUser,
+}: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [lowRes, setLowRes] = useState(false);
-  const [user, setUser] = useState<{ name?: string; email?: string; administrador?: string; roles?: string[]; displayName?: string } | undefined>(initialUser);
+  const [user, setUser] = useState<
+    | {
+        name?: string;
+        email?: string;
+        administrador?: string;
+        roles?: string[];
+        displayName?: string;
+      }
+    | undefined
+  >(initialUser);
 
   useEffect(() => {
     const detect = () => {
@@ -26,7 +44,7 @@ export function DashboardLayout({ children, user: initialUser }: DashboardLayout
         const w = window.innerWidth;
         const h = window.innerHeight;
         setLowRes(w < 1366 || h < 768);
-      } catch { }
+      } catch {}
     };
     detect();
     window.addEventListener("resize", detect);
@@ -37,48 +55,58 @@ export function DashboardLayout({ children, user: initialUser }: DashboardLayout
     try {
       const v = window.localStorage.getItem("sidebarCollapsed");
       if (v === "1") setSidebarCollapsed(true);
-    } catch { }
+    } catch {}
   }, []);
 
   useEffect(() => {
     const loadUser = async () => {
       try {
-        // Verificar se há token antes de fazer requisição
-        const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
-        if (!hasToken) {
-          // Sem token, não fazer requisição
-          return;
-        }
-
-        const r = await apiClientFetch<any>('/api/auth/me');
-        const name = r?.colaborador?.pessoa?.nome || r?.nome || r?.name;
-        const email = r?.colaborador?.pessoa?.email || r?.email;
-        const login = r?.login || r?.username;
-        const displayName = name || (email ? String(email).split('@')[0] : undefined) || login || undefined;
+        const token =
+          typeof window !== "undefined"
+            ? localStorage.getItem("sollus_access_token") || undefined
+            : undefined;
+        const res = await fetch("/api/me", {
+          credentials: "include",
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        });
+        if (!res.ok) throw new Error("me_failed");
+        const r = await res.json();
+        const name = r?.name;
+        const email = r?.email;
+        const login = undefined;
+        const displayName =
+          r?.displayName ||
+          name ||
+          (email ? String(email).split("@")[0] : undefined) ||
+          login ||
+          undefined;
         const u = {
           name,
           email,
-          administrador: r?.administrador ?? (Array.isArray(r?.roles) && r.roles.includes('ADMIN') ? 'S' : undefined),
+          administrador:
+            r?.administrador ??
+            (Array.isArray(r?.roles) && r.roles.includes("ADMIN")
+              ? "S"
+              : undefined),
           roles: Array.isArray(r?.roles) ? r.roles : undefined,
           displayName,
         };
         setUser(u);
       } catch (error) {
-        // Não logar erro se não houver token (logout)
-        const hasToken = typeof window !== 'undefined' && localStorage.getItem("sollus_access_token");
-        if (hasToken) {
-          console.error("Falha ao buscar dados do usuário:", error);
-        }
         // Se a chamada principal falhar, tenta carregar do localStorage como fallback
         if (!user) {
           try {
-            const name = window.localStorage.getItem('user:name') || undefined;
-            const email = window.localStorage.getItem('user:email') || undefined;
-            const displayName = window.localStorage.getItem('user:displayName') || undefined;
+            const name = window.localStorage.getItem("user:name") || undefined;
+            const email =
+              window.localStorage.getItem("user:email") || undefined;
+            const displayName =
+              window.localStorage.getItem("user:displayName") || undefined;
             if (name || email || displayName) {
               setUser({ name, email, displayName });
             }
-          } catch { }
+          } catch {}
         }
       }
     };
@@ -112,7 +140,7 @@ export function DashboardLayout({ children, user: initialUser }: DashboardLayout
                       "sidebarCollapsed",
                       next ? "1" : "0"
                     );
-                  } catch { }
+                  } catch {}
                   return next;
                 });
               }}
@@ -134,14 +162,14 @@ export function DashboardLayout({ children, user: initialUser }: DashboardLayout
                 setSidebarCollapsed(true);
                 try {
                   window.localStorage.setItem("sidebarCollapsed", "1");
-                } catch { }
+                } catch {}
               }
             }}
             onExpand={() => {
               setSidebarCollapsed(false);
               try {
                 window.localStorage.setItem("sidebarCollapsed", "0");
-              } catch { }
+              } catch {}
             }}
           />
         </aside>
@@ -157,14 +185,14 @@ export function DashboardLayout({ children, user: initialUser }: DashboardLayout
                   setSidebarCollapsed(true);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "1");
-                  } catch { }
+                  } catch {}
                 }
               }}
               onExpand={() => {
                 setSidebarCollapsed(false);
                 try {
                   window.localStorage.setItem("sidebarCollapsed", "0");
-                } catch { }
+                } catch {}
               }}
             />
           </SheetContent>

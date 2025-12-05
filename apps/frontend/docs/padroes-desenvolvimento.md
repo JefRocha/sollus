@@ -61,3 +61,20 @@ Este documento define os padrões e convenções a serem seguidos no desenvolvim
 
 - Mensagens claras e descritivas.
 - Padrão Conventional Commits (opcional, mas recomendado): `feat:`, `fix:`, `docs:`, `style:`, `refactor:`.
+
+## 7. Segurança da Comunicação
+
+- Autenticação:
+  - Preferir cookies `HttpOnly + Secure + SameSite=Strict` para `access_token` e `refresh_token`.
+  - Manter `Authorization: Bearer` como fallback durante migração.
+- CSRF:
+  - Header `X-CSRF-Token` anexado automaticamente em `POST/PUT/PATCH/DELETE` quando `NEXT_PUBLIC_ENABLE_CSRF=1`.
+  - Backend deve expor `/csrf` e validar o header nos métodos não seguros.
+- CORS:
+  - Allow-list da origem do frontend, `credentials: true`, e métodos/cabeçalhos estritos.
+- Security Headers:
+  - Configurados em `next.config.ts`: HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, e CSP (mais restrita em produção).
+- Logs:
+  - Nunca logar tokens ou dados sensíveis.
+- Erros:
+  - Em dev, evitar overlays por erros de auth retornando sentinelas; em produção, tratar 401 com redirecionamento para `/login`.

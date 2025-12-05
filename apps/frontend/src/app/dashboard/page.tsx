@@ -2,6 +2,7 @@ import { DashboardLayout } from "@/components/layout/dashboard-layout";
 import { KpiCard } from "./_components/kpi-card";
 import { OverviewChart } from "./_components/overview-chart";
 import { ChartSwitcher } from "./_components/chart-switcher";
+import { FinanceSection } from "./_components/finance-section";
 import { RecentTable } from "./_components/recent-table";
 import { LayoutDashboard, Users, Package, ShoppingCart } from "lucide-react";
 import {
@@ -15,11 +16,7 @@ export default async function DashboardPage() {
     getDashboardMetrics(),
     getCurrentUser(),
   ]);
-  const isAdmin = !!(
-    user?.administrador === "S" ||
-    (Array.isArray(user?.roles) && user.roles.includes("ADMIN"))
-  );
-  const finance = isAdmin ? await getFinanceMetrics() : undefined;
+  
   const fmtCurrency = (n: number) =>
     new Intl.NumberFormat("pt-BR", {
       style: "currency",
@@ -69,33 +66,7 @@ export default async function DashboardPage() {
 
         <ChartSwitcher title="Outros Gráficos" series={metrics.vendasMensais} />
 
-        {isAdmin && finance && (
-          <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Financeiro</h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-              <KpiCard
-                title="A Pagar Pendentes"
-                value={String(finance.contasAPagarPendentes)}
-                diff="Contas em aberto"
-              />
-              <KpiCard
-                title="A Receber Pendentes"
-                value={String(finance.contasAReceberPendentes)}
-                diff="Recebíveis em aberto"
-              />
-              <KpiCard
-                title="Saldo de Caixa"
-                value={fmtCurrency(finance.saldoCaixa)}
-                diff="Balanceado"
-              />
-              <KpiCard
-                title="Movimentos Hoje"
-                value={String(finance.movimentosHoje)}
-                diff="Transações de hoje"
-              />
-            </div>
-          </div>
-        )}
+        <FinanceSection user={user || undefined} />
       </div>
     </DashboardLayout>
   );

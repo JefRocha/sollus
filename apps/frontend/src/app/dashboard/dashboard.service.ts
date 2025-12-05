@@ -1,4 +1,4 @@
-import { apiFetch } from "@/lib/api";
+import { apiFetchServer } from "@/lib/api-server";
 
 export interface DashboardMetrics {
   totalVendas: number;
@@ -26,7 +26,7 @@ export interface FinanceMetrics {
   movimentosHoje: number;
 }
 
-export async function getDashboardMetrics(): Promise<DashboardMetrics> {
+export async function getDashboardMetrics(ctx?: { accessToken?: string; refreshToken?: string; xsrfToken?: string; cookieHeader?: string }): Promise<DashboardMetrics> {
   const parseCount = (x: any) => {
     if (Array.isArray(x)) return x.length;
     if (typeof x?.total === "number") return x.total;
@@ -45,7 +45,7 @@ export async function getDashboardMetrics(): Promise<DashboardMetrics> {
   const tryEndpoints = async (paths: string[]): Promise<any> => {
     for (const p of paths) {
       try {
-        const r = await apiFetch<any>(p, { suppressErrorLog: true });
+        const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return r;
       } catch {}
     }
@@ -87,28 +87,28 @@ export async function getDashboardMetrics(): Promise<DashboardMetrics> {
   };
 }
 
-export async function getCurrentUser(): Promise<CurrentUser | null> {
-  const base = await apiFetch<any>("/api/auth/me", { suppressErrorLog: true });
-  if (!base) return null;
-
-  const name = base?.colaborador?.pessoa?.nome || base?.nome || base?.name;
-  const email = base?.colaborador?.pessoa?.email || base?.email;
-  const login = base?.login || base?.username;
-  const displayName = name || (email ? String(email).split('@')[0] : undefined) || login || undefined;
-
-  return {
-    id: base?.id,
-    idColaborador: base?.colaborador?.id,
-    idPapel: base?.papel?.id,
-    administrador: base?.administrador ?? (Array.isArray(base?.roles) && base.roles.includes("ADMIN") ? "S" : undefined),
-    roles: Array.isArray(base?.roles) ? base.roles : undefined,
-    name,
-    email,
-    displayName,
-  };
+export async function getCurrentUser(ctx?: { accessToken?: string; refreshToken?: string; xsrfToken?: string; cookieHeader?: string }): Promise<CurrentUser | null> {
+  try {
+    const res = await fetch('/api/me', { method: 'GET', cache: 'no-store' });
+    if (!res.ok) return null;
+    const base = await res.json();
+    const name = base?.displayName || base?.name;
+    const email = base?.email;
+    return {
+      id: base?.id,
+      idColaborador: base?.idColaborador,
+      idPapel: base?.idPapel,
+      administrador: base?.administrador,
+      roles: Array.isArray(base?.roles) ? base.roles : undefined,
+      name,
+      email,
+      displayName: base?.displayName || name || (email ? String(email).split('@')[0] : undefined),
+    };
+  } catch {}
+  return null;
 }
 
-export async function getFinanceMetrics(): Promise<FinanceMetrics> {
+export async function getFinanceMetrics(ctx?: { accessToken?: string; refreshToken?: string; xsrfToken?: string; cookieHeader?: string }): Promise<FinanceMetrics> {
   const parseNumber = (x: any) => {
     if (typeof x === "number") return x;
     if (typeof x?.valor === "number") return x.valor;
@@ -118,7 +118,7 @@ export async function getFinanceMetrics(): Promise<FinanceMetrics> {
   const pagar = await (async () => {
     for (const p of ["/financeiro/pagar/pendentes", "/contas/pagar/pendentes"]) {
       try {
-        const r = await apiFetch<any>(p, { suppressErrorLog: true });
+        const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
       } catch {}
     }
@@ -127,7 +127,7 @@ export async function getFinanceMetrics(): Promise<FinanceMetrics> {
   const receber = await (async () => {
     for (const p of ["/financeiro/receber/pendentes", "/contas/receber/pendentes"]) {
       try {
-        const r = await apiFetch<any>(p, { suppressErrorLog: true });
+        const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
       } catch {}
     }
@@ -136,7 +136,7 @@ export async function getFinanceMetrics(): Promise<FinanceMetrics> {
   const saldo = await (async () => {
     for (const p of ["/financeiro/saldo/caixa", "/caixa/saldo"]) {
       try {
-        const r = await apiFetch<any>(p, { suppressErrorLog: true });
+        const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return parseNumber(r);
       } catch {}
     }
@@ -145,7 +145,7 @@ export async function getFinanceMetrics(): Promise<FinanceMetrics> {
   const movimentos = await (async () => {
     for (const p of ["/financeiro/movimentos/hoje", "/caixa/movimentos/hoje"]) {
       try {
-        const r = await apiFetch<any>(p, { suppressErrorLog: true });
+        const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
       } catch {}
     }
