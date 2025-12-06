@@ -8,9 +8,8 @@ export default async function EstadoCivilPage() {
   const result = await getEstadosCivis({});
   const data = result.estados || [];
   return (
-    <PageContainer title="Estado Civil" description={result.error ? `Erro: ${result.error}` : "Gerencie os estados civis."}>
+    <PageContainer title="Estado Civil" description={result.error ? `Erro: ${result.error}` : "Gerencie os estados civis."} wrapWithDashboardLayout={false}>
       <DataTable columns={columns} data={data as any} filterBy="nome" createHref="/cadastros/estado-civil/novo" createText="Novo Estado" canCreate={isMaster()} />
     </PageContainer>
   );
 }
-

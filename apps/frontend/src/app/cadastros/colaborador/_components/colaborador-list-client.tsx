@@ -297,7 +297,7 @@ export function ColaboradorListClient({ data }: ColaboradorListClientProps) {
   );
 
   return (
-    <PageContainer contentClassName="p-0 pb-0">
+    <PageContainer contentClassName="p-0 pb-0" wrapWithDashboardLayout={false}>
       <ListPageLayout
         sidebar={sidebar}
         mobileTitle="Ações - Colaborador"

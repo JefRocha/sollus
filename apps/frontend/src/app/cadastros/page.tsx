@@ -1,215 +1,44 @@
-export default function Page(){
+import Link from "next/link";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Users, Activity, Banknote, UserSquare2, ShoppingBag, ShoppingCart, Boxes } from "lucide-react";
+
+export default function Page() {
+  const items = [
+    { label: "Cadastros", href: "/cadastros/pessoa", icon: Users, desc: "Pessoas, produtos e mais" },
+    { label: "Movimento", href: "/dashboard", icon: Activity, desc: "Fluxos e operações" },
+    { label: "Financeiro", href: "/financeiro", icon: Banknote, desc: "Contas e recebíveis" },
+    { label: "CRM", href: "/crm", icon: UserSquare2, desc: "Relacionamento com clientes" },
+    { label: "Compras", href: "/compras", icon: ShoppingBag, desc: "Pedidos de compra" },
+    { label: "Vendas", href: "/vendas", icon: ShoppingCart, desc: "Pedidos e faturamento" },
+    { label: "Estoque", href: "/estoque", icon: Boxes, desc: "Movimentações e saldos" },
+  ];
+
   return (
-    <main style={{padding:20}}>
-      <h1>Cadastros</h1>
-      <ul>
-            <li><a href="./aidf-aimdf">aidf-aimdf</a></li>
-            <li><a href="./cargo">cargo</a></li>
-            <li><a href="./cbo">cbo</a></li>
-            <li><a href="./centro-resultado">centro-resultado</a></li>
-            <li><a href="./cep">cep</a></li>
-            <li><a href="./cliente">cliente</a></li>
-            <li><a href="./cnae">cnae</a></li>
-            <li><a href="./colaborador">colaborador</a></li>
-            <li><a href="./colaborador-relacionamento">colaborador-relacionamento</a></li>
-            <li><a href="./colaborador-situacao">colaborador-situacao</a></li>
-            <li><a href="./colaborador-tipo">colaborador-tipo</a></li>
-            <li><a href="./comissao-objetivo">comissao-objetivo</a></li>
-            <li><a href="./comissao-perfil">comissao-perfil</a></li>
-            <li><a href="./contador">contador</a></li>
-            <li><a href="./contrato">contrato</a></li>
-            <li><a href="./contrib-sind-patronal-cab">contrib-sind-patronal-cab</a></li>
-            <li><a href="./contrib-sind-patronal-det">contrib-sind-patronal-det</a></li>
-            <li><a href="./crm-buscas-cliente">crm-buscas-cliente</a></li>
-            <li><a href="./crm-carteira-cliente">crm-carteira-cliente</a></li>
-            <li><a href="./crm-carteira-cliente-perfil">crm-carteira-cliente-perfil</a></li>
-            <li><a href="./crm-sac-cabecalho">crm-sac-cabecalho</a></li>
-            <li><a href="./crm-sac-detalhe">crm-sac-detalhe</a></li>
-            <li><a href="./csosn">csosn</a></li>
-            <li><a href="./cst-cofins">cst-cofins</a></li>
-            <li><a href="./cst-icms">cst-icms</a></li>
-            <li><a href="./cst-ipi">cst-ipi</a></li>
-            <li><a href="./cst-pis">cst-pis</a></li>
-            <li><a href="./ct-resultado-nt-financeira">ct-resultado-nt-financeira</a></li>
-            <li><a href="./dav-cabecalho">dav-cabecalho</a></li>
-            <li><a href="./dav-detalhe">dav-detalhe</a></li>
-            <li><a href="./dav-detalhe-alteracao">dav-detalhe-alteracao</a></li>
-            <li><a href="./dia-parcela">dia-parcela</a></li>
-            <li><a href="./ecf-aliquotas">ecf-aliquotas</a></li>
-            <li><a href="./ecf-documentos-emitidos">ecf-documentos-emitidos</a></li>
-            <li><a href="./ecf-e-3">ecf-e-3</a></li>
-            <li><a href="./ecf-impressora">ecf-impressora</a></li>
-            <li><a href="./ecf-r-02">ecf-r-02</a></li>
-            <li><a href="./ecf-r-03">ecf-r-03</a></li>
-            <li><a href="./ecf-r-06">ecf-r-06</a></li>
-            <li><a href="./ecf-r-07">ecf-r-07</a></li>
-            <li><a href="./ecf-recebimento-nao-fiscal">ecf-recebimento-nao-fiscal</a></li>
-            <li><a href="./ecf-sintegra-60-a">ecf-sintegra-60-a</a></li>
-            <li><a href="./ecf-sintegra-60-m">ecf-sintegra-60-m</a></li>
-            <li><a href="./efd-tabela-4310">efd-tabela-4310</a></li>
-            <li><a href="./efd-tabela-4313">efd-tabela-4313</a></li>
-            <li><a href="./efd-tabela-4314">efd-tabela-4314</a></li>
-            <li><a href="./efd-tabela-4315">efd-tabela-4315</a></li>
-            <li><a href="./efd-tabela-4316">efd-tabela-4316</a></li>
-            <li><a href="./efd-tabela-435">efd-tabela-435</a></li>
-            <li><a href="./efd-tabela-436">efd-tabela-436</a></li>
-            <li><a href="./efd-tabela-437">efd-tabela-437</a></li>
-            <li><a href="./efd-tabela-439">efd-tabela-439</a></li>
-            <li><a href="./empresa">empresa</a></li>
-            <li><a href="./empresa-cnae">empresa-cnae</a></li>
-            <li><a href="./empresa-contato">empresa-contato</a></li>
-            <li><a href="./empresa-endereco">empresa-endereco</a></li>
-            <li><a href="./empresa-telefone">empresa-telefone</a></li>
-            <li><a href="./empresa-transporte">empresa-transporte</a></li>
-            <li><a href="./empresa-transporte-itinerario">empresa-transporte-itinerario</a></li>
-            <li><a href="./encerra-centro-resultado">encerra-centro-resultado</a></li>
-            <li><a href="./estado-civil">estado-civil</a></li>
-            <li><a href="./fap">fap</a></li>
-            <li><a href="./feriados">feriados</a></li>
-            <li><a href="./ferias-periodo-aquisitivo">ferias-periodo-aquisitivo</a></li>
-            <li><a href="./fin-cheque-emitido">fin-cheque-emitido</a></li>
-            <li><a href="./fin-cheque-recebido">fin-cheque-recebido</a></li>
-            <li><a href="./fin-configuracao-boleto">fin-configuracao-boleto</a></li>
-            <li><a href="./fin-documento-origem">fin-documento-origem</a></li>
-            <li><a href="./fin-extrato-conta-banco">fin-extrato-conta-banco</a></li>
-            <li><a href="./fin-fechamento-caixa-banco">fin-fechamento-caixa-banco</a></li>
-            <li><a href="./fin-lancamento-pagar">fin-lancamento-pagar</a></li>
-            <li><a href="./fin-lancamento-receber">fin-lancamento-receber</a></li>
-            <li><a href="./fin-natureza-financeira">fin-natureza-financeira</a></li>
-            <li><a href="./fin-parcela-pagar">fin-parcela-pagar</a></li>
-            <li><a href="./fin-parcela-receber">fin-parcela-receber</a></li>
-            <li><a href="./fin-status-parcela">fin-status-parcela</a></li>
-            <li><a href="./fin-tipo-pagamento">fin-tipo-pagamento</a></li>
-            <li><a href="./fin-tipo-recebimento">fin-tipo-recebimento</a></li>
-            <li><a href="./fiscal-apuracao-icms">fiscal-apuracao-icms</a></li>
-            <li><a href="./fiscal-estadual-porte">fiscal-estadual-porte</a></li>
-            <li><a href="./fiscal-estadual-regime">fiscal-estadual-regime</a></li>
-            <li><a href="./fiscal-inscricoes-substitutas">fiscal-inscricoes-substitutas</a></li>
-            <li><a href="./fiscal-livro">fiscal-livro</a></li>
-            <li><a href="./fiscal-municipal-regime">fiscal-municipal-regime</a></li>
-            <li><a href="./fiscal-nota-fiscal-entrada">fiscal-nota-fiscal-entrada</a></li>
-            <li><a href="./fiscal-nota-fiscal-saida">fiscal-nota-fiscal-saida</a></li>
-            <li><a href="./fiscal-parametro">fiscal-parametro</a></li>
-            <li><a href="./fiscal-termo">fiscal-termo</a></li>
-            <li><a href="./fornecedor">fornecedor</a></li>
-            <li><a href="./fornecedor-produto">fornecedor-produto</a></li>
-            <li><a href="./fpas">fpas</a></li>
-            <li><a href="./frota-combustivel-controle">frota-combustivel-controle</a></li>
-            <li><a href="./frota-combustivel-tipo">frota-combustivel-tipo</a></li>
-            <li><a href="./frota-dpvat-controle">frota-dpvat-controle</a></li>
-            <li><a href="./frota-ipva-controle">frota-ipva-controle</a></li>
-            <li><a href="./frota-motorista">frota-motorista</a></li>
-            <li><a href="./frota-multa-controle">frota-multa-controle</a></li>
-            <li><a href="./frota-veiculo">frota-veiculo</a></li>
-            <li><a href="./frota-veiculo-manutencao">frota-veiculo-manutencao</a></li>
-            <li><a href="./frota-veiculo-movimentacao">frota-veiculo-movimentacao</a></li>
-            <li><a href="./frota-veiculo-pneu">frota-veiculo-pneu</a></li>
-            <li><a href="./frota-veiculo-sinistro">frota-veiculo-sinistro</a></li>
-            <li><a href="./frota-veiculo-tipo">frota-veiculo-tipo</a></li>
-            <li><a href="./funcao">funcao</a></li>
-            <li><a href="./gondola-armazenamento">gondola-armazenamento</a></li>
-            <li><a href="./gondola-caixa">gondola-caixa</a></li>
-            <li><a href="./gondola-estante">gondola-estante</a></li>
-            <li><a href="./gondola-rua">gondola-rua</a></li>
-            <li><a href="./guias-acumuladas">guias-acumuladas</a></li>
-            <li><a href="./ibpt">ibpt</a></li>
-            <li><a href="./inss">inss</a></li>
-            <li><a href="./inss-detalhe">inss-detalhe</a></li>
-            <li><a href="./integracao-pdv">integracao-pdv</a></li>
-            <li><a href="./irrf">irrf</a></li>
-            <li><a href="./irrf-detalhe">irrf-detalhe</a></li>
-            <li><a href="./lanca-centro-resultado">lanca-centro-resultado</a></li>
-            <li><a href="./log-exportacao">log-exportacao</a></li>
-            <li><a href="./log-importacao">log-importacao</a></li>
-            <li><a href="./malote-digital-acesso">malote-digital-acesso</a></li>
-            <li><a href="./malote-digital-destinatario">malote-digital-destinatario</a></li>
-            <li><a href="./malote-digital-documento">malote-digital-documento</a></li>
-            <li><a href="./municipio">municipio</a></li>
-            <li><a href="./ncm">ncm</a></li>
-            <li><a href="./nfse-cabecalho">nfse-cabecalho</a></li>
-            <li><a href="./nfse-detalhe">nfse-detalhe</a></li>
-            <li><a href="./nfse-intermediario">nfse-intermediario</a></li>
-            <li><a href="./nfse-lista-servico">nfse-lista-servico</a></li>
-            <li><a href="./nivel-formacao">nivel-formacao</a></li>
-            <li><a href="./nota-fiscal-modelo">nota-fiscal-modelo</a></li>
-            <li><a href="./nota-fiscal-tipo">nota-fiscal-tipo</a></li>
-            <li><a href="./operadora-cartao">operadora-cartao</a></li>
-            <li><a href="./operadora-plano-saude">operadora-plano-saude</a></li>
-            <li><a href="./pais">pais</a></li>
-            <li><a href="./papel">papel</a></li>
-            <li><a href="./papel-funcao">papel-funcao</a></li>
-            <li><a href="./pdv-caixa">pdv-caixa</a></li>
-            <li><a href="./pdv-configuracao">pdv-configuracao</a></li>
-            <li><a href="./pdv-fechamento">pdv-fechamento</a></li>
-            <li><a href="./pdv-movimento">pdv-movimento</a></li>
-            <li><a href="./pdv-sangria">pdv-sangria</a></li>
-            <li><a href="./pdv-suprimento">pdv-suprimento</a></li>
-            <li><a href="./pdv-tipo-pagamento">pdv-tipo-pagamento</a></li>
-            <li><a href="./pdv-total-tipo-pagamento">pdv-total-tipo-pagamento</a></li>
-            <li><a href="./pdv-venda-cabecalho">pdv-venda-cabecalho</a></li>
-            <li><a href="./pdv-venda-detalhe">pdv-venda-detalhe</a></li>
-            <li><a href="./pessoa">pessoa</a></li>
-            <li><a href="./pessoa-alteracao">pessoa-alteracao</a></li>
-            <li><a href="./pessoa-contato">pessoa-contato</a></li>
-            <li><a href="./pessoa-endereco">pessoa-endereco</a></li>
-            <li><a href="./pessoa-fisica">pessoa-fisica</a></li>
-            <li><a href="./pessoa-juridica">pessoa-juridica</a></li>
-            <li><a href="./pessoa-telefone">pessoa-telefone</a></li>
-            <li><a href="./plano-centro-resultado">plano-centro-resultado</a></li>
-            <li><a href="./plano-conta">plano-conta</a></li>
-            <li><a href="./plano-conta-ref-sped">plano-conta-ref-sped</a></li>
-            <li><a href="./pre-venda-cabecalho">pre-venda-cabecalho</a></li>
-            <li><a href="./pre-venda-detalhe">pre-venda-detalhe</a></li>
-            <li><a href="./produto">produto</a></li>
-            <li><a href="./produto-alteracao-item">produto-alteracao-item</a></li>
-            <li><a href="./produto-codigo-adicional">produto-codigo-adicional</a></li>
-            <li><a href="./produto-ficha-tecnica">produto-ficha-tecnica</a></li>
-            <li><a href="./produto-grupo">produto-grupo</a></li>
-            <li><a href="./produto-marca">produto-marca</a></li>
-            <li><a href="./produto-promocao">produto-promocao</a></li>
-            <li><a href="./produto-subgrupo">produto-subgrupo</a></li>
-            <li><a href="./produto-unidade">produto-unidade</a></li>
-            <li><a href="./projeto-cronograma">projeto-cronograma</a></li>
-            <li><a href="./projeto-custo">projeto-custo</a></li>
-            <li><a href="./projeto-principal">projeto-principal</a></li>
-            <li><a href="./projeto-risco">projeto-risco</a></li>
-            <li><a href="./projeto-stakeholders">projeto-stakeholders</a></li>
-            <li><a href="./quadro-societario">quadro-societario</a></li>
-            <li><a href="./rateio-centro-resultado-cab">rateio-centro-resultado-cab</a></li>
-            <li><a href="./rateio-centro-resultado-det">rateio-centro-resultado-det</a></li>
-            <li><a href="./recado-destinatario">recado-destinatario</a></li>
-            <li><a href="./recado-remetente">recado-remetente</a></li>
-            <li><a href="./registro-cartorio">registro-cartorio</a></li>
-            <li><a href="./requisicao-interna-cabecalho">requisicao-interna-cabecalho</a></li>
-            <li><a href="./requisicao-interna-detalhe">requisicao-interna-detalhe</a></li>
-            <li><a href="./reuniao-sala">reuniao-sala</a></li>
-            <li><a href="./reuniao-sala-evento">reuniao-sala-evento</a></li>
-            <li><a href="./salario-familia">salario-familia</a></li>
-            <li><a href="./salario-minimo">salario-minimo</a></li>
-            <li><a href="./sefip-categoria-trabalho">sefip-categoria-trabalho</a></li>
-            <li><a href="./sefip-codigo-movimentacao">sefip-codigo-movimentacao</a></li>
-            <li><a href="./sefip-codigo-recolhimento">sefip-codigo-recolhimento</a></li>
-            <li><a href="./seguradora">seguradora</a></li>
-            <li><a href="./setor">setor</a></li>
-            <li><a href="./simples-nacional-cabecalho">simples-nacional-cabecalho</a></li>
-            <li><a href="./simples-nacional-detalhe">simples-nacional-detalhe</a></li>
-            <li><a href="./sindicato">sindicato</a></li>
-            <li><a href="./tabela-preco">tabela-preco</a></li>
-            <li><a href="./tabela-preco-produto">tabela-preco-produto</a></li>
-            <li><a href="./talonario-cheque">talonario-cheque</a></li>
-            <li><a href="./tipo-admissao">tipo-admissao</a></li>
-            <li><a href="./tipo-contrato">tipo-contrato</a></li>
-            <li><a href="./tipo-item-sped">tipo-item-sped</a></li>
-            <li><a href="./tipo-receita-dacon">tipo-receita-dacon</a></li>
-            <li><a href="./tipo-receita-dipi">tipo-receita-dipi</a></li>
-            <li><a href="./tipo-relacionamento">tipo-relacionamento</a></li>
-            <li><a href="./transportadora">transportadora</a></li>
-            <li><a href="./uf">uf</a></li>
-            <li><a href="./usuario">usuario</a></li>
-            <li><a href="./vendedor">vendedor</a></li>
-            <li><a href="./vendedor-meta">vendedor-meta</a></li>
-            <li><a href="./vendedor-rota">vendedor-rota</a></li>
-      </ul>
-    </main>
-  )
+    <div className="px-6 py-8">
+        <h1 className="text-2xl font-semibold">Módulos</h1>
+        <p className="text-muted-foreground mb-6">Escolha um módulo para acessar.</p>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((it, idx) => {
+            const Icon = it.icon;
+            return (
+              <Link key={it.label} href={it.href} className="group">
+                <Card className={idx === 0 ? "ring-1 ring-primary/30" : ""}>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3">
+                      <Icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                      {it.label}
+                    </CardTitle>
+                    <CardDescription>{it.desc}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-sm text-muted-foreground">Acesse funcionalidades do módulo {it.label}.</div>
+                  </CardContent>
+                </Card>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+  );
 }

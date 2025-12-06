@@ -2,7 +2,14 @@
 
 import * as React from "react";
 
-import { Menu, LogOut, User, ChevronRight, Palette } from "lucide-react";
+import {
+  Menu,
+  LogOut,
+  User,
+  ChevronRight,
+  Maximize2,
+  Minimize2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,7 +23,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { ModeToggle } from "@/components/mode-toggle";
+import { ThemeTransparencyControl } from "@/components/theme-transparency";
+import { RentHubSoftnessControl } from "@/components/renthub-softness-control";
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -33,6 +44,7 @@ import { apiClientFetch } from "@/lib/api-client";
 
 interface HeaderProps {
   onMenuClick: () => void;
+  showMenuButton?: boolean;
   user?: {
     name?: string;
     email?: string;
@@ -42,7 +54,11 @@ interface HeaderProps {
   };
 }
 
-export function Header({ onMenuClick, user }: HeaderProps) {
+export function Header({
+  onMenuClick,
+  user,
+  showMenuButton = true,
+}: HeaderProps) {
   const pathname = usePathname();
   const { execute: executeLogout, isExecuting: isLoggingOut } = useAction(
     logoutAction,
@@ -87,7 +103,11 @@ export function Header({ onMenuClick, user }: HeaderProps) {
 
   const [tone, setTone] = React.useState<string>("primary");
   const [color, setColor] = React.useState<string | undefined>(undefined);
+  const [mounted, setMounted] = React.useState(false);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
+  const { theme, setTheme } = useTheme();
   React.useEffect(() => {
+    setMounted(true);
     try {
       const t = localStorage.getItem("pc:headerTone");
       const c = localStorage.getItem("pc:headerColor");
@@ -95,6 +115,25 @@ export function Header({ onMenuClick, user }: HeaderProps) {
       else if (t) setTone(t);
     } catch {}
   }, []);
+
+  React.useEffect(() => {
+    const onFsChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", onFsChange);
+    onFsChange();
+    return () => document.removeEventListener("fullscreenchange", onFsChange);
+  }, []);
+
+  const toggleFullscreen = async () => {
+    try {
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch {}
+  };
 
   // Resolve dados do usuário para o dropdown
   const [localUser, setLocalUser] = React.useState(user);
@@ -215,352 +254,160 @@ export function Header({ onMenuClick, user }: HeaderProps) {
         color: "var(--ui-header-fg)",
       }}
     >
-      <div className="flex h-16 items-center px-4 gap-4">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="md:hidden bg-transparent hover:bg-transparent hover:text-primary transition-smooth"
-          onClick={onMenuClick}
-        >
-          <Menu className="h-5 w-5" />
-        </Button>
-
-        <div className="flex items-center gap-4 flex-1">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-            Sollus ERP
-          </h1>
-
-          {breadcrumbs.length > 0 && (
-            <>
-              <ChevronRight className="h-4 w-4 text-muted-foreground" />
-              <Breadcrumb>
-                <BreadcrumbList>
-                  {breadcrumbs.map((crumb, index) => (
-                    <React.Fragment key={crumb.href}>
-                      <BreadcrumbItem>
-                        {crumb.isLast ? (
-                          <BreadcrumbPage>{crumb.label}</BreadcrumbPage>
-                        ) : (
-                          <BreadcrumbLink href={crumb.href}>
-                            {crumb.label}
-                          </BreadcrumbLink>
-                        )}
-                      </BreadcrumbItem>
-                      {!crumb.isLast && <BreadcrumbSeparator />}
-                    </React.Fragment>
-                  ))}
-                </BreadcrumbList>
-              </Breadcrumb>
-            </>
+      <div className="flex h-30 items-center px-6 lg:px-6 gap-4">
+        <div className="flex items-center gap-1">
+          {showMenuButton && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="md:hidden bg-transparent hover:bg-transparent hover:text-primary transition-smooth"
+              onClick={onMenuClick}
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
           )}
         </div>
 
+        <div className="flex flex-col flex-1 min-w-0">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent truncate">
+            Sollus ERP
+          </h1>
+          <nav className="hidden md:flex items-center gap-7 mt-3 md:mt-5">
+            {[
+              { label: "Início", href: "/dashboard" },
+              { label: "Módulos", href: "/cadastros" },
+              { label: "Suporte", href: "/suporte" },
+              { label: "Configurações", href: "/configuracoes" },
+              { label: "Sobre", href: "/sobre" },
+            ].map((item) => {
+              const active = pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "text-base md:text-lg pb-1 border-b-2 transition-colors",
+                    active
+                      ? "text-foreground border-primary font-semibold"
+                      : "text-muted-foreground border-transparent hover:text-foreground hover:border-border"
+                  )}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
         <div className="ml-auto flex items-center gap-2">
-          <ModeToggle />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Cores do cabeçalho"
-                className="bg-transparent hover:bg-transparent hover:text-primary"
-              >
-                <Palette className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-64" align="end" forceMount>
-              <DropdownMenuLabel>Tom do tema</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  setTone("primary");
-                  setColor(undefined);
-                  try {
-                    localStorage.setItem("pc:headerTone", "primary");
-                    localStorage.removeItem("pc:headerColor");
-                  } catch {}
-                  try {
-                    const root = document.documentElement;
-                    root.style.setProperty(
-                      "--pc-header-from",
-                      `color-mix(in oklch, var(--primary) 20%, transparent)`
-                    );
-                    root.style.setProperty(
-                      "--pc-header-fg",
-                      "var(--foreground)"
-                    );
-                    root.style.setProperty(
-                      "--pc-header-fg-muted",
-                      `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
-                    );
-                  } catch {}
-                  try {
-                    const root = document.documentElement;
-                    root.style.removeProperty("--ui-header-bg");
-                    root.style.removeProperty("--ui-header-fg");
-                    root.style.removeProperty("--ui-sidebar-bg");
-                    root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
-                  try {
-                    window.dispatchEvent(
-                      new CustomEvent("pc:headerColorChange", {
-                        detail: { tone: "primary", color: undefined },
-                      })
-                    );
-                  } catch {}
-                }}
-              >
-                Padrão do sistema
-              </DropdownMenuItem>
-              <DropdownMenuRadioGroup
-                value={color ? "none" : tone}
-                onValueChange={(val) => {
-                  setTone(val);
-                  setColor(undefined);
-                  try {
-                    localStorage.setItem("pc:headerTone", val);
-                    localStorage.removeItem("pc:headerColor");
-                  } catch {}
-                  applyToneColor(val, undefined);
-                  try {
-                    window.dispatchEvent(
-                      new CustomEvent("pc:headerColorChange", {
-                        detail: { tone: val, color: undefined },
-                      })
-                    );
-                  } catch {}
-                }}
-              >
-                <DropdownMenuRadioItem value="primary">
-                  Primário
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="secondary">
-                  Secundário
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="accent">
-                  Acento
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="muted">
-                  Suave
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value="none">
-                  Sem gradiente
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel>Cor personalizada</DropdownMenuLabel>
-              <div className="flex items-center gap-2 p-2">
-                <Input
-                  type="color"
-                  className="h-8 w-14 p-1"
-                  value={color ?? "#ffffff"}
-                  onChange={(e) => {
-                    const v = e.target.value;
-                    setColor(v);
-                    try {
-                      localStorage.setItem("pc:headerColor", v);
-                      localStorage.removeItem("pc:headerTone");
-                    } catch {}
-                    applyToneColor(undefined, v);
-                    try {
-                      window.dispatchEvent(
-                        new CustomEvent("pc:headerColorChange", {
-                          detail: { tone: undefined, color: v },
-                        })
-                      );
-                    } catch {}
-                  }}
-                />
-                <Input
-                  type="text"
-                  className="h-8 flex-1"
-                  placeholder="oklch(...) ou #hex"
-                  value={color ?? ""}
-                  onChange={(e) => {
-                    const v = e.target.value;
-                    setColor(v);
-                    try {
-                      localStorage.setItem("pc:headerColor", v);
-                      localStorage.removeItem("pc:headerTone");
-                    } catch {}
-                    applyToneColor(undefined, v);
-                    try {
-                      window.dispatchEvent(
-                        new CustomEvent("pc:headerColorChange", {
-                          detail: { tone: undefined, color: v },
-                        })
-                      );
-                    } catch {}
-                  }}
-                />
-              </div>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel>Aplicar seleção</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => {
-                  const toneOrColor = color ? { color } : { tone };
-                  try {
-                    const root = document.documentElement;
-                    const factorMap: Record<string, string> = {
-                      primary: "28%",
-                      secondary: "26%",
-                      accent: "26%",
-                      muted: "18%",
-                      none: "0%",
-                    };
-                    const baseMap: Record<string, string> = {
-                      primary: "var(--primary)",
-                      secondary: "var(--secondary-foreground)",
-                      accent: "var(--accent)",
-                      muted: "var(--muted-foreground)",
-                      none: "transparent",
-                    };
-                    const bg = color
-                      ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
-                    root.style.setProperty("--ui-header-bg", bg);
-                    root.style.setProperty(
-                      "--ui-header-fg",
-                      "var(--foreground)"
-                    );
-                  } catch {}
-                }}
-              >
-                Aplicar ao cabeçalho
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => {
-                  try {
-                    const root = document.documentElement;
-                    const factorMap: Record<string, string> = {
-                      primary: "28%",
-                      secondary: "26%",
-                      accent: "26%",
-                      muted: "18%",
-                      none: "0%",
-                    };
-                    const baseMap: Record<string, string> = {
-                      primary: "var(--primary)",
-                      secondary: "var(--secondary-foreground)",
-                      accent: "var(--accent)",
-                      muted: "var(--muted-foreground)",
-                      none: "transparent",
-                    };
-                    const bg = color
-                      ? `color-mix(in srgb, ${color} 30%, transparent)`
-                      : `color-mix(in oklch, ${baseMap[tone]} ${
-                          factorMap[tone] || "28%"
-                        }, transparent)`;
-                    root.style.setProperty("--ui-sidebar-bg", bg);
-                    root.style.setProperty(
-                      "--ui-sidebar-fg",
-                      "var(--foreground)"
-                    );
-                  } catch {}
-                }}
-              >
-                Aplicar à sidebar
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={() => {
-                  setTone("primary");
-                  setColor(undefined);
-                  try {
-                    localStorage.setItem("pc:headerTone", "primary");
-                    localStorage.removeItem("pc:headerColor");
-                  } catch {}
-                  try {
-                    const root = document.documentElement;
-                    root.style.setProperty(
-                      "--pc-header-from",
-                      `color-mix(in oklch, var(--primary) 20%, transparent)`
-                    );
-                    root.style.setProperty(
-                      "--pc-header-fg",
-                      "var(--foreground)"
-                    );
-                    root.style.setProperty(
-                      "--pc-header-fg-muted",
-                      `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
-                    );
-                  } catch {}
-                  try {
-                    const root = document.documentElement;
-                    root.style.removeProperty("--ui-header-bg");
-                    root.style.removeProperty("--ui-header-fg");
-                    root.style.removeProperty("--ui-sidebar-bg");
-                    root.style.removeProperty("--ui-sidebar-fg");
-                  } catch {}
-                  try {
-                    window.dispatchEvent(
-                      new CustomEvent("pc:headerColorChange", {
-                        detail: { tone: "primary", color: undefined },
-                      })
-                    );
-                  } catch {}
-                }}
-              >
-                Redefinir padrão
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent"
-              >
-                <Avatar>
-                  <AvatarFallback className="bg-primary text-primary-foreground">
-                    {(() => {
-                      const base =
-                        localUser?.displayName ||
+          {mounted && (
+            <div className="hidden md:flex flex-col items-end mr-2">
+              <span className="text-base md:text-lg font-semibold">
+                {localUser?.displayName ||
+                  localUser?.name ||
+                  localUser?.email ||
+                  "Usuário"}
+              </span>
+              <span className="text-xs text-muted-foreground">
+                {Array.isArray(localUser?.roles) &&
+                localUser?.roles?.includes("ADMIN")
+                  ? "Administrador"
+                  : ""}
+              </span>
+            </div>
+          )}
+          {mounted && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent"
+                >
+                  <Avatar>
+                    <AvatarFallback className="bg-primary text-primary-foreground">
+                      {(() => {
+                        const base =
+                          localUser?.displayName ||
+                          localUser?.name ||
+                          localUser?.email ||
+                          "";
+                        const parts = String(base)
+                          .split(/[\s@._-]+/)
+                          .filter(Boolean);
+                        const initials =
+                          (parts[0]?.[0] || "A") + (parts[1]?.[0] || "D");
+                        return initials.toUpperCase();
+                      })()}
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                      {localUser?.displayName ||
                         localUser?.name ||
                         localUser?.email ||
-                        "";
-                      const parts = String(base)
-                        .split(/[\s@._-]+/)
-                        .filter(Boolean);
-                      const initials =
-                        (parts[0]?.[0] || "A") + (parts[1]?.[0] || "D");
-                      return initials.toUpperCase();
-                    })()}
-                  </AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none">
-                    {localUser?.displayName ||
-                      localUser?.name ||
-                      localUser?.email ||
-                      "Usuário"}
-                  </p>
-                  <p className="text-xs leading-none text-muted-foreground">
-                    {localUser?.email ||
-                      (Array.isArray(localUser?.roles) &&
-                      localUser!.roles!.includes("ADMIN")
-                        ? "Administrador"
-                        : "")}
-                  </p>
+                        "Usuário"}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {localUser?.email ||
+                        (Array.isArray(localUser?.roles) &&
+                        localUser!.roles!.includes("ADMIN")
+                          ? "Administrador"
+                          : "")}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuLabel>Layout do sistema</DropdownMenuLabel>
+                <DropdownMenuRadioGroup
+                  value={theme || "system"}
+                  onValueChange={(v) => setTheme(v)}
+                >
+                  <DropdownMenuRadioItem value="light">
+                    Light
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="dark">
+                    Dark
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="renthub">
+                    RentHub
+                  </DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="system">
+                    System
+                  </DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
+                <ThemeTransparencyControl />
+                <RentHubSoftnessControl />
+                <div className="px-3 py-2">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="w-full justify-start"
+                    onClick={toggleFullscreen}
+                  >
+                    {isFullscreen ? "Sair de tela cheia" : "Tela cheia"}
+                  </Button>
                 </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <User className="mr-2 h-4 w-4" />
-                <span>Perfil</span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={handleLogout} disabled={isLoggingOut}>
-                <LogOut className="mr-2 h-4 w-4" />
-                <span>{isLoggingOut ? "Saindo..." : "Sair"}</span>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Perfil</span>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  disabled={isLoggingOut}
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>{isLoggingOut ? "Saindo..." : "Sair"}</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
     </header>

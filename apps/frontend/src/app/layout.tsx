@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { PwaRegister } from "@/components/pwa-register";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,6 +18,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Sollus ERP",
   description: "Sistema de Gestão Empresarial",
+  applicationName: "Sollus ERP",
+  manifest: "/manifest.webmanifest",
+  themeColor: "#2563eb",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Sollus ERP",
+  },
 };
 
 export default function RootLayout({
@@ -38,6 +47,7 @@ export default function RootLayout({
         >
           {children}
           <Toaster position="top-right" richColors />
+          <PwaRegister />
         </ThemeProvider>
       </body>
     </html >

@@ -20,6 +20,7 @@ interface PageContainerProps {
   headerTone?: "primary" | "secondary" | "accent" | "muted" | "none";
   headerColor?: string;
   children: ReactNode;
+  wrapWithDashboardLayout?: boolean;
 }
 
 export function PageContainer({
@@ -31,6 +32,7 @@ export function PageContainer({
   headerTone = "primary",
   headerColor,
   children,
+  wrapWithDashboardLayout = true,
 }: PageContainerProps) {
   const [tone, setTone] = useState<string>(headerTone);
   const [color, setColor] = useState<string | undefined>(headerColor);
@@ -253,45 +255,49 @@ export function PageContainer({
   const headerGradientClass = cn(
     "bg-gradient-to-br from-[var(--pc-header-from)] to-transparent"
   );
-  return (
-    <DashboardLayout>
-      <div className="h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-        {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
-        <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl  py-0">
-          {(title || actions) && (
-            <CardHeader
-              className={cn(
-                "flex items-center min-h-0 px-6 py-2 shrink-0",
-                headerGradientClass
-              )}
-            >
-              <div className="space-y-1">
-                {title && (
-                  <CardTitle>
-                    <h1 className="text-3xl font-bold text-[var(--pc-header-fg)]">
-                      {title}
-                    </h1>
-                  </CardTitle>
-                )}
-                {description && (
-                  <CardDescription className="text-base text-[var(--pc-header-fg-muted)]">
-                    {description}
-                  </CardDescription>
-                )}
-              </div>
-              <CardAction>{actions}</CardAction>
-            </CardHeader>
-          )}
-          <CardContent
+  const inner = (
+    <div className="h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
+      <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl  py-0">
+        {(title || actions) && (
+          <CardHeader
             className={cn(
-              "flex-1 pt-3 px-6 pb-4 overflow-auto flex flex-col",
-              contentClassName
+              "flex items-center min-h-0 px-6 py-2 shrink-0",
+              headerGradientClass
             )}
           >
-            {children}
-          </CardContent>
-        </Card>
-      </div>
-    </DashboardLayout>
+            <div className="space-y-1">
+              {title && (
+                <CardTitle>
+                  <h1 className="text-3xl font-bold text-[var(--pc-header-fg)]">
+                    {title}
+                  </h1>
+                </CardTitle>
+              )}
+              {description && (
+                <CardDescription className="text-base text-[var(--pc-header-fg-muted)]">
+                  {description}
+                </CardDescription>
+              )}
+            </div>
+            <CardAction>{actions}</CardAction>
+          </CardHeader>
+        )}
+        <CardContent
+          className={cn(
+            "flex-1 pt-3 px-6 pb-4 overflow-auto flex flex-col",
+            contentClassName
+          )}
+        >
+          {children}
+        </CardContent>
+      </Card>
+    </div>
+  );
+
+  return wrapWithDashboardLayout ? (
+    <DashboardLayout>{inner}</DashboardLayout>
+  ) : (
+    inner
   );
 }

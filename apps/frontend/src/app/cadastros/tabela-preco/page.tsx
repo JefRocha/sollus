@@ -7,9 +7,8 @@ export default async function TabelaPrecoPage() {
   const result = await getTabelasPreco({});
   const data = result.tabelas || [];
   return (
-    <PageContainer title="Tabelas de Preço" description={result.error ? `Erro: ${result.error}` : "Gerencie suas tabelas de preço."}>
+    <PageContainer title="Tabelas de Preço" description={result.error ? `Erro: ${result.error}` : "Gerencie suas tabelas de preço."} wrapWithDashboardLayout={false}>
       <DataTable columns={columns} data={data as any} filterBy="nome" createHref="/cadastros/tabela-preco/novo" createText="Nova Tabela" />
     </PageContainer>
   );
 }
-

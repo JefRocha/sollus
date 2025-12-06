@@ -23,7 +23,8 @@ interface DashboardLayoutProps {
 export function DashboardLayout({
   children,
   user: initialUser,
-}: DashboardLayoutProps) {
+  hideSidebar = false,
+}: DashboardLayoutProps & { hideSidebar?: boolean }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [lowRes, setLowRes] = useState(false);
@@ -131,10 +132,11 @@ export function DashboardLayout({
 
   return (
     <div className="h-screen flex flex-col">
-      <Header onMenuClick={() => setSidebarOpen(true)} user={user} />
+      <Header onMenuClick={() => setSidebarOpen(true)} user={user} showMenuButton={!hideSidebar} />
 
       <div className="flex-1 flex overflow-hidden relative" ref={containerRef}>
         {/* Sidebar Desktop */}
+        {!hideSidebar && (
         <aside
           className={cn(
             "hidden md:block border-r overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
@@ -189,10 +191,10 @@ export function DashboardLayout({
             }}
           />
         </aside>
+        )}
 
         {/* Sidebar Mobile */}
-        {/** Usa Sheet em ambos os casos; em lowRes desktop, prende ao container **/}
-        {isMobile ? (
+        {!hideSidebar && (isMobile ? (
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetContent side="left" className="w-64 p-0">
               <Sidebar
@@ -241,7 +243,7 @@ export function DashboardLayout({
               />
             </SheetContent>
           </Sheet>
-        )}
+        ))}
 
         {/* Main Content */}
         <main className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">

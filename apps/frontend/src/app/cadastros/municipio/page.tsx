@@ -8,9 +8,8 @@ export default async function MunicipioPage() {
   const result = await getMunicipios({});
   const data = result.municipios || [];
   return (
-    <PageContainer title="Municípios" description={result.error ? `Erro: ${result.error}` : "Gerencie os municípios (IBGE)."}>
+    <PageContainer title="Municípios" description={result.error ? `Erro: ${result.error}` : "Gerencie os municípios (IBGE)."} wrapWithDashboardLayout={false}>
       <DataTable columns={columns} data={data as any} filterBy="nome" createHref="/cadastros/municipio/novo" createText="Novo Município" canCreate={isMaster()} />
     </PageContainer>
   );
 }
-

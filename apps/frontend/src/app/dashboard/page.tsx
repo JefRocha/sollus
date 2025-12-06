@@ -23,7 +23,7 @@ export default async function DashboardPage() {
       currency: "BRL",
     }).format(n);
   return (
-    <DashboardLayout user={user || undefined}>
+    <DashboardLayout user={user || undefined} hideSidebar>
       <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>

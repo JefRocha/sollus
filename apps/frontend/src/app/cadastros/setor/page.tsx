@@ -6,14 +6,18 @@ import { apiFetch } from "@/lib/api";
 async function getSetores(input: { q?: string; field?: string } = {}) {
   const q = input.q?.trim();
   const field = input.field || "nome";
-  const base = `/setor?page=1&limit=100`;
   const filter = q
     ? q.includes("$cont") || q.includes("$eq") || q.includes("$between")
-      ? `${base}&filter=${encodeURIComponent(q)}`
-      : `${base}&filter=${field}||$cont||${encodeURIComponent(q)}`
-    : base;
+      ? `?page=1&limit=100&filter=${encodeURIComponent(q)}`
+      : `?page=1&limit=100&filter=${field}||$cont||${encodeURIComponent(q)}`
+    : `?page=1&limit=100`;
   try {
-    const res = await apiFetch<any>(filter);
+    const res = await apiFetch<any>([
+      `/setor${filter}`,
+      `/setores${filter}`,
+      `/api/setor${filter}`,
+      `/cadastros/setor${filter}`,
+    ]);
     return { setores: res.data || res.content || res || [] };
   } catch (e: any) {
     return { setores: [], error: e?.message || "Erro ao buscar setores" };
@@ -24,7 +28,7 @@ export default async function SetorPage() {
   const result = await getSetores({});
   const data = result.setores || [];
   return (
-    <PageContainer title="Setores" description={result.error ? `Erro: ${result.error}` : "Gerencie seus setores."}>
+    <PageContainer title="Setores" description={result.error ? `Erro: ${result.error}` : "Gerencie seus setores."} wrapWithDashboardLayout={false}>
       <DataTable columns={columns} data={data as any} filterBy="nome" createHref="/cadastros/setor/novo" createText="Novo Setor" />
     </PageContainer>
   );
