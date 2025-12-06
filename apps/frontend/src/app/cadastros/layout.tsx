@@ -5,7 +5,7 @@ import { DashboardLayout } from "@/components/layout/dashboard-layout";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Users, Boxes, UserCog, HandshakeIcon, Banknote, PanelLeftOpen, PanelLeftClose, Briefcase, Grid2x2, GraduationCap, MapPinned, ListOrdered, ChevronRight } from "lucide-react";
+import { Users, Boxes, UserCog, HandshakeIcon, Banknote, PanelLeftOpen, PanelLeftClose, Briefcase, Grid2x2, GraduationCap, MapPinned, ListOrdered, ChevronRight, LayoutDashboard } from "lucide-react";
 import { isMaster } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -65,6 +65,7 @@ export default function CadastrosLayout({ children }: { children: React.ReactNod
     });
   };
   const items = [
+    { label: "Dashboard", href: "/cadastros/dashboard", icon: LayoutDashboard },
     { label: "Pessoas", href: "/cadastros/pessoa", icon: Users },
     { label: "Produtos", href: "/cadastros/produto", icon: Boxes },
     { label: "Usuários", href: "/cadastros/usuario", icon: UserCog },

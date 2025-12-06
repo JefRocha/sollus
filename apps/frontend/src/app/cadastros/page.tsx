@@ -4,7 +4,7 @@ import { Users, Activity, Banknote, UserSquare2, ShoppingBag, ShoppingCart, Boxe
 
 export default function Page() {
   const items = [
-    { label: "Cadastros", href: "/cadastros/pessoa", icon: Users, desc: "Pessoas, produtos e mais" },
+    { label: "Cadastros", href: "/cadastros/dashboard", icon: Users, desc: "Pessoas, produtos e mais" },
     { label: "Movimento", href: "/dashboard", icon: Activity, desc: "Fluxos e operações" },
     { label: "Financeiro", href: "/financeiro", icon: Banknote, desc: "Contas e recebíveis" },
     { label: "CRM", href: "/crm", icon: UserSquare2, desc: "Relacionamento com clientes" },
