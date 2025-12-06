@@ -134,7 +134,10 @@ export function Sidebar({
     );
   };
 
-  const renderSubItem = (subItem: any, subIndex: number): React.ReactElement => {
+  const renderSubItem = (
+    subItem: any,
+    subIndex: number
+  ): React.ReactElement => {
     if (subItem.items) {
       // Submenu aninhado (recursivo)
       const isExpanded = expandedMenus.includes(subItem.title);

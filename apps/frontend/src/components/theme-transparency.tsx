@@ -12,7 +12,9 @@ function setOpacity(pct: number) {
   root.style.setProperty("--panel-overlay-a", `${a}%`);
   root.style.setProperty("--panel-overlay-b", `${b}%`);
   root.style.setProperty("--panel-overlay-base", `${base}%`);
-  try { localStorage.setItem("theme:opacity", String(clamp)); } catch {}
+  try {
+    localStorage.setItem("theme:opacity", String(clamp));
+  } catch {}
 }
 
 export function ThemeTransparencyControl() {
@@ -22,14 +24,16 @@ export function ThemeTransparencyControl() {
     return Number.isFinite(saved) ? saved : 95;
   });
 
-  React.useEffect(() => { setOpacity(value); }, []);
+  React.useEffect(() => {
+    setOpacity(value);
+  }, []);
 
   return (
     <div className="flex items-center gap-3 px-3 py-2">
-      <label className="text-xs text-muted-foreground">Transparência</label>
+      <label className="text-sm text-muted-foreground">Suavidade</label>
       <input
         type="range"
-        min={40}
+        min={0}
         max={100}
         value={value}
         onChange={(e) => {
@@ -43,4 +47,3 @@ export function ThemeTransparencyControl() {
     </div>
   );
 }
-

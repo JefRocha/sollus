@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { apiClientFetch } from "@/lib/api-client";
 import { Header } from "@/components/layout/header";
 import { Sidebar } from "@/components/layout/sidebar";
@@ -27,6 +27,8 @@ export function DashboardLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState<boolean>(false);
   const [lowRes, setLowRes] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [user, setUser] = useState<
     | {
         name?: string;
@@ -41,15 +43,29 @@ export function DashboardLayout({
   useEffect(() => {
     const detect = () => {
       try {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        setLowRes(w < 1366 || h < 768);
+        const w = Math.max(
+          typeof document !== "undefined" ? document.documentElement.clientWidth : 0,
+          typeof window !== "undefined" ? window.innerWidth : 0
+        );
+        const h = typeof window !== "undefined" ? window.innerHeight : 0;
+        // Considera baixa resolução próximo de 1280x720
+        setLowRes(w <= 1280 || h <= 720);
+        setIsMobile(w <= 767);
       } catch {}
     };
     detect();
     window.addEventListener("resize", detect);
     return () => window.removeEventListener("resize", detect);
   }, []);
+
+  useEffect(() => {
+    if (lowRes) {
+      setSidebarCollapsed(true);
+      try {
+        window.localStorage.setItem("sidebarCollapsed", "1");
+      } catch {}
+    }
+  }, [lowRes]);
 
   useEffect(() => {
     try {
@@ -117,7 +133,7 @@ export function DashboardLayout({
     <div className="h-screen flex flex-col">
       <Header onMenuClick={() => setSidebarOpen(true)} user={user} />
 
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative" ref={containerRef}>
         {/* Sidebar Desktop */}
         <aside
           className={cn(
@@ -175,28 +191,57 @@ export function DashboardLayout({
         </aside>
 
         {/* Sidebar Mobile */}
-        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-          <SheetContent side="left" className="w-64 p-0">
-            <Sidebar
-              collapsed={false}
-              onNavigate={() => {
-                setSidebarOpen(false);
-                if (lowRes) {
+        {/** Usa Sheet em ambos os casos; em lowRes desktop, prende ao container **/}
+        {isMobile ? (
+          <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+            <SheetContent side="left" className="w-64 p-0">
+              <Sidebar
+                collapsed={false}
+                onNavigate={() => {
+                  setSidebarOpen(false);
+                  if (lowRes) {
+                    setSidebarCollapsed(true);
+                    try {
+                      window.localStorage.setItem("sidebarCollapsed", "1");
+                    } catch {}
+                  }
+                }}
+                onExpand={() => {
+                  setSidebarCollapsed(false);
+                  try {
+                    window.localStorage.setItem("sidebarCollapsed", "0");
+                  } catch {}
+                }}
+              />
+            </SheetContent>
+          </Sheet>
+        ) : (
+          <Sheet open={sidebarOpen && lowRes} onOpenChange={setSidebarOpen}>
+            <SheetContent
+              side="left"
+              className="w-64 p-0"
+              container={containerRef.current}
+              overlayClassName="bg-black/30 z-30"
+            >
+              <Sidebar
+                collapsed={false}
+                onNavigate={() => {
+                  setSidebarOpen(false);
                   setSidebarCollapsed(true);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "1");
                   } catch {}
-                }
-              }}
-              onExpand={() => {
-                setSidebarCollapsed(false);
-                try {
-                  window.localStorage.setItem("sidebarCollapsed", "0");
-                } catch {}
-              }}
-            />
-          </SheetContent>
-        </Sheet>
+                }}
+                onExpand={() => {
+                  setSidebarCollapsed(false);
+                  try {
+                    window.localStorage.setItem("sidebarCollapsed", "0");
+                  } catch {}
+                }}
+              />
+            </SheetContent>
+          </Sheet>
+        )}
 
         {/* Main Content */}
         <main className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">

@@ -11,7 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { useMobileDetection } from "@/hooks/use-mobile-detection";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 
 interface ListPageLayoutProps {
   sidebar: ReactNode;
@@ -35,8 +35,23 @@ export function ListPageLayout({
 }: ListPageLayoutProps) {
   const { isMobile } = useMobileDetection();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isNarrow, setIsNarrow] = useState(false);
 
-  if (isMobile) {
+  useEffect(() => {
+    const update = () => {
+      try {
+        const w = window.innerWidth || 0;
+        setIsNarrow(!isMobile && w < 1280);
+      } catch {
+        setIsNarrow(false);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [isMobile]);
+
+  if (isMobile || isNarrow) {
     return (
       <div className={cn("flex h-full flex-col", className)}>
         {/* Botão hambúrguer para mobile */}

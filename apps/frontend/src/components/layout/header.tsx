@@ -219,7 +219,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden hover:bg-primary/10 transition-smooth"
+          className="md:hidden bg-transparent hover:bg-transparent hover:text-primary transition-smooth"
           onClick={onMenuClick}
         >
           <Menu className="h-5 w-5" />
@@ -263,6 +263,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
                 variant="ghost"
                 size="icon"
                 aria-label="Cores do cabeçalho"
+                className="bg-transparent hover:bg-transparent hover:text-primary"
               >
                 <Palette className="h-5 w-5" />
               </Button>
@@ -509,7 +510,7 @@ export function Header({ onMenuClick, user }: HeaderProps) {
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
-                className="relative h-10 w-10 rounded-full"
+                className="relative h-10 w-10 rounded-full bg-transparent hover:bg-transparent"
               >
                 <Avatar>
                   <AvatarFallback className="bg-primary text-primary-foreground">

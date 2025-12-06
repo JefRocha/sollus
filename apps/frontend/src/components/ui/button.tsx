@@ -29,6 +29,40 @@ const buttonVariants = cva(
         "icon-lg": "size-10",
       },
     },
+    compoundVariants: [
+      // Remove hover background for icon-only ghost buttons; change only icon/text color
+      {
+        variant: "ghost",
+        size: "icon",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+      {
+        variant: "ghost",
+        size: "icon-sm",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+      {
+        variant: "ghost",
+        size: "icon-lg",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+      // Outline icon buttons also without hover background
+      {
+        variant: "outline",
+        size: "icon",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+      {
+        variant: "outline",
+        size: "icon-sm",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+      {
+        variant: "outline",
+        size: "icon-lg",
+        class: "hover:bg-transparent dark:hover:bg-transparent hover:text-primary dark:hover:text-primary",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
