@@ -50,7 +50,7 @@ import { Request, Response } from 'express';
 
 @Controller('auth')
 export class LoginController {
-  constructor(private service: LoginService) {}
+  constructor(private service: LoginService) { }
 
   private rl = new Map<string, { c: number; t: number }>();
   private allow(key: string, limit: number, windowMs: number) {
@@ -146,10 +146,19 @@ export class LoginController {
       if (rt) {
         await this.service.revokeByRefreshTokenPlain(rt);
       }
-    } catch {}
+    } catch { }
     response.clearCookie('sollus_access_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
     response.clearCookie('sollus_refresh_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
     return response.status(HttpStatus.OK).json({ ok: true });
+  }
+
+  @Post('aceite-politica')
+  @UseGuards(AuthGuard('jwt'))
+  async aceitarPolitica(@Req() request: Request) {
+    const userPayload = request.user as { sub: string };
+    const login = userPayload.sub;
+    await this.service.aceitarPolitica(login);
+    return { ok: true };
   }
 
   @Get('me')

@@ -66,6 +66,7 @@ export const logoutAction = actionClient.action(async () => {
     } catch {}
     const cookieStore = await cookies();
     cookieStore.delete("sollus_access_token");
+    cookieStore.delete("sollus_refresh_token");
     return { success: true };
   } catch (error) {
     return { success: false, error: "Erro ao fazer logout" };

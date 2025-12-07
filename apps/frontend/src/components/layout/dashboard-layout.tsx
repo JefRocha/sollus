@@ -8,6 +8,9 @@ import { Footer } from "@/components/layout/footer";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { PrivacyAcceptanceDialog } from "./privacy-acceptance-dialog";
+import { PrivacyAcceptanceBar } from "./privacy-acceptance-bar";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -32,14 +35,16 @@ export function DashboardLayout({
   const containerRef = useRef<HTMLDivElement>(null);
   const [user, setUser] = useState<
     | {
-        name?: string;
-        email?: string;
-        administrador?: string;
-        roles?: string[];
-        displayName?: string;
-      }
+      name?: string;
+      email?: string;
+      administrador?: string;
+      roles?: string[];
+      displayName?: string;
+      dataAceitePolitica?: string;
+    }
     | undefined
   >(initialUser);
+  const pathname = usePathname();
 
   useEffect(() => {
     const detect = () => {
@@ -52,7 +57,7 @@ export function DashboardLayout({
         // Considera baixa resolução próximo de 1280x720
         setLowRes(w <= 1280 || h <= 720);
         setIsMobile(w <= 767);
-      } catch {}
+      } catch { }
     };
     detect();
     window.addEventListener("resize", detect);
@@ -64,7 +69,7 @@ export function DashboardLayout({
       setSidebarCollapsed(true);
       try {
         window.localStorage.setItem("sidebarCollapsed", "1");
-      } catch {}
+      } catch { }
     }
   }, [lowRes]);
 
@@ -72,7 +77,7 @@ export function DashboardLayout({
     try {
       const v = window.localStorage.getItem("sidebarCollapsed");
       if (v === "1") setSidebarCollapsed(true);
-    } catch {}
+    } catch { }
   }, []);
 
   useEffect(() => {
@@ -109,6 +114,7 @@ export function DashboardLayout({
               : undefined),
           roles: Array.isArray(r?.roles) ? r.roles : undefined,
           displayName,
+          dataAceitePolitica: r?.dataAceitePolitica,
         };
         setUser(u);
       } catch (error) {
@@ -123,7 +129,7 @@ export function DashboardLayout({
             if (name || email || displayName) {
               setUser({ name, email, displayName });
             }
-          } catch {}
+          } catch { }
         }
       }
     };
@@ -137,60 +143,60 @@ export function DashboardLayout({
       <div className="flex-1 flex overflow-hidden relative" ref={containerRef}>
         {/* Sidebar Desktop */}
         {!hideSidebar && (
-        <aside
-          className={cn(
-            "hidden md:block border-r overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
-            sidebarCollapsed ? "w-16" : "w-64"
-          )}
-          style={{
-            background: "var(--ui-sidebar-bg)",
-            color: "var(--ui-sidebar-fg)",
-          }}
-        >
-          <div className="flex items-center justify-between p-4 border-b">
-            {!sidebarCollapsed && <span className="font-semibold">Menu</span>}
-            <button
-              onClick={() => {
-                setSidebarCollapsed((prev) => {
-                  const next = !prev;
+          <aside
+            className={cn(
+              "hidden md:block border-r overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
+              sidebarCollapsed ? "w-16" : "w-64"
+            )}
+            style={{
+              background: "var(--ui-sidebar-bg)",
+              color: "var(--ui-sidebar-fg)",
+            }}
+          >
+            <div className="flex items-center justify-between p-4 border-b">
+              {!sidebarCollapsed && <span className="font-semibold">Menu</span>}
+              <button
+                onClick={() => {
+                  setSidebarCollapsed((prev) => {
+                    const next = !prev;
+                    try {
+                      window.localStorage.setItem(
+                        "sidebarCollapsed",
+                        next ? "1" : "0"
+                      );
+                    } catch { }
+                    return next;
+                  });
+                }}
+                className="p-1 hover:bg-muted transition-colors"
+                title={sidebarCollapsed ? "Expandir menu" : "Recolher menu"}
+              >
+                <ChevronRight
+                  className={cn(
+                    "h-5 w-5 transition-transform duration-300",
+                    sidebarCollapsed ? "" : "rotate-180"
+                  )}
+                />
+              </button>
+            </div>
+            <Sidebar
+              collapsed={sidebarCollapsed}
+              onNavigate={() => {
+                if (lowRes) {
+                  setSidebarCollapsed(true);
                   try {
-                    window.localStorage.setItem(
-                      "sidebarCollapsed",
-                      next ? "1" : "0"
-                    );
-                  } catch {}
-                  return next;
-                });
+                    window.localStorage.setItem("sidebarCollapsed", "1");
+                  } catch { }
+                }
               }}
-              className="p-1 hover:bg-muted transition-colors"
-              title={sidebarCollapsed ? "Expandir menu" : "Recolher menu"}
-            >
-              <ChevronRight
-                className={cn(
-                  "h-5 w-5 transition-transform duration-300",
-                  sidebarCollapsed ? "" : "rotate-180"
-                )}
-              />
-            </button>
-          </div>
-          <Sidebar
-            collapsed={sidebarCollapsed}
-            onNavigate={() => {
-              if (lowRes) {
-                setSidebarCollapsed(true);
+              onExpand={() => {
+                setSidebarCollapsed(false);
                 try {
-                  window.localStorage.setItem("sidebarCollapsed", "1");
-                } catch {}
-              }
-            }}
-            onExpand={() => {
-              setSidebarCollapsed(false);
-              try {
-                window.localStorage.setItem("sidebarCollapsed", "0");
-              } catch {}
-            }}
-          />
-        </aside>
+                  window.localStorage.setItem("sidebarCollapsed", "0");
+                } catch { }
+              }}
+            />
+          </aside>
         )}
 
         {/* Sidebar Mobile */}
@@ -205,14 +211,14 @@ export function DashboardLayout({
                     setSidebarCollapsed(true);
                     try {
                       window.localStorage.setItem("sidebarCollapsed", "1");
-                    } catch {}
+                    } catch { }
                   }
                 }}
                 onExpand={() => {
                   setSidebarCollapsed(false);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "0");
-                  } catch {}
+                  } catch { }
                 }}
               />
             </SheetContent>
@@ -232,13 +238,13 @@ export function DashboardLayout({
                   setSidebarCollapsed(true);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "1");
-                  } catch {}
+                  } catch { }
                 }}
                 onExpand={() => {
                   setSidebarCollapsed(false);
                   try {
                     window.localStorage.setItem("sidebarCollapsed", "0");
-                  } catch {}
+                  } catch { }
                 }}
               />
             </SheetContent>
@@ -252,6 +258,30 @@ export function DashboardLayout({
       </div>
 
       <Footer />
+      {user && !user.dataAceitePolitica && (
+        pathname === "/privacidade" ? (
+          <PrivacyAcceptanceBar
+            onAccept={() => {
+              setUser((prev) =>
+                prev
+                  ? { ...prev, dataAceitePolitica: new Date().toISOString() }
+                  : undefined
+              );
+            }}
+          />
+        ) : (
+          <PrivacyAcceptanceDialog
+            open={true}
+            onAccept={() => {
+              setUser((prev) =>
+                prev
+                  ? { ...prev, dataAceitePolitica: new Date().toISOString() }
+                  : undefined
+              );
+            }}
+          />
+        )
+      )}
     </div>
   );
 }

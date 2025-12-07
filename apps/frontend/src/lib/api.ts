@@ -208,6 +208,18 @@ export async function apiFetch<T>(
             }).catch(() => null);
             if (refreshRes && refreshRes.ok) {
               refreshed = true;
+              try {
+                const json = await refreshRes.json().catch(() => ({}));
+                const newAccess = json?.token || json?.accessToken;
+                const newRefresh = json?.refreshToken;
+                if (newAccess) newAccessToken = newAccess; // Update local variable for retry
+                if (typeof window !== "undefined") {
+                  if (newAccess)
+                    localStorage.setItem("sollus_access_token", newAccess);
+                  if (newRefresh)
+                    localStorage.setItem("sollus_refresh_token", newRefresh);
+                }
+              } catch {}
             }
           }
 

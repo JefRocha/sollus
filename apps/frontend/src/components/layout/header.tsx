@@ -27,7 +27,7 @@ import { ThemeTransparencyControl } from "@/components/theme-transparency";
 import { RentHubSoftnessControl } from "@/components/renthub-softness-control";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
+import { cn, formatUserName } from "@/lib/utils";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -68,7 +68,7 @@ export function Header({
         try {
           localStorage.removeItem("sollus_access_token");
           localStorage.removeItem("sollus_refresh_token");
-        } catch {}
+        } catch { }
         window.location.href = "/login";
       },
       onError: (error) => {
@@ -77,7 +77,7 @@ export function Header({
         try {
           localStorage.removeItem("sollus_access_token");
           localStorage.removeItem("sollus_refresh_token");
-        } catch {}
+        } catch { }
         window.location.href = "/login";
       },
     }
@@ -97,7 +97,7 @@ export function Header({
     try {
       localStorage.removeItem("sollus_access_token");
       localStorage.removeItem("sollus_refresh_token");
-    } catch {}
+    } catch { }
     await executeLogout();
   };
 
@@ -113,7 +113,7 @@ export function Header({
       const c = localStorage.getItem("pc:headerColor");
       if (c) setColor(c);
       else if (t) setTone(t);
-    } catch {}
+    } catch { }
   }, []);
 
   React.useEffect(() => {
@@ -132,7 +132,7 @@ export function Header({
       } else {
         await document.exitFullscreen();
       }
-    } catch {}
+    } catch { }
   };
 
   // Resolve dados do usuário para o dropdown
@@ -143,18 +143,7 @@ export function Header({
     } else {
       const load = async () => {
         try {
-          const token =
-            typeof window !== "undefined"
-              ? localStorage.getItem("sollus_access_token") || undefined
-              : undefined;
-          const res = await fetch("/api/me", {
-            credentials: "include",
-            headers: {
-              ...(token ? { Authorization: `Bearer ${token}` } : {}),
-            },
-          });
-          if (!res.ok) throw new Error("me_failed");
-          const u = await res.json();
+          const u = await apiClientFetch<any>("/api/me");
           const name = u?.name ?? undefined;
           const email = u?.email ?? undefined;
           const displayName =
@@ -177,7 +166,7 @@ export function Header({
             if (name || email || displayName) {
               setLocalUser({ name, email, displayName });
             }
-          } catch {}
+          } catch { }
         }
       };
       load();
@@ -243,7 +232,7 @@ export function Header({
           `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
         );
       }
-    } catch {}
+    } catch { }
   };
 
   return (
@@ -304,14 +293,15 @@ export function Header({
           {mounted && (
             <div className="hidden md:flex flex-col items-end mr-2">
               <span className="text-base md:text-lg font-semibold">
-                {localUser?.displayName ||
+                {formatUserName(
+                  localUser?.displayName ||
                   localUser?.name ||
-                  localUser?.email ||
-                  "Usuário"}
+                  localUser?.email
+                ) || "Usuário"}
               </span>
               <span className="text-xs text-muted-foreground">
                 {Array.isArray(localUser?.roles) &&
-                localUser?.roles?.includes("ADMIN")
+                  localUser?.roles?.includes("ADMIN")
                   ? "Administrador"
                   : ""}
               </span>
@@ -347,15 +337,16 @@ export function Header({
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
                     <p className="text-sm font-medium leading-none">
-                      {localUser?.displayName ||
+                      {formatUserName(
+                        localUser?.displayName ||
                         localUser?.name ||
-                        localUser?.email ||
-                        "Usuário"}
+                        localUser?.email
+                      ) || "Usuário"}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {localUser?.email ||
                         (Array.isArray(localUser?.roles) &&
-                        localUser!.roles!.includes("ADMIN")
+                          localUser!.roles!.includes("ADMIN")
                           ? "Administrador"
                           : "")}
                     </p>

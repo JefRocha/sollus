@@ -55,6 +55,9 @@ export class Usuario {
 	@Column()
 	dataCadastro: Date;
 
+	@Column({ nullable: true })
+	dataAceitePolitica: Date;
+
 
 	/**
 	* Relations
@@ -78,6 +81,7 @@ export class Usuario {
 			this.senha = objetoJson['senha'];
 			this.administrador = objetoJson['administrador'];
 			this.dataCadastro = objetoJson['dataCadastro'];
+			this.dataAceitePolitica = objetoJson['dataAceitePolitica'];
 
 			if (objetoJson['papel'] != null) {
 				this.papel = new Papel(objetoJson['papel']);

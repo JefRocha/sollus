@@ -182,4 +182,13 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
         }
         return false;
     }
+
+    async aceitarPolitica(login: string) {
+        const user = await this.findOne({ where: { login } });
+        if (user) {
+            user.dataAceitePolitica = new Date();
+            return this.repo.save(user);
+        }
+        return null;
+    }
 }

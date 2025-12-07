@@ -137,24 +137,21 @@ export async function apiClientFetch<T>(
         }).catch(() => null);
         if (refreshRes && refreshRes.ok) {
           refreshed = true;
+          try {
+            const body = await refreshRes.json().catch(() => ({}));
+            const newAccess = body?.token || body?.accessToken;
+            const newRefresh = body?.refreshToken;
+            if (!COOKIE_ONLY && typeof window !== "undefined") {
+              if (newAccess)
+                localStorage.setItem("sollus_access_token", newAccess);
+              if (newRefresh)
+                localStorage.setItem("sollus_refresh_token", newRefresh);
+            }
+          } catch {}
         }
       }
 
       if (refreshed) {
-        // Capturar novos tokens do corpo, se presentes
-        try {
-          // No caso de refresh via cookies, já foram tratados acima se houve body
-          // Aqui tentamos novamente caso o refresh sem body tenha retornado dados
-          const body = {} as any;
-          const newAccess = body?.token || body?.accessToken;
-          const newRefresh = body?.refreshToken;
-          if (!COOKIE_ONLY && typeof window !== "undefined") {
-            if (newAccess)
-              localStorage.setItem("sollus_access_token", newAccess);
-            if (newRefresh)
-              localStorage.setItem("sollus_refresh_token", newRefresh);
-          }
-        } catch {}
         // Reexecutar a requisição original
         const retryRes = await fetch(url, {
           credentials: "include",
