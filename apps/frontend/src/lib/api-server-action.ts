@@ -31,7 +31,10 @@ export async function apiServerAction<T>(endpoint: string, options: RequestInit 
   
   // Em comunicação Server-to-Server (Next -> Nest), evitamos SSL invalido usando localhost ou http se configurado
   // Se o backend for HTTPS auto-assinado, precisaremos de NODE_TLS_REJECT_UNAUTHORIZED=0 em dev
-  const baseUrl = API_URL.replace("127.0.0.1", "localhost"); 
+  let baseUrl = API_URL.replace("127.0.0.1", "localhost"); 
+  if (baseUrl.startsWith("https://localhost")) {
+    baseUrl = baseUrl.replace("https://", "http://");
+  }
 
   console.log(`[ServerAction] ${options.method || 'GET'} ${baseUrl}${cleanEndpoint}`);
 

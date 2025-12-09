@@ -68,7 +68,7 @@ export class PessoaService extends TypeOrmCrudService<Pessoa> {
 
 			if (operacao == 'A') {
 				await this.excluirFilhos(queryRunner, pessoa.id);
-				await this.excluirVinculados(queryRunner, pessoa.id);
+				// await this.excluirVinculados(queryRunner, pessoa.id); // Perigoso: Remove registros com FK (ex: Colaborador -> Usuário)
 			}
 
 			objetoRetorno = await queryRunner.manager.save(pessoa);

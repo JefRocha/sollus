@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { apiClientFetch } from "@/lib/api-client";
+import { loginAction } from "@/actions/auth-actions";
+import { useAction } from "next-safe-action/hooks";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,7 +36,6 @@ type LoginSchema = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
   const router = useRouter();
-  const [isExecuting, setExecuting] = React.useState(false);
   const [errorMsg, setErrorMsg] = React.useState<string | null>(null);
 
   const form = useForm<LoginSchema>({
@@ -46,48 +46,40 @@ export function LoginForm() {
     },
   });
 
-  async function onSubmit(values: LoginSchema) {
-    setExecuting(true);
-    setErrorMsg(null);
-    try {
-      const API_URL =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-      // Tenta rota direta se o proxy falhar, para garantir login e token no localStorage
-      const res = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
-      });
-      if (!res.ok) throw new Error(`login_failed_${res.status}`);
-      const r = await res.json();
-      const access =
-        r?.token ??
-        r?.access_token ??
-        r?.accessToken ??
-        r?.jwt ??
-        r?.data?.token;
-      const refresh = r?.refreshToken ?? r?.refresh_token ?? r?.data?.refresh;
-      const COOKIE_ONLY = process.env.NEXT_PUBLIC_AUTH_COOKIE_ONLY === "1";
-      try {
-        if (!COOKIE_ONLY) {
-          if (access)
-            window.localStorage.setItem("sollus_access_token", access);
-          if (refresh)
-            window.localStorage.setItem("sollus_refresh_token", refresh);
+  const { execute, status } = useAction(loginAction, {
+    onSuccess: ({ data }) => {
+      if (data?.success) {
+        // Salva no localStorage para compatibilidade com componentes legados (Client Fetch)
+        if (data.token)
+          window.localStorage.setItem("sollus_access_token", data.token);
+        if (data.refreshToken)
+          window.localStorage.setItem(
+            "sollus_refresh_token",
+            data.refreshToken
+          );
+
+        // Redireciona
+        try {
+          window.location.href = "/dashboard";
+        } catch {
+          router.push("/dashboard");
         }
-      } catch {}
-      try {
-        window.location.href = "/dashboard";
-      } catch {
-        router.push("/dashboard");
       }
-    } catch (e) {
-      console.error("Login error:", e);
-      setErrorMsg("Usuário ou senha inválidos");
-    } finally {
-      setExecuting(false);
-    }
+      if (data?.error) {
+        setErrorMsg(data.error);
+      }
+    },
+    onError: (error) => {
+      setErrorMsg("Erro ao conectar com o servidor");
+      console.error(error);
+    },
+  });
+
+  const isExecuting = status === "executing";
+
+  function onSubmit(values: LoginSchema) {
+    setErrorMsg(null);
+    execute(values);
   }
 
   return (

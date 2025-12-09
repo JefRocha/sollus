@@ -2,8 +2,22 @@
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import type { Pessoa } from "@/actions/cadastros/pessoa-actions";
-import { updatePessoaClient } from "../../pessoa.service.client";
+import {
+  type Pessoa,
+  getPessoa,
+  updatePessoa,
+} from "@/actions/cadastros/pessoa-actions";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { FormTabs } from "../../_components/FormTabs";
+import { PageContainer } from "@/components/page-container";
 
 export default function PessoaEditarPage() {
   const router = useRouter();
@@ -20,41 +34,27 @@ export default function PessoaEditarPage() {
   useEffect(() => {
     const id = Number(params.id);
     if (!id) return;
-    executeGet({ id });
-  }, [params.id]);
 
-  const { execute: executeGet } = useAction(getPessoaAction, {
-    onSuccess: ({ data }) => {
-      const remote = (data as any)?.pessoa as Pessoa;
-      const normalized = {
-        ...remote,
-        pessoaContatoModelList: remote.pessoaContatoModelList ?? [],
-        pessoaTelefoneModelList: remote.pessoaTelefoneModelList ?? [],
-        pessoaEnderecoModelList: remote.pessoaEnderecoModelList ?? [],
-      } as Pessoa;
-      setForm(normalized);
-      setInitial(normalized);
-    },
-    onError: () => {
-      setSuccessOpen(false);
-    },
-  });
-
-  /*
-  const { execute: executeUpdate, status: updateStatus } = useAction(
-    updatePessoaAction,
-    {
-      onSuccess: () => {
-        setSuccessOpen(true);
-        setSaving(false);
-      },
-      onError: () => {
-        setSaving(false);
+    async function load() {
+      try {
+        const data = await getPessoa(id);
+        const remote = (data as any)?.pessoa || data; // Ajuste conforme retorno da API
+        const normalized = {
+          ...remote,
+          pessoaContatoModelList: remote.pessoaContatoModelList ?? [],
+          pessoaTelefoneModelList: remote.pessoaTelefoneModelList ?? [],
+          pessoaEnderecoModelList: remote.pessoaEnderecoModelList ?? [],
+        } as Pessoa;
+        setForm(normalized);
+        setInitial(normalized);
+      } catch (error) {
+        console.error(error);
+        setErrorMessage("Erro ao carregar dados da pessoa");
         setErrorOpen(true);
-      },
+      }
     }
-  );
-  */
+    load();
+  }, [params.id]);
 
   async function save() {
     if (!form) return;
@@ -77,25 +77,25 @@ export default function PessoaEditarPage() {
       const payload: any = {
         ...form,
         pessoaFisica: (form as any).pessoaFisicaModel
-          ? { ...(form as any).pessoaFisicaModel, id: undefined }
+          ? { ...(form as any).pessoaFisicaModel }
           : undefined,
         pessoaJuridica: (form as any).pessoaJuridicaModel
-          ? { ...(form as any).pessoaJuridicaModel, id: undefined }
+          ? { ...(form as any).pessoaJuridicaModel }
           : undefined,
         cliente: (form as any).clienteModel
-          ? { ...(form as any).clienteModel, id: undefined }
+          ? { ...(form as any).clienteModel }
           : undefined,
         fornecedor: (form as any).fornecedorModel
-          ? { ...(form as any).fornecedorModel, id: undefined }
+          ? { ...(form as any).fornecedorModel }
           : undefined,
         transportadora: (form as any).transportadoraModel
-          ? { ...(form as any).transportadoraModel, id: undefined }
+          ? { ...(form as any).transportadoraModel }
           : undefined,
         colaborador: (form as any).colaboradorModel
-          ? { ...(form as any).colaboradorModel, id: undefined }
+          ? { ...(form as any).colaboradorModel }
           : undefined,
         contador: (form as any).contadorModel
-          ? { ...(form as any).contadorModel, id: undefined }
+          ? { ...(form as any).contadorModel }
           : undefined,
 
         // Limpa as listas para recriação (assumindo que o backend também limpa listas)
@@ -128,12 +128,12 @@ export default function PessoaEditarPage() {
         pessoaTelefoneModelList: undefined,
       };
 
-      // await executeUpdate({ pessoa: payload });
-      await updatePessoaClient(payload);
+      await updatePessoa(payload);
       setSuccessOpen(true);
       setSaving(false);
-    } catch {
+    } catch (err: any) {
       setSaving(false);
+      setErrorMessage(err.message || "Erro ao salvar");
       setErrorOpen(true);
     }
   }
@@ -172,11 +172,8 @@ export default function PessoaEditarPage() {
           >
             Cancelar
           </Button>
-          <Button
-            onClick={save}
-            disabled={saving || updateStatus === "executing"}
-          >
-            {saving || updateStatus === "executing" ? "Salvando..." : "Salvar"}
+          <Button onClick={save} disabled={saving}>
+            {saving ? "Salvando..." : "Salvar"}
           </Button>
         </div>
         <AlertDialog open={successOpen} onOpenChange={setSuccessOpen}>

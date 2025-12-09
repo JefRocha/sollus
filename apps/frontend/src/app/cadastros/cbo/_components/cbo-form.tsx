@@ -3,11 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
 
 import { CboSchema, cboSchema } from "../cbo.zod.schema";
-import { Cbo, createCbo, updateCbo } from "../cbo.service"; // Keep Cbo type import
-// import { createCboAction, updateCboAction } from "@/actions/cbo"; // Import Server Actions
+import { Cbo } from "../cbo.service";
+import { createCboAction, updateCboAction } from "@/actions/cbo";
 
 import {
   Form,
@@ -29,46 +30,61 @@ interface CboFormProps {
 export function CboForm({ data }: CboFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const isEditing = !!data;
 
   const form = useForm<CboSchema>({
     resolver: zodResolver(cboSchema),
     defaultValues:
       {
         ...data,
-        observacao: data?.observacao ?? "", // Garante string vazia se for null/undefined
+        observacao: data?.observacao ?? "",
         codigo: data?.codigo ?? "",
         codigo1994: data?.codigo1994 ?? "",
         nome: data?.nome ?? "",
       } || {},
   });
 
-  const onSubmit = async (formData: CboSchema) => {
-    console.log("[CboForm] onSubmit started", formData);
-    try {
-      if (isEditing) {
-        console.log("[CboForm] Updating CBO...");
-        // Client-Side Fetch direto para evitar problemas de cookie server-side
-        await updateCbo(data.id, formData);
-        console.log("[CboForm] Update success");
-        toast.success("Cbo atualizado com sucesso!");
-      } else {
-        console.log("[CboForm] Creating CBO...");
-        await createCbo(formData);
-        console.log("[CboForm] Create success");
-        toast.success("Cbo criado com sucesso!");
-      }
-      {
-        const v = searchParams?.get("view");
-        const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
-        router.push(`/cadastros/cbo${suffix}`);
-      }
-      router.refresh();
-    } catch (error: any) {
-      toast.error(
-        error.message || "Ocorreu um erro ao salvar. Tente novamente."
-      );
-      console.error(error);
+  const { execute: executeCreate, status: createStatus } = useAction(
+    createCboAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Cbo criado com sucesso!");
+          redirectBack();
+        }
+        if (data?.error) toast.error(data.error);
+      },
+      onError: (error) => console.error(error),
+    }
+  );
+
+  const { execute: executeUpdate, status: updateStatus } = useAction(
+    updateCboAction,
+    {
+      onSuccess: ({ data }) => {
+        if (data?.success) {
+          toast.success("Cbo atualizado com sucesso!");
+          redirectBack();
+        }
+        if (data?.error) toast.error(data.error);
+      },
+      onError: (error) => console.error(error),
+    }
+  );
+
+  const status = data ? updateStatus : createStatus;
+
+  function redirectBack() {
+    const v = searchParams?.get("view");
+    const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+    router.push(`/cadastros/cbo${suffix}`);
+    router.refresh();
+  }
+
+  const onSubmit = (formData: CboSchema) => {
+    if (data) {
+      executeUpdate({ ...formData, id: data.id });
+    } else {
+      executeCreate(formData);
     }
   };
 
@@ -151,8 +167,8 @@ export function CboForm({ data }: CboFormProps) {
           >
             Cancelar
           </Button>
-          <Button type="submit" disabled={form.formState.isSubmitting}>
-            {form.formState.isSubmitting ? "Salvando..." : "Salvar"}
+          <Button type="submit" disabled={status === "executing"}>
+            {status === "executing" ? "Salvando..." : "Salvar"}
           </Button>
         </div>
       </form>

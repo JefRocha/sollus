@@ -86,6 +86,7 @@ export function DashboardLayout({
     const loadUser = async () => {
       try {
         const r: any = await apiClientFetch("/api/auth/me"); // Corrigido para /api/auth/me
+        console.log("[DashboardLayout] /api/auth/me response:", r);
 
         /* 
         // Lógica antiga removida, pois apiClientFetch já lida com Auth Headers

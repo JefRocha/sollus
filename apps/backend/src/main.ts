@@ -12,7 +12,7 @@ async function bootstrap() {
     const keyPath = process.env.HTTPS_KEY_PATH || path.join(__dirname, '..', 'certs', 'localhost-key.pem');
     const certPath = process.env.HTTPS_CERT_PATH || path.join(__dirname, '..', 'certs', 'localhost.pem');
     const enableHttps = String(process.env.HTTPS_ENABLE || '').toLowerCase() === 'true';
-    if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
+    if (enableHttps && fs.existsSync(keyPath) && fs.existsSync(certPath)) {
       httpsOptions = {
         key: fs.readFileSync(keyPath),
         cert: fs.readFileSync(certPath),
