@@ -15,6 +15,14 @@ const nextConfig: NextConfig = {
     'http://127.0.0.1:3000',
     'http://192.168.0.102:3000',
   ],
+  async rewrites() {
+    return [
+      {
+        source: "/api-proxy/:path*",
+        destination: "http://127.0.0.1:4000/api/:path*",
+      },
+    ];
+  },
   async headers() {
     const securityHeaders = [
       { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },

@@ -15,11 +15,15 @@ export type Cbo = {
  * Como CBO é uma tabela global, não precisamos passar o tenantId.
  */
 export async function getCbos(): Promise<Cbo[]> {
-    const data = await apiFetch<Cbo[]>([ENDPOINT, `/cbos`, `/api${ENDPOINT}`, `/cadastros${ENDPOINT}`], { suppressErrorLog: true });
+    const data: any = await apiFetch<Cbo[]>([ENDPOINT, `/cbos`, `/api${ENDPOINT}`, `/cadastros${ENDPOINT}`], { suppressErrorLog: true });
     if (isErrorResult(data)) {
         return [];
     }
-    return data;
+    // Suporte a resposta paginada do NestJSX/Crud
+    if (data && Array.isArray(data.data)) {
+        return data.data;
+    }
+    return Array.isArray(data) ? data : [];
 }
 
 /**

@@ -43,6 +43,10 @@ async function getApiCtx() {
     // We also validly construct the cookie header to pass along
     const cookieHeader = cookieStore.getAll().map((c) => `${c.name}=${c.value}`).join("; ");
 
+    console.log('[DEBUG Frontend Action] Cookies received from browser:', cookieStore.getAll().map(c => c.name));
+    console.log('[DEBUG Frontend Action] Token found:', !!token);
+    console.log('[DEBUG Frontend Action] XSRF Token found:', !!xsrfToken);
+
     return {
         accessToken: token,
         xsrfToken,

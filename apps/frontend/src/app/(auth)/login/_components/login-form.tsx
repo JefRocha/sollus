@@ -51,7 +51,8 @@ export function LoginForm() {
     setErrorMsg(null);
     try {
       const API_URL =
-        process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000";
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+      // Tenta rota direta se o proxy falhar, para garantir login e token no localStorage
       const res = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         credentials: "include",

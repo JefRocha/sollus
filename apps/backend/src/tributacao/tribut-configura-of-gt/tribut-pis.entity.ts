@@ -33,8 +33,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
-import { TributConfiguraOfGt } from '../../entities-export';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { TributConfiguraOfGt, Empresa } from '../../entities-export';
 
 @Entity()
 export class TributPis {
@@ -45,7 +45,7 @@ export class TributPis {
 	@Column()
 	cstPis: string;
 
-	@Column()
+	@Column({ nullable: true })
 	efdTabela435: string;
 
 	@Column()
@@ -71,8 +71,12 @@ export class TributPis {
 	* Relations
 	*/
 	@OneToOne(() => TributConfiguraOfGt, tributConfiguraOfGt => tributConfiguraOfGt.tributPis)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_tribut_configura_of_gt' })
 	tributConfiguraOfGt: TributConfiguraOfGt;
+
+	@ManyToOne(() => Empresa)
+	@JoinColumn({ name: 'id_empresa' })
+	empresa: Empresa;
 
 
 	/**

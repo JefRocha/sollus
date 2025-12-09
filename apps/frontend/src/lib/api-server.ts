@@ -1,11 +1,13 @@
 import "server-only";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// Não forçar protocolo
+const API_URL = ENV_API_URL;
 
 if (process.env.NODE_ENV !== "production") {
   try {
     process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-  } catch { }
+  } catch {}
 }
 
 export async function apiFetchServer<T>(
@@ -23,7 +25,7 @@ export async function apiFetchServer<T>(
   const suppress = !!suppressErrorLog;
   let accessToken = ctx?.accessToken || undefined;
   let xsrfToken = ctx?.xsrfToken || undefined;
-  const cookieHeader = ctx?.cookieHeader || "";
+  let cookieHeader = ctx?.cookieHeader || "";
   const refreshToken = ctx?.refreshToken || undefined;
 
   for (const ep of endpoints) {
@@ -46,13 +48,30 @@ export async function apiFetchServer<T>(
               } catch {
                 xsrfToken = text || undefined;
               }
-              // Mantém em memória; o caller decide persistir se necessário
+
+              // CAPTURA O NOVO COOKIE XSRF-TOKEN E ATUALIZA O HEADER
+              const newCookieHeader = csrfRes.headers.get("set-cookie");
+              if (newCookieHeader) {
+                const match = newCookieHeader.match(/XSRF-TOKEN=([^;]+)/);
+                if (match) {
+                  const newTokenCookie = `XSRF-TOKEN=${match[1]}`;
+                  if (cookieHeader.includes("XSRF-TOKEN=")) {
+                    cookieHeader = cookieHeader.replace(
+                      /XSRF-TOKEN=[^;]+/,
+                      newTokenCookie
+                    );
+                  } else {
+                    cookieHeader = cookieHeader
+                      ? `${cookieHeader}; ${newTokenCookie}`
+                      : newTokenCookie;
+                  }
+                }
+              }
             }
-          } catch { }
+          } catch {}
         }
         if (xsrfToken) csrfHeader = { "X-CSRF-Token": xsrfToken };
       }
-
 
       const res = await fetch(url, {
         cache: "no-store",
@@ -60,16 +79,19 @@ export async function apiFetchServer<T>(
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+          Connection: "close", // Evita erros de UND_ERR_SOCKET em Node v18+ (keep-alive race condition)
+          ...(accessToken &&
+          accessToken !== "undefined" &&
+          accessToken !== "null"
+            ? { Authorization: `Bearer ${accessToken}` }
+            : {}),
           ...(cookieHeader ? { Cookie: cookieHeader } : {}),
           ...csrfHeader,
           ...fetchOptions?.headers,
         },
       });
 
-
       if (res.ok) return res.json();
-
 
       if (res.status === 401) {
         try {
@@ -86,11 +108,12 @@ export async function apiFetchServer<T>(
                 ...(cookieHeader
                   ? { Cookie: cookieHeader }
                   : refreshToken
-                    ? {
-                      Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
-                        }`,
+                  ? {
+                      Cookie: `sollus_refresh_token=${refreshToken}${
+                        xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
+                      }`,
                     }
-                    : {}),
+                  : {}),
               },
               // Backend não lê body; mantemos vazio
             }).catch(() => null);
@@ -100,7 +123,7 @@ export async function apiFetchServer<T>(
                 newAccessToken = json?.token || json?.accessToken || undefined;
                 const newRefresh = json?.refreshToken || undefined;
                 accessToken = newAccessToken || accessToken;
-              } catch { }
+              } catch {}
               refreshed = true;
             }
           }
@@ -117,11 +140,12 @@ export async function apiFetchServer<T>(
                 ...(cookieHeader
                   ? { Cookie: cookieHeader }
                   : refreshToken
-                    ? {
-                      Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
-                        }`,
+                  ? {
+                      Cookie: `sollus_refresh_token=${refreshToken}${
+                        xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
+                      }`,
                     }
-                    : {}),
+                  : {}),
               },
             }).catch(() => null);
             if (r2 && r2.ok) {
@@ -156,7 +180,10 @@ export async function apiFetchServer<T>(
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
-                ...(accessToken
+                Connection: "close",
+                ...(accessToken &&
+                accessToken !== "undefined" &&
+                accessToken !== "null"
                   ? { Authorization: `Bearer ${accessToken}` }
                   : {}),
                 ...(xsrfToken ? { "X-CSRF-Token": xsrfToken } : {}),
@@ -188,8 +215,9 @@ export async function apiFetchServer<T>(
       }
 
       const bodyText = await res.text().catch(() => "");
-      const msg = `API Error: ${res.status} ${res.statusText}${bodyText ? ` - ${bodyText}` : ""
-        }`;
+      const msg = `API Error: ${res.status} ${res.statusText}${
+        bodyText ? ` - ${bodyText}` : ""
+      }`;
       if (!suppress)
         console.error("[API SERVER FETCH ERROR] Response not OK:", msg);
       return {

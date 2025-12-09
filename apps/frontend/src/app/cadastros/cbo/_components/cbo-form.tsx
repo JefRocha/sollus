@@ -6,8 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "sonner";
 
 import { CboSchema, cboSchema } from "../cbo.zod.schema";
-import { Cbo } from "../cbo.service"; // Keep Cbo type import
-import { createCboAction, updateCboAction } from "@/actions/cbo"; // Import Server Actions
+import { Cbo, createCbo, updateCbo } from "../cbo.service"; // Keep Cbo type import
+// import { createCboAction, updateCboAction } from "@/actions/cbo"; // Import Server Actions
 
 import {
   Form,
@@ -39,25 +39,12 @@ export function CboForm({ data }: CboFormProps) {
   const onSubmit = async (formData: CboSchema) => {
     try {
       if (isEditing) {
-        const result = await updateCboAction({ id: data.id, ...formData });
-        if (result?.data?.success) {
-          toast.success("Cbo atualizado com sucesso!");
-        } else {
-          toast.error(
-            result?.data?.error ||
-              result?.serverError ||
-              "Erro ao atualizar Cbo."
-          );
-        }
+        // Client-Side Fetch direto para evitar problemas de cookie server-side
+        await updateCbo(data.id, formData);
+        toast.success("Cbo atualizado com sucesso!");
       } else {
-        const result = await createCboAction(formData);
-        if (result?.data?.success) {
-          toast.success("Cbo criado com sucesso!");
-        } else {
-          toast.error(
-            result?.data?.error || result?.serverError || "Erro ao criar Cbo."
-          );
-        }
+        await createCbo(formData);
+        toast.success("Cbo criado com sucesso!");
       }
       {
         const v = searchParams?.get("view");

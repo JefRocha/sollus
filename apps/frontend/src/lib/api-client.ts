@@ -1,11 +1,16 @@
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const USE_PROXY = false; // Proxy desativado
+const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// Não forçar protocolo, usar o que estiver na variável (ou http por padrão)
+const API_URL = ENV_API_URL;
 const COOKIE_ONLY = process.env.NEXT_PUBLIC_AUTH_COOKIE_ONLY === "1";
 
 export async function apiClientFetch<T>(
   endpoint: string,
   options?: RequestInit
 ): Promise<T> {
-  const url = `${API_URL}${endpoint}`;
+  const url = USE_PROXY
+    ? `${API_URL}${endpoint.replace(/^\/api/, "")}`
+    : `${API_URL}${endpoint}`;
 
   // Obter o token de acesso do localStorage (client-side)
   let accessToken: string | undefined;
@@ -23,7 +28,8 @@ export async function apiClientFetch<T>(
     try {
       csrfToken = localStorage.getItem("sollus_csrf_token") || undefined;
       if (!csrfToken) {
-        const csrfRes = await fetch(`${API_URL}/api/csrf`, {
+        const csrfUrl = USE_PROXY ? `${API_URL}/csrf` : `${API_URL}/api/csrf`;
+        const csrfRes = await fetch(csrfUrl, {
           credentials: "include",
         }).catch(() => null);
         if (csrfRes && csrfRes.ok) {
@@ -49,7 +55,10 @@ export async function apiClientFetch<T>(
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-      ...(!COOKIE_ONLY && accessToken
+      ...(!COOKIE_ONLY &&
+      accessToken &&
+      accessToken !== "undefined" &&
+      accessToken !== "null"
         ? { Authorization: `Bearer ${accessToken}` }
         : {}),
       ...(csrfToken && { "X-CSRF-Token": csrfToken }),
@@ -73,7 +82,10 @@ export async function apiClientFetch<T>(
         try {
           refreshCsrf = localStorage.getItem("sollus_csrf_token") || undefined;
           if (!refreshCsrf) {
-            const csrfRes = await fetch(`${API_URL}/api/csrf`, {
+            const csrfUrl = USE_PROXY
+              ? `${API_URL}/csrf`
+              : `${API_URL}/api/csrf`;
+            const csrfRes = await fetch(csrfUrl, {
               credentials: "include",
             }).catch(() => null);
             if (csrfRes && csrfRes.ok) {
@@ -101,7 +113,10 @@ export async function apiClientFetch<T>(
             ? localStorage.getItem("sollus_refresh_token") || undefined
             : undefined;
         if (rt) {
-          const refreshResBody = await fetch(`${API_URL}/api/auth/refresh`, {
+          const refreshUrl = USE_PROXY
+            ? `${API_URL}/auth/refresh`
+            : `${API_URL}/api/auth/refresh`;
+          const refreshResBody = await fetch(refreshUrl, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -128,7 +143,10 @@ export async function apiClientFetch<T>(
       } catch {}
 
       if (!refreshed) {
-        const refreshRes = await fetch(`${API_URL}/api/auth/refresh`, {
+        const refreshUrl = USE_PROXY
+          ? `${API_URL}/auth/refresh`
+          : `${API_URL}/api/auth/refresh`;
+        const refreshRes = await fetch(refreshUrl, {
           method: "POST",
           credentials: "include",
           headers: {

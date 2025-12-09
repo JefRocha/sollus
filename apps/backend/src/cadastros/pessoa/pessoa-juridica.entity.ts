@@ -68,7 +68,7 @@ export class PessoaJuridica {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa, pessoa => pessoa.pessoaJuridica)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_pessoa' })
 	pessoa: Pessoa;
 
 

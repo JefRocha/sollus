@@ -83,38 +83,38 @@ export class Colaborador {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_empresa' })
 	empresa: Empresa;
 
 	@OneToOne(() => Usuario, usuario => usuario.colaborador, { cascade: true })
 	usuario: Usuario;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.colaborador)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_pessoa' })
 	pessoa: Pessoa;
 
 	@OneToOne(() => Cargo)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_cargo' })
 	cargo: Cargo;
 
 	@OneToOne(() => Setor)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_setor' })
 	setor: Setor;
 
 	@OneToOne(() => ColaboradorSituacao)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_colaborador_situacao' })
 	colaboradorSituacao: ColaboradorSituacao;
 
 	@OneToOne(() => TipoAdmissao)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_tipo_admissao' })
 	tipoAdmissao: TipoAdmissao;
 
 	@OneToOne(() => ColaboradorTipo)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_colaborador_tipo' })
 	colaboradorTipo: ColaboradorTipo;
 
 	@OneToOne(() => Sindicato)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_sindicato' })
 	sindicato: Sindicato;
 
 	@OneToMany(() => Vendedor, vendedor => vendedor.colaborador, { cascade: true })

@@ -50,7 +50,7 @@ import { Request, Response } from 'express';
 
 @Controller('auth')
 export class LoginController {
-  constructor(private service: LoginService) { }
+  constructor(private service: LoginService) {}
 
   private rl = new Map<string, { c: number; t: number }>();
   private allow(key: string, limit: number, windowMs: number) {
@@ -70,26 +70,31 @@ export class LoginController {
     try {
       const ip = String(request.ip || request.socket.remoteAddress || '');
       if (!this.allow(`login:${ip}`, 10, 60_000)) {
-        return response.status(HttpStatus.TOO_MANY_REQUESTS).json({ message: 'Too many attempts' });
+        return response
+          .status(HttpStatus.TOO_MANY_REQUESTS)
+          .json({ message: 'Too many attempts' });
       }
       let objetoJson = request.body;
       let usuario = new Usuario(objetoJson);
 
       const { accessToken, refreshToken } = await this.service.login(usuario);
+      const isSecure = process.env.COOKIE_SECURE === 'true';
+      const sameSite = isSecure ? 'none' : undefined; // undefined = Lax/Default browser behavior
+
       response.cookie('sollus_access_token', accessToken, {
         httpOnly: true,
-        secure: process.env.COOKIE_SECURE === 'true',
-        sameSite: 'none',
+        secure: isSecure,
+        sameSite: sameSite as any,
         path: '/',
-        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
+        // ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 3600_000,
       });
       response.cookie('sollus_refresh_token', refreshToken, {
         httpOnly: true,
-        secure: process.env.COOKIE_SECURE === 'true',
-        sameSite: 'none',
+        secure: isSecure,
+        sameSite: sameSite as any,
         path: '/',
-        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
+        // ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 7 * 24 * 3600_000,
       });
       return response
@@ -105,7 +110,9 @@ export class LoginController {
     try {
       const ip = String(request.ip || request.socket.remoteAddress || '');
       if (!this.allow(`refresh:${ip}`, 30, 60_000)) {
-        return response.status(HttpStatus.TOO_MANY_REQUESTS).json({ message: 'Too many attempts' });
+        return response
+          .status(HttpStatus.TOO_MANY_REQUESTS)
+          .json({ message: 'Too many attempts' });
       }
       const oldRefreshToken = request.cookies['sollus_refresh_token'];
 
@@ -119,12 +126,15 @@ export class LoginController {
         oldRefreshToken,
       );
 
+      const isSecure = process.env.COOKIE_SECURE === 'true';
+      const sameSite = isSecure ? 'none' : undefined;
+
       response.cookie('sollus_access_token', accessToken, {
         httpOnly: true,
-        secure: process.env.COOKIE_SECURE === 'true',
-        sameSite: 'none',
+        secure: isSecure,
+        sameSite: sameSite as any,
         path: '/',
-        ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
+        // ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}),
         maxAge: 3600_000,
       });
       return response
@@ -132,7 +142,12 @@ export class LoginController {
         .json({ token: accessToken, refreshToken: refreshToken });
     } catch (error) {
       // Se falhar, limpa o cookie
-      response.clearCookie('sollus_refresh_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
+      response.clearCookie('sollus_refresh_token', {
+        path: '/',
+        ...(process.env.COOKIE_DOMAIN
+          ? { domain: process.env.COOKIE_DOMAIN }
+          : {}),
+      });
       return response
         .status(HttpStatus.UNAUTHORIZED)
         .json({ message: 'Invalid refresh token' });
@@ -146,9 +161,19 @@ export class LoginController {
       if (rt) {
         await this.service.revokeByRefreshTokenPlain(rt);
       }
-    } catch { }
-    response.clearCookie('sollus_access_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
-    response.clearCookie('sollus_refresh_token', { path: '/', ...(process.env.COOKIE_DOMAIN ? { domain: process.env.COOKIE_DOMAIN } : {}) });
+    } catch {}
+    response.clearCookie('sollus_access_token', {
+      path: '/',
+      ...(process.env.COOKIE_DOMAIN
+        ? { domain: process.env.COOKIE_DOMAIN }
+        : {}),
+    });
+    response.clearCookie('sollus_refresh_token', {
+      path: '/',
+      ...(process.env.COOKIE_DOMAIN
+        ? { domain: process.env.COOKIE_DOMAIN }
+        : {}),
+    });
     return response.status(HttpStatus.OK).json({ ok: true });
   }
 
@@ -164,15 +189,26 @@ export class LoginController {
   @Get('me')
   @UseGuards(AuthGuard('jwt'))
   async me(@Req() request: Request) {
-    // o AuthGuard('jwt') já validou o token e anexou o payload do usuário em request.user
-    const userPayload = request.user as { sub: string };
-    const login = userPayload.sub;
+    try {
+      // o AuthGuard('jwt') já validou o token e anexou o payload do usuário em request.user
+      const userPayload = request.user as { sub: string };
+      const login = userPayload.sub;
 
-    // usamos o serviço para buscar o usuário completo, carregando as relações de colaborador e pessoa
-    const user = await this.service.findOne({
-      where: { login: login },
-      relations: ['colaborador', 'colaborador.pessoa', 'papel'],
-    });
-    return user;
+      // usamos o serviço para buscar o usuário completo, carregando as relações de colaborador e pessoa
+      const user = await this.service.findOne({
+        where: { login: login },
+        relations: ['colaborador', 'colaborador.pessoa', 'papel'],
+      });
+
+      // Remover referência circular se existir
+      if (user && user.colaborador) {
+        delete (user.colaborador as any).usuario;
+      }
+
+      return user;
+    } catch (error) {
+      console.error('[LoginController] Erro fatal em /me:', error);
+      throw error;
+    }
   }
 }

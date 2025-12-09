@@ -33,8 +33,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
-import { Pessoa } from '../../entities-export';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Pessoa, Empresa } from '../../entities-export';
 
 @Entity()
 export class Contador {
@@ -53,8 +53,12 @@ export class Contador {
 	* Relations
 	*/
 	@OneToOne(() => Pessoa, pessoa => pessoa.contador)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_pessoa' })
 	pessoa: Pessoa;
+
+	@ManyToOne(() => Empresa)
+	@JoinColumn({ name: 'id_empresa' })
+	empresa: Empresa;
 
 
 	/**

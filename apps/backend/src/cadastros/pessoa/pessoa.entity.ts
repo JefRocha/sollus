@@ -64,25 +64,25 @@ export class Pessoa {
 	email: string;
 
 	@Column({ nullable: true })
-	eh_cliente: string;
+	ehCliente: string;
 
 	@Column({ nullable: true })
-	eh_fornecedor: string;
+	ehFornecedor: string;
 
 	@Column({ nullable: true })
-	eh_transportadora: string;
+	ehTransportadora: string;
 
 	@Column({ nullable: true })
-	eh_colaborador: string;
+	ehColaborador: string;
 
 	@Column({ nullable: true })
-	eh_contador: string;
+	ehContador: string;
 
 	/**
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_empresa' })
 	empresa: Empresa;
 
 	@OneToOne(() => Cliente, cliente => cliente.pessoa, { cascade: true })
@@ -126,11 +126,11 @@ export class Pessoa {
 			this.tipo = objetoJson['tipo'];
 			this.site = objetoJson['site'];
 			this.email = objetoJson['email'];
-			this.eh_cliente = objetoJson['eh_cliente'];
-			this.eh_fornecedor = objetoJson['eh_fornecedor'];
-			this.eh_transportadora = objetoJson['eh_transportadora'];
-			this.eh_colaborador = objetoJson['eh_colaborador'];
-			this.eh_contador = objetoJson['eh_contador'];
+			this.ehCliente = objetoJson['ehCliente'];
+			this.ehFornecedor = objetoJson['ehFornecedor'];
+			this.ehTransportadora = objetoJson['ehTransportadora'];
+			this.ehColaborador = objetoJson['ehColaborador'];
+			this.ehContador = objetoJson['ehContador'];
 
 			if (objetoJson['cliente'] != null) {
 				this.cliente = new Cliente(objetoJson['cliente']);

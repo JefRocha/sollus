@@ -33,94 +33,96 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { Pessoa } from '../../entities-export';
 import { NivelFormacao } from '../../entities-export';
 import { EstadoCivil } from '../../entities-export';
 
 @Entity()
 export class PessoaFisica {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  cpf: string;
 
-	@Column()
-	cpf: string;
+  @Column()
+  rg: string;
 
-	@Column()
-	rg: string;
+  @Column()
+  orgaoRg: string;
 
-	@Column()
-	orgaoRg: string;
+  @Column()
+  dataEmissaoRg: Date;
 
-	@Column()
-	dataEmissaoRg: Date;
+  @Column()
+  dataNascimento: Date;
 
-	@Column()
-	dataNascimento: Date;
+  @Column()
+  sexo: string;
 
-	@Column()
-	sexo: string;
+  @Column()
+  raca: string;
 
-	@Column()
-	raca: string;
+  @Column()
+  nacionalidade: string;
 
-	@Column()
-	nacionalidade: string;
+  @Column()
+  naturalidade: string;
 
-	@Column()
-	naturalidade: string;
+  @Column()
+  nomePai: string;
 
-	@Column()
-	nomePai: string;
+  @Column()
+  nomeMae: string;
 
-	@Column()
-	nomeMae: string;
+  /**
+   * Relations
+   */
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.pessoaFisica)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
+  @ManyToOne(() => NivelFormacao)
+  @JoinColumn({ name: 'id_nivel_formacao' })
+  nivelFormacao: NivelFormacao;
 
-	/**
-	* Relations
-	*/
-	@OneToOne(() => Pessoa, pessoa => pessoa.pessoaFisica)
-	@JoinColumn()
-	pessoa: Pessoa;
+  @ManyToOne(() => EstadoCivil)
+  @JoinColumn({ name: 'id_estado_civil' })
+  estadoCivil: EstadoCivil;
 
-	@OneToOne(() => NivelFormacao)
-	@JoinColumn()
-	nivelFormacao: NivelFormacao;
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.cpf = objetoJson['cpf'];
+      this.rg = objetoJson['rg'];
+      this.orgaoRg = objetoJson['orgaoRg'];
+      this.dataEmissaoRg = objetoJson['dataEmissaoRg'];
+      this.dataNascimento = objetoJson['dataNascimento'];
+      this.sexo = objetoJson['sexo'];
+      this.raca = objetoJson['raca'];
+      this.nacionalidade = objetoJson['nacionalidade'];
+      this.naturalidade = objetoJson['naturalidade'];
+      this.nomePai = objetoJson['nomePai'];
+      this.nomeMae = objetoJson['nomeMae'];
 
-	@OneToOne(() => EstadoCivil)
-	@JoinColumn()
-	estadoCivil: EstadoCivil;
+      if (objetoJson['nivelFormacao'] != null) {
+        this.nivelFormacao = new NivelFormacao(objetoJson['nivelFormacao']);
+      }
 
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.cpf = objetoJson['cpf'];
-			this.rg = objetoJson['rg'];
-			this.orgaoRg = objetoJson['orgaoRg'];
-			this.dataEmissaoRg = objetoJson['dataEmissaoRg'];
-			this.dataNascimento = objetoJson['dataNascimento'];
-			this.sexo = objetoJson['sexo'];
-			this.raca = objetoJson['raca'];
-			this.nacionalidade = objetoJson['nacionalidade'];
-			this.naturalidade = objetoJson['naturalidade'];
-			this.nomePai = objetoJson['nomePai'];
-			this.nomeMae = objetoJson['nomeMae'];
-
-			if (objetoJson['nivelFormacao'] != null) {
-				this.nivelFormacao = new NivelFormacao(objetoJson['nivelFormacao']);
-			}
-
-			if (objetoJson['estadoCivil'] != null) {
-				this.estadoCivil = new EstadoCivil(objetoJson['estadoCivil']);
-			}
-
-
-		}
-	}
+      if (objetoJson['estadoCivil'] != null) {
+        this.estadoCivil = new EstadoCivil(objetoJson['estadoCivil']);
+      }
+    }
+  }
 }

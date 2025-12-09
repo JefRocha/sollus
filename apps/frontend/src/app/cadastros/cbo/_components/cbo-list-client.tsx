@@ -17,14 +17,29 @@ import { Label } from "@/components/ui/label";
 import { useMobileDetection } from "@/hooks/use-mobile-detection";
 import { columns } from "./columns";
 
+import { getCbos } from "../cbo.service";
+
 interface CboListClientProps {
   data: any[];
 }
 
-export function CboListClient({ data }: CboListClientProps) {
+export function CboListClient({ data: initialData }: CboListClientProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { isMobile } = useMobileDetection();
+  const [data, setData] = useState<any[]>(initialData || []);
+  
+  useEffect(() => {
+    // Se não veio dados do servidor (provavelmente erro de cookie em dev), tenta buscar do cliente
+    if (!initialData || initialData.length === 0) {
+      getCbos().then((res) => {
+        if (res && res.length > 0) setData(res);
+      }).catch(() => {});
+    } else {
+      setData(initialData);
+    }
+  }, [initialData]);
+
   const [search, setSearch] = useState("");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [viewMode, setViewMode] = useState<"table" | "cards">("table");

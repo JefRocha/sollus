@@ -64,15 +64,15 @@ export class Cliente {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_empresa' })
 	empresa: Empresa;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.cliente)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_pessoa' })
 	pessoa: Pessoa;
 
 	@OneToOne(() => TabelaPreco)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_tabela_preco' })
 	tabelaPreco: TabelaPreco;
 
 	// Removed viewPessoaCliente - duplicate @OneToOne on ID_PESSOA column

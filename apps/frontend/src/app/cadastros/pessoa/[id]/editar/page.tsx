@@ -3,23 +3,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { Pessoa } from "@/actions/cadastros/pessoa-actions";
-import {
-  getPessoaAction,
-  updatePessoaAction,
-} from "@/actions/cadastros/pessoa-safe-actions";
-import { useAction } from "next-safe-action/hooks";
-import { FormTabs } from "../../_components/FormTabs";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { PageContainer } from "@/components/page-container";
-import { apiClientFetch } from "@/lib/api-client";
+import { updatePessoaClient } from "../../pessoa.service.client";
 
 export default function PessoaEditarPage() {
   const router = useRouter();
@@ -56,6 +40,7 @@ export default function PessoaEditarPage() {
     },
   });
 
+  /*
   const { execute: executeUpdate, status: updateStatus } = useAction(
     updatePessoaAction,
     {
@@ -69,11 +54,13 @@ export default function PessoaEditarPage() {
       },
     }
   );
+  */
 
   async function save() {
     if (!form) return;
     try {
       setSaving(true);
+
       if (initial?.eh_colaborador === "S" && form.eh_colaborador === "N") {
         form.eh_colaborador = "S" as any;
       }
@@ -83,7 +70,68 @@ export default function PessoaEditarPage() {
           (form as any).colaboradorModel = { id: existingId, statusCrud: "U" };
         }
       }
-      await executeUpdate({ pessoa: form });
+
+      // PREPARAÇÃO DO PAYLOAD
+      // Mapeia os Models para as propriedades esperadas pelo Backend
+      // E remove o ID para forçar a criação de novos registros (já que o backend faz excluirFilhos)
+      const payload: any = {
+        ...form,
+        pessoaFisica: (form as any).pessoaFisicaModel
+          ? { ...(form as any).pessoaFisicaModel, id: undefined }
+          : undefined,
+        pessoaJuridica: (form as any).pessoaJuridicaModel
+          ? { ...(form as any).pessoaJuridicaModel, id: undefined }
+          : undefined,
+        cliente: (form as any).clienteModel
+          ? { ...(form as any).clienteModel, id: undefined }
+          : undefined,
+        fornecedor: (form as any).fornecedorModel
+          ? { ...(form as any).fornecedorModel, id: undefined }
+          : undefined,
+        transportadora: (form as any).transportadoraModel
+          ? { ...(form as any).transportadoraModel, id: undefined }
+          : undefined,
+        colaborador: (form as any).colaboradorModel
+          ? { ...(form as any).colaboradorModel, id: undefined }
+          : undefined,
+        contador: (form as any).contadorModel
+          ? { ...(form as any).contadorModel, id: undefined }
+          : undefined,
+
+        // Limpa as listas para recriação (assumindo que o backend também limpa listas)
+        listaPessoaContato:
+          (form as any).pessoaContatoModelList?.map((item: any) => ({
+            ...item,
+            id: undefined,
+          })) ?? [],
+        listaPessoaEndereco:
+          (form as any).pessoaEnderecoModelList?.map((item: any) => ({
+            ...item,
+            id: undefined,
+          })) ?? [],
+        listaPessoaTelefone:
+          (form as any).pessoaTelefoneModelList?.map((item: any) => ({
+            ...item,
+            id: undefined,
+          })) ?? [],
+
+        // Remove as propriedades Model para evitar envio de lixo e confusão no backend
+        pessoaFisicaModel: undefined,
+        pessoaJuridicaModel: undefined,
+        clienteModel: undefined,
+        fornecedorModel: undefined,
+        transportadoraModel: undefined,
+        colaboradorModel: undefined,
+        contadorModel: undefined,
+        pessoaContatoModelList: undefined,
+        pessoaEnderecoModelList: undefined,
+        pessoaTelefoneModelList: undefined,
+      };
+
+      // await executeUpdate({ pessoa: payload });
+      await updatePessoaClient(payload);
+      setSuccessOpen(true);
+      setSaving(false);
     } catch {
       setSaving(false);
       setErrorOpen(true);

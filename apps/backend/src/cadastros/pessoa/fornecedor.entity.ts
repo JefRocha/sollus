@@ -56,11 +56,11 @@ export class Fornecedor {
 	* Relations
 	*/
 	@ManyToOne(() => Empresa)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_empresa' })
 	empresa: Empresa;
 
 	@OneToOne(() => Pessoa, pessoa => pessoa.fornecedor)
-	@JoinColumn()
+	@JoinColumn({ name: 'id_pessoa' })
 	pessoa: Pessoa;
 
 	// Removed viewPessoaFornecedor - duplicate @OneToOne on ID_PESSOA column

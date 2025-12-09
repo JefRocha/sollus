@@ -1,6 +1,8 @@
 /* empty */
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+// Não forçar protocolo
+const API_URL = ENV_API_URL;
 
 // Classe de erro customizada para erros de autenticação
 class UnauthorizedError extends Error {
@@ -79,7 +81,11 @@ export async function apiFetch<T>(
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+          ...(accessToken &&
+          accessToken !== "undefined" &&
+          accessToken !== "null"
+            ? { Authorization: `Bearer ${accessToken}` }
+            : {}),
           ...(csrfToken && { "X-CSRF-Token": csrfToken }),
           ...fetchOptions?.headers,
         },

@@ -33,7 +33,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Empresa } from '../../entities-export';
 
 @Entity()
 export class AgendaNotificacao {
@@ -57,6 +58,9 @@ export class AgendaNotificacao {
 	/**
 	* Relations
 	*/
+	@ManyToOne(() => Empresa)
+	@JoinColumn({ name: 'id_empresa' })
+	empresa: Empresa;
 
 	/**
 	* Constructor
