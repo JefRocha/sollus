@@ -1,8 +1,8 @@
 /* empty */
 
 const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-// Não forçar protocolo
-const API_URL = ENV_API_URL;
+// Garante localhost em vez de IP para evitar erro de certificado SSL
+const API_URL = ENV_API_URL.replace("127.0.0.1", "localhost");
 
 // Classe de erro customizada para erros de autenticação
 class UnauthorizedError extends Error {
@@ -44,10 +44,17 @@ export async function apiFetch<T>(
 
   for (const ep of endpoints) {
     const url = `${API_URL}${ep}`;
+    console.log(
+      `[ApiFetch] Request: ${(
+        fetchOptions?.method || "GET"
+      ).toUpperCase()} ${url}`
+    );
     try {
       const method = String(fetchOptions?.method || "GET").toUpperCase();
       let csrfToken: string | undefined;
+      // Só busca CSRF se NÃO tiver token de acesso, ou se backend exigir ambos (o que não é o caso aqui)
       if (
+        !accessToken &&
         typeof window !== "undefined" &&
         process.env.NEXT_PUBLIC_ENABLE_CSRF === "1" &&
         /^(POST|PUT|PATCH|DELETE)$/.test(method)

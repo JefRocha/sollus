@@ -3,8 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useAction } from "next-safe-action/hooks";
 import { toast } from "sonner";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,10 +18,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { bancoSchema, BancoSchema } from "../banco.zod.schema";
-import {
-  createBancoAction,
-  updateBancoAction,
-} from "@/actions/cadastros/banco-actions";
+import { createBanco, updateBanco } from "../banco.service";
 
 interface BancoFormProps {
   initialData?: BancoSchema;
@@ -30,6 +27,8 @@ interface BancoFormProps {
 export function BancoForm({ initialData }: BancoFormProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const form = useForm<BancoSchema>({
     resolver: zodResolver(bancoSchema),
     defaultValues: initialData || {
@@ -39,47 +38,25 @@ export function BancoForm({ initialData }: BancoFormProps) {
     },
   });
 
-  const { execute: executeCreate, status: createStatus } = useAction(
-    createBancoAction,
-    {
-      onSuccess: ({ data }) => {
-        if (data?.success) {
-          toast.success("Banco criado com sucesso!");
-          const v = searchParams?.get("view");
-          const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
-          router.push(`/cadastros/bancos${suffix}`);
-        }
-        if (data?.error) {
-          toast.error(data.error);
-        }
-      },
-    }
-  );
-
-  const { execute: executeUpdate, status: updateStatus } = useAction(
-    updateBancoAction,
-    {
-      onSuccess: ({ data }) => {
-        if (data?.success) {
-          toast.success("Banco atualizado com sucesso!");
-          const v = searchParams?.get("view");
-          const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
-          router.push(`/cadastros/bancos${suffix}`);
-        }
-        if (data?.error) {
-          toast.error(data.error);
-        }
-      },
-    }
-  );
-
-  const status = initialData ? updateStatus : createStatus;
-
-  function onSubmit(values: BancoSchema) {
-    if (initialData) {
-      executeUpdate({ ...values, id: initialData.id! });
-    } else {
-      executeCreate(values);
+  async function onSubmit(values: BancoSchema) {
+    setIsSubmitting(true);
+    try {
+      if (initialData) {
+        await updateBanco(initialData.id!, values);
+        toast.success("Banco atualizado com sucesso!");
+      } else {
+        await createBanco(values);
+        toast.success("Banco criado com sucesso!");
+      }
+      const v = searchParams?.get("view");
+      const suffix = v === "cards" || v === "table" ? `?view=${v}` : "";
+      router.push(`/cadastros/bancos${suffix}`);
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error.message || "Erro ao salvar banco");
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -132,8 +109,8 @@ export function BancoForm({ initialData }: BancoFormProps) {
           />
         </div>
         <div className="flex items-center gap-2">
-          <Button type="submit" disabled={status === "executing"}>
-            {status === "executing" ? "Salvando..." : "Salvar"}
+          <Button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? "Salvando..." : "Salvar"}
           </Button>
           <Button
             type="button"

@@ -33,17 +33,29 @@ export function CboForm({ data }: CboFormProps) {
 
   const form = useForm<CboSchema>({
     resolver: zodResolver(cboSchema),
-    defaultValues: data || {},
+    defaultValues:
+      {
+        ...data,
+        observacao: data?.observacao ?? "", // Garante string vazia se for null/undefined
+        codigo: data?.codigo ?? "",
+        codigo1994: data?.codigo1994 ?? "",
+        nome: data?.nome ?? "",
+      } || {},
   });
 
   const onSubmit = async (formData: CboSchema) => {
+    console.log("[CboForm] onSubmit started", formData);
     try {
       if (isEditing) {
+        console.log("[CboForm] Updating CBO...");
         // Client-Side Fetch direto para evitar problemas de cookie server-side
         await updateCbo(data.id, formData);
+        console.log("[CboForm] Update success");
         toast.success("Cbo atualizado com sucesso!");
       } else {
+        console.log("[CboForm] Creating CBO...");
         await createCbo(formData);
+        console.log("[CboForm] Create success");
         toast.success("Cbo criado com sucesso!");
       }
       {

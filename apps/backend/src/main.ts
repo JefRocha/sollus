@@ -31,7 +31,8 @@ async function bootstrap() {
   app.use(helmet(process.env.NODE_ENV === 'production' ? { hsts: { maxAge: 31536000, includeSubDomains: true, preload: true } } : undefined));
   if (process.env.NODE_ENV !== 'production') {
     app.use((req, res, next) => {
-      console.log('Incoming request cookies:', req.cookies);
+      console.log(`[Request] ${req.method} ${req.url}`);
+      console.log('Headers:', req.headers);
       next();
     });
   }

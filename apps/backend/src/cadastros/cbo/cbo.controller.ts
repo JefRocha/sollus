@@ -39,6 +39,7 @@ export class CboController implements CrudController<Cbo> {
         @ParsedRequest() req: CrudRequest,
         @ParsedBody() dto: Cbo,
     ) {
+        console.log('[CboController] createOne called with:', dto);
         return this.service.createOne(req, dto);
     }
 
@@ -47,6 +48,7 @@ export class CboController implements CrudController<Cbo> {
         @ParsedRequest() req: CrudRequest,
         @ParsedBody() dto: Cbo,
     ) {
+        console.log('[CboController] updateOne called with:', dto);
         return this.service.updateOne(req, dto);
     }
 

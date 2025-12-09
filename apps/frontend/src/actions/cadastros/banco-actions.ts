@@ -2,7 +2,7 @@
 
 import { actionClient } from "@/lib/safe-action";
 import { z } from "zod";
-import { createBanco, updateBanco, deleteBanco } from "@/app/cadastros/bancos/banco.service";
+import { createBancoServer, updateBancoServer, deleteBancoServer } from "@/app/cadastros/bancos/banco.service.server";
 import { bancoSchema } from "@/app/cadastros/bancos/banco.zod.schema";
 import { revalidatePath } from "next/cache";
 
@@ -10,7 +10,7 @@ export const createBancoAction = actionClient
     .schema(bancoSchema)
     .action(async ({ parsedInput }) => {
         try {
-            const newBanco = await createBanco(parsedInput);
+            const newBanco = await createBancoServer(parsedInput);
             revalidatePath("/cadastros/bancos");
             return { success: true, data: newBanco };
         } catch (error: any) {
@@ -24,7 +24,7 @@ export const updateBancoAction = actionClient
     .action(async ({ parsedInput }) => {
         try {
             const { id, ...data } = parsedInput;
-            const updatedBanco = await updateBanco(id, data);
+            const updatedBanco = await updateBancoServer(id, data);
             revalidatePath("/cadastros/bancos");
             revalidatePath(`/cadastros/bancos/${id}`);
             return { success: true, data: updatedBanco };
@@ -38,7 +38,7 @@ export const deleteBancoAction = actionClient
     .schema(z.object({ id: z.number() }))
     .action(async ({ parsedInput: { id } }) => {
         try {
-            await deleteBanco(id);
+            await deleteBancoServer(id);
             revalidatePath("/cadastros/bancos");
             return { success: true };
         } catch (error: any) {

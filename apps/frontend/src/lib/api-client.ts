@@ -1,7 +1,7 @@
 const USE_PROXY = false; // Proxy desativado
 const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-// Não forçar protocolo, usar o que estiver na variável (ou http por padrão)
-const API_URL = ENV_API_URL;
+// Garante localhost em vez de IP para evitar erro de certificado SSL
+const API_URL = ENV_API_URL.replace("127.0.0.1", "localhost");
 const COOKIE_ONLY = process.env.NEXT_PUBLIC_AUTH_COOKIE_ONLY === "1";
 
 export async function apiClientFetch<T>(
@@ -16,6 +16,8 @@ export async function apiClientFetch<T>(
   let accessToken: string | undefined;
   if (!COOKIE_ONLY && typeof window !== "undefined") {
     accessToken = localStorage.getItem("sollus_access_token") || undefined;
+    if (!accessToken)
+      console.warn("[ApiClient] No access token found in localStorage");
   }
 
   const method = String(options?.method || "GET").toUpperCase();
