@@ -1,24 +1,29 @@
-import 'server-only';
+import "server-only";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   try {
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  } catch {}
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+  } catch { }
 }
 
 export async function apiFetchServer<T>(
   endpoint: string | string[],
   options?: RequestInit & { suppressErrorLog?: boolean },
-  ctx?: { accessToken?: string; cookieHeader?: string; xsrfToken?: string; refreshToken?: string }
+  ctx?: {
+    accessToken?: string;
+    cookieHeader?: string;
+    xsrfToken?: string;
+    refreshToken?: string;
+  }
 ): Promise<T> {
   const endpoints = Array.isArray(endpoint) ? endpoint : [endpoint];
   const { suppressErrorLog, ...fetchOptions } = options || ({} as any);
   const suppress = !!suppressErrorLog;
   let accessToken = ctx?.accessToken || undefined;
   let xsrfToken = ctx?.xsrfToken || undefined;
-  const cookieHeader = ctx?.cookieHeader || '';
+  const cookieHeader = ctx?.cookieHeader || "";
   const refreshToken = ctx?.refreshToken || undefined;
 
   for (const ep of endpoints) {
@@ -43,12 +48,14 @@ export async function apiFetchServer<T>(
               }
               // Mantém em memória; o caller decide persistir se necessário
             }
-          } catch {}
+          } catch { }
         }
         if (xsrfToken) csrfHeader = { "X-CSRF-Token": xsrfToken };
       }
 
+
       const res = await fetch(url, {
+        cache: "no-store",
         ...fetchOptions,
         credentials: "include",
         headers: {
@@ -60,7 +67,9 @@ export async function apiFetchServer<T>(
         },
       });
 
+
       if (res.ok) return res.json();
+
 
       if (res.status === 401) {
         try {
@@ -77,8 +86,11 @@ export async function apiFetchServer<T>(
                 ...(cookieHeader
                   ? { Cookie: cookieHeader }
                   : refreshToken
-                  ? { Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""}` }
-                  : {}),
+                    ? {
+                      Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
+                        }`,
+                    }
+                    : {}),
               },
               // Backend não lê body; mantemos vazio
             }).catch(() => null);
@@ -88,12 +100,13 @@ export async function apiFetchServer<T>(
                 newAccessToken = json?.token || json?.accessToken || undefined;
                 const newRefresh = json?.refreshToken || undefined;
                 accessToken = newAccessToken || accessToken;
-              } catch {}
+              } catch { }
               refreshed = true;
             }
           }
 
           // Fallback: tenta refresh só com cookies
+          let refreshSetCookie: string[] = [];
           if (!refreshed) {
             const r2 = await fetch(`${API_URL}/api/auth/refresh`, {
               method: "POST",
@@ -104,25 +117,67 @@ export async function apiFetchServer<T>(
                 ...(cookieHeader
                   ? { Cookie: cookieHeader }
                   : refreshToken
-                  ? { Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""}` }
-                  : {}),
+                    ? {
+                      Cookie: `sollus_refresh_token=${refreshToken}${xsrfToken ? `; XSRF-TOKEN=${xsrfToken}` : ""
+                        }`,
+                    }
+                    : {}),
               },
             }).catch(() => null);
-            if (r2 && r2.ok) refreshed = true;
+            if (r2 && r2.ok) {
+              refreshed = true;
+              const setCookieHeader = r2.headers.get("set-cookie");
+              if (setCookieHeader) {
+                // Em Node.js fetch, set-cookie pode vir concatenado ou precisamos tratar.
+                // A API Fetch standard retorna string única com vírgulas ou null.
+                // Vamos tentar parsear simples.
+                refreshSetCookie.push(setCookieHeader);
+              }
+            }
           }
 
           if (refreshed) {
+            // Se tivemos refresh via cookie, precisamos atualizar o header Cookie para o retry
+            let retryCookieHeader = cookieHeader;
+            if (refreshSetCookie.length > 0) {
+              // Extrair novos tokens dos cookies retornados
+              // Simplificação: apenas anexa os novos cookies ao header existente,
+              // pois o servidor geralmente pega o último valor ou o mais específico.
+              // Uma abordagem mais robusta seria substituir os valores antigos.
+              const newCookies = refreshSetCookie.join("; ");
+              retryCookieHeader = retryCookieHeader
+                ? `${retryCookieHeader}; ${newCookies}`
+                : newCookies;
+            }
+
             const retry = await fetch(url, {
+              cache: "no-store",
               ...fetchOptions,
               credentials: "include",
               headers: {
                 "Content-Type": "application/json",
-                ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {}),
+                ...(accessToken
+                  ? { Authorization: `Bearer ${accessToken}` }
+                  : {}),
                 ...(xsrfToken ? { "X-CSRF-Token": xsrfToken } : {}),
-              ...fetchOptions?.headers,
+                ...(retryCookieHeader ? { Cookie: retryCookieHeader } : {}),
+                ...fetchOptions?.headers,
               },
             });
-            if (retry.ok) return retry.json();
+
+            // Se o retry funcionar, precisamos avisar o chamador sobre os novos cookies
+            if (retry.ok) {
+              const data = await retry.json();
+              // Injetar metadados de cookie se houver renovação, para que o route handler possa repassar
+              if (
+                refreshSetCookie.length > 0 &&
+                typeof data === "object" &&
+                data !== null
+              ) {
+                (data as any).__set_cookies = refreshSetCookie;
+              }
+              return data;
+            }
           }
         } catch (e) {
           if (e instanceof Error && e.message !== "Unauthorized") {
@@ -133,14 +188,29 @@ export async function apiFetchServer<T>(
       }
 
       const bodyText = await res.text().catch(() => "");
-      const msg = `API Error: ${res.status} ${res.statusText}${bodyText ? ` - ${bodyText}` : ""}`;
-      if (!suppress) console.error("[API SERVER FETCH ERROR] Response not OK:", msg);
-      return { __http_error: { status: res.status, statusText: res.statusText, body: bodyText }, message: msg } as any as T;
+      const msg = `API Error: ${res.status} ${res.statusText}${bodyText ? ` - ${bodyText}` : ""
+        }`;
+      if (!suppress)
+        console.error("[API SERVER FETCH ERROR] Response not OK:", msg);
+      return {
+        __http_error: {
+          status: res.status,
+          statusText: res.statusText,
+          body: bodyText,
+        },
+        message: msg,
+      } as any as T;
     } catch (error: any) {
-      const isAuthError = error instanceof Error && (error.message === "Unauthorized" || /401/.test(String(error)));
-      if (!suppress && !isAuthError) console.error("[API SERVER FETCH ERROR] Network issue:", error);
+      const isAuthError =
+        error instanceof Error &&
+        (error.message === "Unauthorized" || /401/.test(String(error)));
+      if (!suppress && !isAuthError)
+        console.error("[API SERVER FETCH ERROR] Network issue:", error);
       continue;
     }
   }
-  return { __http_error: { status: 0, statusText: "", body: null }, message: "API Error: 0" } as any as T;
+  return {
+    __http_error: { status: 0, statusText: "", body: null },
+    message: "API Error: 0",
+  } as any as T;
 }

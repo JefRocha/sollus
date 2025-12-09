@@ -5,7 +5,7 @@ export async function GET(req: Request) {
   const auth = req.headers.get("authorization") || undefined;
   const cookie = req.headers.get("cookie") || undefined;
   const opts: RequestInit & { suppressErrorLog?: boolean } = {
-    suppressErrorLog: true,
+    suppressErrorLog: false,
     headers: {
       ...(auth ? { Authorization: auth } : {}),
       ...(cookie ? { Cookie: cookie } : {}),
@@ -44,17 +44,32 @@ export async function GET(req: Request) {
     ? base.data.roles
     : undefined;
   const admRaw = base?.administrador ?? base?.data?.administrador;
-  const admStr = typeof admRaw === 'string' ? admRaw : (admRaw ? 'S' : undefined);
+  const admStr = typeof admRaw === "string" ? admRaw : admRaw ? "S" : undefined;
   const admNorm = admStr ? String(admStr).toUpperCase() : undefined;
-  const administrador = admNorm && (admNorm === 'S' || admNorm === 'Y' || admNorm === 'TRUE' || admNorm === '1')
-    ? 'S'
-    : (roles && roles.includes('ADMIN') ? 'S' : undefined);
-  if (administrador === 'S') {
+  const administrador =
+    admNorm &&
+    (admNorm === "S" ||
+      admNorm === "Y" ||
+      admNorm === "TRUE" ||
+      admNorm === "1")
+      ? "S"
+      : roles && roles.includes("ADMIN")
+      ? "S"
+      : undefined;
+  if (administrador === "S") {
     roles = Array.isArray(roles) ? roles : [];
-    if (!roles.includes('ADMIN')) roles.push('ADMIN');
+    if (!roles.includes("ADMIN")) roles.push("ADMIN");
   }
-  const idColaborador = base?.idColaborador ?? base?.data?.idColaborador ?? base?.colaborador?.id ?? base?.colaboradorId;
-  const idPessoa = base?.idPessoa ?? base?.data?.idPessoa ?? base?.colaborador?.pessoa?.id ?? base?.pessoaId;
+  const idColaborador =
+    base?.idColaborador ??
+    base?.data?.idColaborador ??
+    base?.colaborador?.id ??
+    base?.colaboradorId;
+  const idPessoa =
+    base?.idPessoa ??
+    base?.data?.idPessoa ??
+    base?.colaborador?.pessoa?.id ??
+    base?.pessoaId;
   const login = base?.login ?? base?.data?.login ?? base?.username;
   const displayName = name || (email ? String(email).split("@")[0] : login);
 
@@ -67,8 +82,23 @@ export async function GET(req: Request) {
     name,
     email,
     displayName,
+    dataAceitePolitica:
+      base?.dataAceitePolitica ||
+      base?.data_aceite_politica ||
+      base?.data?.dataAceitePolitica ||
+      base?.data?.data_aceite_politica,
     raw: base,
   };
 
-  return NextResponse.json(normalized);
+  const response = NextResponse.json(normalized);
+
+  // Propagar cookies de refresh se houver
+  const setCookies = (base as any)?.__set_cookies;
+  if (setCookies && Array.isArray(setCookies)) {
+    setCookies.forEach((c: string) => {
+      response.headers.append("Set-Cookie", c);
+    });
+  }
+
+  return response;
 }

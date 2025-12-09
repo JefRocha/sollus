@@ -31,7 +31,11 @@ export default function PessoaNovoPage() {
   }
 
   return (
-    <PageContainer title="Nova Pessoa" description="Cadastre uma nova pessoa no sistema.">
+    <PageContainer
+      title="Nova Pessoa"
+      description="Cadastre uma nova pessoa no sistema."
+      wrapWithDashboardLayout={false}
+    >
       <div className="space-y-4">
         <FormTabs value={form} onChange={setForm} />
         <div className="flex justify-end gap-2">

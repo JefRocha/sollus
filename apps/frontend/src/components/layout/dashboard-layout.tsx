@@ -114,7 +114,7 @@ export function DashboardLayout({
               : undefined),
           roles: Array.isArray(r?.roles) ? r.roles : undefined,
           displayName,
-          dataAceitePolitica: r?.dataAceitePolitica,
+          dataAceitePolitica: r?.dataAceitePolitica || r?.data_aceite_politica,
         };
         setUser(u);
       } catch (error) {

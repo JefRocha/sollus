@@ -47,29 +47,29 @@ export async function getDashboardMetrics(ctx?: { accessToken?: string; refreshT
       try {
         const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return r;
-      } catch {}
+      } catch { }
     }
     return [];
   };
 
   const clientes = await tryEndpoints([
-    "/cliente",
-    "/clientes",
-    "/pessoa?eh_cliente=S",
-    "/pessoas?eh_cliente=S",
-    "/pessoa?cliente=S",
+    "/api/cliente",
+    "/api/clientes",
+    "/api/pessoa?eh_cliente=S",
+    "/api/pessoas?eh_cliente=S",
+    "/api/pessoa?cliente=S",
   ]);
-  const produtos = await tryEndpoints(["/produto", "/produtos"]);
+  const produtos = await tryEndpoints(["/api/produto", "/api/produtos"]);
   const pedidos = await tryEndpoints([
-    "/pedido?status=pendente",
-    "/pedidos?status=pendente",
-    "/pedido/pendentes",
+    "/api/pedido?status=pendente",
+    "/api/pedidos?status=pendente",
+    "/api/pedido/pendentes",
   ]);
   const vendas = await tryEndpoints([
-    "/venda/series?period=mensal",
-    "/vendas/series?period=mensal",
-    "/venda/series",
-    "/vendas/series",
+    "/api/venda/series?period=mensal",
+    "/api/vendas/series?period=mensal",
+    "/api/venda/series",
+    "/api/vendas/series",
   ]);
 
   let vendasSeries = parseSeries(vendas);
@@ -104,7 +104,7 @@ export async function getCurrentUser(ctx?: { accessToken?: string; refreshToken?
       email,
       displayName: base?.displayName || name || (email ? String(email).split('@')[0] : undefined),
     };
-  } catch {}
+  } catch { }
   return null;
 }
 
@@ -116,38 +116,38 @@ export async function getFinanceMetrics(ctx?: { accessToken?: string; refreshTok
     return 0;
   };
   const pagar = await (async () => {
-    for (const p of ["/financeiro/pagar/pendentes", "/contas/pagar/pendentes"]) {
+    for (const p of ["/api/financeiro/pagar/pendentes", "/api/contas/pagar/pendentes"]) {
       try {
         const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
-      } catch {}
+      } catch { }
     }
     return 0;
   })();
   const receber = await (async () => {
-    for (const p of ["/financeiro/receber/pendentes", "/contas/receber/pendentes"]) {
+    for (const p of ["/api/financeiro/receber/pendentes", "/api/contas/receber/pendentes"]) {
       try {
         const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
-      } catch {}
+      } catch { }
     }
     return 0;
   })();
   const saldo = await (async () => {
-    for (const p of ["/financeiro/saldo/caixa", "/caixa/saldo"]) {
+    for (const p of ["/api/financeiro/saldo/caixa", "/api/caixa/saldo"]) {
       try {
         const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return parseNumber(r);
-      } catch {}
+      } catch { }
     }
     return 0;
   })();
   const movimentos = await (async () => {
-    for (const p of ["/financeiro/movimentos/hoje", "/caixa/movimentos/hoje"]) {
+    for (const p of ["/api/financeiro/movimentos/hoje", "/api/caixa/movimentos/hoje"]) {
       try {
         const r = await apiFetchServer<any>(p, { suppressErrorLog: true }, ctx);
         return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
-      } catch {}
+      } catch { }
     }
     return 0;
   })();

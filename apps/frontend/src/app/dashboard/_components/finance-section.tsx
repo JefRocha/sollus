@@ -37,7 +37,7 @@ export function FinanceSection({ user }: { user?: User }) {
           const u = await res.json();
           setUserClient({ administrador: u?.administrador, roles: u?.roles });
         }
-      } catch {}
+      } catch { }
     };
     loadUser();
   }, []);
@@ -62,21 +62,21 @@ export function FinanceSection({ user }: { user?: User }) {
     };
     (async () => {
       const pagar = await (async () => {
-        for (const p of ["/financeiro/pagar/pendentes", "/contas/pagar/pendentes"]) {
+        for (const p of ["/api/financeiro/pagar/pendentes", "/api/contas/pagar/pendentes"]) {
           const r = await fetchJson(p);
           if (r) return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
         }
         return 0;
       })();
       const receber = await (async () => {
-        for (const p of ["/financeiro/receber/pendentes", "/contas/receber/pendentes"]) {
+        for (const p of ["/api/financeiro/receber/pendentes", "/api/contas/receber/pendentes"]) {
           const r = await fetchJson(p);
           if (r) return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
         }
         return 0;
       })();
       const saldo = await (async () => {
-        for (const p of ["/financeiro/saldo/caixa", "/caixa/saldo"]) {
+        for (const p of ["/api/financeiro/saldo/caixa", "/api/caixa/saldo"]) {
           const r = await fetchJson(p);
           if (typeof r === "number") return r;
           if (typeof r?.valor === "number") return r.valor;
@@ -85,7 +85,7 @@ export function FinanceSection({ user }: { user?: User }) {
         return 0;
       })();
       const movimentos = await (async () => {
-        for (const p of ["/financeiro/movimentos/hoje", "/caixa/movimentos/hoje"]) {
+        for (const p of ["/api/financeiro/movimentos/hoje", "/api/caixa/movimentos/hoje"]) {
           const r = await fetchJson(p);
           if (r) return Array.isArray(r) ? r.length : (Array.isArray(r?.data) ? r.data.length : (Array.isArray(r?.content) ? r.content.length : (typeof r?.count === "number" ? r.count : 0)));
         }

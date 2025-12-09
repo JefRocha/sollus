@@ -110,6 +110,7 @@ export default function PessoaEditarPage() {
     <PageContainer
       title={`Editar Pessoa #${form.id}`}
       description="Atualize os dados da pessoa."
+      wrapWithDashboardLayout={false}
     >
       <div className="space-y-4">
         <FormTabs

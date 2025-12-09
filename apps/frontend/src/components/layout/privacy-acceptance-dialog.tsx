@@ -28,10 +28,21 @@ export function PrivacyAcceptanceDialog({ open, onAccept }: PrivacyAcceptanceDia
         setLoading(true);
         try {
             const token = typeof window !== "undefined" ? localStorage.getItem("sollus_access_token") : null;
+
+            // Function to get cookie by name
+            const getCookie = (name: string) => {
+                const value = `; ${document.cookie}`;
+                const parts = value.split(`; ${name}=`);
+                if (parts.length === 2) return parts.pop()?.split(';').shift();
+            };
+
+            const csrfToken = getCookie('XSRF-TOKEN');
+
             const res = await fetch("/api/auth/aceite-politica", {
                 method: "POST",
                 headers: {
-                    "Authorization": `Bearer ${token}`
+                    "Authorization": `Bearer ${token}`,
+                    "x-csrf-token": csrfToken || ""
                 }
             });
 

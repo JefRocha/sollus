@@ -74,6 +74,7 @@ export async function apiFetch<T>(
         } catch {}
       }
       const res = await fetch(url, {
+        cache: "no-store",
         ...fetchOptions,
         credentials: "include",
         headers: {

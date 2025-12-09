@@ -169,9 +169,10 @@ export class LoginController {
     const login = userPayload.sub;
 
     // usamos o serviço para buscar o usuário completo, carregando as relações de colaborador e pessoa
-    return this.service.findOne({
+    const user = await this.service.findOne({
       where: { login: login },
       relations: ['colaborador', 'colaborador.pessoa', 'papel'],
     });
+    return user;
   }
 }

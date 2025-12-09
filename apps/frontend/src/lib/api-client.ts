@@ -45,6 +45,7 @@ export async function apiClientFetch<T>(
   }
 
   const res = await fetch(url, {
+    cache: "no-store",
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
@@ -154,6 +155,7 @@ export async function apiClientFetch<T>(
       if (refreshed) {
         // Reexecutar a requisição original
         const retryRes = await fetch(url, {
+          cache: "no-store",
           credentials: "include",
           headers: {
             "Content-Type": "application/json",

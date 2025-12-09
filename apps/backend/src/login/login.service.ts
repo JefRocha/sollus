@@ -102,7 +102,6 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
     }
 
     async refresh(oldRefreshToken: string) {
-        console.log('LoginService.refresh: oldRefreshToken received:', oldRefreshToken);
         const crypto = require('crypto');
         const salt = String(process.env.REFRESH_TOKEN_SALT || '');
         const tokenHash = crypto.createHash('sha256').update(oldRefreshToken + salt).digest('hex');
@@ -187,7 +186,8 @@ export class LoginService extends TypeOrmCrudService<Usuario> {
         const user = await this.findOne({ where: { login } });
         if (user) {
             user.dataAceitePolitica = new Date();
-            return this.repo.save(user);
+            const res = await this.repo.save(user);
+            return res;
         }
         return null;
     }
