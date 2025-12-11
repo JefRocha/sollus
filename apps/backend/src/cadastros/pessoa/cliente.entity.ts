@@ -33,67 +33,70 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { Pessoa, Empresa } from '../../entities-export';
 import { TabelaPreco } from '../../entities-export';
 import { ViewPessoaCliente } from '../../entities-export';
 
 @Entity()
 export class Cliente {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  desde: Date;
 
-	@Column()
-	desde: Date;
+  @Column()
+  dataCadastro: Date;
 
-	@Column()
-	dataCadastro: Date;
+  @Column()
+  taxaDesconto: number;
 
-	@Column()
-	taxaDesconto: number;
+  @Column()
+  limiteCredito: number;
 
-	@Column()
-	limiteCredito: number;
+  @Column()
+  observacao: string;
 
-	@Column()
-	observacao: string;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.cliente)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
+  @OneToOne(() => TabelaPreco)
+  @JoinColumn({ name: 'id_tabela_preco' })
+  tabelaPreco: TabelaPreco;
 
-	@OneToOne(() => Pessoa, pessoa => pessoa.cliente)
-	@JoinColumn({ name: 'id_pessoa' })
-	pessoa: Pessoa;
+  // Removed viewPessoaCliente - duplicate @OneToOne on ID_PESSOA column
 
-	@OneToOne(() => TabelaPreco)
-	@JoinColumn({ name: 'id_tabela_preco' })
-	tabelaPreco: TabelaPreco;
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.desde = objetoJson['desde'];
+      this.dataCadastro = objetoJson['dataCadastro'];
+      this.taxaDesconto = objetoJson['taxaDesconto'];
+      this.limiteCredito = objetoJson['limiteCredito'];
+      this.observacao = objetoJson['observacao'];
 
-	// Removed viewPessoaCliente - duplicate @OneToOne on ID_PESSOA column
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.desde = objetoJson['desde'];
-			this.dataCadastro = objetoJson['dataCadastro'];
-			this.taxaDesconto = objetoJson['taxaDesconto'];
-			this.limiteCredito = objetoJson['limiteCredito'];
-			this.observacao = objetoJson['observacao'];
-
-			if (objetoJson['tabelaPreco'] != null) {
-				this.tabelaPreco = new TabelaPreco(objetoJson['tabelaPreco']);
-			}
-
-
-		}
-	}
+      if (objetoJson['tabelaPreco'] != null) {
+        this.tabelaPreco = new TabelaPreco(objetoJson['tabelaPreco']);
+      }
+    }
+  }
 }

@@ -31,21 +31,92 @@ export type Pessoa = {
   pessoaEnderecoModelList?: any[];
 };
 
-export async function getPessoas(searchParams: any) {
+export type PessoaListQuery = {
+  page?: number;
+  limit?: number;
+  q?: string;
+  field?: string;
+  tipo?: "F" | "J";
+  role?:
+    | "cliente"
+    | "fornecedor"
+    | "transportadora"
+    | "colaborador"
+    | "contador"
+    | "all";
+  sort?: string; // ex: "nome,asc"
+};
+
+export async function getPessoas(input: PessoaListQuery = {}) {
   try {
+    const page = Number(input.page ?? 1);
+    const limit = Number(input.limit ?? 15);
+    const field = input.field || "nome";
     const params = new URLSearchParams();
-    if (searchParams?.q) {
-      params.append("filter", searchParams.q);
+    params.append("page", String(page));
+    params.append("limit", String(limit));
+
+    const q = input.q?.trim();
+    if (q) {
+      const filter =
+        q.includes("$cont") || q.includes("$eq") || q.includes("$between")
+          ? q
+          : `${field}||$cont||${encodeURIComponent(q)}`;
+      params.append("filter", filter);
+    }
+    if (input.tipo === "F" || input.tipo === "J") {
+      params.append("filter", `tipo||$eq||${input.tipo}`);
+    }
+    if (input.role && input.role !== "all") {
+      const map: Record<string, string> = {
+        cliente: "eh_cliente",
+        fornecedor: "eh_fornecedor",
+        transportadora: "eh_transportadora",
+        colaborador: "eh_colaborador",
+        contador: "eh_contador",
+      };
+      const col = map[input.role];
+      if (col) params.append("filter", `${col}||$eq||S`);
     }
 
-    const queryString = params.toString();
-    const endpoint = `/api/pessoa${queryString ? `?${queryString}` : ""}`;
+    // Ensure sort order is uppercase
+    if (input.sort) {
+      const [sortField, sortOrder = "ASC"] = input.sort.split(",");
+      params.append("sort", `${sortField},${sortOrder.toUpperCase()}`);
+    } else {
+      params.append("sort", "nome,ASC");
+    }
 
-    const data = await apiServerAction<any[]>(endpoint);
-    return { pessoas: data };
-  } catch (error) {
+    const endpoint = `/api/pessoa?${params.toString()}`;
+    const res = await apiServerAction<any>(endpoint);
+
+    const pessoas = Array.isArray(res)
+      ? res
+      : res.data || res.content || res.items || [];
+    const total =
+      typeof res?.total === "number"
+        ? res.total
+        : res.totalElements || res.count || pessoas.length;
+    const currentPage =
+      typeof res?.page === "number"
+        ? res.page
+        : res.number != null
+        ? res.number + 1
+        : page;
+    const pageSize =
+      typeof res?.limit === "number" ? res.limit : res.size || limit;
+
+    return { query: input, pessoas, total, page: currentPage, limit: pageSize };
+  } catch (error: any) {
     console.error("[PessoaAction] Error fetching pessoas:", error);
-    return { error: "Falha ao buscar pessoas" };
+    return {
+      query: input,
+      pessoas: [],
+      total: 0,
+      page: 1,
+      limit: 15,
+      error: `Falha ao buscar pessoas: ${error.message}`,
+    };
   }
 }
 

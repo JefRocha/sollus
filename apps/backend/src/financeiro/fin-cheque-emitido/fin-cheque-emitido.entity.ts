@@ -33,56 +33,74 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Cheque } from '../../entities-export';
+import { BancoContaCaixa } from '../../entities-export';
 
-@Entity()
+@Entity({ name: 'fin_cheque_emitido' })
 export class FinChequeEmitido {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column({ name: 'data_emissao' })
+  dataEmissao: Date;
 
-	@Column()
-	dataEmissao: Date;
+  @Column({ name: 'bom_para' })
+  bomPara: Date;
 
-	@Column()
-	bomPara: Date;
+  @Column({ name: 'data_compensacao' })
+  dataCompensacao: Date;
 
-	@Column()
-	dataCompensacao: Date;
+  @Column({ name: 'valor' })
+  valor: number;
 
-	@Column()
-	valor: number;
+  @Column({ name: 'nominal_a' })
+  nominalA: string;
 
-	@Column()
-	nominalA: string;
+  @OneToOne(() => BancoContaCaixa)
+  @JoinColumn({ name: 'id_banco_conta_caixa' })
+  bancoContaCaixa: BancoContaCaixa;
 
+  @Column({ name: 'id_banco_conta_caixa', nullable: true })
+  idBancoContaCaixa: number;
 
-	/**
-	* Relations
-	*/
-	@OneToOne(() => Cheque)
-	@JoinColumn()
-	cheque: Cheque;
+  /**
+   * Relations
+   */
+  @OneToOne(() => Cheque)
+  @JoinColumn({ name: 'id_cheque' })
+  cheque: Cheque;
 
+  @Column({ name: 'id_cheque', nullable: true })
+  idCheque: number;
 
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.dataEmissao = objetoJson['dataEmissao'];
-			this.bomPara = objetoJson['bomPara'];
-			this.dataCompensacao = objetoJson['dataCompensacao'];
-			this.valor = objetoJson['valor'];
-			this.nominalA = objetoJson['nominalA'];
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.dataEmissao = objetoJson['dataEmissao'];
+      this.bomPara = objetoJson['bomPara'];
+      this.dataCompensacao = objetoJson['dataCompensacao'];
+      this.valor = objetoJson['valor'];
+      this.nominalA = objetoJson['nominalA'];
 
-			if (objetoJson['cheque'] != null) {
-				this.cheque = new Cheque(objetoJson['cheque']);
-			}
+      if (objetoJson['cheque'] != null) {
+        this.cheque = new Cheque(objetoJson['cheque']);
+      }
 
-
-		}
-	}
+      if (objetoJson['bancoContaCaixa'] != null) {
+        this.bancoContaCaixa = new BancoContaCaixa(
+          objetoJson['bancoContaCaixa'],
+        );
+      }
+    }
+  }
 }

@@ -34,75 +34,71 @@ OTHER DEALINGS IN THE SOFTWARE.
 @version 1.0.0
 *******************************************************************************/
 import { Controller, Delete, Param, Post, Put, Req } from '@nestjs/common';
-import { Crud, CrudController, Override, ParsedRequest, CrudRequest } from '@nestjsx/crud';
+import {
+  Crud,
+  CrudController,
+  Override,
+  ParsedRequest,
+  CrudRequest,
+} from '@nestjsx/crud';
 import { PessoaService } from './pessoa.service';
 import { Pessoa } from './pessoa.entity';
 import { Request } from 'express';
 
 @Crud({
-	model: {
-		type: Pessoa,
-	},
-	query: {
-		join: {
-			cliente: { eager: true },
-			colaborador: { eager: true },
-			contador: { eager: true },
-			fornecedor: { eager: true },
-			pessoaFisica: { eager: true },
-			// 'pessoaFisica.estadoCivil': { eager: true },
-			// 'pessoaFisica.nivelFormacao': { eager: true },
-			pessoaJuridica: { eager: true },
-			transportadora: { eager: true },
-			listaPessoaContato: { eager: true },
-			listaPessoaEndereco: { eager: true },
-			listaPessoaTelefone: { eager: true },
-		},
-	},
+  model: {
+    type: Pessoa,
+  },
+  query: {
+    alwaysPaginate: true,
+    join: {
+      pessoaFisica: { 
+        eager: false,  // Mude para false
+        allow: ['id', 'cpf', 'rg', 'dataNascimento', 'sexo']
+      },
+      pessoaJuridica: { 
+        eager: false,  // Mude para false
+        allow: ['id', 'cnpj', 'nomeFantasia', 'inscricaoEstadual', 'crt']
+      },
+    },
+  },
 })
 @Controller('pessoa')
 export class PessoaController implements CrudController<Pessoa> {
-	constructor(
-		public service: PessoaService,
-	) { }
+  constructor(public service: PessoaService) {}
 
-	get base(): CrudController<Pessoa> {
-		return this;
-	}
+  get base(): CrudController<Pessoa> {
+    return this;
+  }
 
-	@Override()
-	getMany(
-		@ParsedRequest() req: CrudRequest,
-	) {
-		return this.base.getManyBase(req);
-	}
+  @Override()
+  getMany(@ParsedRequest() req: CrudRequest) {
+    return this.base.getManyBase(req);
+  }
 
-	@Override()
-	getOne(
-		@ParsedRequest() req: CrudRequest,
-	) {
-		return this.base.getOneBase(req);
-	}
+  @Override()
+  getOne(@ParsedRequest() req: CrudRequest) {
+    return this.base.getOneBase(req);
+  }
 
-	@Post()
-	async inserir(@Req() request: Request) {
-		let objetoJson = request.body;
-		let pessoa = new Pessoa(objetoJson);
-		const retorno = await this.service.persistir(pessoa, 'I');
-		return retorno;
-	}
+  @Post()
+  async inserir(@Req() request: Request) {
+    let objetoJson = request.body;
+    let pessoa = new Pessoa(objetoJson);
+    const retorno = await this.service.persistir(pessoa, 'I');
+    return retorno;
+  }
 
-	@Put(':id')
-	async alterar(@Param('id') id: number, @Req() request: Request) {
-		let objetoJson = request.body;
-		let pessoa = new Pessoa(objetoJson);
-		const retorno = await this.service.persistir(pessoa, 'A');
-		return retorno;
-	}
+  @Put(':id')
+  async alterar(@Param('id') id: number, @Req() request: Request) {
+    let objetoJson = request.body;
+    let pessoa = new Pessoa(objetoJson);
+    const retorno = await this.service.persistir(pessoa, 'A');
+    return retorno;
+  }
 
-	@Delete(':id')
-	async excluir(@Param('id') id: number) {
-		return this.service.excluirMestreDetalhe(id);
-	}
-
+  @Delete(':id')
+  async excluir(@Param('id') id: number) {
+    return this.service.excluirMestreDetalhe(id);
+  }
 }

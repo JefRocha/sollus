@@ -27,14 +27,14 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
-	   The author may be contacted at:                                          
-		   CS Solutions.com@gmail.com                                                   
+       The author may be contacted at:                                          
+           CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Delete, Param, Post, Put, Req } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, Delete, Param, Post, Put, Req, UseInterceptors } from '@nestjs/common';
+import { Crud, CrudController, CrudRequestInterceptor } from '@nestjsx/crud';
 import { FinLancamentoPagarService } from './fin-lancamento-pagar.service';
 import { FinLancamentoPagar } from './fin-lancamento-pagar.entity';
 import { Request } from 'express';
@@ -52,11 +52,17 @@ import { Request } from 'express';
 			bancoContaCaixa: { eager: true },
 			listaFinParcelaPagar: { eager: true },
 		},
+    alwaysPaginate: true,
 	},
 })
+@UseInterceptors(CrudRequestInterceptor)
 @Controller('fin-lancamento-pagar')
 export class FinLancamentoPagarController implements CrudController<FinLancamentoPagar> {
 	constructor(public service: FinLancamentoPagarService) { }
+
+  get base(): CrudController<FinLancamentoPagar> {
+    return this;
+  }
 
 	@Post()
 	async inserir(@Req() request: Request) {

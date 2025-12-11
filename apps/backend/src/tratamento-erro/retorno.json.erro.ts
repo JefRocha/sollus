@@ -27,7 +27,7 @@ export class RetornoJsonErro {
                 break;
         }
         if (parametros.erro != null) {
-            this.message = this.message + " - Exceção: " + parametros.erro.message.error + " - " + parametros.erro.message.message;
+            this.message = this.message + " - Exceção: " + parametros.erro.message;
             this.trace = parametros.erro.stack;
         }
     }

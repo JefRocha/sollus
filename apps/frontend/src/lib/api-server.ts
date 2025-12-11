@@ -208,7 +208,8 @@ export async function apiFetchServer<T>(
           }
         } catch (e) {
           if (e instanceof Error && e.message !== "Unauthorized") {
-            if (!suppress) console.error("Refresh token failed (server):", e);
+            if (!suppress && !SUPPRESS_SERVER_API_LOGS)
+              console.error("Refresh token failed (server):", e);
           }
         }
         return { __unauthorized: true } as any as T;
@@ -218,7 +219,7 @@ export async function apiFetchServer<T>(
       const msg = `API Error: ${res.status} ${res.statusText}${
         bodyText ? ` - ${bodyText}` : ""
       }`;
-      if (!suppress)
+      if (!suppress && !SUPPRESS_SERVER_API_LOGS)
         console.error("[API SERVER FETCH ERROR] Response not OK:", msg);
       return {
         __http_error: {
@@ -232,7 +233,7 @@ export async function apiFetchServer<T>(
       const isAuthError =
         error instanceof Error &&
         (error.message === "Unauthorized" || /401/.test(String(error)));
-      if (!suppress && !isAuthError)
+      if (!suppress && !isAuthError && !SUPPRESS_SERVER_API_LOGS)
         console.error("[API SERVER FETCH ERROR] Network issue:", error);
       continue;
     }
@@ -242,3 +243,6 @@ export async function apiFetchServer<T>(
     message: "API Error: 0",
   } as any as T;
 }
+const SUPPRESS_SERVER_API_LOGS =
+  process.env.SUPPRESS_API_LOGS === "1" ||
+  process.env.NEXT_PUBLIC_SUPPRESS_API_LOGS === "1";

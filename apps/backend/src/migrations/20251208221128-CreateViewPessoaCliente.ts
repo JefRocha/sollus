@@ -1,14 +1,15 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class CreateViewPessoaCliente20251208221128 implements MigrationInterface {
+export class CreateViewPessoaCliente20251208221128
+  implements MigrationInterface
+{
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    // Remove a tabela criada incorretamente na migration inicial, se existir
+    await queryRunner.query(`DROP TABLE IF EXISTS "VIEW_PESSOA_CLIENTE"`);
+    // Remove a view se já existir, para garantir uma criação limpa
+    await queryRunner.query(`DROP VIEW IF EXISTS "VIEW_PESSOA_CLIENTE"`);
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-        // Remove a tabela criada incorretamente na migration inicial, se existir
-        await queryRunner.query(`DROP TABLE IF EXISTS "VIEW_PESSOA_CLIENTE"`);
-        // Remove a view se já existir, para garantir uma criação limpa
-        await queryRunner.query(`DROP VIEW IF EXISTS "VIEW_PESSOA_CLIENTE"`);
-
-        await queryRunner.query(`
+    await queryRunner.query(`
             CREATE OR REPLACE VIEW "VIEW_PESSOA_CLIENTE" AS
             SELECT 
                 C."ID" AS "id",
@@ -72,9 +73,9 @@ export class CreateViewPessoaCliente20251208221128 implements MigrationInterface
             WHERE 
                 P."EH_CLIENTE" = 'S' AND E."PRINCIPAL" = 'S';
         `);
-    }
+  }
 
-    public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`DROP VIEW IF EXISTS "VIEW_PESSOA_CLIENTE"`);
-    }
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`DROP VIEW IF EXISTS "VIEW_PESSOA_CLIENTE"`);
+  }
 }

@@ -18,7 +18,11 @@ export default async function CboPersistePage({
     : "Crie um novo cbo preenchendo o formulário abaixo.";
 
   return (
-    <PageContainer title={title} description={description} wrapWithDashboardLayout={false}>
+    <PageContainer
+      title={title}
+      description={description}
+      wrapWithDashboardLayout={false}
+    >
       <CboForm data={data} />
     </PageContainer>
   );

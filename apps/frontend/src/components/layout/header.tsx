@@ -68,7 +68,7 @@ export function Header({
         try {
           localStorage.removeItem("sollus_access_token");
           localStorage.removeItem("sollus_refresh_token");
-        } catch { }
+        } catch {}
         window.location.href = "/login";
       },
       onError: (error) => {
@@ -77,7 +77,7 @@ export function Header({
         try {
           localStorage.removeItem("sollus_access_token");
           localStorage.removeItem("sollus_refresh_token");
-        } catch { }
+        } catch {}
         window.location.href = "/login";
       },
     }
@@ -97,7 +97,7 @@ export function Header({
     try {
       localStorage.removeItem("sollus_access_token");
       localStorage.removeItem("sollus_refresh_token");
-    } catch { }
+    } catch {}
     await executeLogout();
   };
 
@@ -113,7 +113,7 @@ export function Header({
       const c = localStorage.getItem("pc:headerColor");
       if (c) setColor(c);
       else if (t) setTone(t);
-    } catch { }
+    } catch {}
   }, []);
 
   React.useEffect(() => {
@@ -132,7 +132,7 @@ export function Header({
       } else {
         await document.exitFullscreen();
       }
-    } catch { }
+    } catch {}
   };
 
   // Resolve dados do usuário para o dropdown
@@ -166,7 +166,7 @@ export function Header({
             if (name || email || displayName) {
               setLocalUser({ name, email, displayName });
             }
-          } catch { }
+          } catch {}
         }
       };
       load();
@@ -232,7 +232,7 @@ export function Header({
           `color-mix(in oklch, var(--pc-header-fg) 80%, transparent)`
         );
       }
-    } catch { }
+    } catch {}
   };
 
   return (
@@ -294,14 +294,12 @@ export function Header({
             <div className="hidden md:flex flex-col items-end mr-2">
               <span className="text-base md:text-lg font-semibold">
                 {formatUserName(
-                  localUser?.displayName ||
-                  localUser?.name ||
-                  localUser?.email
+                  localUser?.displayName || localUser?.name || localUser?.email
                 ) || "Usuário"}
               </span>
               <span className="text-xs text-muted-foreground">
                 {Array.isArray(localUser?.roles) &&
-                  localUser?.roles?.includes("ADMIN")
+                localUser?.roles?.includes("ADMIN")
                   ? "Administrador"
                   : ""}
               </span>
@@ -339,14 +337,14 @@ export function Header({
                     <p className="text-sm font-medium leading-none">
                       {formatUserName(
                         localUser?.displayName ||
-                        localUser?.name ||
-                        localUser?.email
+                          localUser?.name ||
+                          localUser?.email
                       ) || "Usuário"}
                     </p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {localUser?.email ||
                         (Array.isArray(localUser?.roles) &&
-                          localUser!.roles!.includes("ADMIN")
+                        localUser!.roles!.includes("ADMIN")
                           ? "Administrador"
                           : "")}
                     </p>

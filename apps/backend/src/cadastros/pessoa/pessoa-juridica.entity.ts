@@ -33,60 +33,61 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Pessoa } from '../../entities-export';
 
 @Entity()
 export class PessoaJuridica {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  cnpj: string;
 
-	@Column()
-	cnpj: string;
+  @Column()
+  nomeFantasia: string;
 
-	@Column()
-	nomeFantasia: string;
+  @Column()
+  inscricaoEstadual: string;
 
-	@Column()
-	inscricaoEstadual: string;
+  @Column()
+  inscricaoMunicipal: string;
 
-	@Column()
-	inscricaoMunicipal: string;
+  @Column()
+  dataConstituicao: Date;
 
-	@Column()
-	dataConstituicao: Date;
+  @Column()
+  tipoRegime: string;
 
-	@Column()
-	tipoRegime: string;
+  @Column()
+  crt: string;
 
-	@Column()
-	crt: string;
+  /**
+   * Relations
+   */
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.pessoaJuridica)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
-
-	/**
-	* Relations
-	*/
-	@OneToOne(() => Pessoa, pessoa => pessoa.pessoaJuridica)
-	@JoinColumn({ name: 'id_pessoa' })
-	pessoa: Pessoa;
-
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.cnpj = objetoJson['cnpj'];
-			this.nomeFantasia = objetoJson['nomeFantasia'];
-			this.inscricaoEstadual = objetoJson['inscricaoEstadual'];
-			this.inscricaoMunicipal = objetoJson['inscricaoMunicipal'];
-			this.dataConstituicao = objetoJson['dataConstituicao'];
-			this.tipoRegime = objetoJson['tipoRegime'];
-			this.crt = objetoJson['crt'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.cnpj = objetoJson['cnpj'];
+      this.nomeFantasia = objetoJson['nomeFantasia'];
+      this.inscricaoEstadual = objetoJson['inscricaoEstadual'];
+      this.inscricaoMunicipal = objetoJson['inscricaoMunicipal'];
+      this.dataConstituicao = objetoJson['dataConstituicao'];
+      this.tipoRegime = objetoJson['tipoRegime'];
+      this.crt = objetoJson['crt'];
+    }
+  }
 }

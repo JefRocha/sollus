@@ -11,13 +11,20 @@ export async function POST(req: Request) {
     headers: {
       ...(auth ? { Authorization: auth } : {}),
       ...(cookie ? { Cookie: cookie } : {}),
-      ...(req.headers.get("x-csrf-token") ? { "x-csrf-token": req.headers.get("x-csrf-token")! } : {}),
-      ...(req.headers.get("X-CSRF-TOKEN") ? { "x-csrf-token": req.headers.get("X-CSRF-TOKEN")! } : {}),
+      ...(req.headers.get("x-csrf-token")
+        ? { "x-csrf-token": req.headers.get("x-csrf-token")! }
+        : {}),
+      ...(req.headers.get("X-CSRF-TOKEN")
+        ? { "x-csrf-token": req.headers.get("X-CSRF-TOKEN")! }
+        : {}),
     },
     body: "{}",
   };
 
-  const csrfToken = req.headers.get("x-csrf-token") || req.headers.get("X-CSRF-TOKEN") || undefined;
+  const csrfToken =
+    req.headers.get("x-csrf-token") ||
+    req.headers.get("X-CSRF-TOKEN") ||
+    undefined;
 
   const ctx = {
     cookieHeader: cookie || undefined,
@@ -25,7 +32,11 @@ export async function POST(req: Request) {
   } as any;
 
   // Proxy para o backend real
-  const result = await apiFetchServer<any>("/api/auth/aceite-politica", opts, ctx);
+  const result = await apiFetchServer<any>(
+    "/api/auth/aceite-politica",
+    opts,
+    ctx
+  );
 
   if (result?.__http_error) {
     // Tenta fallback para rota sem /api se falhar (dependendo da config do backend)

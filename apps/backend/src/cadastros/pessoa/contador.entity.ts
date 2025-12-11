@@ -33,44 +33,46 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { Pessoa, Empresa } from '../../entities-export';
 
 @Entity()
 export class Contador {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  crcInscricao: string;
 
-	@Column()
-	crcInscricao: string;
+  @Column()
+  crcUf: string;
 
-	@Column()
-	crcUf: string;
+  /**
+   * Relations
+   */
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.contador)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-	/**
-	* Relations
-	*/
-	@OneToOne(() => Pessoa, pessoa => pessoa.contador)
-	@JoinColumn({ name: 'id_pessoa' })
-	pessoa: Pessoa;
-
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.crcInscricao = objetoJson['crcInscricao'];
-			this.crcUf = objetoJson['crcUf'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.crcInscricao = objetoJson['crcInscricao'];
+      this.crcUf = objetoJson['crcUf'];
+    }
+  }
 }

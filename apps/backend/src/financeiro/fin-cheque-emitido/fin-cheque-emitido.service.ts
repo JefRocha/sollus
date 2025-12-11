@@ -35,23 +35,45 @@ OTHER DEALINGS IN THE SOFTWARE.
 *******************************************************************************/
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
 import { FinChequeEmitido } from './fin-cheque-emitido.entity';
-
-import { BaseRepository } from '../../common/base.repository';
+import { Repository } from 'typeorm';
 import { ClsService } from 'nestjs-cls';
-@Injectable()
-export class FinChequeEmitidoService extends TypeOrmCrudService<FinChequeEmitido> {
 
+@Injectable()
+export class FinChequeEmitidoService {
   constructor(
-    @InjectRepository(FinChequeEmitido) repository
-  ,
-    private readonly cls: ClsService
-  ) {
-    super(new BaseRepository(repository, cls));
+    @InjectRepository(FinChequeEmitido)
+    private readonly repository: Repository<FinChequeEmitido>,
+    private readonly cls: ClsService,
+  ) {}
+
+  async findAll(): Promise<FinChequeEmitido[]> {
+    return this.repository.find({
+      relations: ['cheque'],
+    });
   }
 
+  async findOne(id: number): Promise<FinChequeEmitido> {
+    return this.repository.findOne({
+      where: { id },
+      relations: ['cheque'],
+    });
+  }
 
+  async create(data: Partial<FinChequeEmitido>): Promise<FinChequeEmitido> {
+    const entity = this.repository.create(data);
+    return this.repository.save(entity);
+  }
 
+  async update(
+    id: number,
+    data: Partial<FinChequeEmitido>,
+  ): Promise<FinChequeEmitido> {
+    await this.repository.update(id, data);
+    return this.findOne(id);
+  }
 
+  async remove(id: number): Promise<void> {
+    await this.repository.delete(id);
+  }
 }

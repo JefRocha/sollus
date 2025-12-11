@@ -21,29 +21,35 @@ export const loginAction = actionClient
       if (baseUrl.startsWith("https://localhost")) {
         baseUrl = baseUrl.replace("https://", "http://");
       }
-      
+
       console.log(`[LoginAction] Fetching: ${baseUrl}/api/auth/login`);
 
       const res = await fetch(`${baseUrl}/api/auth/login`, {
         method: "POST",
-        headers: { 
-            "Content-Type": "application/json",
-            "Connection": "close"
+        headers: {
+          "Content-Type": "application/json",
+          Connection: "close",
         },
         body: JSON.stringify(parsedInput),
-        cache: "no-store"
+        cache: "no-store",
       });
 
       if (!res.ok) {
         if (res.status === 401 || res.status === 403) {
-            throw new Error("Usuário ou senha inválidos");
+          throw new Error("Usuário ou senha inválidos");
         }
         throw new Error(`Erro no login: ${res.status}`);
       }
 
       const data = await res.json();
-      const accessToken = data.token || data.access_token || data.accessToken || data.jwt || data.data?.token;
-      const refreshToken = data.refreshToken || data.refresh_token || data.data?.refresh;
+      const accessToken =
+        data.token ||
+        data.access_token ||
+        data.accessToken ||
+        data.jwt ||
+        data.data?.token;
+      const refreshToken =
+        data.refreshToken || data.refresh_token || data.data?.refresh;
 
       if (!accessToken) {
         throw new Error("Token não retornado pelo servidor");
@@ -51,7 +57,7 @@ export const loginAction = actionClient
 
       // SETAR COOKIE NO NEXT.JS (DOMÍNIO LOCALHOST:3000)
       const cookieStore = await cookies();
-      
+
       // Cookie HttpOnly acessível apenas pelo servidor (segurança máxima)
       cookieStore.set("sollus_access_token", accessToken, {
         httpOnly: true,
@@ -75,6 +81,9 @@ export const loginAction = actionClient
       return { success: true, token: accessToken, refreshToken };
     } catch (error: any) {
       console.error("Login Action Error:", error);
-      return { success: false, error: error.message || "Erro desconhecido no login" };
+      return {
+        success: false,
+        error: error.message || "Erro desconhecido no login",
+      };
     }
   });

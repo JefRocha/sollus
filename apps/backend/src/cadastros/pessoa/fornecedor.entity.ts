@@ -33,49 +33,52 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { Pessoa, ViewPessoaFornecedor, Empresa } from '../../entities-export';
 
 @Entity()
 export class Fornecedor {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  desde: Date;
 
-	@Column()
-	desde: Date;
+  @Column()
+  dataCadastro: Date;
 
-	@Column()
-	dataCadastro: Date;
+  @Column()
+  observacao: string;
 
-	@Column()
-	observacao: string;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.fornecedor)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
+  // Removed viewPessoaFornecedor - duplicate @OneToOne on ID_PESSOA column
 
-	@OneToOne(() => Pessoa, pessoa => pessoa.fornecedor)
-	@JoinColumn({ name: 'id_pessoa' })
-	pessoa: Pessoa;
-
-	// Removed viewPessoaFornecedor - duplicate @OneToOne on ID_PESSOA column
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.desde = objetoJson['desde'];
-			this.dataCadastro = objetoJson['dataCadastro'];
-			this.observacao = objetoJson['observacao'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.desde = objetoJson['desde'];
+      this.dataCadastro = objetoJson['dataCadastro'];
+      this.observacao = objetoJson['observacao'];
+    }
+  }
 }

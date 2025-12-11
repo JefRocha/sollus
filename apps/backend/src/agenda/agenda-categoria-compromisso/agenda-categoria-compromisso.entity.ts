@@ -33,39 +33,41 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Empresa } from '../../entities-export';
 
 @Entity()
 export class AgendaCategoriaCompromisso {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  nome: string;
 
-	@Column()
-	nome: string;
+  @Column()
+  cor: string;
 
-	@Column()
-	cor: string;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.nome = objetoJson['nome'];
-			this.cor = objetoJson['cor'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.nome = objetoJson['nome'];
+      this.cor = objetoJson['cor'];
+    }
+  }
 }

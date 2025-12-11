@@ -53,6 +53,6 @@ export default function RootLayout({
           <PwaRegister />
         </ThemeProvider>
       </body>
-    </html >
+    </html>
   );
 }

@@ -33,7 +33,15 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  OneToOne,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Cliente, Empresa } from '../../entities-export';
 import { Colaborador } from '../../entities-export';
 import { Contador } from '../../entities-export';
@@ -47,147 +55,159 @@ import { Transportadora } from '../../entities-export';
 
 @Entity()
 export class Pessoa {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  nome: string;
 
-	@Column()
-	nome: string;
+  @Column()
+  tipo: string;
 
-	@Column()
-	tipo: string;
+  @Column({ nullable: true })
+  site: string;
 
-	@Column({ nullable: true })
-	site: string;
+  @Column()
+  email: string;
 
-	@Column()
-	email: string;
+  @Column({ nullable: true })
+  ehCliente: string;
 
-	@Column({ nullable: true })
-	ehCliente: string;
+  @Column({ nullable: true })
+  ehFornecedor: string;
 
-	@Column({ nullable: true })
-	ehFornecedor: string;
+  @Column({ nullable: true })
+  ehTransportadora: string;
 
-	@Column({ nullable: true })
-	ehTransportadora: string;
+  @Column({ nullable: true })
+  ehColaborador: string;
 
-	@Column({ nullable: true })
-	ehColaborador: string;
+  @Column({ nullable: true })
+  ehContador: string;
 
-	@Column({ nullable: true })
-	ehContador: string;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
+  @OneToOne(() => Cliente, (cliente) => cliente.pessoa, { cascade: true })
+  cliente: Cliente;
 
-	@OneToOne(() => Cliente, cliente => cliente.pessoa, { cascade: true })
-	cliente: Cliente;
+  @OneToOne(() => Colaborador, (colaborador) => colaborador.pessoa, {
+    cascade: true,
+  })
+  colaborador: Colaborador;
 
-	@OneToOne(() => Colaborador, colaborador => colaborador.pessoa, { cascade: true })
-	colaborador: Colaborador;
+  @OneToOne(() => Contador, (contador) => contador.pessoa, { cascade: true })
+  contador: Contador;
 
-	@OneToOne(() => Contador, contador => contador.pessoa, { cascade: true })
-	contador: Contador;
+  @OneToOne(() => Fornecedor, (fornecedor) => fornecedor.pessoa, {
+    cascade: true,
+  })
+  fornecedor: Fornecedor;
 
-	@OneToOne(() => Fornecedor, fornecedor => fornecedor.pessoa, { cascade: true })
-	fornecedor: Fornecedor;
+  @OneToOne(() => PessoaFisica, (pessoaFisica) => pessoaFisica.pessoa, {
+    cascade: true,
+  })
+  pessoaFisica: PessoaFisica;
 
-	@OneToOne(() => PessoaFisica, pessoaFisica => pessoaFisica.pessoa, { cascade: true })
-	pessoaFisica: PessoaFisica;
+  @OneToOne(() => PessoaJuridica, (pessoaJuridica) => pessoaJuridica.pessoa, {
+    cascade: true,
+  })
+  pessoaJuridica: PessoaJuridica;
 
-	@OneToOne(() => PessoaJuridica, pessoaJuridica => pessoaJuridica.pessoa, { cascade: true })
-	pessoaJuridica: PessoaJuridica;
+  @OneToOne(() => Transportadora, (transportadora) => transportadora.pessoa, {
+    cascade: true,
+  })
+  transportadora: Transportadora;
 
-	@OneToOne(() => Transportadora, transportadora => transportadora.pessoa, { cascade: true })
-	transportadora: Transportadora;
+  @OneToMany(() => PessoaContato, (pessoaContato) => pessoaContato.pessoa, {
+    cascade: true,
+  })
+  listaPessoaContato: PessoaContato[];
 
-	@OneToMany(() => PessoaContato, pessoaContato => pessoaContato.pessoa, { cascade: true })
-	listaPessoaContato: PessoaContato[];
+  @OneToMany(() => PessoaEndereco, (pessoaEndereco) => pessoaEndereco.pessoa, {
+    cascade: true,
+  })
+  listaPessoaEndereco: PessoaEndereco[];
 
-	@OneToMany(() => PessoaEndereco, pessoaEndereco => pessoaEndereco.pessoa, { cascade: true })
-	listaPessoaEndereco: PessoaEndereco[];
+  @OneToMany(() => PessoaTelefone, (pessoaTelefone) => pessoaTelefone.pessoa, {
+    cascade: true,
+  })
+  listaPessoaTelefone: PessoaTelefone[];
 
-	@OneToMany(() => PessoaTelefone, pessoaTelefone => pessoaTelefone.pessoa, { cascade: true })
-	listaPessoaTelefone: PessoaTelefone[];
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.nome = objetoJson['nome'];
+      this.tipo = objetoJson['tipo'];
+      this.site = objetoJson['site'];
+      this.email = objetoJson['email'];
+      this.ehCliente = objetoJson['ehCliente'];
+      this.ehFornecedor = objetoJson['ehFornecedor'];
+      this.ehTransportadora = objetoJson['ehTransportadora'];
+      this.ehColaborador = objetoJson['ehColaborador'];
+      this.ehContador = objetoJson['ehContador'];
 
+      if (objetoJson['cliente'] != null) {
+        this.cliente = new Cliente(objetoJson['cliente']);
+      }
 
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.nome = objetoJson['nome'];
-			this.tipo = objetoJson['tipo'];
-			this.site = objetoJson['site'];
-			this.email = objetoJson['email'];
-			this.ehCliente = objetoJson['ehCliente'];
-			this.ehFornecedor = objetoJson['ehFornecedor'];
-			this.ehTransportadora = objetoJson['ehTransportadora'];
-			this.ehColaborador = objetoJson['ehColaborador'];
-			this.ehContador = objetoJson['ehContador'];
+      if (objetoJson['colaborador'] != null) {
+        this.colaborador = new Colaborador(objetoJson['colaborador']);
+      }
 
-			if (objetoJson['cliente'] != null) {
-				this.cliente = new Cliente(objetoJson['cliente']);
-			}
+      if (objetoJson['contador'] != null) {
+        this.contador = new Contador(objetoJson['contador']);
+      }
 
-			if (objetoJson['colaborador'] != null) {
-				this.colaborador = new Colaborador(objetoJson['colaborador']);
-			}
+      if (objetoJson['fornecedor'] != null) {
+        this.fornecedor = new Fornecedor(objetoJson['fornecedor']);
+      }
 
-			if (objetoJson['contador'] != null) {
-				this.contador = new Contador(objetoJson['contador']);
-			}
+      if (objetoJson['pessoaFisica'] != null) {
+        this.pessoaFisica = new PessoaFisica(objetoJson['pessoaFisica']);
+      }
 
-			if (objetoJson['fornecedor'] != null) {
-				this.fornecedor = new Fornecedor(objetoJson['fornecedor']);
-			}
+      if (objetoJson['pessoaJuridica'] != null) {
+        this.pessoaJuridica = new PessoaJuridica(objetoJson['pessoaJuridica']);
+      }
 
-			if (objetoJson['pessoaFisica'] != null) {
-				this.pessoaFisica = new PessoaFisica(objetoJson['pessoaFisica']);
-			}
+      if (objetoJson['transportadora'] != null) {
+        this.transportadora = new Transportadora(objetoJson['transportadora']);
+      }
 
-			if (objetoJson['pessoaJuridica'] != null) {
-				this.pessoaJuridica = new PessoaJuridica(objetoJson['pessoaJuridica']);
-			}
+      this.listaPessoaContato = [];
+      let listaPessoaContatoJson = objetoJson['listaPessoaContato'];
+      if (listaPessoaContatoJson != null) {
+        for (let i = 0; i < listaPessoaContatoJson.length; i++) {
+          let objeto = new PessoaContato(listaPessoaContatoJson[i]);
+          this.listaPessoaContato.push(objeto);
+        }
+      }
 
-			if (objetoJson['transportadora'] != null) {
-				this.transportadora = new Transportadora(objetoJson['transportadora']);
-			}
+      this.listaPessoaEndereco = [];
+      let listaPessoaEnderecoJson = objetoJson['listaPessoaEndereco'];
+      if (listaPessoaEnderecoJson != null) {
+        for (let i = 0; i < listaPessoaEnderecoJson.length; i++) {
+          let objeto = new PessoaEndereco(listaPessoaEnderecoJson[i]);
+          this.listaPessoaEndereco.push(objeto);
+        }
+      }
 
-
-			this.listaPessoaContato = [];
-			let listaPessoaContatoJson = objetoJson['listaPessoaContato'];
-			if (listaPessoaContatoJson != null) {
-				for (let i = 0; i < listaPessoaContatoJson.length; i++) {
-					let objeto = new PessoaContato(listaPessoaContatoJson[i]);
-					this.listaPessoaContato.push(objeto);
-				}
-			}
-
-			this.listaPessoaEndereco = [];
-			let listaPessoaEnderecoJson = objetoJson['listaPessoaEndereco'];
-			if (listaPessoaEnderecoJson != null) {
-				for (let i = 0; i < listaPessoaEnderecoJson.length; i++) {
-					let objeto = new PessoaEndereco(listaPessoaEnderecoJson[i]);
-					this.listaPessoaEndereco.push(objeto);
-				}
-			}
-
-			this.listaPessoaTelefone = [];
-			let listaPessoaTelefoneJson = objetoJson['listaPessoaTelefone'];
-			if (listaPessoaTelefoneJson != null) {
-				for (let i = 0; i < listaPessoaTelefoneJson.length; i++) {
-					let objeto = new PessoaTelefone(listaPessoaTelefoneJson[i]);
-					this.listaPessoaTelefone.push(objeto);
-				}
-			}
-
-		}
-	}
+      this.listaPessoaTelefone = [];
+      let listaPessoaTelefoneJson = objetoJson['listaPessoaTelefone'];
+      if (listaPessoaTelefoneJson != null) {
+        for (let i = 0; i < listaPessoaTelefoneJson.length; i++) {
+          let objeto = new PessoaTelefone(listaPessoaTelefoneJson[i]);
+          this.listaPessoaTelefone.push(objeto);
+        }
+      }
+    }
+  }
 }

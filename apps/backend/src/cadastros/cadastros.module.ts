@@ -68,6 +68,7 @@ import { VendedorModule } from '../cadastros/vendedor/vendedor.module';
 import { IbptModule } from './ibpt/ibpt.module';
 import { NfseListaServicoModule } from './nfse-lista-servico/nfse-lista-servico.module';
 import { CboModule } from './cbo/cbo.module';
+import { PaisModule } from './pais/pais.module';
 
 @Module({
 	imports: [
@@ -100,6 +101,7 @@ import { CboModule } from './cbo/cbo.module';
 		//		FornecedorModule,
 		MunicipioModule,
 		NcmModule,
+		PaisModule,
 		//		TransportadoraModule,
 		UfModule,
 		VendedorModule,

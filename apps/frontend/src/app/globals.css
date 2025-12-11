@@ -345,3 +345,45 @@ html.dark body {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32),
     inset 0 1px rgba(255, 255, 255, 0.04);
 }
+
+/* Tabela compacta - altura reduzida */
+.data-table-compact tbody tr {
+  height: 18px !important;
+  max-height: 18px !important;
+  min-height: 18px !important;
+  line-height: 16px !important;
+}
+
+.data-table-compact tbody td {
+  padding: 0px 8px !important; /* Aumentei de 4px para 8px */
+  height: 18px !important;
+  max-height: 18px !important;
+  line-height: 16px !important;
+  font-size: 0.75rem !important;
+  vertical-align: middle !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.data-table-compact thead tr {
+  height: 24px !important;
+  max-height: 24px !important;
+}
+
+.data-table-compact thead th {
+  padding: 2px 8px !important; /* Aumentei de 4px para 8px */
+  height: 24px !important;
+  line-height: 24px !important;
+  font-size: 0.75rem !important;
+  vertical-align: middle !important;
+}
+
+.data-table-compact tbody tr {
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.1) !important;
+}
+
+.data-table-compact {
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+}

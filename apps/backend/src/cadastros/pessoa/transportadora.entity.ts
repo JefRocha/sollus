@@ -33,44 +33,46 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { Pessoa, Empresa } from '../../entities-export';
 
 @Entity()
 export class Transportadora {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  dataCadastro: Date;
 
-	@Column()
-	dataCadastro: Date;
+  @Column()
+  observacao: string;
 
-	@Column()
-	observacao: string;
+  /**
+   * Relations
+   */
+  @OneToOne(() => Pessoa, (pessoa) => pessoa.transportadora)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: Pessoa;
 
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-	/**
-	* Relations
-	*/
-	@OneToOne(() => Pessoa, pessoa => pessoa.transportadora)
-	@JoinColumn({ name: 'id_pessoa' })
-	pessoa: Pessoa;
-
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.dataCadastro = objetoJson['dataCadastro'];
-			this.observacao = objetoJson['observacao'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.dataCadastro = objetoJson['dataCadastro'];
+      this.observacao = objetoJson['observacao'];
+    }
+  }
 }

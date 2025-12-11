@@ -28,13 +28,15 @@ export function CboListClient({ data: initialData }: CboListClientProps) {
   const searchParams = useSearchParams();
   const { isMobile } = useMobileDetection();
   const [data, setData] = useState<any[]>(initialData || []);
-  
+
   useEffect(() => {
     // Se não veio dados do servidor (provavelmente erro de cookie em dev), tenta buscar do cliente
     if (!initialData || initialData.length === 0) {
-      getCbos().then((res) => {
-        if (res && res.length > 0) setData(res);
-      }).catch(() => {});
+      getCbos()
+        .then((res) => {
+          if (res && res.length > 0) setData(res);
+        })
+        .catch(() => {});
     } else {
       setData(initialData);
     }

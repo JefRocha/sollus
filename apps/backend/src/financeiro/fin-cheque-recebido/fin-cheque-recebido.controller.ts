@@ -33,8 +33,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, UseInterceptors } from '@nestjs/common';
+import { Crud, CrudController, CrudRequestInterceptor } from '@nestjsx/crud';
 import { FinChequeRecebidoService } from './fin-cheque-recebido.service';
 import { FinChequeRecebido } from './fin-cheque-recebido.entity';
 
@@ -46,13 +46,15 @@ import { FinChequeRecebido } from './fin-cheque-recebido.entity';
     join: {
       pessoa: { eager: true },
     },
+    alwaysPaginate: true,
   },
 })
+@UseInterceptors(CrudRequestInterceptor)
 @Controller('fin-cheque-recebido')
 export class FinChequeRecebidoController implements CrudController<FinChequeRecebido> {
   constructor(public service: FinChequeRecebidoService) { }
 
-
-
-
+  get base(): CrudController<FinChequeRecebido> {
+    return this;
+  }
 }

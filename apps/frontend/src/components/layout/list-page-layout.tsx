@@ -54,11 +54,10 @@ export function ListPageLayout({
   if (isMobile || isNarrow) {
     return (
       <div className={cn("flex h-full flex-col", className)}>
-        {/* Botão hambúrguer para mobile */}
         <div className="shrink-0 border-b glass-card p-4">
           <Sheet open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button variant="outline" size="icon" aria-label="Abrir menu">
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
@@ -70,8 +69,6 @@ export function ListPageLayout({
             </SheetContent>
           </Sheet>
         </div>
-
-        {/* Conteúdo principal */}
         <div className="flex-1 overflow-hidden">{children}</div>
       </div>
     );
@@ -79,7 +76,6 @@ export function ListPageLayout({
 
   return (
     <div className={cn("flex h-full", className)}>
-      {/* Sidebar fixa no desktop */}
       <aside
         className={cn(
           "shrink-0 border-r transition-all duration-200",
@@ -88,8 +84,6 @@ export function ListPageLayout({
       >
         {sidebar}
       </aside>
-
-      {/* Conteúdo principal */}
       <main
         className={cn(
           "overflow-hidden transition-all duration-200",

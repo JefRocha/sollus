@@ -34,20 +34,35 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { columns, Pessoa } from "./columns";
+import { PessoaListQuery } from "@/actions/cadastros/pessoa-actions";
 
 interface PessoaListClientProps {
   data: Pessoa[];
+  serverPaged?: boolean;
+  initialQuery?: PessoaListQuery;
+  total?: number;
+  page?: number;
+  limit?: number;
 }
 
-export function PessoaListClient({ data }: PessoaListClientProps) {
+export function PessoaListClient({
+  data,
+  serverPaged = false,
+  initialQuery,
+  total,
+  page,
+  limit,
+}: PessoaListClientProps) {
   const router = useRouter();
   const { isMobile } = useMobileDetection();
-  const [searchValue, setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState(initialQuery?.q || "");
   const [selected, setSelected] = useState<Pessoa | null>(null);
   const [viewMode, setViewMode] = useState<"table" | "cards">("table");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [hovered, setHovered] = useState<Pessoa | null>(null);
-  const [tipoFilter, setTipoFilter] = useState<"" | "F" | "J">("");
+  const [tipoFilter, setTipoFilter] = useState<"" | "F" | "J">(
+    initialQuery?.tipo || ""
+  );
   const [roleFilters, setRoleFilters] = useState<{ [k: string]: boolean }>({
     cliente: false,
     fornecedor: false,
@@ -55,6 +70,8 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
     colaborador: false,
     contador: false,
   });
+  const [serverPage, setServerPage] = useState<number>(page || 1);
+  const [serverLimit, setServerLimit] = useState<number>(limit || 15);
   const [cardPageIndex, setCardPageIndex] = useState(0);
   const [cardPageSize, setCardPageSize] = useState(15);
 
@@ -88,24 +105,76 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
     }
   }, []);
 
-  // Filtrar dados baseado na busca
-  const filteredData = data
-    .filter((pessoa) =>
-      pessoa.nome.toLowerCase().includes(searchValue.toLowerCase())
-    )
-    .filter((pessoa) => (tipoFilter ? pessoa.tipo === tipoFilter : true))
-    .filter((pessoa) => {
-      const checks: Array<[boolean, boolean]> = [
-        [roleFilters.cliente, pessoa.eh_cliente === "S"],
-        [roleFilters.fornecedor, pessoa.eh_fornecedor === "S"],
-        [roleFilters.transportadora, pessoa.eh_transportadora === "S"],
-        [roleFilters.colaborador, pessoa.eh_colaborador === "S"],
-        [roleFilters.contador, pessoa.eh_contador === "S"],
-      ];
-      const active = checks.filter(([on]) => on);
-      if (active.length === 0) return true;
-      return active.every(([, ok]) => ok);
+  const filteredData = serverPaged
+    ? data
+    : data
+        .filter((pessoa) =>
+          pessoa.nome.toLowerCase().includes(searchValue.toLowerCase())
+        )
+        .filter((pessoa) => (tipoFilter ? pessoa.tipo === tipoFilter : true))
+        .filter((pessoa) => {
+          const checks: Array<[boolean, boolean]> = [
+            [roleFilters.cliente, pessoa.eh_cliente === "S"],
+            [roleFilters.fornecedor, pessoa.eh_fornecedor === "S"],
+            [roleFilters.transportadora, pessoa.eh_transportadora === "S"],
+            [roleFilters.colaborador, pessoa.eh_colaborador === "S"],
+            [roleFilters.contador, pessoa.eh_contador === "S"],
+          ];
+          const active = checks.filter(([on]) => on);
+          if (active.length === 0) return true;
+          return active.every(([, ok]) => ok);
+        });
+
+  useEffect(() => {
+    const initialRole = initialQuery?.role || "all";
+    setRoleFilters({
+      cliente: initialRole === "cliente",
+      fornecedor: initialRole === "fornecedor",
+      transportadora: initialRole === "transportadora",
+      colaborador: initialRole === "colaborador",
+      contador: initialRole === "contador",
     });
+  }, []);
+
+  const pushQuery = (updates: Partial<PessoaListQuery>) => {
+    const q: PessoaListQuery = {
+      page: updates.page ?? serverPage,
+      limit: updates.limit ?? serverLimit,
+      q:
+        typeof updates.q !== "undefined" ? updates.q : searchValue || undefined,
+      field: initialQuery?.field || "nome",
+      tipo:
+        typeof updates.tipo !== "undefined"
+          ? updates.tipo
+          : tipoFilter || undefined,
+      role:
+        typeof updates.role !== "undefined"
+          ? updates.role
+          : (Object.entries(roleFilters).find(([k, v]) => v)?.[0] as any) ||
+            undefined,
+      sort:
+        typeof updates.sort !== "undefined" ? updates.sort : initialQuery?.sort,
+    };
+    const params = new URLSearchParams();
+    if (q.page) params.set("page", String(q.page));
+    if (q.limit) params.set("limit", String(q.limit));
+    if (q.q) params.set("q", q.q);
+    if (q.field) params.set("field", q.field);
+    if (q.tipo) params.set("tipo", q.tipo);
+    if (q.role) params.set("role", q.role);
+    if (q.sort) params.set("sort", q.sort);
+    router.push(`?${params.toString()}`);
+  };
+
+  const handleSearchChange = (v: string) => {
+    if (serverPaged) {
+      setSearchValue(v);
+      setServerPage(1);
+      pushQuery({ q: v, page: 1 });
+    } else {
+      setSearchValue(v);
+    }
+  };
 
   useEffect(() => {
     setCardPageIndex(0);
@@ -116,7 +185,7 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
     <ListPageSidebar
       searchPlaceholder="Filtrar por nome..."
       searchValue={searchValue}
-      onSearchChange={setSearchValue}
+      onSearchChange={handleSearchChange}
       className="bg-gradient-to-b from-muted/40 via-muted/20 to-transparent"
       headerActions={
         !isMobile && (
@@ -183,9 +252,14 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
                 <p className="text-xs text-muted-foreground">Tipo</p>
                 <Select
                   value={tipoFilter || "all"}
-                  onValueChange={(v) =>
-                    setTipoFilter(v === "all" ? "" : (v as "F" | "J"))
-                  }
+                  onValueChange={(v) => {
+                    const next = v === "all" ? "" : (v as "F" | "J");
+                    setTipoFilter(next);
+                    if (serverPaged) {
+                      setServerPage(1);
+                      pushQuery({ tipo: next || undefined, page: 1 });
+                    }
+                  }}
                 >
                   <SelectTrigger className="h-9 w-full">
                     <SelectValue placeholder="Selecione" />
@@ -204,24 +278,32 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
                     roleFilters.cliente
                       ? "cliente"
                       : roleFilters.fornecedor
-                        ? "fornecedor"
-                        : roleFilters.transportadora
-                          ? "transportadora"
-                          : roleFilters.colaborador
-                            ? "colaborador"
-                            : roleFilters.contador
-                              ? "contador"
-                              : "all"
+                      ? "fornecedor"
+                      : roleFilters.transportadora
+                      ? "transportadora"
+                      : roleFilters.colaborador
+                      ? "colaborador"
+                      : roleFilters.contador
+                      ? "contador"
+                      : "all"
                   }
-                  onValueChange={(v) =>
-                    setRoleFilters({
+                  onValueChange={(v) => {
+                    const mapSel = {
                       cliente: v === "cliente",
                       fornecedor: v === "fornecedor",
                       transportadora: v === "transportadora",
                       colaborador: v === "colaborador",
                       contador: v === "contador",
-                    })
-                  }
+                    };
+                    setRoleFilters(mapSel);
+                    if (serverPaged) {
+                      setServerPage(1);
+                      pushQuery({
+                        role: v === "all" ? undefined : (v as any),
+                        page: 1,
+                      });
+                    }
+                  }}
                 >
                   <SelectTrigger className="h-9 w-full">
                     <SelectValue placeholder="Selecione" />
@@ -281,8 +363,8 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
   );
 
   // Renderizar cards para mobile
-  const total = filteredData.length;
-  const pageCount = Math.max(1, Math.ceil(total / cardPageSize));
+  const filteredTotal = filteredData.length;
+  const pageCount = Math.max(1, Math.ceil(filteredTotal / cardPageSize));
   const clampedIndex = Math.min(cardPageIndex, pageCount - 1);
   const start = clampedIndex * cardPageSize;
   const end = start + cardPageSize;
@@ -414,6 +496,107 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
     </div>
   );
 
+  const serverPaginationBar = (
+    <div className="mt-2 flex items-center justify-between space-x-2 py-2 px-6 shrink-0 border-t border-border/40 bg-card shadow-sm">
+      <div className="flex-1 text-xs text-muted-foreground">
+        {total || 0} registro(s) no total.
+      </div>
+      <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
+          <p className="text-xs font-medium">Registros por página</p>
+          <select
+            value={serverLimit}
+            onChange={(e) => {
+              const next = Number(e.target.value);
+              setServerLimit(next);
+              setServerPage(1);
+              pushQuery({ limit: next, page: 1 });
+            }}
+            className="h-7 w-[64px] border border-input bg-transparent px-2 py-0.5 text-xs"
+          >
+            {[10, 15, 25, 50, 100].map((size) => (
+              <option key={size} value={size}>
+                {size}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="text-xs font-medium">
+            Página {serverPage} de{" "}
+            {Math.max(1, Math.ceil((total || 0) / serverLimit))}
+          </div>
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => {
+              setServerPage(1);
+              pushQuery({ page: 1 });
+            }}
+            disabled={(serverPage || 1) <= 1}
+            aria-label="Primeira página"
+          >
+            <ChevronsLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => {
+              const next = Math.max(1, (serverPage || 1) - 1);
+              setServerPage(next);
+              pushQuery({ page: next });
+            }}
+            disabled={(serverPage || 1) <= 1}
+            aria-label="Página anterior"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => {
+              const maxPage = Math.max(
+                1,
+                Math.ceil((total || 0) / serverLimit)
+              );
+              const next = Math.min(maxPage, (serverPage || 1) + 1);
+              setServerPage(next);
+              pushQuery({ page: next });
+            }}
+            disabled={
+              (serverPage || 1) >=
+              Math.max(1, Math.ceil((total || 0) / serverLimit))
+            }
+            aria-label="Próxima página"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => {
+              const maxPage = Math.max(
+                1,
+                Math.ceil((total || 0) / serverLimit)
+              );
+              setServerPage(maxPage);
+              pushQuery({ page: maxPage });
+            }}
+            disabled={
+              (serverPage || 1) >=
+              Math.max(1, Math.ceil((total || 0) / serverLimit))
+            }
+            aria-label="Última página"
+          >
+            <ChevronsRight className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <PageContainer contentClassName="p-0 pb-0" wrapWithDashboardLayout={false}>
       <ListPageLayout
@@ -425,7 +608,11 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
           title="Pessoas"
           description="Gerencie seus cadastros de pessoas."
           pagination={
-            isMobile || viewMode === "cards" ? cardPagination : undefined
+            serverPaged
+              ? serverPaginationBar
+              : isMobile || viewMode === "cards"
+              ? cardPagination
+              : undefined
           }
         >
           <div className="px-1 pb-3 flex items-center justify-between gap-2">
@@ -468,11 +655,13 @@ export function PessoaListClient({ data }: PessoaListClientProps) {
               createHref="/cadastros/pessoa/novo"
               createText="Nova Pessoa"
               canCreate={false}
+              hidePagination={serverPaged}
               onRowClick={(row) =>
                 setSelected((prev) => (prev && prev.id === row.id ? null : row))
               }
               onRowHover={(row) => setHovered(row)}
               flexibleHeight
+              density="compact" // ← ADICIONE ESTA LINHA
             />
           )}
         </ListPageContent>

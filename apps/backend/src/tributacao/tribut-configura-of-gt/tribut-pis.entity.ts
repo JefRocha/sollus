@@ -33,68 +33,73 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+} from 'typeorm';
 import { TributConfiguraOfGt, Empresa } from '../../entities-export';
 
 @Entity()
 export class TributPis {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  cstPis: string;
 
-	@Column()
-	cstPis: string;
+  @Column({ nullable: true })
+  efdTabela435: string;
 
-	@Column({ nullable: true })
-	efdTabela435: string;
+  @Column()
+  modalidadeBaseCalculo: string;
 
-	@Column()
-	modalidadeBaseCalculo: string;
+  @Column()
+  porcentoBaseCalculo: number;
 
-	@Column()
-	porcentoBaseCalculo: number;
+  @Column()
+  aliquotaPorcento: number;
 
-	@Column()
-	aliquotaPorcento: number;
+  @Column()
+  aliquotaUnidade: number;
 
-	@Column()
-	aliquotaUnidade: number;
+  @Column()
+  valorPrecoMaximo: number;
 
-	@Column()
-	valorPrecoMaximo: number;
+  @Column()
+  valorPautaFiscal: number;
 
-	@Column()
-	valorPautaFiscal: number;
+  /**
+   * Relations
+   */
+  @OneToOne(
+    () => TributConfiguraOfGt,
+    (tributConfiguraOfGt) => tributConfiguraOfGt.tributPis,
+  )
+  @JoinColumn({ name: 'id_tribut_configura_of_gt' })
+  tributConfiguraOfGt: TributConfiguraOfGt;
 
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-	/**
-	* Relations
-	*/
-	@OneToOne(() => TributConfiguraOfGt, tributConfiguraOfGt => tributConfiguraOfGt.tributPis)
-	@JoinColumn({ name: 'id_tribut_configura_of_gt' })
-	tributConfiguraOfGt: TributConfiguraOfGt;
-
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.cstPis = objetoJson['cstPis'];
-			this.efdTabela435 = objetoJson['efdTabela435'];
-			this.modalidadeBaseCalculo = objetoJson['modalidadeBaseCalculo'];
-			this.porcentoBaseCalculo = objetoJson['porcentoBaseCalculo'];
-			this.aliquotaPorcento = objetoJson['aliquotaPorcento'];
-			this.aliquotaUnidade = objetoJson['aliquotaUnidade'];
-			this.valorPrecoMaximo = objetoJson['valorPrecoMaximo'];
-			this.valorPautaFiscal = objetoJson['valorPautaFiscal'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.cstPis = objetoJson['cstPis'];
+      this.efdTabela435 = objetoJson['efdTabela435'];
+      this.modalidadeBaseCalculo = objetoJson['modalidadeBaseCalculo'];
+      this.porcentoBaseCalculo = objetoJson['porcentoBaseCalculo'];
+      this.aliquotaPorcento = objetoJson['aliquotaPorcento'];
+      this.aliquotaUnidade = objetoJson['aliquotaUnidade'];
+      this.valorPrecoMaximo = objetoJson['valorPrecoMaximo'];
+      this.valorPautaFiscal = objetoJson['valorPautaFiscal'];
+    }
+  }
 }

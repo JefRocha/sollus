@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import * as React from "react";
+import cadastrosConfig from "@/config/sidebar/cadastros";
+import financeiroConfig from "@/config/sidebar/financeiro";
 
 const menuItems = [
   {
@@ -36,6 +38,7 @@ const menuItems = [
           { title: "Cargo", href: "/cadastros/cargo" },
           { title: "CBO", href: "/cadastros/cbo" },
           { title: "Setor", href: "/cadastros/setor" },
+          { title: "País", href: "/cadastros/pais" },
           {
             title: "Diversos",
             masterOnly: true,
@@ -82,6 +85,7 @@ interface SidebarProps {
   collapsed?: boolean;
   onNavigate?: () => void;
   onExpand?: () => void;
+  scope?: string;
 }
 
 export function Sidebar({
@@ -89,6 +93,7 @@ export function Sidebar({
   collapsed = false,
   onNavigate,
   onExpand,
+  scope,
 }: SidebarProps) {
   const pathname = usePathname();
   const [expandedMenus, setExpandedMenus] = useState<string[]>([]);
@@ -147,7 +152,10 @@ export function Sidebar({
             onClick={() => toggleMenu(subItem.title)}
             className="w-full flex items-center justify-between px-3 py-2 text-sm rounded-md transition-colors hover:bg-accent hover:text-accent-foreground text-muted-foreground"
           >
-            <span>{subItem.title}</span>
+            <span className="flex items-center gap-2">
+              {subItem.icon && <subItem.icon className="h-4 w-4" />}
+              {subItem.title}
+            </span>
             <ChevronRight
               className={cn(
                 "h-4 w-4 transition-transform",
@@ -186,7 +194,10 @@ export function Sidebar({
           onNavigate?.();
         }}
       >
-        {subItem.title}
+        <span className="flex items-center gap-2">
+          {subItem.icon && <subItem.icon className="h-4 w-4" />}
+          {subItem.title}
+        </span>
       </Link>
     );
   };
@@ -196,7 +207,21 @@ export function Sidebar({
       <div className="flex-1 space-y-4 py-4 overflow-y-auto">
         <div className="px-3 py-2">
           <div className="space-y-1">
-            {menuItems.map((item, index) => {
+            {(() => {
+              if (!scope) return menuItems;
+              const map: Record<string, any[]> = {
+                cadastros: cadastrosConfig,
+                financeiro: financeiroConfig,
+              };
+              const key = scope.toLowerCase();
+              const fromConfig = map[key];
+              if (fromConfig && Array.isArray(fromConfig)) return fromConfig;
+              const match = menuItems.find(
+                (mi) => mi.title.toLowerCase() === key
+              );
+              const filtered = match ? filterMenuItemsByMaster(match) : null;
+              return filtered?.items ?? [];
+            })().map((item, index) => {
               // Filter menu items based on master status
               const filteredItem = filterMenuItemsByMaster(item);
               if (!filteredItem) return null;

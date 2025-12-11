@@ -33,26 +33,49 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FinChequeEmitidoService } from './fin-cheque-emitido.service';
 import { FinChequeEmitido } from './fin-cheque-emitido.entity';
 
-@Crud({
-  model: {
-    type: FinChequeEmitido,
-  },
-  query: {
-    join: {
-      cheque: { eager: true },
-    },
-  },
-})
 @Controller('fin-cheque-emitido')
-export class FinChequeEmitidoController implements CrudController<FinChequeEmitido> {
-  constructor(public service: FinChequeEmitidoService) { }
+export class FinChequeEmitidoController {
+  constructor(private readonly service: FinChequeEmitidoService) {}
 
+  @Get()
+  async findAll(): Promise<FinChequeEmitido[]> {
+    return this.service.findAll();
+  }
 
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<FinChequeEmitido> {
+    return this.service.findOne(+id);
+  }
 
+  @Post()
+  async create(
+    @Body() data: Partial<FinChequeEmitido>,
+  ): Promise<FinChequeEmitido> {
+    return this.service.create(data);
+  }
 
+  @Put(':id')
+  async update(
+    @Param('id') id: string,
+    @Body() data: Partial<FinChequeEmitido>,
+  ): Promise<FinChequeEmitido> {
+    return this.service.update(+id, data);
+  }
+
+  @Delete(':id')
+  async remove(@Param('id') id: string): Promise<void> {
+    return this.service.remove(+id);
+  }
 }

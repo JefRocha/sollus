@@ -2,16 +2,18 @@
 
 import { InactivityProvider } from "@/components/inactivity-provider";
 import { DashboardLayout } from "@/components/layout/dashboard-layout";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Users, Boxes, UserCog, HandshakeIcon, Banknote, PanelLeftOpen, PanelLeftClose, Briefcase, Grid2x2, GraduationCap, MapPinned, ListOrdered, ChevronRight, LayoutDashboard } from "lucide-react";
-import { isMaster } from "@/lib/utils";
+import { PanelLeftOpen, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { useEffect, useRef, useState } from "react";
+import { Sidebar } from "@/components/layout/sidebar";
 
-export default function CadastrosLayout({ children }: { children: React.ReactNode }) {
+export default function CadastrosLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
   const atRoot = pathname === "/cadastros";
   const [isMobile, setIsMobile] = useState(false);
@@ -19,11 +21,6 @@ export default function CadastrosLayout({ children }: { children: React.ReactNod
   const [moduleSidebarCollapsed, setModuleSidebarCollapsed] = useState(false);
   const [lowRes, setLowRes] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
-  const toggleGroup = (label: string) => {
-    setExpandedGroups((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
-    );
-  };
   const containerRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const detect = () => {
@@ -64,146 +61,50 @@ export default function CadastrosLayout({ children }: { children: React.ReactNod
       return next;
     });
   };
-  const items = [
-    { label: "Dashboard", href: "/cadastros/dashboard", icon: LayoutDashboard },
-    { label: "Pessoas", href: "/cadastros/pessoa", icon: Users },
-    { label: "Produtos", href: "/cadastros/produto", icon: Boxes },
-    { label: "Usuários", href: "/cadastros/usuario", icon: UserCog },
-    { label: "Fornecedores", href: "/cadastros/fornecedor", icon: HandshakeIcon },
-    { type: "group", label: "Outros Cadastros", items: [
-      { label: "Bancos", href: "/cadastros/bancos", icon: Banknote },
-      { label: "Cargo", href: "/cadastros/cargo", icon: Briefcase },
-      { label: "CBO", href: "/cadastros/cbo", icon: ListOrdered },
-      { label: "Setor", href: "/cadastros/setor", icon: Grid2x2 },
-    ]},
-    { type: "group", label: "Diversos", items: [
-      { label: "Nível de Formação", href: "/cadastros/nivel-formacao", icon: GraduationCap, masterOnly: true },
-      { label: "Estado Civil", href: "/cadastros/estado-civil", icon: Users, masterOnly: true },
-      { label: "Tabela de Preços", href: "/cadastros/tabela-preco", icon: ListOrdered, masterOnly: true },
-      { label: "Municípios", href: "/cadastros/municipio", icon: MapPinned, masterOnly: true },
-    ]},
-  ];
+  const items: any[] = [];
 
   return (
     <InactivityProvider>
-      <DashboardLayout hideSidebar>
+      <DashboardLayout>
         <div className="relative h-full" ref={containerRef}>
           {atRoot ? (
             <main className="flex-1 overflow-auto">{children}</main>
           ) : (
             <div className="flex h-full">
-              {/* Sidebar Desktop */}
               <aside
-                className={cn(
-                  "hidden md:block border-r px-3 py-4 space-y-2 transition-all duration-300",
-                  moduleSidebarCollapsed ? "w-16" : "w-64"
-                )}
-                style={{ background: "var(--ui-sidebar-bg)", color: "var(--ui-sidebar-fg)" }}
+                className={
+                  `hidden md:block border-r overflow-y-auto transition-all duration-300 ${
+                    moduleSidebarCollapsed ? "w-16" : "w-64"
+                  }`
+                }
+                style={{
+                  background: "var(--ui-sidebar-bg)",
+                  color: "var(--ui-sidebar-fg)",
+                }}
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between p-4 border-b">
                   {!moduleSidebarCollapsed && (
-                    <h2 className="text-sm font-semibold text-muted-foreground">Cadastros</h2>
+                    <span className="font-semibold">Cadastros</span>
                   )}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="bg-transparent hover:bg-transparent"
-                    aria-label={moduleSidebarCollapsed ? "Expandir" : "Recolher"}
+                  <button
                     onClick={toggleCollapsed}
-                    title={moduleSidebarCollapsed ? "Expandir painel" : "Recolher painel"}
+                    className="p-1 hover:bg-muted transition-colors"
+                    title={moduleSidebarCollapsed ? "Expandir menu" : "Recolher menu"}
                   >
-                    {moduleSidebarCollapsed ? (
-                      <PanelLeftOpen className="h-4 w-4" />
-                    ) : (
-                      <PanelLeftClose className="h-4 w-4" />
-                    )}
-                  </Button>
+                    <ChevronRight
+                      className={`h-5 w-5 transition-transform duration-300 ${
+                        moduleSidebarCollapsed ? "" : "rotate-180"
+                      }`}
+                    />
+                  </button>
                 </div>
-                <nav className="flex flex-col gap-0.5">
-                  {items.map((it) => {
-                    if ((it as any).masterOnly && !isMaster()) return null;
-                    // heading removed; using groups for submenus
-                    if ((it as any).type === "group") {
-                      const isExpanded = expandedGroups.includes((it as any).label);
-                      return (
-                        <div key={(it as any).label} className="space-y-1">
-                          <button
-                            className={cn(
-                              "w-full flex items-center rounded-md px-2 py-1.5 min-h-9 transition-colors",
-                              moduleSidebarCollapsed ? "justify-center" : "justify-between",
-                              isExpanded ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                            )}
-                            onClick={() => toggleGroup((it as any).label)}
-                          >
-                            <span className={cn(moduleSidebarCollapsed && "hidden")}>{(it as any).label}</span>
-                            <ChevronRight className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-90")} />
-                          </button>
-                          {isExpanded && (
-                            <div className={cn(moduleSidebarCollapsed ? "" : "ml-3 border-l pl-2")}> 
-                              {((it as any).items as any[]).map((sub) => {
-                                const SubIcon = (sub as any).icon as any;
-                                const active = pathname.startsWith(sub.href);
-                                return (
-                                  <Link
-                                    key={sub.href}
-                                    href={sub.href}
-                                    className={cn(
-                                      "flex items-center rounded-md px-2 py-1.5 transition-colors min-h-9",
-                                      moduleSidebarCollapsed ? "justify-center" : "gap-2",
-                                      active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                    )}
-                                    aria-current={active ? "page" : undefined}
-                                    title={sub.label}
-                                    onClick={() => {
-                                      if (moduleSidebarCollapsed) {
-                                        try {
-                                          localStorage.setItem("cadastros:sidebarCollapsed", "0");
-                                        } catch {}
-                                        setModuleSidebarCollapsed(false);
-                                      }
-                                    }}
-                                  >
-                                    <SubIcon className="h-5 w-5" />
-                                    {!moduleSidebarCollapsed && sub.label}
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          )}
-                        </div>
-                      );
-                    }
-                    const Icon = (it as any).icon as any;
-                    const active = pathname.startsWith(it.href);
-                    return (
-                      <Link
-                        key={it.href}
-                        href={it.href}
-                        className={cn(
-                          "flex items-center rounded-md px-2 py-1.5 transition-colors min-h-9",
-                          moduleSidebarCollapsed ? "justify-center" : "gap-2",
-                          active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                        )}
-                        aria-current={active ? "page" : undefined}
-                        title={it.label}
-                        onClick={() => {
-                          if (moduleSidebarCollapsed) {
-                            try {
-                              localStorage.setItem("cadastros:sidebarCollapsed", "0");
-                            } catch {}
-                            setModuleSidebarCollapsed(false);
-                          }
-                        }}
-                      >
-                        <Icon className="h-5 w-5" />
-                        {!moduleSidebarCollapsed && it.label}
-                      </Link>
-                    );
-                  })}
-                </nav>
+                <Sidebar
+                  scope="Cadastros"
+                  collapsed={moduleSidebarCollapsed}
+                  onExpand={() => setModuleSidebarCollapsed(false)}
+                />
               </aside>
 
-              {/* Toggle Mobile */}
               {isMobile && (
                 <div className="absolute top-2 left-2 z-30">
                   <Button
@@ -218,7 +119,6 @@ export default function CadastrosLayout({ children }: { children: React.ReactNod
                 </div>
               )}
 
-              {/* Sidebar Mobile */}
               {isMobile && (
                 <Sheet open={moduleSidebarOpen} onOpenChange={setModuleSidebarOpen}>
                   <SheetContent
@@ -227,76 +127,11 @@ export default function CadastrosLayout({ children }: { children: React.ReactNod
                     container={containerRef.current}
                     overlayClassName="bg-black/40 backdrop-blur-sm"
                   >
-                    <div className="px-4 py-4 space-y-2" style={{ background: "var(--ui-sidebar-bg)", color: "var(--ui-sidebar-fg)" }}>
-                      <h2 className="text-sm font-semibold text-muted-foreground mb-2">Cadastros</h2>
-                      <nav className="flex flex-col gap-0.5">
-                        {items.map((it) => {
-                          if ((it as any).masterOnly && !isMaster()) return null;
-                          if ((it as any).type === "heading") {
-                            return (
-                              <div key={(it as any).label} className="mt-2 mb-1 text-[11px] font-semibold text-muted-foreground">
-                                {(it as any).label}
-                              </div>
-                            );
-                          }
-                          if ((it as any).type === "group") {
-                            const label = (it as any).label as string;
-                            const isExpanded = expandedGroups.includes(label);
-                            return (
-                              <>
-                                <button
-                                  key={label}
-                                  className={cn(
-                                    "w-full flex items-center justify-between rounded-md px-2 py-1.5 min-h-9 transition-colors",
-                                    isExpanded ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                  )}
-                                  onClick={() => setExpandedGroups((prev) => prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label])}
-                                >
-                                  <span>{label}</span>
-                                  <ChevronRight className={cn("h-4 w-4 transition-transform", isExpanded && "rotate-90")} />
-                                </button>
-                                {isExpanded && ((it as any).items as any[]).map((sub) => {
-                                  const SubIcon = (sub as any).icon as any;
-                                  const active = pathname.startsWith(sub.href);
-                                  return (
-                                    <Link
-                                      key={sub.href}
-                                      href={sub.href}
-                                      className={cn(
-                                        "flex items-center gap-2 rounded-md px-2 py-1.5 transition-colors min-h-9",
-                                        active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                                      )}
-                                      aria-current={active ? "page" : undefined}
-                                      onClick={() => setModuleSidebarOpen(false)}
-                                    >
-                                      <SubIcon className="h-5 w-5" />
-                                      {sub.label}
-                                    </Link>
-                                  );
-                                })}
-                              </>
-                            );
-                          }
-                          const Icon = (it as any).icon as any;
-                          const active = pathname.startsWith(it.href);
-                          return (
-                            <Link
-                              key={it.href}
-                              href={it.href}
-                              className={cn(
-                                "flex items-center gap-2 rounded-md px-2 py-1.5 transition-colors min-h-9",
-                                active ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                              )}
-                              aria-current={active ? "page" : undefined}
-                              onClick={() => setModuleSidebarOpen(false)}
-                            >
-                              <Icon className="h-5 w-5" />
-                              {it.label}
-                            </Link>
-                          );
-                        })}
-                      </nav>
-                    </div>
+                    <Sidebar
+                      scope="Cadastros"
+                      collapsed={false}
+                      onNavigate={() => setModuleSidebarOpen(false)}
+                    />
                   </SheetContent>
                 </Sheet>
               )}

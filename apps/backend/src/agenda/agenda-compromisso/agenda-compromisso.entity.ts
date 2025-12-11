@@ -33,63 +33,66 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Empresa } from '../../entities-export';
 
 @Entity()
 export class AgendaCompromisso {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  idAgendaCategoriaCompromisso: number;
 
-	@Column()
-	idAgendaCategoriaCompromisso: number;
+  @Column()
+  idColaborador: number;
 
-	@Column()
-	idColaborador: number;
+  @Column()
+  dataCompromisso: Date;
 
-	@Column()
-	dataCompromisso: Date;
+  @Column()
+  hora: string;
 
-	@Column()
-	hora: string;
+  @Column()
+  duracao: number;
 
-	@Column()
-	duracao: number;
+  @Column()
+  onde: string;
 
-	@Column()
-	onde: string;
+  @Column()
+  descricao: string;
 
-	@Column()
-	descricao: string;
+  @Column()
+  tipo: string;
 
-	@Column()
-	tipo: string;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.idAgendaCategoriaCompromisso = objetoJson['idAgendaCategoriaCompromisso'];
-			this.idColaborador = objetoJson['idColaborador'];
-			this.dataCompromisso = objetoJson['dataCompromisso'];
-			this.hora = objetoJson['hora'];
-			this.duracao = objetoJson['duracao'];
-			this.onde = objetoJson['onde'];
-			this.descricao = objetoJson['descricao'];
-			this.tipo = objetoJson['tipo'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.idAgendaCategoriaCompromisso =
+        objetoJson['idAgendaCategoriaCompromisso'];
+      this.idColaborador = objetoJson['idColaborador'];
+      this.dataCompromisso = objetoJson['dataCompromisso'];
+      this.hora = objetoJson['hora'];
+      this.duracao = objetoJson['duracao'];
+      this.onde = objetoJson['onde'];
+      this.descricao = objetoJson['descricao'];
+      this.tipo = objetoJson['tipo'];
+    }
+  }
 }

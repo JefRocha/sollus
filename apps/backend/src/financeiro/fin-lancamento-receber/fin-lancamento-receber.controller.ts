@@ -27,14 +27,14 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR                   
 OTHER DEALINGS IN THE SOFTWARE.                                                 
 																			    
-	   The author may be contacted at:                                          
-		   CS Solutions.com@gmail.com                                                   
+       The author may be contacted at:                                          
+           CS Solutions.com@gmail.com                                                   
 																			    
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Controller, Delete, Param, Post, Put, Res, Req, Header } from '@nestjs/common';
-import { Crud, CrudController } from '@nestjsx/crud';
+import { Controller, Delete, Param, Post, Put, Res, Req, Header, UseInterceptors } from '@nestjs/common';
+import { Crud, CrudController, CrudRequestInterceptor } from '@nestjsx/crud';
 import { FinLancamentoReceberService } from './fin-lancamento-receber.service';
 import { FinLancamentoReceber } from './fin-lancamento-receber.entity';
 import { Request, Response } from 'express';
@@ -52,11 +52,17 @@ import { createReadStream } from 'fs';
 			bancoContaCaixa: { eager: true },
 			listaFinParcelaReceber: { eager: true },
 		},
+    alwaysPaginate: true,
 	},
 })
+@UseInterceptors(CrudRequestInterceptor)
 @Controller('fin-lancamento-receber')
 export class FinLancamentoReceberController implements CrudController<FinLancamentoReceber> {
 	constructor(public service: FinLancamentoReceberService) { }
+
+  get base(): CrudController<FinLancamentoReceber> {
+    return this;
+  }
 
 	@Post()
 	async inserir(@Req() request: Request) {

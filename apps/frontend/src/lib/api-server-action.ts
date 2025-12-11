@@ -8,17 +8,26 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
  * Fetch específico para uso dentro de Server Actions ("use server").
  * Ele pega o token automaticamente dos cookies (httpOnly) que chegam na requisição.
  */
-export async function apiServerAction<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+export async function apiServerAction<T>(
+  endpoint: string,
+  options: RequestInit = {}
+): Promise<T> {
   const cookieStore = await cookies();
   const token = cookieStore.get("sollus_access_token")?.value;
-  
-  if (!token) console.warn("[apiServerAction] Token not found in cookies!");
-  else console.log("[apiServerAction] Token found, adding Authorization header");
+
+  const SUPPRESS_SERVER_API_LOGS =
+    process.env.SUPPRESS_API_LOGS === "1" ||
+    process.env.NEXT_PUBLIC_SUPPRESS_API_LOGS === "1";
+  if (!SUPPRESS_SERVER_API_LOGS) {
+    if (!token) console.warn("[apiServerAction] Token not found in cookies!");
+    else
+      console.log("[apiServerAction] Token found, adding Authorization header");
+  }
 
   const headers: HeadersInit = {
     "Content-Type": "application/json",
     // Connection close ajuda a evitar problemas de socket em dev
-    "Connection": "close", 
+    Connection: "close",
     ...options.headers,
   };
 
@@ -28,33 +37,51 @@ export async function apiServerAction<T>(endpoint: string, options: RequestInit 
 
   // Remove barra inicial se houver
   const cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
-  
+
   // Em comunicação Server-to-Server (Next -> Nest), evitamos SSL invalido usando localhost ou http se configurado
   // Se o backend for HTTPS auto-assinado, precisaremos de NODE_TLS_REJECT_UNAUTHORIZED=0 em dev
-  let baseUrl = API_URL.replace("127.0.0.1", "localhost"); 
-  if (baseUrl.startsWith("https://localhost")) {
+  let baseUrl = API_URL.replace("localhost", "127.0.0.1");
+  if (baseUrl.startsWith("https://127.0.0.1")) {
     baseUrl = baseUrl.replace("https://", "http://");
   }
 
-  console.log(`[ServerAction] ${options.method || 'GET'} ${baseUrl}${cleanEndpoint}`);
+  if (!SUPPRESS_SERVER_API_LOGS)
+    console.log(
+      `[ServerAction] ${options.method || "GET"} ${baseUrl}${cleanEndpoint}`
+    );
 
-  const res = await fetch(`${baseUrl}${cleanEndpoint}`, {
-    ...options,
-    headers,
-    cache: "no-store",
-  });
+  try {
+    const res = await fetch(`${baseUrl}${cleanEndpoint}`, {
+      ...options,
+      headers,
+      cache: "no-store",
+    });
 
-  if (!res.ok) {
-    let errorMessage = `Erro ${res.status}: ${res.statusText}`;
-    try {
-      const errorJson = await res.json();
-      errorMessage = errorJson.message || errorMessage;
-    } catch {}
-    console.error(`[ServerAction Error] ${errorMessage}`);
-    throw new Error(errorMessage);
+    if (!res.ok) {
+      let errorMessage = `API Error ${res.status}: ${res.statusText}`;
+      let errorJson;
+      try {
+        errorJson = await res.json();
+        errorMessage = errorJson.message || errorMessage;
+      } catch {}
+      if (!SUPPRESS_SERVER_API_LOGS)
+        console.error(`[ServerAction HTTP Error] ${errorMessage}`, errorJson);
+      throw new Error(errorMessage);
+    }
+
+    if (res.status === 204) return null as T;
+
+    return res.json();
+  } catch (error: any) {
+    if (!SUPPRESS_SERVER_API_LOGS) {
+      console.error(
+        "[ServerAction Network Error] Failed to fetch. Full error:",
+        error
+      );
+    }
+    // Re-throw a consistent error message
+    throw new Error(
+      `Network error while fetching ${cleanEndpoint}. Cause: ${error.message}`
+    );
   }
-
-  if (res.status === 204) return null as T;
-
-  return res.json();
 }

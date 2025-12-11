@@ -1,0 +1,1 @@
+"use client"`n`nimport { PageContainer } from "@/components/ui/page-container";`nimport { BancoContaCaixaForm } from "../_components/form";`n`nexport default function BancoContaCaixaCreatePage() {`n  return (`n    <PageContainer>`n      <div className="max-w-2xl mx-auto">`n        <BancoContaCaixaForm />`n      </div>`n    </PageContainer>`n  );`n}

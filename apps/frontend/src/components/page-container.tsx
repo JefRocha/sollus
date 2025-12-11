@@ -21,6 +21,7 @@ interface PageContainerProps {
   headerColor?: string;
   children: ReactNode;
   wrapWithDashboardLayout?: boolean;
+  fullWidth?: boolean;
 }
 
 export function PageContainer({
@@ -33,6 +34,7 @@ export function PageContainer({
   headerColor,
   children,
   wrapWithDashboardLayout = true,
+  fullWidth = false,
 }: PageContainerProps) {
   const [tone, setTone] = useState<string>(headerTone);
   const [color, setColor] = useState<string | undefined>(headerColor);
@@ -256,7 +258,12 @@ export function PageContainer({
     "bg-gradient-to-br from-[var(--pc-header-from)] to-transparent"
   );
   const inner = (
-    <div className="h-full flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+    <div
+      className={cn(
+        "h-full flex flex-col px-4 sm:px-6 lg:px-8 py-4 sm:py-6",
+        fullWidth ? "max-w-none mx-0" : "max-w-7xl mx-auto"
+      )}
+    >
       {breadcrumbs && <div className="mb-2">{breadcrumbs}</div>}
       <Card className="flex-1 flex flex-col gap-0 overflow-hidden shadow-xl  py-0">
         {(title || actions) && (

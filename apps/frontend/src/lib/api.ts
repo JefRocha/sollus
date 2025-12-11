@@ -1,6 +1,8 @@
 /* empty */
 
 const ENV_API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
+const SUPPRESS_CLIENT_API_LOGS =
+  process.env.NEXT_PUBLIC_SUPPRESS_API_LOGS === "1";
 // Garante localhost em vez de IP para evitar erro de certificado SSL
 const API_URL = ENV_API_URL.replace("127.0.0.1", "localhost");
 
@@ -29,10 +31,12 @@ export async function apiFetch<T>(
       accessToken = localStorage.getItem("sollus_access_token") || undefined;
     }
   } catch (e) {
-    console.warn(
-      "Could not access localStorage or cookies for access token:",
-      e
-    );
+    if (!SUPPRESS_CLIENT_API_LOGS) {
+      console.warn(
+        "Could not access localStorage or cookies for access token:",
+        e
+      );
+    }
   }
 
   const { suppressErrorLog, ...fetchOptions } = options || ({} as any);
@@ -44,11 +48,13 @@ export async function apiFetch<T>(
 
   for (const ep of endpoints) {
     const url = `${API_URL}${ep}`;
-    console.log(
-      `[ApiFetch] Request: ${(
-        fetchOptions?.method || "GET"
-      ).toUpperCase()} ${url}`
-    );
+    if (!SUPPRESS_CLIENT_API_LOGS) {
+      console.log(
+        `[ApiFetch] Request: ${(
+          fetchOptions?.method || "GET"
+        ).toUpperCase()} ${url}`
+      );
+    }
     try {
       const method = String(fetchOptions?.method || "GET").toUpperCase();
       let csrfToken: string | undefined;
@@ -87,7 +93,9 @@ export async function apiFetch<T>(
         ...fetchOptions,
         credentials: "include",
         headers: {
-          "Content-Type": "application/json",
+          ...(method === "GET" || method === "HEAD"
+            ? {}
+            : { "Content-Type": "application/json" }),
           ...(accessToken &&
           accessToken !== "undefined" &&
           accessToken !== "null"
@@ -256,7 +264,8 @@ export async function apiFetch<T>(
           }
         } catch (e) {
           if (e instanceof Error && e.message !== "Unauthorized") {
-            if (!suppress) console.error("Refresh token failed:", e);
+            if (!suppress && !SUPPRESS_CLIENT_API_LOGS)
+              console.error("Refresh token failed:", e);
           }
         }
         return { __unauthorized: true } as any as T;
@@ -271,7 +280,11 @@ export async function apiFetch<T>(
         error instanceof Error &&
         (error.message === "Unauthorized" || /401/.test(String(error)));
       if (!suppress && !isAuthError) {
-        console.error("[API FETCH ERROR] Network or other fetch issue:", error);
+        if (!SUPPRESS_CLIENT_API_LOGS)
+          console.error(
+            "[API FETCH ERROR] Network or other fetch issue:",
+            error
+          );
       }
       lastStatus = 0;
       lastStatusText = String(error?.message || error);
@@ -283,7 +296,7 @@ export async function apiFetch<T>(
   const msg = `API Error: ${lastStatus} ${lastStatusText}${
     lastBody ? ` - ${lastBody}` : ""
   }`;
-  if (!suppress) {
+  if (!suppress && !SUPPRESS_CLIENT_API_LOGS) {
     console.error("[API FETCH ERROR] Response not OK:", msg);
   }
   return {

@@ -33,47 +33,49 @@ OTHER DEALINGS IN THE SOFTWARE.
 @author Albert Eije (alberteije@gmail.com)                    
 @version 1.0.0
 *******************************************************************************/
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { Empresa } from '../../entities-export';
 
 @Entity()
 export class AgendaNotificacao {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-	@PrimaryGeneratedColumn()
-	id: number;
+  @Column()
+  idAgendaCompromisso: number;
 
-	@Column()
-	idAgendaCompromisso: number;
+  @Column()
+  dataNotificacao: Date;
 
-	@Column()
-	dataNotificacao: Date;
+  @Column()
+  hora: string;
 
-	@Column()
-	hora: string;
+  @Column()
+  tipo: number;
 
-	@Column()
-	tipo: number;
+  /**
+   * Relations
+   */
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
 
-
-	/**
-	* Relations
-	*/
-	@ManyToOne(() => Empresa)
-	@JoinColumn({ name: 'id_empresa' })
-	empresa: Empresa;
-
-	/**
-	* Constructor
-	*/
-	constructor(objetoJson: {}) {
-		if (objetoJson != null) {
-			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
-			this.idAgendaCompromisso = objetoJson['idAgendaCompromisso'];
-			this.dataNotificacao = objetoJson['dataNotificacao'];
-			this.hora = objetoJson['hora'];
-			this.tipo = objetoJson['tipo'];
-
-
-		}
-	}
+  /**
+   * Constructor
+   */
+  constructor(objetoJson: {}) {
+    if (objetoJson != null) {
+      this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
+      this.idAgendaCompromisso = objetoJson['idAgendaCompromisso'];
+      this.dataNotificacao = objetoJson['dataNotificacao'];
+      this.hora = objetoJson['hora'];
+      this.tipo = objetoJson['tipo'];
+    }
+  }
 }

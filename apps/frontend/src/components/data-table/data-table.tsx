@@ -22,18 +22,10 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PaginationState, Updater, OnChangeFn } from "@tanstack/react-table";
+import { PaginationState, OnChangeFn } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { DataTablePagination } from "./data-table-pagination";
 
 interface DataTableProps<TData, TValue> {
@@ -47,6 +39,8 @@ interface DataTableProps<TData, TValue> {
   onRowClick?: (row: TData) => void;
   onRowHover?: (row: TData | null) => void;
   flexibleHeight?: boolean;
+  tableClassName?: string;
+  density?: "compact" | "normal" | "comfortable";
 }
 
 export function DataTable<TData, TValue>({
@@ -60,6 +54,8 @@ export function DataTable<TData, TValue>({
   onRowClick,
   onRowHover,
   flexibleHeight = false,
+  tableClassName,
+  density = "normal",
 }: DataTableProps<TData, TValue>) {
   const pathname = usePathname();
   const storageKey = `dataTable-state-${pathname}`;
@@ -79,6 +75,8 @@ export function DataTable<TData, TValue>({
 
   // Restore state after mount to avoid hydration mismatch
   React.useEffect(() => {
+    if (typeof window === "undefined") return;
+
     try {
       const saved = localStorage.getItem(storageKey);
       if (saved) {
@@ -102,24 +100,21 @@ export function DataTable<TData, TValue>({
     } catch (e) {
       console.error("Failed to restore data table state", e);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [storageKey]);
 
   // Save state changes to localStorage
   React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const state = {
-        sorting,
-        columnFilters,
-        columnVisibility,
-        rowSelection,
-        pagination,
-      };
-      localStorage.setItem(storageKey, JSON.stringify(state));
+    if (typeof window === "undefined") return;
 
-      // Also update global page size preference
-      localStorage.setItem("dataTablePageSize", pagination.pageSize.toString());
-    }
+    const state = {
+      sorting,
+      columnFilters,
+      columnVisibility,
+      rowSelection,
+      pagination,
+    };
+    localStorage.setItem(storageKey, JSON.stringify(state));
+    localStorage.setItem("dataTablePageSize", pagination.pageSize.toString());
   }, [
     sorting,
     columnFilters,
@@ -142,6 +137,21 @@ export function DataTable<TData, TValue>({
       setPagination((old) => ({ ...old, pageIndex: 0 }));
     }, []);
 
+  // Memoize row handlers to prevent unnecessary re-renders
+  const handleRowClick = React.useCallback(
+    (row: TData) => {
+      if (onRowClick) onRowClick(row);
+    },
+    [onRowClick]
+  );
+
+  const handleRowHover = React.useCallback(
+    (row: TData | null) => {
+      if (onRowHover) onRowHover(row);
+    },
+    [onRowHover]
+  );
+
   const table = useReactTable({
     data,
     columns,
@@ -154,7 +164,7 @@ export function DataTable<TData, TValue>({
     onColumnVisibilityChange: setColumnVisibility,
     onRowSelectionChange: setRowSelection,
     onPaginationChange: setPagination,
-    autoResetPageIndex: false, // Prevent page reset on data update (e.g. returning from edit)
+    autoResetPageIndex: false,
     state: {
       sorting,
       columnFilters,
@@ -165,8 +175,78 @@ export function DataTable<TData, TValue>({
   });
 
   const showToolbar = Boolean(filterBy) || Boolean(createHref && canCreate);
+
+  // Remove as classes conflitantes do tbody quando compact
+  const tbodyClasses =
+    density === "compact"
+      ? "[&_tr:last-child]:border-0"
+      : "[&_tr:last-child]:border-0 [&_td]:leading-tight";
+
+  // Common table header component
+  const TableHeaderRow = React.memo(
+    ({ compact = false }: { compact?: boolean }) => (
+      <>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr
+            key={headerGroup.id}
+            className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2 shadow-sm"
+          >
+            {headerGroup.headers.map((header) => (
+              <th
+                key={header.id}
+                className="text-left align-middle font-semibold text-muted-foreground whitespace-nowrap"
+              >
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </>
+    )
+  );
+  TableHeaderRow.displayName = "TableHeaderRow";
+
+  // Common table body component
+  const TableBodyRows = React.memo(() => (
+    <>
+      {table.getRowModel().rows?.length ? (
+        table.getRowModel().rows.map((row) => (
+          <tr
+            key={row.id}
+            data-state={row.getIsSelected() && "selected"}
+            className="group transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer hover:border-accent/50"
+            onClick={() => {
+              row.toggleSelected();
+              handleRowClick(row.original as TData);
+            }}
+            onMouseEnter={() => handleRowHover(row.original as TData)}
+            onMouseLeave={() => handleRowHover(null)}
+          >
+            {row.getVisibleCells().map((cell) => (
+              <td key={cell.id} className="align-middle">
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))
+      ) : (
+        <tr>
+          <td colSpan={columns.length} className="h-24 text-center">
+            Nenhum resultado encontrado.
+          </td>
+        </tr>
+      )}
+    </>
+  ));
+  TableBodyRows.displayName = "TableBodyRows";
+
   return (
-    <div className={`flex flex-col h-full space-y-0`}>
+    <div className={`flex flex-col h-full space-y-0 ${tableClassName || ""}`}>
       {showToolbar && (
         <div className="flex items-center justify-between gap-4 shrink-0">
           {filterBy && (
@@ -191,69 +271,28 @@ export function DataTable<TData, TValue>({
           )}
         </div>
       )}
+
       {flexibleHeight ? (
         <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col">
           <div className="flex-1 overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-            <table className="w-full caption-bottom text-sm">
+            <table
+              className={`w-full caption-bottom text-sm ${
+                density === "compact" ? "data-table-compact" : ""
+              }`}
+              style={
+                density === "compact"
+                  ? {
+                      borderCollapse: "collapse",
+                      borderSpacing: 0,
+                    }
+                  : undefined
+              }
+            >
               <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr
-                    key={headerGroup.id}
-                    className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2 shadow-sm"
-                  >
-                    {headerGroup.headers.map((header) => {
-                      return (
-                        <th
-                          key={header.id}
-                          className="h-6 px-2 text-left align-middle font-semibold text-muted-foreground whitespace-nowrap"
-                        >
-                          {header.isPlaceholder
-                            ? null
-                            : flexRender(
-                                header.column.columnDef.header,
-                                header.getContext()
-                              )}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                ))}
+                <TableHeaderRow />
               </thead>
-              <tbody className="[&_tr:last-child]:border-0 text-xs [&_td]:py-0 [&_td]:px-2 [&_td]:leading-none">
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row) => (
-                    <tr
-                      key={row.id}
-                      data-state={row.getIsSelected() && "selected"}
-                      className="group transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer border-b border-border/30 hover:border-accent/50"
-                      onClick={() => {
-                        row.toggleSelected();
-                        if (onRowClick) onRowClick(row.original as TData);
-                      }}
-                      onMouseEnter={() => {
-                        if (onRowHover) onRowHover(row.original as TData);
-                      }}
-                      onMouseLeave={() => {
-                        if (onRowHover) onRowHover(null);
-                      }}
-                    >
-                      {row.getVisibleCells().map((cell) => (
-                        <td key={cell.id} className="align-middle">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </td>
-                      ))}
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={columns.length} className="h-24 text-center">
-                      Nenhum resultado encontrado.
-                    </td>
-                  </tr>
-                )}
+              <tbody className={tbodyClasses}>
+                <TableBodyRows />
               </tbody>
             </table>
           </div>
@@ -265,76 +304,31 @@ export function DataTable<TData, TValue>({
         </div>
       ) : (
         <>
-          <div
-            className={`flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col mb-3`}
-          >
-            <div
-              className={`overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
-            >
-              <table className="w-full caption-bottom text-sm">
+          <div className="flex-1 border border-border/50 shadow-sm overflow-hidden bg-card flex flex-col mb-3">
+            <div className="overflow-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <table
+                className={`w-full caption-bottom text-sm ${
+                  density === "compact" ? "data-table-compact" : ""
+                }`}
+                style={
+                  density === "compact"
+                    ? {
+                        borderCollapse: "collapse",
+                        borderSpacing: 0,
+                      }
+                    : undefined
+                }
+              >
                 <thead className="sticky top-0 z-10 bg-card [&_tr]:border-b">
-                  {table.getHeaderGroups().map((headerGroup) => (
-                    <tr
-                      key={headerGroup.id}
-                      className="bg-gradient-to-r from-muted/80 to-muted/40 hover:from-muted hover:to-muted/60 transition-smooth border-b-2 shadow-sm"
-                    >
-                      {headerGroup.headers.map((header) => {
-                        return (
-                          <th
-                            key={header.id}
-                            className="h-6 px-2 text-left align-middle font-semibold text-muted-foreground whitespace-nowrap"
-                          >
-                            {header.isPlaceholder
-                              ? null
-                              : flexRender(
-                                  header.column.columnDef.header,
-                                  header.getContext()
-                                )}
-                          </th>
-                        );
-                      })}
-                    </tr>
-                  ))}
+                  <TableHeaderRow compact />
                 </thead>
-                <tbody className="[&_tr:last-child]:border-0 text-xs [&_td]:py-0 [&_td]:px-2 [&_td]:leading-none">
-                  {table.getRowModel().rows?.length ? (
-                    table.getRowModel().rows.map((row) => (
-                      <tr
-                        key={row.id}
-                        data-state={row.getIsSelected() && "selected"}
-                        className="group transition-all duration-200 hover:bg-accent/50 hover:shadow-sm cursor-pointer border-b border-border/30 hover:border-accent/50"
-                        onClick={() => {
-                          row.toggleSelected();
-                          if (onRowClick) onRowClick(row.original as TData);
-                        }}
-                        onMouseEnter={() => {
-                          if (onRowHover) onRowHover(row.original as TData);
-                        }}
-                        onMouseLeave={() => {
-                          if (onRowHover) onRowHover(null);
-                        }}
-                      >
-                        {row.getVisibleCells().map((cell) => (
-                          <td key={cell.id} className="align-middle">
-                            {flexRender(
-                              cell.column.columnDef.cell,
-                              cell.getContext()
-                            )}
-                          </td>
-                        ))}
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan={columns.length} className="h-24 text-center">
-                        Nenhum resultado encontrado.
-                      </td>
-                    </tr>
-                  )}
+                <tbody className={tbodyClasses}>
+                  <TableBodyRows />
                 </tbody>
               </table>
             </div>
           </div>
+
           {!hidePagination && (
             <div className="mt-2 flex items-center justify-between space-x-2 py-2 px-6 shrink-0 border-t border-border/40 bg-card shadow-sm">
               <div className="flex-1 text-xs text-muted-foreground">
@@ -349,7 +343,7 @@ export function DataTable<TData, TValue>({
                     onChange={(e) => {
                       table.setPageSize(Number(e.target.value));
                     }}
-                    className="h-7 w-[64px] border border-input bg-transparent px-2 py-0.5 text-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    className="h-7 w-[64px] border border-input bg-transparent px-2 py-2 text-xs ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                   >
                     {[10, 15, 25, 50, 100].map((size) => (
                       <option key={size} value={size}>

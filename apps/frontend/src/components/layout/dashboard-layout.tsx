@@ -137,6 +137,14 @@ export function DashboardLayout({
     loadUser();
   }, []);
 
+  const autoHideSidebar = (() => {
+    const p = pathname || "";
+    if (/^\/cadastros(\/|$)/.test(p)) return true;
+    if (/^\/financeiro(\/|$)/.test(p)) return true;
+    return false;
+  })();
+  const sidebarEnabled = !hideSidebar && !autoHideSidebar;
+
   return (
     <div className="h-screen flex flex-col">
       <Header
@@ -147,7 +155,7 @@ export function DashboardLayout({
 
       <div className="flex-1 flex overflow-hidden relative" ref={containerRef}>
         {/* Sidebar Desktop */}
-        {!hideSidebar && (
+        {sidebarEnabled && (
           <aside
             className={cn(
               "hidden md:block border-r overflow-y-auto transition-all duration-300 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]",
@@ -205,7 +213,7 @@ export function DashboardLayout({
         )}
 
         {/* Sidebar Mobile */}
-        {!hideSidebar &&
+        {sidebarEnabled &&
           (isMobile ? (
             <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
               <SheetContent side="left" className="w-64 p-0">
