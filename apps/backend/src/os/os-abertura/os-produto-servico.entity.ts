@@ -83,7 +83,10 @@ export class OsProdutoServico {
 	/**
 	* Constructor
 	*/
-	constructor(objetoJson: {}) {
+	
+  @Column({ name: 'id_empresa', nullable: true })
+  idEmpresa: number;
+constructor(objetoJson: {}) {
 		if (objetoJson != null) {
 			this.id = objetoJson['id'] == 0 ? undefined : objetoJson['id'];
 			this.tipo = objetoJson['tipo'];
