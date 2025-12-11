@@ -39,9 +39,11 @@ import {
   PrimaryGeneratedColumn,
   OneToOne,
   JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 import { Cheque } from '../../entities-export';
 import { BancoContaCaixa } from '../../entities-export';
+import { Empresa } from '../../entities-export';
 
 @Entity({ name: 'fin_cheque_emitido' })
 export class FinChequeEmitido {
@@ -80,6 +82,13 @@ export class FinChequeEmitido {
   @Column({ name: 'id_cheque', nullable: true })
   idCheque: number;
 
+  @ManyToOne(() => Empresa)
+  @JoinColumn({ name: 'id_empresa' })
+  empresa: Empresa;
+
+  @Column({ name: 'id_empresa', nullable: true })
+  idEmpresa: number;
+
   /**
    * Constructor
    */
@@ -100,6 +109,10 @@ export class FinChequeEmitido {
         this.bancoContaCaixa = new BancoContaCaixa(
           objetoJson['bancoContaCaixa'],
         );
+      }
+
+      if (objetoJson['empresa'] != null) {
+        this.empresa = new Empresa(objetoJson['empresa']);
       }
     }
   }

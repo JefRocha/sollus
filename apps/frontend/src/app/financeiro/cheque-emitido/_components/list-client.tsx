@@ -1,122 +1,220 @@
 "use client";
 
-import { useState } from "react";
-import { FinChequeEmitido } from "@/types/schemas/financeiro/fin-cheque-emitido";
-import { Input } from "@/components/ui/input";
+import { ListPageLayout } from "@/components/layout/list-page-layout";
+import { ListPageSidebar } from "@/components/layout/list-page-sidebar";
+import { ListPageContent } from "@/components/layout/list-page-content";
+import { FloatingActionButton } from "@/components/layout/floating-action-button";
+import { MobileListCard } from "@/components/layout/mobile-list-card";
+import { DataTable } from "@/components/data-table/data-table";
+import { PageContainer } from "@/components/page-container";
 import { Button } from "@/components/ui/button";
-import { LayoutGrid, List } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useMobileDetection } from "@/hooks/use-mobile-detection";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  Plus,
+  Download,
+  Settings,
+  PanelLeftClose,
+  PanelLeftOpen,
+} from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { Button as UIButton } from "@/components/ui/button";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { columns } from "./columns";
+import { FinChequeEmitido } from "@/types/schemas/financeiro/fin-cheque-emitido";
 
-interface ListClientProps {
-  initialData: FinChequeEmitido[];
+interface FinChequeEmitidoListClientProps {
+  data: FinChequeEmitido[];
 }
 
-export function FinChequeEmitidoListClient({ initialData }: ListClientProps) {
-  const [viewMode, setViewMode] = useState<"table" | "card">("table");
-  const [searchTerm, setSearchTerm] = useState("");
+export function FinChequeEmitidoListClient({
+  data,
+}: FinChequeEmitidoListClientProps) {
+  const router = useRouter();
+  const { isMobile } = useMobileDetection();
+  const [searchValue, setSearchValue] = useState("");
+  const [viewMode, setViewMode] = useState<"table" | "cards">("table");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const filteredData = initialData.filter((item) =>
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("finChequeEmitidoViewMode");
+      if (saved === "cards" || saved === "table")
+        setViewMode(saved as "table" | "cards");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("finChequeEmitidoViewMode", viewMode);
+    }
+  }, [viewMode]);
+
+  const filteredData = data.filter((item) =>
     Object.values(item).some((value) =>
-      String(value).toLowerCase().includes(searchTerm.toLowerCase())
+      String(value).toLowerCase().includes(searchValue.toLowerCase())
     )
   );
 
-  return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <Input
-          placeholder="Filtrar..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="max-w-sm"
-        />
-        <div className="flex gap-2">
-          <Button
-            variant={viewMode === "table" ? "default" : "outline"}
+  const sidebar = (
+    <ListPageSidebar
+      searchPlaceholder="Filtrar..."
+      searchValue={searchValue}
+      onSearchChange={setSearchValue}
+      className="bg-gradient-to-b from-muted/40 via-muted/20 to-transparent"
+      headerActions={
+        !isMobile && (
+          <UIButton
+            variant="ghost"
             size="icon"
-            onClick={() => setViewMode("table")}
+            onClick={() => setSidebarCollapsed((v) => !v)}
+            aria-label={sidebarCollapsed ? "Expandir painel" : "Ocultar painel"}
+            className="text-muted-foreground hover:text-foreground"
           >
-            <List className="h-4 w-4" />
-          </Button>
-          <Button
-            variant={viewMode === "card" ? "default" : "outline"}
-            size="icon"
-            onClick={() => setViewMode("card")}
-          >
-            <LayoutGrid className="h-4 w-4" />
-          </Button>
+            {sidebarCollapsed ? (
+              <PanelLeftOpen className="size-4" />
+            ) : (
+              <PanelLeftClose className="size-4" />
+            )}
+          </UIButton>
+        )
+      }
+      actions={
+        !isMobile && (
+          <Link href="/financeiro/cheque-emitido/novo">
+            <Button className="w-full transition-transform active:scale-[0.98]">
+              <Plus className="mr-2 size-4" />
+              Novo Cheque
+            </Button>
+          </Link>
+        )
+      }
+      filters={
+        <div className="space-y-4">
+          {!isMobile && (
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Modo de exibição</p>
+              <RadioGroup
+                value={viewMode}
+                onValueChange={(v) => setViewMode(v as "table" | "cards")}
+                className="flex items-center gap-4"
+              >
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="table" id="view-table" />
+                  <Label
+                    htmlFor="view-table"
+                    className="text-sm cursor-pointer"
+                  >
+                    Tabela
+                  </Label>
+                </div>
+                <div className="flex items-center gap-2">
+                  <RadioGroupItem value="cards" id="view-cards" />
+                  <Label
+                    htmlFor="view-cards"
+                    className="text-sm cursor-pointer"
+                  >
+                    Cards
+                  </Label>
+                </div>
+              </RadioGroup>
+            </div>
+          )}
         </div>
-      </div>
+      }
+      bottomActions={
+        <>
+          <Button variant="outline" className="w-full">
+            <Download className="mr-2 size-4" />
+            Exportar
+          </Button>
+          <Button variant="ghost" className="w-full">
+            <Settings className="mr-2 size-4" />
+            Configurações
+          </Button>
+        </>
+      }
+    />
+  );
 
-      {viewMode === "table" ? (
-        <div className="rounded-md border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>ID</TableHead>
-                <TableHead>Num. Cheque</TableHead>
-                <TableHead>Nominal A</TableHead>
-                <TableHead>Valor</TableHead>
-                <TableHead>Bom Para</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredData.length > 0 ? (
-                filteredData.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell>{item.id}</TableCell>
-                    <TableCell>{item.idCheque}</TableCell>
-                    <TableCell>{item.nominalA}</TableCell>
-                    <TableCell>
-                      {new Intl.NumberFormat("pt-BR", {
-                        style: "currency",
-                        currency: "BRL",
-                      }).format(item.valor)}
-                    </TableCell>
-                    <TableCell>{item.bomPara}</TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell colSpan={5} className="text-center">
-                    Nenhum registro encontrado
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-      ) : (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {filteredData.map((item) => (
-            <Card key={item.id}>
-              <CardHeader>
-                <CardTitle>Cheque #{item.idCheque}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm font-medium">Nominal: {item.nominalA}</p>
-                <p className="text-2xl font-bold">
-                  {new Intl.NumberFormat("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
-                  }).format(item.valor)}
-                </p>
-                <p className="text-muted-foreground text-sm">
-                  Bom para: {item.bomPara}
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+  const renderCards = () => (
+    <div className="space-y-2">
+      {filteredData.map((item) => (
+        <MobileListCard
+          key={item.id}
+          title={`Cheque #${item.idCheque}`}
+          subtitle={item.nominalA}
+          status={
+            <span className="font-bold">
+              {new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+              }).format(item.valor)}
+            </span>
+          }
+          onEdit={() =>
+            router.push(`/financeiro/cheque-emitido/${item.id}/editar`)
+          }
+          onClick={() =>
+            router.push(`/financeiro/cheque-emitido/${item.id}/editar`)
+          }
+        />
+      ))}
+      {filteredData.length === 0 && (
+        <p className="py-8 text-center text-sm text-muted-foreground">
+          Nenhum registro encontrado.
+        </p>
       )}
     </div>
+  );
+
+  return (
+    <PageContainer contentClassName="p-0 pb-0" wrapWithDashboardLayout={false}>
+      <ListPageLayout
+        sidebar={sidebar}
+        mobileTitle="Cheques Emitidos"
+        sidebarCollapsed={sidebarCollapsed}
+      >
+        <ListPageContent
+          title="Cheques Emitidos"
+          description="Gerencie os cheques emitidos pela empresa."
+        >
+          <div className="px-1 pb-3 flex items-center justify-between gap-2">
+            {sidebarCollapsed && (
+              <UIButton
+                variant="outline"
+                onClick={() => setSidebarCollapsed(false)}
+              >
+                <PanelLeftOpen className="mr-2 size-4" />
+                Mostrar Painel
+              </UIButton>
+            )}
+          </div>
+
+          {isMobile || viewMode === "cards" ? (
+            renderCards()
+          ) : (
+            <DataTable
+              columns={columns}
+              data={filteredData}
+              createHref="/financeiro/cheque-emitido/novo"
+              createText="Novo Cheque"
+              canCreate={false}
+              flexibleHeight
+              density="compact"
+            />
+          )}
+        </ListPageContent>
+      </ListPageLayout>
+
+      {isMobile && (
+        <FloatingActionButton
+          onClick={() => router.push("/financeiro/cheque-emitido/novo")}
+          label="Novo Cheque"
+        />
+      )}
+    </PageContainer>
   );
 }
